@@ -3,12 +3,25 @@
  */
 package powpaw;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+public class App extends Application {
+    Label text = new Label("Hello world");
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Application.launch(App.class, args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Pane root = new Pane();
+        root.getChildren().add(text);
+        Scene scene = new Scene(root, 500, 300);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
