@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class App extends Application{
+public class App extends Application {
     Label text = new Label("Hello world");
 
     public static void main(String[] args) {
