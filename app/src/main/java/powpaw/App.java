@@ -5,12 +5,14 @@ package powpaw;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import powpaw.view.api.StartMenu;
 
 public class App extends Application {
-    Label text = new Label("Hello world");
+    StartMenu menu;
+    private GridPane root;
+    Scene scene;
 
     public static void main(String[] args) {
         Application.launch(App.class, args);
@@ -18,10 +20,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Pane root = new Pane();
-        root.getChildren().add(text);
-        Scene scene = new Scene(root, 500, 300);
+        root = new GridPane();
+        menu = new StartMenu(root);
+        root.getChildren().add(menu);
+        Scene scene = new Scene(root,500,300);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    public GridPane getGridPane(){
+        return root;
     }
 }
