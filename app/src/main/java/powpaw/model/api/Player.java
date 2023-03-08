@@ -8,11 +8,7 @@ public interface Player {
 
     Point2D getPosition();
 
-    void getVelocity();
-
-    double getWidth();
-
-    double getHeight();
+    Point2D getVelocity();
 
     void moveLeft();
 
@@ -22,9 +18,9 @@ public interface Player {
 
     void attack();
 
-    int getAttackPower();
+    double getAttackPower();
 
-    int getMaxHealth();
+    double getCurrentHealth();
 
-    int getCurrentHealth();
+    void update(Duration deltaTime);
 }

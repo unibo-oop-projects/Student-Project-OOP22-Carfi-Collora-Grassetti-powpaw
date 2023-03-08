@@ -10,6 +10,7 @@ import powpaw.model.impl.PlayerImpl;
 public class GameLoop extends AnimationTimer {
 
     private Instant lastFrameTime;
+    private Player player = new PlayerImpl(null);
 
     @Override
     public void start() {
@@ -26,7 +27,7 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void update(Duration deltaTime) {
-        PlayerImpl.update(deltaTime);
+        player.update(deltaTime);
     }
 
 }
