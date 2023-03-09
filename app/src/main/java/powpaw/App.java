@@ -18,7 +18,9 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Scene worldScene =  worldRender.createScene();
+        primaryStage.setTitle("PowPaw");
         primaryStage.setScene(worldScene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }
