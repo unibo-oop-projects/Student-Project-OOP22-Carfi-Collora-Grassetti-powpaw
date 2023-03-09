@@ -21,7 +21,7 @@ public class WorldController {
             b.setX(b.getX()*(ScreenController.SIZE_HD_W/30));
             b.setY(b.getY()*(ScreenController.SIZE_HD_H/10));
             b.setWidth(b.getWidth()*(ScreenController.SIZE_HD_W/30));
-            b.setHeight(b.getHeight()*(ScreenController.SIZE_HD_H/30));
+            b.setHeight(b.getHeight()*(ScreenController.SIZE_HD_H/10));
         });
     }
 
