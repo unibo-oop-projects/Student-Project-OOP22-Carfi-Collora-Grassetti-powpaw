@@ -10,6 +10,14 @@ public interface Player {
 
     Point2D getVelocity();
 
+    double getWidth();
+
+    double getHeight();
+
+    void setWidth(double width);
+
+    void setHeight(double height);
+
     void moveLeft();
 
     void moveRight();

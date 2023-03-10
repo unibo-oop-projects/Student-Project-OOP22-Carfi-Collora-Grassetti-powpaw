@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import javafx.geometry.Point2D;
 import powpaw.common.DirectionVector;
+import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
 
 public class PlayerImpl implements Player {
@@ -14,12 +15,16 @@ public class PlayerImpl implements Player {
 
     private Point2D position;
     private Point2D velocity;
+    private double width;
+    private double height;
     private double attackPower;
     private int currentHealth;
+    private Hitbox hitbox;
 
     public PlayerImpl(Point2D position) {
         this.position = position;
         this.attackPower = 0.25;
+        hitbox = new PlayerHitboxImpl(position, width, height);
     }
 
     @Override
@@ -30,6 +35,26 @@ public class PlayerImpl implements Player {
     @Override
     public Point2D getVelocity() {
         return this.velocity;
+    }
+
+    @Override
+    public double getWidth() {
+        return this.width;
+    }
+
+    @Override
+    public double getHeight() {
+        return this.height;
+    }
+
+    @Override
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    @Override
+    public void setHeight(double height) {
+        this.height = height;
     }
 
     @Override
@@ -69,6 +94,6 @@ public class PlayerImpl implements Player {
 
         position = oldPosition.add(oldVelocity.multiply(deltaTime.toMillis()));
         velocity = oldVelocity.add(GRAVITY);
+        hitbox.updateCenter(position, this.width, this.height);
     }
-
 }
