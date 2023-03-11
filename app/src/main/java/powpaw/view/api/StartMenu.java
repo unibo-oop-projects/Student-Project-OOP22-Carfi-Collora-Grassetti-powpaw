@@ -4,13 +4,12 @@ import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import powpaw.App;
 
-public class StartMenu extends GridPane{
+public class StartMenu extends GridPane {
     private Button start;
     private Button exit;
 
-    public StartMenu(){
+    public StartMenu() {
         setAlignment(Pos.CENTER);
         start = new Button("START");
         exit = new Button("EXIT");
@@ -22,17 +21,16 @@ public class StartMenu extends GridPane{
         exit.prefHeightProperty().bind(heightProperty().divide(4));
         start.setMaxSize(300, 70);
         exit.setMaxSize(300, 70);
-        add(start,0,0);
-        add(exit,0,1);
-        start.setOnAction(e->{
-            try{
-                App app = new App();
-                app.getGame();
+        add(start, 0, 0);
+        add(exit, 0, 1);
+        start.setOnAction(e -> {
+            try {
+                start.getScene().setRoot(new GameInterface());
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
         });
-        exit.setOnAction(e->{
+        exit.setOnAction(e -> {
             Platform.exit();
         });
     }
