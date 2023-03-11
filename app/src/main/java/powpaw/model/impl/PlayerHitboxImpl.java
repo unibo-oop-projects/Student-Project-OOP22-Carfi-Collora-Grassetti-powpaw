@@ -8,14 +8,17 @@ import powpaw.model.api.Hitbox;
 public class PlayerHitboxImpl implements Hitbox {
 
     private double radius;
-    private Shape hitbox;
-    private Point2D center;
+    private double offsetX;
+    private double offsetY;
+    private Circle hitbox;
 
     public PlayerHitboxImpl(Point2D PlayerPosition, double width, double height) {
         this.radius = width / 2;
-        this.center = new Point2D(PlayerPosition.getX() + width / 2,
-                PlayerPosition.getY() + height / 2);
-        this.hitbox = new Circle(this.radius, this.center.getX(), this.center.getY());
+        this.offsetX = width / 2;
+        this.offsetY = height / 2;
+        final double x = PlayerPosition.getX() + this.offsetX;
+        final double y = PlayerPosition.getY() + this.offsetY;
+        this.hitbox = new Circle(x, y, this.radius);
     }
 
     @Override
@@ -25,7 +28,7 @@ public class PlayerHitboxImpl implements Hitbox {
 
     @Override
     public Point2D getCenter() {
-        return this.center;
+        return new Point2D(this.hitbox.getCenterX(), this.hitbox.getCenterY());
     }
 
     @Override
@@ -34,14 +37,23 @@ public class PlayerHitboxImpl implements Hitbox {
     }
 
     @Override
-    public void updateCenter(Point2D position, double width, double height) {
-        ((Circle) this.hitbox).setCenterX(position.getX() + width / 2);
-        ((Circle) this.hitbox).setCenterY(position.getY() + height / 2);
+    public void setOffsetX(double width) {
+        this.offsetX = width / 2;
+    }
+
+    @Override
+    public void setOffsetY(double height) {
+        this.offsetY = height / 2;
+    }
+
+    @Override
+    public void updateCenter(Point2D position) {
+        this.hitbox.setCenterX(position.getX() + offsetX);
+        this.hitbox.setCenterY(position.getY() + offsetY);
     }
 
     @Override
     public boolean checkCollision(Shape otherHitbox) {
         return this.hitbox.getBoundsInParent().intersects(otherHitbox.getBoundsInParent());
     }
-
 }
