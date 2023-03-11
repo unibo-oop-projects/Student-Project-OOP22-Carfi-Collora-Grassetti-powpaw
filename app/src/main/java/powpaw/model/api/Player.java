@@ -24,11 +24,15 @@ public interface Player {
 
     void jump();
 
+    void idle();
+
     void attack();
 
     double getAttackPower();
 
     double getCurrentHealth();
+
+    Hitbox getHitbox();
 
     void update(Duration deltaTime);
 }

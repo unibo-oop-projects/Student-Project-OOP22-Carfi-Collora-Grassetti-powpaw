@@ -24,7 +24,7 @@ public class PlayerImpl implements Player {
     public PlayerImpl(Point2D position) {
         this.position = position;
         this.attackPower = 0.25;
-        hitbox = new PlayerHitboxImpl(position, width, height);
+        hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
     }
 
     @Override
@@ -48,13 +48,20 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public Hitbox getHitbox() {
+        return this.hitbox;
+    }
+
+    @Override
     public void setWidth(double width) {
         this.width = width;
+        this.hitbox.setOffsetX(width);
     }
 
     @Override
     public void setHeight(double height) {
         this.height = height;
+        this.hitbox.setOffsetY(height);
     }
 
     @Override
@@ -69,7 +76,12 @@ public class PlayerImpl implements Player {
 
     @Override
     public void jump() {
-        velocity = DirectionVector.RIGHT.multiply(SPEED);
+        velocity = DirectionVector.UP.multiply(SPEED);
+    }
+
+    @Override
+    public void idle() {
+        velocity = new Point2D(0, 0);
     }
 
     @Override
@@ -89,11 +101,8 @@ public class PlayerImpl implements Player {
 
     @Override
     public void update(Duration deltaTime) {
-        Point2D oldPosition = new Point2D(position.getX(), position.getY());
-        Point2D oldVelocity = new Point2D(velocity.getX(), velocity.getY());
-
-        position = oldPosition.add(oldVelocity.multiply(deltaTime.toMillis()));
-        velocity = oldVelocity.add(GRAVITY);
-        hitbox.updateCenter(position, this.width, this.height);
+        position = position.add(velocity.multiply(deltaTime.toMillis()));
+        velocity = velocity.add(GRAVITY);
+        hitbox.updateCenter(position);
     }
 }

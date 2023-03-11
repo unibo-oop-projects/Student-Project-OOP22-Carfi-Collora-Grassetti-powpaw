@@ -11,7 +11,11 @@ public interface Hitbox {
 
     Shape getHitbox();
 
-    void updateCenter(Point2D position, double width, double height);
+    void setOffsetX(double width);
+
+    void setOffsetY(double height);
+
+    void updateCenter(Point2D position);
 
     boolean checkCollision(Shape otherHitbox);
 }
