@@ -6,7 +6,7 @@ package powpaw;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import powpaw.model.api.GameInterface;
+import powpaw.view.api.GameInterface;
 import powpaw.view.api.StartMenu;
 
 public class App extends Application {

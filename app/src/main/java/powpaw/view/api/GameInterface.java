@@ -1,4 +1,4 @@
-package powpaw.model.api;
+package powpaw.view.api;
 
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
