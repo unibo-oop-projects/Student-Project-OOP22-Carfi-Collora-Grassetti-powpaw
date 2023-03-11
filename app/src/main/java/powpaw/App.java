@@ -5,19 +5,19 @@ package powpaw;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import powpaw.view.api.GameInterface;
 import powpaw.view.api.StartMenu;
 
 public class App extends Application {
-    private StartMenu menu;
+    private final GridPane root;
     private Scene sceneMenu;
-    private Scene sceneGame;
     private final Stage stage;
-    private GameInterface game;
+    private StartMenu menu;
 
     public App(){
         stage = new Stage();
+        root = new GridPane();
     }
 
     public static void main(String[] args) {
@@ -29,22 +29,17 @@ public class App extends Application {
         getMenu();
     }
 
-    public void getGame() throws Exception {
-        this.stage.close();
-        game = new GameInterface();
-        sceneGame = new Scene(game, 500, 300);
-        this.stage.setScene(sceneGame);
-        this.stage.setTitle("PowPaw");
-        this.stage.show();
-    }
-
     public void getMenu() {
         menu = new StartMenu();
         sceneMenu = new Scene(menu, 500, 300);
+        this.stage.setTitle("PowPaw");
         this.stage.setScene(sceneMenu);
         this.stage.show();
     }
     public Stage getStage(){
-        return this.stage;
+        return stage;
+    }
+    public GridPane getRoot(){
+        return root;
     }
 }
