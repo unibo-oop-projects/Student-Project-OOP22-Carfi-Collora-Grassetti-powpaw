@@ -36,6 +36,14 @@ application {
     mainClass.set("powpaw.App")
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs("src/assets")
+        }
+    }
+}
+
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()

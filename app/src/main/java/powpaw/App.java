@@ -5,12 +5,11 @@ package powpaw;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import powpaw.view.api.WorldRender;
 
 public class App extends Application {
-    Label text = new Label("Hello world");
+    private WorldRender worldRender = new WorldRender();
 
     public static void main(String[] args) {
         Application.launch(App.class, args);
@@ -18,10 +17,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Pane root = new Pane();
-        root.getChildren().add(text);
-        Scene scene = new Scene(root, 500, 300);
-        primaryStage.setScene(scene);
+        Scene worldScene =  worldRender.createScene();
+        primaryStage.setTitle("PowPaw");
+        primaryStage.setScene(worldScene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }
