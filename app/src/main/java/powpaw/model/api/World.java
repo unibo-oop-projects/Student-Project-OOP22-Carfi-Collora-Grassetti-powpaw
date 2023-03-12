@@ -12,8 +12,8 @@ public class World {
     }
 
     private void createWorld(){
-        for(int y=0; y < Level.Level1.length; y++){
-            String row  = Level.Level1[y];
+        for(int y=0; y < Level.Level2.length; y++){
+            String row  = Level.Level2[y];
             for(int x=0; x < row.length(); x++){
                 switch (row.charAt(x)) {
                     case '0' :

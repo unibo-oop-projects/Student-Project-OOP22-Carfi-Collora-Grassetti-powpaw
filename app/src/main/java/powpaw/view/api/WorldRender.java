@@ -1,15 +1,9 @@
 package powpaw.view.api;
-
-import java.net.URL;
 import java.util.ArrayList;
-
-import org.checkerframework.checker.units.qual.C;
-
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import powpaw.controller.api.ScreenController;
