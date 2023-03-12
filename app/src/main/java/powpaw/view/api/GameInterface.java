@@ -7,8 +7,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class GameInterface extends StackPane {
-    private int damageP1 = 0;
-    private int damageP2 = 0;
+    private double damageP1 = 0.0;
+    private double damageP2 = 0.0;
     private Text damP1;
     private Text damP2;
     private Button pause;
@@ -24,9 +24,7 @@ public class GameInterface extends StackPane {
         damP2.setStyle("-fx-font: 50 arial;");
         damP1.setFill(Color.RED);
         setPrefSize(400, 400);
-        getChildren().add(damP1);
-        getChildren().add(damP2);
-        getChildren().add(pause);
+        getChildren().addAll(damP1,damP2,pause);
         setAlignment(damP1, Pos.TOP_LEFT);
         setAlignment(damP2, Pos.TOP_RIGHT);
         setAlignment(pause, Pos.TOP_CENTER);
