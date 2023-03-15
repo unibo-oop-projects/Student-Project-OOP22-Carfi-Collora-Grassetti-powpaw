@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 public class StartMenu extends GridPane {
-    private Button start;
-    private Button exit;
+    private final Button start;
+    private final Button exit;
 
     public StartMenu() {
         setAlignment(Pos.CENTER);

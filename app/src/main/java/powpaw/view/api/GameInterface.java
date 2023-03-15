@@ -11,7 +11,7 @@ public class GameInterface extends StackPane {
     private double damageP2 = 0.0;
     private Text damP1;
     private Text damP2;
-    private Button pause;
+    private final Button pause;
 
     public GameInterface() {
         damP1 = new Text(0, 0, "P1: " + String.valueOf(damageP1));
@@ -24,11 +24,11 @@ public class GameInterface extends StackPane {
         damP2.setStyle("-fx-font: 50 arial;");
         damP1.setFill(Color.RED);
         setPrefSize(400, 400);
-        getChildren().addAll(damP1,damP2,pause);
+        getChildren().addAll(damP1, damP2, pause);
         setAlignment(damP1, Pos.TOP_LEFT);
         setAlignment(damP2, Pos.TOP_RIGHT);
         setAlignment(pause, Pos.TOP_CENTER);
-        pause.setOnAction(e ->{
+        pause.setOnAction(e -> {
             pause.getScene().setRoot(new PauseMenu());
         });
     }
