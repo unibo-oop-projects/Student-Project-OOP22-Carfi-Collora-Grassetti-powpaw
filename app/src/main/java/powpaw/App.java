@@ -13,7 +13,7 @@ public class App extends Application {
     private Stage stage;
     private final StartMenu menu;
 
-    public App(){
+    public App() {
         menu = new StartMenu();
     }
 
@@ -33,7 +33,8 @@ public class App extends Application {
         this.stage.setScene(sceneMenu);
         this.stage.show();
     }
-    public Stage getStage(){
+
+    public Stage getStage() {
         return stage;
     }
 }
