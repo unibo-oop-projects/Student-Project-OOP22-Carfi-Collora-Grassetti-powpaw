@@ -85,6 +85,17 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public void dodge() {
+        hitbox.switchDodge();
+        try {
+            Thread.sleep(Duration.ofMillis(1).toMillis());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        hitbox.switchDodge();
+    }
+
+    @Override
     public void attack() {
         currentHealth += KNOCKBACK * attackPower;
     }
@@ -105,4 +116,5 @@ public class PlayerImpl implements Player {
         velocity = velocity.add(GRAVITY);
         hitbox.updateCenter(position);
     }
+
 }

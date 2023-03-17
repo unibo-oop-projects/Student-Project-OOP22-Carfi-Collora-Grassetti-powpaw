@@ -28,6 +28,8 @@ public interface Player {
 
     void attack();
 
+    void dodge();
+
     double getAttackPower();
 
     double getCurrentHealth();
@@ -35,4 +37,5 @@ public interface Player {
     Hitbox getHitbox();
 
     void update(Duration deltaTime);
+
 }
