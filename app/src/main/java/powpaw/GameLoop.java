@@ -4,13 +4,13 @@ import java.time.Duration;
 import java.time.Instant;
 
 import javafx.animation.AnimationTimer;
-import powpaw.model.api.Player;
-import powpaw.model.impl.PlayerImpl;
+import powpaw.model.api.World;
+import powpaw.model.impl.WorldImpl;
 
 public class GameLoop extends AnimationTimer {
 
     private Instant lastFrameTime;
-    private Player player = new PlayerImpl(null);
+    private World world = new WorldImpl();
 
     @Override
     public void start() {
@@ -27,7 +27,7 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void update(Duration deltaTime) {
-        player.update(deltaTime);
+        world.update(deltaTime);
     }
 
 }

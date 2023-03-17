@@ -1,38 +1,17 @@
 package powpaw.model.api;
 
-import java.util.ArrayList;
-import javafx.scene.shape.Rectangle;
+import java.time.Duration;
+import java.util.List;
 
-public class World {
+import powpaw.view.api.KeyObservable;
 
-    private ArrayList<Rectangle> terrains = new ArrayList<>(); 
+public interface World {
 
-    public World(){
-        createWorld();
-    }
+    void addPlayer(Player player);
 
-    private void createWorld(){
-        for(int y=0; y < Level.Level2.length; y++){
-            String row  = Level.Level2[y];
-            for(int x=0; x < row.length(); x++){
-                switch (row.charAt(x)) {
-                    case '0' :
-                        break;
-                    case '1':
-                        Rectangle block = Entity.createBlock(x, y, 1, 1);
-                        terrains.add(block);
-                        break;
-                }
-            }
-        }
-        
-    }
+    List<Player> getPlayers();
 
-    public ArrayList<Rectangle> getTerrains() {
-        return terrains;
-    }
-    
+    KeyObservable getKeyObservable();
 
-
-
+    void update(Duration deltaTime);
 }
