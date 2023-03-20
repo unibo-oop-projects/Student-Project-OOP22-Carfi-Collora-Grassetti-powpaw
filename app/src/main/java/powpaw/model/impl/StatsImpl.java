@@ -1,8 +1,5 @@
 package powpaw.model.impl;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-
 import powpaw.model.api.Stats;
 
 public class StatsImpl implements Stats {
@@ -13,17 +10,18 @@ public class StatsImpl implements Stats {
     private int speed;
     private int dexterity;
     private final static int maxPoint = 10;
-    private final static double minPoint = 5;
-    private final static double plusNminus = 1;
+    private final static int minPoint = 5;
+    private final static int plusMinus = 1;
 
-    public StatsImpl(StatsBuilder build) {
+    private StatsImpl(StatsBuilder build) {
         attack = build.attack;
         defence = build.defence;
         speed = build.speed;
         dexterity = build.dexterity;
         name = "Player";
     }
-    public StatsImpl(){
+
+    public StatsImpl() {
         attack = 5;
         defence = 5;
         dexterity = 5;
@@ -31,32 +29,33 @@ public class StatsImpl implements Stats {
     }
 
     @Override
-    public double getAttack() {
-        return (double)attack/10;
+    public int getAttack() {
+        return attack;
     }
 
     @Override
-    public double getDefence() {
-        return (double)defence/10;
+    public int getDefence() {
+        return defence;
     }
 
     @Override
-    public double getSpeed() {
-        return (double)speed/10;
+    public int getSpeed() {
+        return speed;
     }
 
     @Override
-    public double getDexterity() {
-        return (double)dexterity/10;
+    public int getDexterity() {
+        return dexterity;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
 
     @Override
     public void increaseAtt() {
-        if (attack < maxPoint - plusNminus) {
-            attack += plusNminus;
+        if (attack < maxPoint) {
+            attack += plusMinus;
         } else {
             System.err.println("Max Point Reached");
         }
@@ -64,8 +63,8 @@ public class StatsImpl implements Stats {
 
     @Override
     public void increaseDef() {
-        if (defence < maxPoint - 0.1) {
-            defence += 0.1;
+        if (defence < maxPoint) {
+            defence += plusMinus;
         } else {
             System.err.println("Max Point Reached");
         }
@@ -73,8 +72,8 @@ public class StatsImpl implements Stats {
 
     @Override
     public void increaseSpe() {
-        if (speed < maxPoint - 0.1) {
-            speed += 0.1;
+        if (speed < maxPoint) {
+            speed += plusMinus;
         } else {
             System.err.println("Max Point Reached");
         }
@@ -82,8 +81,8 @@ public class StatsImpl implements Stats {
 
     @Override
     public void increaseDex() {
-        if (dexterity < maxPoint - 0.1) {
-            dexterity += 1;
+        if (dexterity < maxPoint) {
+            dexterity += plusMinus;
         } else {
             System.err.println("Max Point Reached");
         }
@@ -92,7 +91,7 @@ public class StatsImpl implements Stats {
     @Override
     public void decreaseAtt() {
         if (attack > minPoint) {
-            attack -= 1;
+            attack -= plusMinus;
         } else {
             System.err.println("Max Point Reached");
         }
@@ -101,7 +100,7 @@ public class StatsImpl implements Stats {
     @Override
     public void decreaseDef() {
         if (defence > minPoint) {
-            defence -= 1;
+            defence -= plusMinus;
         } else {
             System.err.println("Max Point Reached");
         }
@@ -110,7 +109,7 @@ public class StatsImpl implements Stats {
     @Override
     public void decreaseSpe() {
         if (speed > minPoint) {
-            speed -= 1;
+            speed -= plusMinus;
         } else {
             System.err.println("Max Point Reached");
         }
@@ -123,6 +122,10 @@ public class StatsImpl implements Stats {
         } else {
             System.err.println("Max Point Reached");
         }
+    }
+    @Override
+    public double toDouble(int value) {
+        return (double) value/10;
     }
 
     public static class StatsBuilder {
@@ -164,5 +167,7 @@ public class StatsImpl implements Stats {
             return new StatsImpl(this);
         }
     }
+
+    
 
 }
