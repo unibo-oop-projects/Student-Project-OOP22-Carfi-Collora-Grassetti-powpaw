@@ -1,8 +1,15 @@
 package powpaw.model.api;
 
-import java.util.Map;
 
 public interface Stats {
+
+    double getAttack();
+
+    double getDefence();
+
+    double getSpeed();
+
+    double getDexterity();
 
     void increaseAtt();
 
@@ -19,7 +26,5 @@ public interface Stats {
     void decreaseSpe();
 
     void decreaseDex();
-
-    Map<String, Double> getMap();
 
 }
