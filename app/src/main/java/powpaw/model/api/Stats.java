@@ -1,15 +1,14 @@
 package powpaw.model.api;
 
-
 public interface Stats {
 
-    double getAttack();
+    int getAttack();
 
-    double getDefence();
+    int getDefence();
 
-    double getSpeed();
+    int getSpeed();
 
-    double getDexterity();
+    int getDexterity();
 
     void increaseAtt();
 
@@ -26,5 +25,7 @@ public interface Stats {
     void decreaseSpe();
 
     void decreaseDex();
+
+    double toDouble(int value);
 
 }
