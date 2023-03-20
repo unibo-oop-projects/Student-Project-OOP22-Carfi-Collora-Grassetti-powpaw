@@ -123,9 +123,10 @@ public class StatsImpl implements Stats {
             System.err.println("Max Point Reached");
         }
     }
+
     @Override
     public double toDouble(int value) {
-        return (double) value/10;
+        return (double) value / 10;
     }
 
     public static class StatsBuilder {
@@ -167,7 +168,5 @@ public class StatsImpl implements Stats {
             return new StatsImpl(this);
         }
     }
-
-    
 
 }

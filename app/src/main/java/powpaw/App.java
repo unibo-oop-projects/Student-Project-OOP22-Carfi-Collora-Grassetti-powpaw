@@ -6,7 +6,6 @@ package powpaw;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import powpaw.model.api.Stats;
 import powpaw.model.impl.StatsImpl;
 import powpaw.model.impl.StatsImpl.StatsBuilder;
 import powpaw.view.api.StartMenu;
