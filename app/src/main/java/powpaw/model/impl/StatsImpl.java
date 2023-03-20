@@ -8,7 +8,6 @@ public class StatsImpl implements Stats {
     private int attack;
     private int defence;
     private int speed;
-    private int dexterity;
     private final static int maxPoint = 10;
     private final static int minPoint = 5;
     private final static int plusMinus = 1;
@@ -17,14 +16,12 @@ public class StatsImpl implements Stats {
         attack = build.attack;
         defence = build.defence;
         speed = build.speed;
-        dexterity = build.dexterity;
         name = "Player";
     }
 
     public StatsImpl() {
         attack = 5;
         defence = 5;
-        dexterity = 5;
         speed = 5;
     }
 
@@ -41,11 +38,6 @@ public class StatsImpl implements Stats {
     @Override
     public int getSpeed() {
         return speed;
-    }
-
-    @Override
-    public int getDexterity() {
-        return dexterity;
     }
 
     public String getName() {
@@ -80,15 +72,6 @@ public class StatsImpl implements Stats {
     }
 
     @Override
-    public void increaseDex() {
-        if (dexterity < maxPoint) {
-            dexterity += plusMinus;
-        } else {
-            System.err.println("Max Point Reached");
-        }
-    }
-
-    @Override
     public void decreaseAtt() {
         if (attack > minPoint) {
             attack -= plusMinus;
@@ -116,15 +99,6 @@ public class StatsImpl implements Stats {
     }
 
     @Override
-    public void decreaseDex() {
-        if (dexterity > minPoint) {
-            dexterity -= 1;
-        } else {
-            System.err.println("Max Point Reached");
-        }
-    }
-
-    @Override
     public double toDouble(int value) {
         return (double) value / 10;
     }
@@ -134,7 +108,6 @@ public class StatsImpl implements Stats {
         private int attack;
         private int defence;
         private int speed;
-        private int dexterity;
 
         public StatsBuilder(String name) {
             this.name = name;
@@ -156,11 +129,6 @@ public class StatsImpl implements Stats {
 
         public StatsBuilder speed(int speed) {
             this.speed = speed;
-            return this;
-        }
-
-        public StatsBuilder dexterity(int dexterity) {
-            this.dexterity = dexterity;
             return this;
         }
 
