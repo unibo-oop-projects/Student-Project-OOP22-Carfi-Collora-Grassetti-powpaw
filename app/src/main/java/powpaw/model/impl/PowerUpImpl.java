@@ -18,11 +18,11 @@ public class PowerUpImpl implements PowerUp {
     }
 
     @Override
-    public void defenceUp(int defence) {
+    public void speedUp(int speed) {
         try {
-            defence += 2;
+            speed += 2;
             TimeUnit.SECONDS.wait(10);
-            defence -= 2;
+            speed -= 2;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
