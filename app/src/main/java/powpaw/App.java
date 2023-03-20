@@ -4,17 +4,10 @@
 package powpaw;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import powpaw.model.api.World;
-import powpaw.model.impl.WorldImpl;
-import powpaw.view.api.WorldRender;
 
 public class App extends Application {
-    private WorldRender worldRender = new WorldRender();
-    private World world = new WorldImpl();
+    private GameLoop loop;
 
     public static void main(String[] args) {
         Application.launch(App.class, args);
@@ -22,18 +15,20 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Scene worldScene = worldRender.createScene();
-        worldScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
+        this.loop = new GameLoop(primaryStage);
+        loop.start();
+        /*Scene worldScene = worldRender.createScene();
+         worldScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            
             @Override
             public void handle(KeyEvent event) {
                 world.getKeyObservable().notifyObservers(event);
                 System.out.println(event.getCode());
             }
-        });
+        }); 
         primaryStage.setTitle("PowPaw");
         primaryStage.setScene(worldScene);
         primaryStage.setResizable(false);
-        primaryStage.show();
+        primaryStage.show();*/
     }
 }

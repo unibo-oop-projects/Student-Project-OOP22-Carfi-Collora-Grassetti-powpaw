@@ -1,18 +1,23 @@
-package powpaw.controller.api;
+package powpaw.controller.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.shape.Rectangle;
+import powpaw.controller.api.ScreenController;
+import powpaw.model.api.Player;
 import powpaw.model.api.World;
+import powpaw.model.impl.CreateMap;
+import powpaw.model.impl.WorldImpl;
 
 public class WorldController {
     
-    private World world;
+    private CreateMap worldMap;
     private ArrayList<Rectangle> terrains;
 
     public WorldController(){
-        world = new World();
-        this.terrains = world.getTerrains();
+        worldMap = new CreateMap();
+        this.terrains = worldMap.getTerrains();
         setProportions();
     }
 
