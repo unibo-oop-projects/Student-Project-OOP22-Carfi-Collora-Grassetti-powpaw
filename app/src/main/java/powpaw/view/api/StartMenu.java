@@ -25,7 +25,7 @@ public class StartMenu extends GridPane {
         add(exit, 0, 1);
         start.setOnAction(e -> {
             try {
-                start.getScene().setRoot(new GameInterface());
+                start.getScene().setRoot(new StatsSettingMenu());
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
