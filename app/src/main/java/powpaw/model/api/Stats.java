@@ -8,18 +8,6 @@ public interface Stats {
 
     int getSpeed();
 
-    void increaseAtt();
-
-    void increaseDef();
-
-    void increaseSpe();
-
-    void decreaseAtt();
-
-    void decreaseDef();
-
-    void decreaseSpe();
-
     double toDouble(int value);
 
 }
