@@ -6,16 +6,12 @@ package powpaw;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import powpaw.model.impl.StatsImpl;
-import powpaw.model.impl.StatsImpl.StatsBuilder;
 import powpaw.view.api.StartMenu;
 
 public class App extends Application {
     private Scene sceneMenu;
     private Stage stage;
     private final StartMenu menu;
-    StatsImpl stats;
-    StatsBuilder stats2;
 
     public App() {
         menu = new StartMenu();
