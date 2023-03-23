@@ -5,9 +5,7 @@ import java.util.List;
 
 import powpaw.view.api.KeyObservable;
 
-public interface World {
-
-    void addPlayer(Player player);
+public interface PlayerObservable {
 
     List<Player> getPlayers();
 

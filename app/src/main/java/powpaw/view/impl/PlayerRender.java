@@ -11,7 +11,7 @@ public class PlayerRender {
     // oddio mi sa che l'hitbox la deve avere lo sprite e basta
 
     private final Player player;
-    final Image image = new Image("/spritesenza titolo.png");
+    final Image image = new Image("/sprite_idle_right.png");
     final ImageView sprite = new ImageView(image);
 
     public PlayerRender(Player player) {

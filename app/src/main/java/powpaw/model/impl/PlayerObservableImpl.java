@@ -6,22 +6,18 @@ import java.util.List;
 
 import powpaw.controller.impl.KeyObserverImpl;
 import powpaw.model.api.Player;
-import powpaw.model.api.World;
+import powpaw.model.api.PlayerObservable;
 import powpaw.view.api.KeyObservable;
 import powpaw.view.impl.KeyObservableImpl;
 
-public class WorldImpl implements World {
+public class PlayerObservableImpl implements PlayerObservable {
 
-    private final List<Player> playerList = new ArrayList<>();
+    private List<Player> playerList = new ArrayList<>();
     private final KeyObservable observable = new KeyObservableImpl();
 
-    public WorldImpl() {
-        playerList.forEach(player -> observable.addObserver(new KeyObserverImpl(player)));
-    }
-
-    @Override
-    public void addPlayer(Player player) {
-        this.playerList.add(player);
+    public PlayerObservableImpl(List<Player> playerList) {
+        this.playerList = playerList;
+        this.playerList.forEach(player -> observable.addObserver(new KeyObserverImpl(player)));
     }
 
     @Override
@@ -38,7 +34,6 @@ public class WorldImpl implements World {
     public void update(Duration deltaTime) {
         playerList.forEach(player -> {
             player.update(deltaTime);
-            System.out.println(player);
         });
     }
 }

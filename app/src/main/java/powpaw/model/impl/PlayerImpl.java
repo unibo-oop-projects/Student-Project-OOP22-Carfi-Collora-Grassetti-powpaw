@@ -9,9 +9,9 @@ import powpaw.model.api.Player;
 
 public class PlayerImpl implements Player {
 
-    private static final double SPEED = 10.0;
+    private static final double SPEED = 0.1;
     private static final double KNOCKBACK = 0.2;
-    // private static final Point2D GRAVITY = new Point2D(0, 0.01);
+    private static final Point2D GRAVITY = new Point2D(0, 0.001);
 
     private Point2D position;
     private Point2D velocity;
@@ -67,17 +67,17 @@ public class PlayerImpl implements Player {
 
     @Override
     public void moveLeft() {
-        velocity = DirectionVector.LEFT.multiply(SPEED);
+        velocity.add(DirectionVector.LEFT.multiply(SPEED));
     }
 
     @Override
     public void moveRight() {
-        velocity = DirectionVector.RIGHT.multiply(SPEED);
+        velocity.add(DirectionVector.RIGHT.multiply(SPEED));
     }
 
     @Override
     public void jump() {
-        velocity = DirectionVector.UP.multiply(SPEED);
+        velocity.add(DirectionVector.UP.multiply(SPEED));
     }
 
     @Override
@@ -114,7 +114,7 @@ public class PlayerImpl implements Player {
     @Override
     public void update(Duration deltaTime) {
         position = position.add(velocity.multiply(deltaTime.toMillis()));
-        // velocity = velocity.add(GRAVITY);
+        velocity = velocity.add(GRAVITY);
         hitbox.updateCenter(position);
     }
 }

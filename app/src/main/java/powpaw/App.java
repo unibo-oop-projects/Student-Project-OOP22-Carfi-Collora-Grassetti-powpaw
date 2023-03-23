@@ -46,6 +46,6 @@ public class App extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         loop.setPlayerController(playerController);
-        loop.start(); // ??
+        loop.start();
     }
 }

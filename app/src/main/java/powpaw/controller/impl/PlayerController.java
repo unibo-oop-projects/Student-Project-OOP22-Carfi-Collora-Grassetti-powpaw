@@ -1,16 +1,19 @@
 package powpaw.controller.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.geometry.Point2D;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
-import powpaw.model.api.World;
+import powpaw.model.api.PlayerObservable;
 import powpaw.model.impl.PlayerImpl;
-import powpaw.model.impl.WorldImpl;
+import powpaw.model.impl.PlayerObservableImpl;
 import powpaw.view.impl.PlayerRender;
 
 public class PlayerController {
 
-    private World world = new WorldImpl();
+    private PlayerObservable world;
     private PlayerRender playerRender;
     private Player player1;
 
@@ -18,7 +21,7 @@ public class PlayerController {
 
         player1 = new PlayerImpl(
                 new Point2D(ScreenController.SIZE_HD_W / 3, ScreenController.SIZE_HD_H / 2));
-        world.addPlayer(player1);
+        world = new PlayerObservableImpl(new ArrayList<>(List.of(player1)));
         playerRender = new PlayerRender(player1);
     }
 
@@ -27,7 +30,7 @@ public class PlayerController {
         return this.playerRender;
     }
 
-    public World getWorld() {
+    public PlayerObservable getWorld() {
         return this.world;
     }
 }
