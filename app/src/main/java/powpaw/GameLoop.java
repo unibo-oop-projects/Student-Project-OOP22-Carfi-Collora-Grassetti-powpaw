@@ -4,13 +4,14 @@ import java.time.Duration;
 import java.time.Instant;
 
 import javafx.animation.AnimationTimer;
-import powpaw.model.api.World;
-import powpaw.model.impl.WorldImpl;
+import powpaw.controller.impl.PlayerController;
 
 public class GameLoop extends AnimationTimer {
 
     private Instant lastFrameTime;
-    private World world = new WorldImpl();
+    private PlayerController playerController;
+
+    // serve una classe per la view dove si istanziano le scene e cose varie.
 
     @Override
     public void start() {
@@ -27,7 +28,14 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void update(Duration deltaTime) {
-        world.update(deltaTime);
+        playerController.getWorld().update(deltaTime);
+        // for (final var player : world.getPlayers()) {
+        // player.getRenderComponent().render();
+        // }
+        playerController.getRender().render();
     }
 
+    public void setPlayerController(PlayerController playerController) {
+        this.playerController = playerController;
+    }
 }

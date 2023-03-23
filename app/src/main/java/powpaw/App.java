@@ -7,14 +7,16 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import powpaw.model.api.World;
-import powpaw.model.impl.WorldImpl;
+import powpaw.controller.api.ScreenController;
+import powpaw.controller.impl.PlayerController;
 import powpaw.view.api.WorldRender;
 
 public class App extends Application {
     private WorldRender worldRender = new WorldRender();
-    private World world = new WorldImpl();
+    GameLoop loop = new GameLoop();
+    PlayerController playerController = new PlayerController();
 
     public static void main(String[] args) {
         Application.launch(App.class, args);
@@ -22,18 +24,28 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Scene worldScene = worldRender.createScene();
+
+        Pane worldPane = new Pane();
+        worldRender.createScene(worldPane);
+        worldPane.getChildren().add(playerController.getRender().getSprite());
+
+        Scene worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
+
         worldScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent event) {
-                world.getKeyObservable().notifyObservers(event);
+                playerController.getWorld().getKeyObservable().notifyObservers(event);
                 System.out.println(event.getCode());
             }
         });
+
+        primaryStage.setScene(worldScene);
         primaryStage.setTitle("PowPaw");
         primaryStage.setScene(worldScene);
         primaryStage.setResizable(false);
         primaryStage.show();
+        loop.setPlayerController(playerController);
+        loop.start(); // ??
     }
 }

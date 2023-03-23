@@ -11,7 +11,7 @@ public class PlayerImpl implements Player {
 
     private static final double SPEED = 10.0;
     private static final double KNOCKBACK = 0.2;
-    private static final Point2D GRAVITY = new Point2D(0, 0.5);
+    // private static final Point2D GRAVITY = new Point2D(0, 0.01);
 
     private Point2D position;
     private Point2D velocity;
@@ -25,6 +25,7 @@ public class PlayerImpl implements Player {
         this.position = position;
         this.attackPower = 0.25;
         hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
+        this.idle();
     }
 
     @Override
@@ -113,8 +114,7 @@ public class PlayerImpl implements Player {
     @Override
     public void update(Duration deltaTime) {
         position = position.add(velocity.multiply(deltaTime.toMillis()));
-        velocity = velocity.add(GRAVITY);
+        // velocity = velocity.add(GRAVITY);
         hitbox.updateCenter(position);
     }
-
 }

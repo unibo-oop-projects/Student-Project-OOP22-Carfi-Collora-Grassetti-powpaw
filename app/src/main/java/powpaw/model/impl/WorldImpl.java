@@ -36,6 +36,9 @@ public class WorldImpl implements World {
 
     @Override
     public void update(Duration deltaTime) {
-        playerList.forEach(player -> player.update(deltaTime));
+        playerList.forEach(player -> {
+            player.update(deltaTime);
+            System.out.println(player);
+        });
     }
 }
