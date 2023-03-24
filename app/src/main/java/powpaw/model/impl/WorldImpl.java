@@ -26,12 +26,13 @@ public class WorldImpl implements World {
         playerList.forEach(player -> observable.addObserver(new KeyObserverImpl(player)));
     
         //PROVA!!
-        //weapons = Entity.createWeapon(10* ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10 , ScreenController.SIZE_HD_W/30, ScreenController.SIZE_HD_H/10);
         weapons = new ArrayList<>();
-        weapons.add(Entity.createWeapon(2 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/30, ScreenController.SIZE_HD_H/10));
-        weapons.add(Entity.createWeapon(3 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/30, ScreenController.SIZE_HD_H/10));
-        weapons.add(Entity.createWeapon(4 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/30, ScreenController.SIZE_HD_H/10));
+        weapons.add(Entity.createWeapon(15 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10 , ScreenController.SIZE_HD_W/30, ScreenController.SIZE_HD_H/10));
+        
+        weapons.add(Entity.createWeapon(1 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/30, ScreenController.SIZE_HD_H/10));
         weapons.add(Entity.createWeapon(5 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/30, ScreenController.SIZE_HD_H/10));
+        weapons.add(Entity.createWeapon(10 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/30, ScreenController.SIZE_HD_H/10));
+        weapons.add(Entity.createWeapon(25* ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/30, ScreenController.SIZE_HD_H/10));*/
     }
     
     @Override

@@ -13,6 +13,7 @@ public class Entity {
         return block;
     }
 
+    //factory for weapon entity
     public static Rectangle createWeapon(double x, double y, double height, double width){
         Rectangle weapon = new Rectangle(width, height);
         weapon.setX(x);

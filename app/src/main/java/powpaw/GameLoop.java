@@ -7,12 +7,10 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import powpaw.model.api.World;
 import powpaw.model.impl.WorldImpl;
-import powpaw.view.impl.TransitionFactory;
 import powpaw.view.impl.WorldRender;
 
 public class GameLoop extends AnimationTimer {
@@ -27,22 +25,15 @@ public class GameLoop extends AnimationTimer {
     public GameLoop(Stage stage){
         this.worldScene = worldRender.createScene();
         this.currentStage = stage;
-        setStage();
-       
-    }
-
-    private void setStage(){
-        this.currentStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        currentStage.setScene(worldScene);
+        currentStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
                stop();
             }
-        });
-        this.currentStage.setTitle("PowPaw");
-        this.currentStage.setScene(worldScene);
-        this.currentStage.setResizable(false);
-        this.currentStage.show();
+        });  
     }
+    
 
     @Override
     public void start() {

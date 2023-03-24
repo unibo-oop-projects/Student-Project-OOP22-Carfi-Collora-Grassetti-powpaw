@@ -15,20 +15,15 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        setStage(primaryStage);
         this.loop = new GameLoop(primaryStage);
         loop.start();
-        /*Scene worldScene = worldRender.createScene();
-         worldScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            
-            @Override
-            public void handle(KeyEvent event) {
-                world.getKeyObservable().notifyObservers(event);
-                System.out.println(event.getCode());
-            }
-        }); 
-        primaryStage.setTitle("PowPaw");
-        primaryStage.setScene(worldScene);
-        primaryStage.setResizable(false);
-        primaryStage.show();*/
+    }
+
+    private void setStage(Stage stage){
+        stage.setTitle("PowPaw");
+       // stage.setScene(worldScene);
+        stage.setResizable(false);
+        stage.show();
     }
 }
