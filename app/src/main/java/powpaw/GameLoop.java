@@ -2,15 +2,11 @@ package powpaw;
 
 import java.time.Duration;
 import java.time.Instant;
-
 import javafx.animation.AnimationTimer;
+
 import powpaw.controller.impl.PlayerController;
 
 public class GameLoop extends AnimationTimer {
-
-    private WorldRender worldRender = new WorldRender();
-    private Scene worldScene;
-    private Stage currentStage;
 
     private Instant lastFrameTime;
     private PlayerController playerController;

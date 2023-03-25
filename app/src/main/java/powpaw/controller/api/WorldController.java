@@ -3,7 +3,7 @@ package powpaw.controller.api;
 import java.util.ArrayList;
 
 import javafx.scene.shape.Rectangle;
-import powpaw.model.api.CreateMap;
+import powpaw.model.impl.CreateMap;
 
 public class WorldController {
 
