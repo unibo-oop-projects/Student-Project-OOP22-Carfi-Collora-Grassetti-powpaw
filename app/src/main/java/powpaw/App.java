@@ -35,9 +35,18 @@ public class App extends Application {
 
             @Override
             public void handle(KeyEvent event) {
-                playerController.getWorld().getKeyObservable().notifyObservers(event);
+                playerController.getWorld().getKeyObservable().notifyObserversPressed(event);
                 System.out.println(event.getCode());
             }
+        });
+
+        worldScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent event) {
+                playerController.getWorld().getKeyObservable().notifyObserversReleased(event);
+            }
+
         });
 
         primaryStage.setScene(worldScene);

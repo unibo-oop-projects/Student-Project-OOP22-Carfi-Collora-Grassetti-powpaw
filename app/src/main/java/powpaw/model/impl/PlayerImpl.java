@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import javafx.geometry.Point2D;
 import powpaw.common.DirectionVector;
+import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
 
@@ -11,7 +12,7 @@ public class PlayerImpl implements Player {
 
     private static final double SPEED = 0.1;
     private static final double KNOCKBACK = 0.2;
-    private static final Point2D GRAVITY = new Point2D(0, 0.001);
+    // private static final Point2D GRAVITY = new Point2D(0, 0.001);
 
     private Point2D position;
     private Point2D velocity;
@@ -24,6 +25,8 @@ public class PlayerImpl implements Player {
     public PlayerImpl(Point2D position) {
         this.position = position;
         this.attackPower = 0.25;
+        this.height = ScreenController.SIZE_HD_W / 20;
+        this.width = ScreenController.SIZE_HD_W / 20;
         hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
         this.idle();
     }
@@ -67,17 +70,20 @@ public class PlayerImpl implements Player {
 
     @Override
     public void moveLeft() {
-        velocity.add(DirectionVector.LEFT.multiply(SPEED));
+        this.velocity = velocity.add(DirectionVector.LEFT.multiply(SPEED));
+        this.velocity = this.velocity.normalize();
     }
 
     @Override
     public void moveRight() {
-        velocity.add(DirectionVector.RIGHT.multiply(SPEED));
+        this.velocity = velocity.add(DirectionVector.RIGHT.multiply(SPEED));
+        this.velocity = this.velocity.normalize();
     }
 
     @Override
     public void jump() {
-        velocity.add(DirectionVector.UP.multiply(SPEED));
+        this.velocity = velocity.add(DirectionVector.UP.multiply(SPEED));
+        this.velocity = this.velocity.normalize();
     }
 
     @Override
@@ -113,8 +119,8 @@ public class PlayerImpl implements Player {
 
     @Override
     public void update(Duration deltaTime) {
+        // velocity = velocity.add(GRAVITY);
         position = position.add(velocity.multiply(deltaTime.toMillis()));
-        velocity = velocity.add(GRAVITY);
         hitbox.updateCenter(position);
     }
 }

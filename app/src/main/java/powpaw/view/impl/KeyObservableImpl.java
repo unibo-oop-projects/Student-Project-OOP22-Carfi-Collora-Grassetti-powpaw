@@ -22,9 +22,16 @@ public class KeyObservableImpl implements KeyObservable {
     }
 
     @Override
-    public void notifyObservers(KeyEvent event) {
+    public void notifyObserversPressed(KeyEvent event) {
         for (var observer : observers) {
             observer.keyPressed(event);
+        }
+    }
+
+    @Override
+    public void notifyObserversReleased(KeyEvent event) {
+        for (var observer : observers) {
+            observer.keyReleased(event);
         }
     }
 }
