@@ -1,25 +1,36 @@
 package powpaw.controller.impl;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javafx.scene.shape.Rectangle;
 import powpaw.controller.api.ScreenController;
-import powpaw.model.api.Player;
-import powpaw.model.api.World;
 import powpaw.model.impl.CreateMap;
-import powpaw.model.impl.WorldImpl;
+import powpaw.model.impl.Entity;
 
 public class WorldController {
     
     private CreateMap worldMap;
     private ArrayList<Rectangle> terrains;
+    private ArrayList<Rectangle> weapons;
+
 
     public WorldController(){
         worldMap = new CreateMap();
         this.terrains = worldMap.getTerrains();
+        createWeapons();
         setProportions();
     }
+
+    private void createWeapons(){
+        //PROVA!!
+        weapons = new ArrayList<>();
+        weapons.add(Entity.createWeapon(15 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10 , ScreenController.SIZE_HD_W/50, ScreenController.SIZE_HD_H/30));
+        weapons.add(Entity.createWeapon(1 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/50, ScreenController.SIZE_HD_H/30));
+        weapons.add(Entity.createWeapon(5 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/50, ScreenController.SIZE_HD_H/30));
+        weapons.add(Entity.createWeapon(10 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/50, ScreenController.SIZE_HD_H/30));
+        weapons.add(Entity.createWeapon(25* ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10, ScreenController.SIZE_HD_W/50, ScreenController.SIZE_HD_H/30));
+    }
+    
 
     private void setProportions(){
         this.terrains.stream().forEach(b -> {
@@ -32,6 +43,10 @@ public class WorldController {
 
     public ArrayList<Rectangle> getPlatforms(){
         return this.terrains;
+    }
+
+    public ArrayList<Rectangle> getWeapons(){
+        return this.weapons;
     }
 
 }

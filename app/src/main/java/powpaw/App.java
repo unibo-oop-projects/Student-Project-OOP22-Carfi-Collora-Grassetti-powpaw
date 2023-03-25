@@ -22,7 +22,7 @@ public class App extends Application {
 
     private void setStage(Stage stage){
         stage.setTitle("PowPaw");
-       // stage.setScene(worldScene);
+        //stage.setScene(worldScene);
         stage.setResizable(false);
         stage.show();
     }

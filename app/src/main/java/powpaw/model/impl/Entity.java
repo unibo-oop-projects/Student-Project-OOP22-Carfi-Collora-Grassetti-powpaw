@@ -14,7 +14,7 @@ public class Entity {
     }
 
     //factory for weapon entity
-    public static Rectangle createWeapon(double x, double y, double height, double width){
+    public static Rectangle createWeapon(double x, double y, double width, double height){
         Rectangle weapon = new Rectangle(width, height);
         weapon.setX(x);
         weapon.setY(y);

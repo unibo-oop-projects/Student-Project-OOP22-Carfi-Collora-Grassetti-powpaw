@@ -24,4 +24,8 @@ public class TransitionFactory {
         }
         return false;
     }
+
+    /*private boolean checkWindowsBoundsCollision(Shape node){
+        if(node.getBoundsInParent().intersects())
+    }*/
 }

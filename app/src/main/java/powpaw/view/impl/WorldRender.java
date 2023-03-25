@@ -1,33 +1,28 @@
 package powpaw.view.impl;
 import java.util.ArrayList;
-import java.util.List;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.WorldController;
-import powpaw.model.api.World;
-import powpaw.model.impl.WorldImpl;
 
 public class WorldRender {
 
     private WorldController worldController;
     private ArrayList<Rectangle> terrains;
     private ImagePattern textureBlock;
-    private World world = new WorldImpl();
     private ArrayList<Rectangle> weapons;
     private TransitionFactory transition = new TransitionFactory();
 
     public WorldRender(){
         this.worldController = new WorldController();
         this.terrains = worldController.getPlatforms();
+        this.weapons = worldController.getWeapons();
         this.textureBlock = new ImagePattern(new Image("/block.png"));
-        this.weapons = world.getWeapons();
 
     }
     
