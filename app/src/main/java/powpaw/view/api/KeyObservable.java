@@ -8,5 +8,7 @@ public interface KeyObservable {
 
     void removeObserver(KeyObserver observer);
 
-    void notifyObservers(KeyEvent event);
+    void notifyObserversPressed(KeyEvent event);
+
+    void notifyObserversReleased(KeyEvent event);
 }
