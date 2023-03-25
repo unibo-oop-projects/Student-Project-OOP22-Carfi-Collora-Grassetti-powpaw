@@ -8,13 +8,13 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import powpaw.controller.api.WorldController;
 
-public class WorldRender {
+public class MapRender {
 
     private WorldController worldController;
     private ArrayList<Rectangle> terrains;
     private ImagePattern textureBlock;
 
-    public WorldRender() {
+    public MapRender() {
         this.worldController = new WorldController();
         this.terrains = worldController.getPlatforms();
         this.textureBlock = new ImagePattern(new Image("/block.png"));
