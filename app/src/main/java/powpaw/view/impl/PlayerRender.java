@@ -23,7 +23,6 @@ public class PlayerRender {
     }
 
     public void render() {
-
         this.sprite.setLayoutX(player.getPosition().getX());
         this.sprite.setLayoutY(player.getPosition().getY());
         this.sprite.setFitWidth(player.getWidth());
