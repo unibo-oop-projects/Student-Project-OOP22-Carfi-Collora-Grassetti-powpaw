@@ -6,7 +6,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Hitbox;
-import powpaw.view.impl.TransitionFactory;
 
 public class WeaponImpl {
 
@@ -29,9 +28,8 @@ public class WeaponImpl {
         return this.position;
     }
 
-    public void update(ArrayList<Rectangle> terrains) {
-        // transition.doVerticalTransition(hitbox.getHitbox(), position.getY(), terrains);
-        this.position = transition.positionTransition(position, terrains);
+    public void update() {
+        this.position = transition.verticalTransition(position);
         hitbox.updateCenter(position);
     }
 

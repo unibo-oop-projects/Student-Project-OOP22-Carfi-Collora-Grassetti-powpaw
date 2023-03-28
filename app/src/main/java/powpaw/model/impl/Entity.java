@@ -2,19 +2,18 @@ package powpaw.model.impl;
 
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
+import powpaw.model.api.Hitbox;
 
 public class Entity {
 
-    //factory for block entity
-    public static Rectangle createBlock(double x, double y, double height, double width){
-        Rectangle block = new Rectangle(width, height);
-        block.setX(x);
-        block.setY(y);
+    // factory for block entity
+    public static BlockImpl createBlock(double x, double y) {
+        BlockImpl block = new BlockImpl(new Point2D(x, y), 1, 1);
         return block;
     }
 
-    //factory for weapon entity
-    public static WeaponImpl createWeapon(Point2D pos, double width, double height){
+    // factory for weapon entity
+    public static WeaponImpl createWeapon(Point2D pos, double width, double height) {
         WeaponImpl weapon = new WeaponImpl(pos);
         return weapon;
     }

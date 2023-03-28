@@ -41,7 +41,11 @@ public class WordRenderImpl implements WordRender {
         worldPane.setBackground(
                 Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
         worldPane.getChildren().add(playerController.getRender().getSprite());
-        worldPane.getChildren().addAll(mapRender.getTerrains());
+
+        mapRender.getTerrains()
+                .forEach(b -> worldPane.getChildren().add(b.getHitbox().getHitbox()));
+
+        // worldPane.getChildren().addAll(mapRender.getTerrains());
         weaponController.getRender().setTerrains(mapRender.getTerrains());
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
         this.worldScene =

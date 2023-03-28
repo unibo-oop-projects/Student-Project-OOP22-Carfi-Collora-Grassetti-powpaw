@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import powpaw.model.impl.BlockImpl;
 import powpaw.model.impl.WeaponImpl;
 
 public class WeaponRender {
 
     private WeaponImpl weapons;
-    private ArrayList<Rectangle> terrains;
+    private ArrayList<BlockImpl> terrains;
     private Image image;
     private ImageView weaponSprite;
 
@@ -20,11 +21,11 @@ public class WeaponRender {
         this.weaponSprite = new ImageView(this.image);
     }
 
-    public void setTerrains(ArrayList<Rectangle> terrains) {
+    public void setTerrains(ArrayList<BlockImpl> terrains) {
         this.terrains = terrains;
     }
 
-    public ArrayList<Rectangle> getTerrains() {
+    public ArrayList<BlockImpl> getTerrains() {
         return this.terrains;
     }
 

@@ -1,8 +1,9 @@
 package powpaw.model.impl;
 
 import java.time.Duration;
-
+import java.util.ArrayList;
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Rectangle;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Hitbox;

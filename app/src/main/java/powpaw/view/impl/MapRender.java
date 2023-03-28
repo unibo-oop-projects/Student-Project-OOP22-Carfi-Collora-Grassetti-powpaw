@@ -6,11 +6,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import powpaw.controller.impl.MapController;
+import powpaw.model.impl.BlockImpl;
 
 public class MapRender {
 
     private MapController mapController;
-    private ArrayList<Rectangle> terrains;
+    private ArrayList<BlockImpl> terrains;
     private ImagePattern textureBlock;
 
     public MapRender() {
@@ -26,10 +27,10 @@ public class MapRender {
     }
 
     private void drawBlocks() {
-        this.terrains.stream().forEach(b -> b.setFill(this.textureBlock));
+        this.terrains.stream().forEach(b -> b.getHitbox().getHitbox().setFill(this.textureBlock));
     }
 
-    public ArrayList<Rectangle> getTerrains() {
+    public ArrayList<BlockImpl> getTerrains() {
         return this.terrains;
     }
 
