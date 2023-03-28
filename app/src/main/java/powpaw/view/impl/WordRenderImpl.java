@@ -34,7 +34,6 @@ public class WordRenderImpl implements WordRender {
         return this.mapRender;
     }
 
-
     @Override
     public Scene render() {
         Pane worldPane = mapRender.createPane();
@@ -52,8 +51,6 @@ public class WordRenderImpl implements WordRender {
                 new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
     }
-
-
 
     @Override
     public void setKeyCommands() {
@@ -76,6 +73,5 @@ public class WordRenderImpl implements WordRender {
             }
 
         });
-
     }
 }

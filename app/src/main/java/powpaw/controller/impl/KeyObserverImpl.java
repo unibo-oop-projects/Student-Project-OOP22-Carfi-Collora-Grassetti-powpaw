@@ -2,6 +2,8 @@ package powpaw.controller.impl;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import powpaw.model.api.Player;
 import powpaw.view.api.KeyObserver;
@@ -10,7 +12,7 @@ public class KeyObserverImpl implements KeyObserver {
 
     private final Player player;
 
-    private Set<KeyEvent> pressedKeys = new HashSet<>();
+    private Set<KeyCode> pressedKeys = new HashSet<>();
 
     public KeyObserverImpl(final Player player) {
         this.player = player;
@@ -18,19 +20,9 @@ public class KeyObserverImpl implements KeyObserver {
 
     @Override
     public void keyPressed(KeyEvent event) {
-        pressedKeys.add(event);
-        commandsPressed();
-    }
-
-    @Override
-    public void keyReleased(KeyEvent event) {
-        pressedKeys.remove(event);
-        commandsReleased();
-    }
-
-    private void commandsPressed() {
-        for (var event : pressedKeys) {
-            switch (event.getCode()) {
+        pressedKeys.add(event.getCode());
+        for (final var e : pressedKeys) {
+            switch (e) {
                 case W:
                     this.player.jump();
                     break;
@@ -52,7 +44,9 @@ public class KeyObserverImpl implements KeyObserver {
         }
     }
 
-    private void commandsReleased() {
+    @Override
+    public void keyReleased(KeyEvent event) {
+        pressedKeys.remove(event.getCode());
         player.idle();
     }
 }

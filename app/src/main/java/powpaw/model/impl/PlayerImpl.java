@@ -71,25 +71,25 @@ public class PlayerImpl implements Player {
 
     @Override
     public void moveLeft() {
-        this.velocity = velocity.add(DirectionVector.LEFT.multiply(SPEED));
+        this.velocity = velocity.add(DirectionVector.LEFT.getPoint());
         this.velocity = this.velocity.normalize();
     }
 
     @Override
     public void moveRight() {
-        this.velocity = velocity.add(DirectionVector.RIGHT.multiply(SPEED));
+        this.velocity = velocity.add(DirectionVector.RIGHT.getPoint());
         this.velocity = this.velocity.normalize();
     }
 
     @Override
     public void jump() {
-        this.velocity = velocity.add(DirectionVector.UP.multiply(SPEED));
+        this.velocity = velocity.add(DirectionVector.UP.getPoint());
         this.velocity = this.velocity.normalize();
     }
 
     @Override
     public void idle() {
-        velocity = new Point2D(0, 0);
+        this.velocity = new Point2D(0, 0);
     }
 
     @Override
@@ -121,7 +121,8 @@ public class PlayerImpl implements Player {
     @Override
     public void update(Duration deltaTime) {
         // velocity = velocity.add(GRAVITY);
-        position = position.add(velocity.multiply(deltaTime.toMillis()));
+        System.out.println(velocity);
+        position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
         hitbox.updateCenter(position);
     }
 }
