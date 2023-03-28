@@ -10,23 +10,38 @@ public class PlayerRender {
 
     // oddio mi sa che l'hitbox la deve avere lo sprite e basta
 
-    private final Player player;
-    final Image image = new Image("/sprite_idle_right.png");
-    final ImageView sprite = new ImageView(image);
+    private final Player playerOne;
+    private final Player playerTwo;
+    final Image idleOne = new Image("/spritep1_idle_right.png");
+    final Image idleTwo = new Image("/spritep2_idle_left.png");
+    final ImageView spriteP1 = new ImageView(idleOne);
+    final ImageView spriteP2 = new ImageView(idleTwo);
 
-    public PlayerRender(Player player) {
-        this.player = player;
+    public PlayerRender(Player playerOne, Player playerTwo) {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
     }
 
-    public ImageView getSprite() {
-        return this.sprite;
+    public ImageView getSpritePlayerOne() {
+        return this.spriteP1;
     }
 
-    public void render() {
-        this.sprite.setLayoutX(player.getPosition().getX());
-        this.sprite.setLayoutY(player.getPosition().getY());
-        this.sprite.setFitWidth(player.getWidth());
-        this.sprite.setFitHeight(player.getHeight());
+    public ImageView getSpritePlayerTwo() {
+        return this.spriteP2;
+    }
+
+    public void renderPlayerOne() {
+        this.spriteP1.setLayoutX(playerOne.getPosition().getX());
+        this.spriteP1.setLayoutY(playerOne.getPosition().getY());
+        this.spriteP1.setFitWidth(playerOne.getWidth());
+        this.spriteP1.setFitHeight(playerOne.getHeight());
+    }
+
+    public void renderPlayerTwo() {
+        this.spriteP2.setLayoutX(playerTwo.getPosition().getX());
+        this.spriteP2.setLayoutY(playerTwo.getPosition().getY());
+        this.spriteP2.setFitWidth(playerTwo.getWidth());
+        this.spriteP2.setFitHeight(playerTwo.getHeight());
     }
 
 }

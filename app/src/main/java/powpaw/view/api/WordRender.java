@@ -15,5 +15,5 @@ public interface WordRender {
 
     Scene render();
 
-    void setKeyCommands();
+    void playersCommands();
 }

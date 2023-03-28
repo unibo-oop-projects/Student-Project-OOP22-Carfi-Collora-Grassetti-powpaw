@@ -120,7 +120,6 @@ public class PlayerImpl implements Player {
     @Override
     public void update(Duration deltaTime) {
         // velocity = velocity.add(GRAVITY);
-        System.out.println(velocity);
         position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
         hitbox.updateCenter(position);
     }

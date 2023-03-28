@@ -23,7 +23,7 @@ public class App extends Application {
         primaryStage.setTitle("PowPaw");
         primaryStage.setResizable(false);
         primaryStage.show();
-        wordRender.setKeyCommands();
+        wordRender.playersCommands();
         loop.setPlayerController(wordRender.getPlayerController());
         loop.setWeaponController(wordRender.getWeaponController());
         loop.start();

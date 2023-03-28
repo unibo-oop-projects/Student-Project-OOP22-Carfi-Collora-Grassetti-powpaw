@@ -1,6 +1,7 @@
 package powpaw.controller.impl;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javafx.scene.input.KeyCode;
@@ -10,33 +11,36 @@ import powpaw.view.api.KeyObserver;
 
 public class KeyObserverImpl implements KeyObserver {
 
-    private final Player player;
+    private final Player playerOne;
+    private final Player playerTwo;
 
-    private Set<KeyCode> pressedKeys = new HashSet<>();
+    private Set<KeyCode> p1PressedKeys = new HashSet<>();
+    private Set<KeyCode> p2PressedKeys = new HashSet<>();
 
-    public KeyObserverImpl(final Player player) {
-        this.player = player;
+    public KeyObserverImpl(final List<Player> players) {
+        this.playerOne = players.get(0);
+        this.playerTwo = players.get(1);
     }
 
     @Override
-    public void keyPressed(KeyEvent event) {
-        pressedKeys.add(event.getCode());
-        for (final var e : pressedKeys) {
+    public void keyPressedPlayerOne(KeyEvent event) {
+        p1PressedKeys.add(event.getCode());
+        for (final var e : p1PressedKeys) {
             switch (e) {
                 case W:
-                    this.player.jump();
+                    this.playerOne.jump();
                     break;
                 case A:
-                    this.player.moveLeft();
+                    this.playerOne.moveLeft();
                     break;
                 case D:
-                    this.player.moveRight();
+                    this.playerOne.moveRight();
                     break;
                 case H:
-                    this.player.dodge();
+                    this.playerOne.dodge();
                     break;
                 case G:
-                    this.player.attack();
+                    this.playerOne.attack();
                     break;
                 default:
                     break;
@@ -45,8 +49,40 @@ public class KeyObserverImpl implements KeyObserver {
     }
 
     @Override
-    public void keyReleased(KeyEvent event) {
-        pressedKeys.remove(event.getCode());
-        player.idle();
+    public void keyReleasedPlayerOne(KeyEvent event) {
+        p1PressedKeys.remove(event.getCode());
+        playerOne.idle();
+    }
+
+    @Override
+    public void keyPressedPlayerTwo(KeyEvent event) {
+        p2PressedKeys.add(event.getCode());
+        for (final var e : p2PressedKeys) {
+            switch (e) {
+                case UP:
+                    this.playerTwo.jump();
+                    break;
+                case LEFT:
+                    this.playerTwo.moveLeft();
+                    break;
+                case RIGHT:
+                    this.playerTwo.moveRight();
+                    break;
+                case L:
+                    this.playerTwo.dodge();
+                    break;
+                case K:
+                    this.playerTwo.attack();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void keyReleasedPlayerTwo(KeyEvent event) {
+        p2PressedKeys.remove(event.getCode());
+        playerTwo.idle();
     }
 }

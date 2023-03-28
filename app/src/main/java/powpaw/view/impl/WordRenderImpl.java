@@ -37,7 +37,8 @@ public class WordRenderImpl implements WordRender {
     public Scene render() {
         Pane worldPane = mapRender.createPane();
         worldPane.setBackground(Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
-        worldPane.getChildren().add(playerController.getRender().getSprite());
+        worldPane.getChildren().add(playerController.getRender().getSpritePlayerOne());
+        worldPane.getChildren().add(playerController.getRender().getSpritePlayerTwo());
         worldPane.getChildren().addAll(mapRender.getTerrains());
         worldPane.getChildren().addAll(weaponController.getWeapons());
         weaponController.getRender().setTerrains(mapRender.getTerrains());
@@ -45,22 +46,21 @@ public class WordRenderImpl implements WordRender {
         return worldScene;
     }
 
-    @Override
-    public void setKeyCommands() {
+    public void playersCommands() {
 
-        this.worldScene.setOnKeyPressed((EventHandler<? super KeyEvent>) new EventHandler<KeyEvent>() {
+        this.worldScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent event) {
-                playerController.getWorld().getKeyObservable().notifyObserversPressed(event);
+                playerController.getPlayerObservable().getKeyObservable().notifyObserversPressed(event);
             }
         });
 
-        worldScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        this.worldScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent event) {
-                playerController.getWorld().getKeyObservable().notifyObserversReleased(event);
+                playerController.getPlayerObservable().getKeyObservable().notifyObserversReleased(event);
             }
 
         });
