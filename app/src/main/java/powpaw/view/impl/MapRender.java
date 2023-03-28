@@ -29,10 +29,10 @@ public class MapRender {
         this.terrains.stream().forEach(b -> b.setFill(this.textureBlock));
     }
 
-    public ArrayList<Rectangle> getTerrains(){
+    public ArrayList<Rectangle> getTerrains() {
         return this.terrains;
     }
 
-    
+
 
 }

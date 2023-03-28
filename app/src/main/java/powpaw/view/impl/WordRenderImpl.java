@@ -25,7 +25,7 @@ public class WordRenderImpl implements WordRender {
     }
 
     @Override
-    public WeaponController getWeaponController(){
+    public WeaponController getWeaponController() {
         return this.weaponController;
     }
 
@@ -38,12 +38,14 @@ public class WordRenderImpl implements WordRender {
     @Override
     public Scene render() {
         Pane worldPane = mapRender.createPane();
-        worldPane.setBackground(Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
+        worldPane.setBackground(
+                Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
         worldPane.getChildren().add(playerController.getRender().getSprite());
         worldPane.getChildren().addAll(mapRender.getTerrains());
         weaponController.getRender().setTerrains(mapRender.getTerrains());
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
-        this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
+        this.worldScene =
+                new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
     }
 
@@ -52,13 +54,15 @@ public class WordRenderImpl implements WordRender {
     @Override
     public void setKeyCommands() {
 
-        this.worldScene.setOnKeyPressed((EventHandler<? super KeyEvent>) new EventHandler<KeyEvent>() {
+        this.worldScene
+                .setOnKeyPressed((EventHandler<? super KeyEvent>) new EventHandler<KeyEvent>() {
 
-            @Override
-            public void handle(KeyEvent event) {
-                playerController.getWorld().getKeyObservable().notifyObserversPressed(event);
-            }
-        });
+                    @Override
+                    public void handle(KeyEvent event) {
+                        playerController.getWorld().getKeyObservable()
+                                .notifyObserversPressed(event);
+                    }
+                });
 
         worldScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
 

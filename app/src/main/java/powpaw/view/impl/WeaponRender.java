@@ -1,5 +1,5 @@
 package powpaw.view.impl;
- 
+
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
@@ -14,31 +14,31 @@ public class WeaponRender {
     private Image image;
     private ImageView weaponSprite;
 
-    public WeaponRender(WeaponImpl weapons){
+    public WeaponRender(WeaponImpl weapons) {
         this.weapons = weapons;
         this.image = new Image("/sword.png");
         this.weaponSprite = new ImageView(this.image);
     }
 
-    public void setTerrains(ArrayList<Rectangle> terrains){
+    public void setTerrains(ArrayList<Rectangle> terrains) {
         this.terrains = terrains;
     }
-    
-    public ArrayList<Rectangle> getTerrains(){
+
+    public ArrayList<Rectangle> getTerrains() {
         return this.terrains;
     }
 
-    public ImageView getWeaponSprite(){
+    public ImageView getWeaponSprite() {
         return this.weaponSprite;
     }
 
-    public void render(){
+    public void render() {
         this.weaponSprite.setLayoutX(weapons.getPosition().getX());
         this.weaponSprite.setLayoutY(weapons.getPosition().getY());
         this.weaponSprite.setFitWidth(WeaponImpl.WIDTH);
         this.weaponSprite.setFitHeight(WeaponImpl.HEIGHT);
-        
+
     }
 
-   
+
 }

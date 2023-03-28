@@ -34,17 +34,18 @@ public class GameLoop extends AnimationTimer {
         // for (final var player : world.getPlayers()) {
         // player.getRenderComponent().render();
         // }
-        
+
         weaponController.getRender().render();
         weaponController.getWeapons().update(weaponController.getRender().getTerrains());
-        //weaponController.getWeapons().forEach(w -> w.update(weaponController.getRender().getTerrains()));
+        // weaponController.getWeapons().forEach(w ->
+        // w.update(weaponController.getRender().getTerrains()));
     }
 
     public void setPlayerController(PlayerController playerController) {
         this.playerController = playerController;
     }
 
-    public void setWeaponController(WeaponController weaponController){
+    public void setWeaponController(WeaponController weaponController) {
         this.weaponController = weaponController;
     }
 }
