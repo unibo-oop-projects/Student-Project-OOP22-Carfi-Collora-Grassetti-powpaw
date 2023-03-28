@@ -25,6 +25,7 @@ public class App extends Application {
         primaryStage.show();
         wordRender.setKeyCommands();
         loop.setPlayerController(wordRender.getPlayerController());
+        loop.setWeaponController(wordRender.getWeaponController());
         loop.start();
     }
 }

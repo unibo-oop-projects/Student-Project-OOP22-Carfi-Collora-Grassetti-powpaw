@@ -1,19 +1,20 @@
-package powpaw.model.api;
+package powpaw.model.impl;
 
 import java.util.ArrayList;
 import javafx.scene.shape.Rectangle;
+import powpaw.model.api.Level;
 
 public class CreateMap {
 
     private ArrayList<Rectangle> terrains = new ArrayList<>();
 
     public CreateMap() {
-        createWorld();
+        createTerrains();
     }
 
-    private void createWorld() {
-        for (int y = 0; y < Level.Level2.length; y++) {
-            String row = Level.Level2[y];
+    private void createTerrains() {
+        for (int y = 0; y < Level.Level1.length; y++) {
+            String row = Level.Level1[y];
             for (int x = 0; x < row.length(); x++) {
                 switch (row.charAt(x)) {
                     case '0':

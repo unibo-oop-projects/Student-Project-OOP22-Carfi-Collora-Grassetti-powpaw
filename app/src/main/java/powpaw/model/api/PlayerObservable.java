@@ -2,7 +2,6 @@ package powpaw.model.api;
 
 import java.time.Duration;
 import java.util.List;
-
 import powpaw.view.api.KeyObservable;
 
 public interface PlayerObservable {

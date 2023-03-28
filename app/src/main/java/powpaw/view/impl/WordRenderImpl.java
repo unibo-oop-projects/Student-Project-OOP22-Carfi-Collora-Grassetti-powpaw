@@ -2,18 +2,21 @@ package powpaw.view.impl;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.PlayerController;
-import powpaw.view.api.MapRender;
+import powpaw.controller.impl.WeaponController;
 import powpaw.view.api.WordRender;
 
 public class WordRenderImpl implements WordRender {
 
-    private final MapRender worldRender = new MapRender();
+    private final MapRender mapRender = new MapRender();
+    private final WeaponController weaponController = new WeaponController();
     private final PlayerController playerController = new PlayerController();
-
     private Scene worldScene;
 
     @Override
@@ -21,23 +24,27 @@ public class WordRenderImpl implements WordRender {
         return this.playerController;
     }
 
+    public WeaponController getWeaponController() {
+        return this.weaponController;
+    }
+
     @Override
     public MapRender getMapRender() {
-        return this.worldRender;
+        return this.mapRender;
     }
 
     @Override
     public Scene render() {
-        Pane worldPane = new Pane();
-        worldRender.createScene(worldPane);
+        Pane worldPane = mapRender.createPane();
+        worldPane.setBackground(Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
         worldPane.getChildren().add(playerController.getRender().getSprite());
-
+        worldPane.getChildren().addAll(mapRender.getTerrains());
+        worldPane.getChildren().addAll(weaponController.getWeapons());
+        weaponController.getRender().setTerrains(mapRender.getTerrains());
         this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
     }
 
-    // questa cosa mettila nel gameloop, serve un controller del word per
-    // passarglielo
     @Override
     public void setKeyCommands() {
 

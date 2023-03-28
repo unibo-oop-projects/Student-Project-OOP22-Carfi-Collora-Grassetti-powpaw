@@ -2,14 +2,16 @@ package powpaw;
 
 import java.time.Duration;
 import java.time.Instant;
-
 import javafx.animation.AnimationTimer;
 import powpaw.controller.impl.PlayerController;
+import powpaw.controller.impl.WeaponController;
 
 public class GameLoop extends AnimationTimer {
 
     private Instant lastFrameTime;
     private PlayerController playerController;
+    private WeaponController weaponController;
+
     // serve una classe per la view dove si istanziano le scene e cose varie.
 
     @Override
@@ -32,9 +34,14 @@ public class GameLoop extends AnimationTimer {
         // player.getRenderComponent().render();
         // }
         playerController.getRender().render();
+        weaponController.getRender().update();
     }
 
     public void setPlayerController(PlayerController playerController) {
         this.playerController = playerController;
+    }
+
+    public void setWeaponController(WeaponController weaponController) {
+        this.weaponController = weaponController;
     }
 }
