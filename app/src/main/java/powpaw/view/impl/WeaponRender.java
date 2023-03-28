@@ -1,30 +1,44 @@
 package powpaw.view.impl;
-
+ 
 import java.util.ArrayList;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import powpaw.model.impl.WeaponImpl;
 
 public class WeaponRender {
 
-    private ArrayList<Rectangle> weapons;
-    private final TransitionFactory transition = new TransitionFactory();
+    private WeaponImpl weapons;
     private ArrayList<Rectangle> terrains;
+    private Image image;
+    private ImageView weaponSprite;
 
-    public WeaponRender(ArrayList<Rectangle> weapons){
+    public WeaponRender(WeaponImpl weapons){
         this.weapons = weapons;
+        this.image = new Image("/sword.png");
+        this.weaponSprite = new ImageView(this.image);
     }
 
     public void setTerrains(ArrayList<Rectangle> terrains){
         this.terrains = terrains;
     }
     
-    public ArrayList<Rectangle> getWeapons(){
-        return this.weapons;
+    public ArrayList<Rectangle> getTerrains(){
+        return this.terrains;
     }
 
-    public void update() {
-        for (Rectangle weapon : weapons) {
-            transition.doVerticalTransition(weapon, weapon.getY(), this.terrains);
-        }
+    public ImageView getWeaponSprite(){
+        return this.weaponSprite;
     }
+
+    public void render(){
+        this.weaponSprite.setLayoutX(weapons.getPosition().getX());
+        this.weaponSprite.setLayoutY(weapons.getPosition().getY());
+        this.weaponSprite.setFitWidth(WeaponImpl.WIDTH);
+        this.weaponSprite.setFitHeight(WeaponImpl.HEIGHT);
+        
+    }
+
+   
 }

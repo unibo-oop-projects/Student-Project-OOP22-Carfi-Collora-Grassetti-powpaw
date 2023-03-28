@@ -24,6 +24,7 @@ public class WordRenderImpl implements WordRender {
         return this.playerController;
     }
 
+    @Override
     public WeaponController getWeaponController(){
         return this.weaponController;
     }
@@ -40,8 +41,8 @@ public class WordRenderImpl implements WordRender {
         worldPane.setBackground(Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
         worldPane.getChildren().add(playerController.getRender().getSprite());
         worldPane.getChildren().addAll(mapRender.getTerrains());
-        worldPane.getChildren().addAll(weaponController.getWeapons());
         weaponController.getRender().setTerrains(mapRender.getTerrains());
+        worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
         this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
     }

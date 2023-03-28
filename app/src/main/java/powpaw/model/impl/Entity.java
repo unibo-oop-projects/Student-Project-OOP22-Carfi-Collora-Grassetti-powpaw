@@ -1,6 +1,6 @@
 package powpaw.model.impl;
 
-import javafx.scene.paint.Color;
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
 
 public class Entity {
@@ -14,11 +14,8 @@ public class Entity {
     }
 
     //factory for weapon entity
-    public static Rectangle createWeapon(double x, double y, double width, double height){
-        Rectangle weapon = new Rectangle(width, height);
-        weapon.setX(x);
-        weapon.setY(y);
-        weapon.setFill(Color.RED);
+    public static WeaponImpl createWeapon(Point2D pos, double width, double height){
+        WeaponImpl weapon = new WeaponImpl(pos);
         return weapon;
     }
 

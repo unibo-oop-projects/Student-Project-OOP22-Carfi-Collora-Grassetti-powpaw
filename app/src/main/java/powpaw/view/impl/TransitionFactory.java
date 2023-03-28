@@ -2,30 +2,27 @@ package powpaw.view.impl;
 
 
 import java.util.ArrayList;
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
+import powpaw.model.impl.WeaponImpl;
 
 public class TransitionFactory {
 
-    public void doVerticalTransition(Rectangle node, double y, ArrayList<Rectangle> obstacles){
-        double currentY = node.getY();
-        if(!checkBlockCollision(node, obstacles)){
-            node.setY(currentY + 2);
+    public Point2D positionTransition(Point2D pos, ArrayList<Rectangle> obstacles){       
+        if(!checkCollision(pos, obstacles)){
+            System.out.println(pos.getY());
+            return pos.add(0, 2);
         }
-        
-       
+        return pos;
     }
 
-    private boolean checkBlockCollision(Shape node, ArrayList<Rectangle> obstacles){
+    private boolean checkCollision(Point2D pos, ArrayList<Rectangle> obstacles){
+        Rectangle tmp = new Rectangle(pos.getX(), pos.getY(), WeaponImpl.WIDTH, WeaponImpl.HEIGHT);
         for (Rectangle obs : obstacles) {
-            if(node.getBoundsInParent().intersects(obs.getBoundsInParent())){
+            if(tmp.getBoundsInParent().intersects(obs.getBoundsInParent())) {
                 return true;
             }
         }
         return false;
     }
-
-    /*private boolean checkWindowsBoundsCollision(Shape node){
-        if(node.getBoundsInParent().intersects())
-    }*/
 }
