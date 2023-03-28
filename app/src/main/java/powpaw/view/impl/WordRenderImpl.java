@@ -36,6 +36,8 @@ public class WordRenderImpl implements WordRender {
         return worldScene;
     }
 
+    // questa cosa mettila nel gameloop, serve un controller del word per
+    // passarglielo
     @Override
     public void setKeyCommands() {
 
@@ -55,6 +57,5 @@ public class WordRenderImpl implements WordRender {
             }
 
         });
-
     }
 }

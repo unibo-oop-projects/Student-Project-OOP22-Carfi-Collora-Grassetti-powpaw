@@ -10,7 +10,6 @@ public class GameLoop extends AnimationTimer {
 
     private Instant lastFrameTime;
     private PlayerController playerController;
-
     // serve una classe per la view dove si istanziano le scene e cose varie.
 
     @Override
