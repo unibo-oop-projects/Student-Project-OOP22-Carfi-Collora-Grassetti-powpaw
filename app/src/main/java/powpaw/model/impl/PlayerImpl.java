@@ -9,15 +9,21 @@ import powpaw.model.api.Player;
 
 public class PlayerImpl implements Player {
 
-    private static final double SPEED = 0.1;
+    private static final double SPEED = 0.3;
+    private static final int JUMP_HEIGHT = 50;
+    private static final int MAX_JUMP = 3;
     // private static final double KNOCKBACK = 0.2;
     private static final Point2D GRAVITY = new Point2D(0, 0.01);
-
+    
     private TransitionFactory transition;
+
     private Point2D position;
     private Point2D velocity;
+    private Point2D acceleration;
+
     private double width;
     private double height;
+    private int countJump = 0;
     // private double attackPower;
     // private int currentHealth;
     private Hitbox hitbox;
@@ -46,6 +52,15 @@ public class PlayerImpl implements Player {
     public void setVelocity(Point2D velocity) {
         this.velocity = velocity;
     }
+
+    public Point2D getAcceleration() {
+        return this.acceleration;
+    }
+
+    public void setAcceleration(Point2D acceleration) {
+        this.acceleration = acceleration;
+    }
+
 
     @Override
     public double getWidth() {
@@ -88,13 +103,19 @@ public class PlayerImpl implements Player {
 
     @Override
     public void jump() {
-        if(!isFalling()){
-            for (int i=0; i<50; i++){
-                this.position = this.position.add(DirectionVector.UP.getPoint());
-            }
-        }
-        //this.velocity = velocity.add(DirectionVector.UP.getPoint());
+        if ( (!isFalling() && this.countJump < MAX_JUMP) || (isFalling() && this.countJump < MAX_JUMP)) {
+            doJump();
+        }/* else if(isFalling() && this.countJump < MAX_JUMP){
+            doJump();
+        } */
         this.velocity = this.velocity.normalize();
+    }
+    
+    private void doJump(){
+        this.countJump++;
+        for (int i = 0; i < JUMP_HEIGHT; i++) {
+            this.position = this.position.add(DirectionVector.UP.getPoint());
+        }
     }
 
     @Override
@@ -113,8 +134,9 @@ public class PlayerImpl implements Player {
         hitbox.switchDodge();
     }
 
-    private boolean isFalling(){
-        if(transition.checkPlayerCollisionByHitbox(hitbox)){
+    private boolean isFalling() {
+        if (transition.checkPlayerCollisionByHitbox(hitbox)) {
+            this.countJump = 0;
             return false;
         }
         return true;
@@ -136,14 +158,13 @@ public class PlayerImpl implements Player {
 
     @Override
     public void update(Duration deltaTime) {
-        if(isFalling()){
-            this.position = new Point2D(this.position.getX(), this.position.add(DirectionVector.DOWN.getPoint()).add(GRAVITY).getY());
-            //this.velocity = DirectionVector.DOWN.getPoint().add(GRAVITY);
+        if (isFalling()) {
+            this.position = new Point2D(this.position.getX(),
+                    this.position.add(DirectionVector.DOWN.getPoint()).add(GRAVITY).getY());
         }
-        position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED)); 
-        hitbox.updateCenter(position); 
+        position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
+        hitbox.updateCenter(position);
         ScreenController.isOutOfScreen(hitbox);
-
     }
 
 }
