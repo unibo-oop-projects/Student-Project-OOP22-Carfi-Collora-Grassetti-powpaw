@@ -1,8 +1,6 @@
 package powpaw.model.impl;
 
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Rectangle;
-import powpaw.model.api.Hitbox;
 
 public class Entity {
 

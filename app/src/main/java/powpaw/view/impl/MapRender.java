@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import powpaw.controller.impl.MapController;
 import powpaw.model.impl.BlockImpl;
 

@@ -13,8 +13,7 @@ public class PlayerImpl implements Player {
 
     private static final double SPEED = 0.1;
     private static final double KNOCKBACK = 0.2;
-    // private static final Point2D GRAVITY = new Point2D(0, 0.001);
-
+    private static final Point2D GRAVITY = new Point2D(0, 0.001);
     private Point2D position;
     private Point2D velocity;
     private double width;
@@ -22,6 +21,9 @@ public class PlayerImpl implements Player {
     private double attackPower;
     private int currentHealth;
     private Hitbox hitbox;
+
+    private TransitionFactory transiction = new TransitionFactory();
+
 
     public PlayerImpl(Point2D position) {
         this.position = position;
@@ -84,6 +86,7 @@ public class PlayerImpl implements Player {
     @Override
     public void jump() {
         this.velocity = velocity.add(DirectionVector.UP.getPoint());
+
         this.velocity = this.velocity.normalize();
     }
 
@@ -120,8 +123,8 @@ public class PlayerImpl implements Player {
 
     @Override
     public void update(Duration deltaTime) {
-        // velocity = velocity.add(GRAVITY);
-        System.out.println(velocity);
+        
+        velocity = velocity.add(GRAVITY);
         position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
         hitbox.updateCenter(position);
     }

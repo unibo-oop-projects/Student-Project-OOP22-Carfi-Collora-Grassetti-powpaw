@@ -38,8 +38,6 @@ public class GameLoop extends AnimationTimer {
 
         weaponController.getRender().render();
         weaponController.getWeapons().update();
-        // weaponController.getWeapons().forEach(w ->
-        // w.update(weaponController.getRender().getTerrains()));
     }
 
     public void setPlayerController(PlayerController playerController) {
