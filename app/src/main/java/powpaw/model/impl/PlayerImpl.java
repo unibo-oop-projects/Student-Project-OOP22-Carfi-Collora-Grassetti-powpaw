@@ -105,9 +105,7 @@ public class PlayerImpl implements Player {
     public void jump() {
         if ( (!isFalling() && this.countJump < MAX_JUMP) || (isFalling() && this.countJump < MAX_JUMP)) {
             doJump();
-        }/* else if(isFalling() && this.countJump < MAX_JUMP){
-            doJump();
-        } */
+        }
         this.velocity = this.velocity.normalize();
     }
     
