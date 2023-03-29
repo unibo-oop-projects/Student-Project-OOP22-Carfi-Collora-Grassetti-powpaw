@@ -10,9 +10,9 @@ import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.WeaponController;
-import powpaw.view.api.WordRender;
+import powpaw.view.api.WorldRender;
 
-public class WordRenderImpl implements WordRender {
+public class WorldRenderImpl implements WorldRender {
 
     private final MapRender mapRender = new MapRender();
     private final WeaponController weaponController = new WeaponController();

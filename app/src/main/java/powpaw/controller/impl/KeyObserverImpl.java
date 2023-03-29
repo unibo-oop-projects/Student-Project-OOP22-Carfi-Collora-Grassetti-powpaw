@@ -40,7 +40,7 @@ public class KeyObserverImpl implements KeyObserver {
                     this.playerOne.dodge();
                     break;
                 case G:
-                    this.playerOne.attack();
+                    // this.playerOne.attack();
                     break;
                 default:
                     break;
@@ -50,8 +50,10 @@ public class KeyObserverImpl implements KeyObserver {
 
     @Override
     public void keyReleasedPlayerOne(KeyEvent event) {
-        p1PressedKeys.remove(event.getCode());
-        playerOne.idle();
+        if (p1PressedKeys.contains(event.getCode())) {
+            p1PressedKeys.remove(event.getCode());
+            playerOne.idle();
+        }
     }
 
     @Override
@@ -72,7 +74,7 @@ public class KeyObserverImpl implements KeyObserver {
                     this.playerTwo.dodge();
                     break;
                 case K:
-                    this.playerTwo.attack();
+                    // this.playerTwo.attack();
                     break;
                 default:
                     break;
@@ -82,7 +84,9 @@ public class KeyObserverImpl implements KeyObserver {
 
     @Override
     public void keyReleasedPlayerTwo(KeyEvent event) {
-        p2PressedKeys.remove(event.getCode());
-        playerTwo.idle();
+        if (p2PressedKeys.contains(event.getCode())) {
+            p2PressedKeys.remove(event.getCode());
+            playerTwo.idle();
+        }
     }
 }

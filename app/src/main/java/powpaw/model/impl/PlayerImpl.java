@@ -11,20 +11,20 @@ import powpaw.model.api.Player;
 public class PlayerImpl implements Player {
 
     private static final double SPEED = 0.1;
-    private static final double KNOCKBACK = 0.2;
-    // private static final Point2D GRAVITY = new Point2D(0, 0.001);
+    // private static final double KNOCKBACK = 0.2;
+    // private static final Point2D GRAVITY = new Point2D(0, 0.01);
 
     private Point2D position;
     private Point2D velocity;
     private double width;
     private double height;
-    private double attackPower;
-    private int currentHealth;
+    // private double attackPower;
+    // private int currentHealth;
     private Hitbox hitbox;
 
     public PlayerImpl(Point2D position) {
         this.position = position;
-        this.attackPower = 0.25;
+        // this.attackPower = 0.25;
         this.height = ScreenController.SIZE_HD_W / 20;
         this.width = ScreenController.SIZE_HD_W / 20;
         hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
@@ -39,6 +39,11 @@ public class PlayerImpl implements Player {
     @Override
     public Point2D getVelocity() {
         return this.velocity;
+    }
+
+    @Override
+    public void setVelocity(Point2D velocity) {
+        this.velocity = velocity;
     }
 
     @Override
@@ -102,20 +107,20 @@ public class PlayerImpl implements Player {
         hitbox.switchDodge();
     }
 
-    @Override
-    public void attack() {
-        currentHealth += KNOCKBACK * attackPower;
-    }
+    // @Override
+    // public void attack() {
+    // currentHealth += KNOCKBACK * attackPower;
+    // }
 
-    @Override
-    public double getAttackPower() {
-        return this.attackPower;
-    }
+    // @Override
+    // public double getAttackPower() {
+    // return this.attackPower;
+    // }
 
-    @Override
-    public double getCurrentHealth() {
-        return this.currentHealth;
-    }
+    // @Override
+    // public double getCurrentHealth() {
+    // return this.currentHealth;
+    // }
 
     @Override
     public void update(Duration deltaTime) {
@@ -123,4 +128,5 @@ public class PlayerImpl implements Player {
         position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
         hitbox.updateCenter(position);
     }
+
 }
