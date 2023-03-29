@@ -11,8 +11,9 @@ public class PlayerImpl implements Player {
 
     private static final double SPEED = 0.1;
     // private static final double KNOCKBACK = 0.2;
-    // private static final Point2D GRAVITY = new Point2D(0, 0.01);
+    private static final Point2D GRAVITY = new Point2D(0, 0.01);
 
+    private TransitionFactory transition;
     private Point2D position;
     private Point2D velocity;
     private double width;
@@ -22,6 +23,7 @@ public class PlayerImpl implements Player {
     private Hitbox hitbox;
 
     public PlayerImpl(Point2D position) {
+        this.transition = new TransitionFactory();
         this.position = position;
         // this.attackPower = 0.25;
         this.height = ScreenController.SIZE_HD_W / 20;
@@ -86,8 +88,12 @@ public class PlayerImpl implements Player {
 
     @Override
     public void jump() {
-        this.velocity = velocity.add(DirectionVector.UP.getPoint());
-
+        if(!isFalling()){
+            for (int i=0; i<50; i++){
+                this.position = this.position.add(DirectionVector.UP.getPoint());
+            }
+        }
+        //this.velocity = velocity.add(DirectionVector.UP.getPoint());
         this.velocity = this.velocity.normalize();
     }
 
@@ -107,6 +113,12 @@ public class PlayerImpl implements Player {
         hitbox.switchDodge();
     }
 
+    private boolean isFalling(){
+        if(transition.checkPlayerCollisionByHitbox(hitbox)){
+            return false;
+        }
+        return true;
+    }
     // @Override
     // public void attack() {
     // currentHealth += KNOCKBACK * attackPower;
@@ -124,10 +136,14 @@ public class PlayerImpl implements Player {
 
     @Override
     public void update(Duration deltaTime) {
-        // velocity = velocity.add(GRAVITY);
-        position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
-        hitbox.updateCenter(position);
+        if(isFalling()){
+            this.position = new Point2D(this.position.getX(), this.position.add(DirectionVector.DOWN.getPoint()).add(GRAVITY).getY());
+            //this.velocity = DirectionVector.DOWN.getPoint().add(GRAVITY);
+        }
+        position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED)); 
+        hitbox.updateCenter(position); 
         ScreenController.isOutOfScreen(hitbox);
+
     }
 
 }

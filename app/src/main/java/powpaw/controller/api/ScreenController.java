@@ -1,6 +1,5 @@
 package powpaw.controller.api;
 
-import javafx.geometry.Point2D;
 import powpaw.model.api.Hitbox;
 
 public class ScreenController {
@@ -15,10 +14,8 @@ public class ScreenController {
     public static boolean isOutOfScreen(Hitbox hitbox) {
         if (hitbox.getCenter().getX() >= SIZE_HD_W
                 || hitbox.getCenter().getY() <= -SIZE_HD_H / 10) { // margine alto - destro
-            System.out.println("GAME OVERRRR");
             return true;
-        } else if (hitbox.getCenter().getX() <= 0 || hitbox.getCenter().getY() >= 720) { // margine basso - sinistro
-            System.out.println("GAME OVERRRR");
+        } else if (hitbox.getCenter().getX() <= 0 || hitbox.getCenter().getY() >= SIZE_HD_H) { // margine basso - sinistro
             return true;
         }
         return false;

@@ -9,10 +9,10 @@ public class PhysicsPlayer {
         this.player = player;
     }
 
-    private boolean doJump(){
+   /*  private boolean doJump(){
         if(transition.checkCollisionByPos(player.getPosition())) {
             return true;
         }
         return false;
-    }
+    } */
 }

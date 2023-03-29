@@ -26,7 +26,7 @@ public class WeaponImpl {
     }
 
     public void update() {
-        this.position = transition.verticalTransition(position);
+        this.position = transition.fallTransition(position);
         hitbox.updateCenter(position);
     }
 

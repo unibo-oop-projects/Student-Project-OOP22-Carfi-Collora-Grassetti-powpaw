@@ -5,7 +5,7 @@ import javafx.geometry.Point2D;
 public enum DirectionVector {
     RIGHT(new Point2D(1.0, 0.0)),
     LEFT(new Point2D(-1.0, 0.0)),
-    UP(new Point2D(0.0, -10.0)),
+    UP(new Point2D(0.0, -1.0)),
     DOWN(new Point2D(0.0, 1.0));
 
     private final Point2D point;
