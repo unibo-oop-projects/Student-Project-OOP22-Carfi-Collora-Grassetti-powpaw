@@ -28,7 +28,10 @@ public class KeyObserverImpl implements KeyObserver {
         for (final var e : p1PressedKeys) {
             switch (e) {
                 case W:
-                    this.playerOne.jump();
+                    System.out.println(playerOne.isPlayerJumping());
+                    if(!playerOne.isPlayerJumping()){
+                        this.playerOne.jump();
+                    }
                     break;
                 case A:
                     this.playerOne.moveLeft();
@@ -54,6 +57,7 @@ public class KeyObserverImpl implements KeyObserver {
             p1PressedKeys.remove(event.getCode());
             playerOne.idle();
         }
+        
     }
 
     @Override

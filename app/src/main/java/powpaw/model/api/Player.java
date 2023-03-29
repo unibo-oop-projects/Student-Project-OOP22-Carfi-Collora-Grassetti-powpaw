@@ -3,8 +3,15 @@ package powpaw.model.api;
 import java.time.Duration;
 
 import javafx.geometry.Point2D;
+import powpaw.model.impl.PlayerImpl.State;
 
 public interface Player {
+
+    Point2D getAcceleration();
+
+    void setAcceleration(Point2D acceleration);
+
+    void setState(State state);
 
     Point2D getPosition();
 
@@ -25,6 +32,8 @@ public interface Player {
     void moveRight();
 
     void jump();
+
+    boolean isPlayerJumping();
 
     void idle();
 
