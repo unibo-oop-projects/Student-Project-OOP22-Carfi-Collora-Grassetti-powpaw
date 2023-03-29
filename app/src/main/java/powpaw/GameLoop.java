@@ -30,12 +30,12 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void update(Duration deltaTime) {
-        playerController.getWorld().update(deltaTime);
-        playerController.getRender().render();
+        playerController.getPlayerObservable().update(deltaTime);
         // for (final var player : world.getPlayers()) {
         // player.getRenderComponent().render();
         // }
-
+        playerController.getRender().renderPlayerOne();
+        playerController.getRender().renderPlayerTwo();
         weaponController.getRender().render();
         weaponController.getWeapons().update();
     }

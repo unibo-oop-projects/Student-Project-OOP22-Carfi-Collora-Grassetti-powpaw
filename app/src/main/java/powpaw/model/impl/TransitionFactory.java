@@ -22,7 +22,7 @@ public class TransitionFactory {
     public boolean checkCollisionByPos(Point2D pos) {
         Rectangle tmp = new Rectangle(pos.getX(), pos.getY(), WeaponImpl.WIDTH, WeaponImpl.HEIGHT);
         for (BlockImpl obs : this.map.getTerrains()) {
-            if (tmp.getBoundsInParent().intersects(obs.getHitbox().getHitbox().getBoundsInParent())) {
+            if (tmp.getBoundsInParent().intersects(obs.getHitbox().getShape().getBoundsInParent())) {
                 return true;
             }
         }
@@ -31,7 +31,7 @@ public class TransitionFactory {
 
     public boolean checkCollisionByHitbox(Hitbox hitbox){
         for (BlockImpl obs : this.map.getTerrains()) {
-            if (hitbox.getHitbox().getBoundsInParent().intersects(obs.getHitbox().getHitbox().getBoundsInParent())) {
+            if (hitbox.getShape().getBoundsInParent().intersects(obs.getHitbox().getShape().getBoundsInParent())) {
                 return true;
             }
         }

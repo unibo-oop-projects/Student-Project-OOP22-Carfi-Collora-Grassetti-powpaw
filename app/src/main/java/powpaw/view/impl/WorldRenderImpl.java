@@ -10,9 +10,9 @@ import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.WeaponController;
-import powpaw.view.api.WordRender;
+import powpaw.view.api.WorldRender;
 
-public class WordRenderImpl implements WordRender {
+public class WorldRenderImpl implements WorldRender {
 
     private final MapRender mapRender = new MapRender();
     private final WeaponController weaponController = new WeaponController();
@@ -39,37 +39,33 @@ public class WordRenderImpl implements WordRender {
         Pane worldPane = mapRender.createPane();
         worldPane.setBackground(
                 Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
-        worldPane.getChildren().add(playerController.getRender().getSprite());
-
-        mapRender.getTerrains()
-                .forEach(b -> worldPane.getChildren().add(b.getHitbox().getHitbox()));
-
-        // worldPane.getChildren().addAll(mapRender.getTerrains());
-        weaponController.getRender().setTerrains(mapRender.getTerrains());
+        worldPane.getChildren().add(playerController.getRender().getSpritePlayerOne());
+        worldPane.getChildren().add(playerController.getRender().getSpritePlayerTwo());
+        mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
+        weaponController.getRender().setTerrains(mapRender.getTerrains());
         this.worldScene =
                 new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
     }
 
-    @Override
-    public void setKeyCommands() {
+    public void playersCommands() {
 
-        this.worldScene
-                .setOnKeyPressed((EventHandler<? super KeyEvent>) new EventHandler<KeyEvent>() {
-
-                    @Override
-                    public void handle(KeyEvent event) {
-                        playerController.getWorld().getKeyObservable()
-                                .notifyObserversPressed(event);
-                    }
-                });
-
-        worldScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        this.worldScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent event) {
-                playerController.getWorld().getKeyObservable().notifyObserversReleased(event);
+                playerController.getPlayerObservable().getKeyObservable()
+                        .notifyObserversPressed(event);
+            }
+        });
+
+        this.worldScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent event) {
+                playerController.getPlayerObservable().getKeyObservable()
+                        .notifyObserversReleased(event);
             }
 
         });

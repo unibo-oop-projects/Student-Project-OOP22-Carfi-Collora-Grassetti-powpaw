@@ -5,12 +5,12 @@ package powpaw;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import powpaw.view.api.WordRender;
-import powpaw.view.impl.WordRenderImpl;
+import powpaw.view.api.WorldRender;
+import powpaw.view.impl.WorldRenderImpl;
 
 public class App extends Application {
     private GameLoop loop = new GameLoop();
-    private WordRender wordRender = new WordRenderImpl();
+    private WorldRender wordRender = new WorldRenderImpl();
 
     public static void main(String[] args) {
         Application.launch(App.class, args);
@@ -23,7 +23,7 @@ public class App extends Application {
         primaryStage.setTitle("PowPaw");
         primaryStage.setResizable(false);
         primaryStage.show();
-        wordRender.setKeyCommands();
+        wordRender.playersCommands();
         loop.setPlayerController(wordRender.getPlayerController());
         loop.setWeaponController(wordRender.getWeaponController());
         loop.start();

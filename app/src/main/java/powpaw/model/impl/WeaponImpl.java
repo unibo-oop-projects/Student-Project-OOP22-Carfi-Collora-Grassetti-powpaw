@@ -1,9 +1,6 @@
 package powpaw.model.impl;
 
-import java.util.ArrayList;
-
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Rectangle;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Hitbox;
 

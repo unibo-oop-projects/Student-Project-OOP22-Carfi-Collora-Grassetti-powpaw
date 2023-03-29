@@ -13,24 +13,26 @@ import powpaw.view.impl.PlayerRender;
 
 public class PlayerController {
 
-    private PlayerObservable world;
+    private PlayerObservable playerObservable;
     private PlayerRender playerRender;
-    private Player player1;
+    private Player playerOne;
+    private Player playerTwo;
 
     public PlayerController() {
 
-        player1 = new PlayerImpl(
+        playerOne = new PlayerImpl(
                 new Point2D(ScreenController.SIZE_HD_W / 3, ScreenController.SIZE_HD_H / 2));
-        world = new PlayerObservableImpl(new ArrayList<>(List.of(player1)));
-        playerRender = new PlayerRender(player1);
+        playerTwo = new PlayerImpl(
+                new Point2D(ScreenController.SIZE_HD_W / 1.5, ScreenController.SIZE_HD_H / 2));
+        playerObservable = new PlayerObservableImpl(new ArrayList<>(List.of(playerOne, playerTwo)));
+        playerRender = new PlayerRender(playerOne, playerTwo);
     }
 
-    // qui o nel model?
     public PlayerRender getRender() {
         return this.playerRender;
     }
 
-    public PlayerObservable getWorld() {
-        return this.world;
+    public PlayerObservable getPlayerObservable() {
+        return this.playerObservable;
     }
 }

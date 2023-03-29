@@ -10,6 +10,8 @@ public interface Player {
 
     Point2D getVelocity();
 
+    void setVelocity(Point2D velocity);
+
     double getWidth();
 
     double getHeight();
@@ -26,13 +28,13 @@ public interface Player {
 
     void idle();
 
-    void attack();
+    // void attack();
 
     void dodge();
 
-    double getAttackPower();
+    // double getAttackPower();
 
-    double getCurrentHealth();
+    // double getCurrentHealth();
 
     Hitbox getHitbox();
 

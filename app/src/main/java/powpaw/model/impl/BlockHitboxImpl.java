@@ -28,7 +28,7 @@ public class BlockHitboxImpl implements Hitbox {
     }
 
     @Override
-    public Shape getHitbox() {
+    public Shape getShape() {
         return this.shape;
     }
 

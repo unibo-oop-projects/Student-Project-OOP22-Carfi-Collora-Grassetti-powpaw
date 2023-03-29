@@ -26,7 +26,7 @@ public class MapRender {
     }
 
     private void drawBlocks() {
-        this.terrains.stream().forEach(b -> b.getHitbox().getHitbox().setFill(this.textureBlock));
+        this.terrains.stream().forEach(b -> b.getHitbox().getShape().setFill(this.textureBlock));
     }
 
     public ArrayList<BlockImpl> getTerrains() {
