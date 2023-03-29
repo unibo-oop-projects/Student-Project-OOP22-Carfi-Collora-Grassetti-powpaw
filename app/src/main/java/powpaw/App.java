@@ -7,7 +7,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import powpaw.view.api.WordRender;
 import powpaw.view.impl.WordRenderImpl;
-import powpaw.view.api.StartMenu;
 
 public class App extends Application {
     private GameLoop loop = new GameLoop();
@@ -27,6 +26,7 @@ public class App extends Application {
         wordRender.setKeyCommands();
         loop.setPlayerController(wordRender.getPlayerController());
         loop.setWeaponController(wordRender.getWeaponController());
+        loop.setPowerUpController(wordRender.getPowerUpController());
         loop.start();
     }
 }

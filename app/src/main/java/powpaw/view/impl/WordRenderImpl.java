@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.PlayerController;
+import powpaw.controller.impl.PowerUpController;
 import powpaw.controller.impl.WeaponController;
 import powpaw.view.api.WordRender;
 
@@ -16,6 +17,7 @@ public class WordRenderImpl implements WordRender {
 
     private final MapRender mapRender = new MapRender();
     private final WeaponController weaponController = new WeaponController();
+    private final PowerUpController powerUpController = new PowerUpController();
     private final PlayerController playerController = new PlayerController();
     private Scene worldScene;
 
@@ -27,6 +29,11 @@ public class WordRenderImpl implements WordRender {
     public WeaponController getWeaponController(){
         return this.weaponController;
     }
+
+    public PowerUpController getPowerUpController(){
+        return this.powerUpController;
+    }
+
 
     @Override
     public MapRender getMapRender() {
@@ -41,6 +48,7 @@ public class WordRenderImpl implements WordRender {
         worldPane.getChildren().add(playerController.getRender().getSprite());
         worldPane.getChildren().addAll(mapRender.getTerrains());
         worldPane.getChildren().addAll(weaponController.getWeapons());
+        worldPane.getChildren().addAll(powerUpController.getPowerUps());
         weaponController.getRender().setTerrains(mapRender.getTerrains());
         this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
