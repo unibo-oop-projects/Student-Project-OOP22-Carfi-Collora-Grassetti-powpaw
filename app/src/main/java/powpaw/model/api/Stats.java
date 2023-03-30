@@ -7,7 +7,4 @@ public interface Stats {
     int getDefence();
 
     int getSpeed();
-
-    double toDouble(int value);
-
 }

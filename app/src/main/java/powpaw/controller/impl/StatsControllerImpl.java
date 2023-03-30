@@ -1,10 +1,12 @@
 package powpaw.controller.impl;
 
 import powpaw.controller.api.StatsController;
+import powpaw.model.api.StatsBuilder;
+import powpaw.model.impl.StatsBuilderImpl;
 
 public class StatsControllerImpl implements StatsController {
-    private final static int maxPoint = 10;
-    private final static int minPoint = 5;
+    private final static int maxPoint = 5;
+    private final static int minPoint = 0;
     private final static int plusMinus = 1;
 
     @Override
