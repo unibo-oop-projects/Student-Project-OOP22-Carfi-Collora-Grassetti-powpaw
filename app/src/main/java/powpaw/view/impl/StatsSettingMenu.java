@@ -11,12 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 import powpaw.controller.impl.StatsControllerImpl;
 import powpaw.model.api.StatsBuilder;
-import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.StatsBuilderImpl;
-import powpaw.view.api.ButtonAction;
 import powpaw.view.api.GameInterface;
 import powpaw.view.api.StartMenu;
 
@@ -37,33 +36,45 @@ public class StatsSettingMenu extends GridPane {
     private int attackPointP2;
     private int defencePointP2;
     private int speedPointP2;
-    private Map<Integer, Map<String, Integer>> statsMapG = new HashMap<>();
-    private Map<String, Integer> statsMap = new HashMap<>();
+    // private Map<Integer, Map<String, Integer>> statsMapG = new HashMap<>();
+    // private Map<String, Integer> statsMap = new HashMap<>();
     private Label att;
     private Label def;
     private Label spe;
     private Text attackTextP1;
+    private Text defenceTextP1;
+    private Text speedTextP1;
+    private Text attackTextP2;
+    private Text defenceTextP2;
+    private Text speedTextP2;
     private StatsBuilder statsP1 = new StatsBuilderImpl();
 
     private StatsControllerImpl control = new StatsControllerImpl();
 
     public StatsSettingMenu() {
+        att = new Label("Attack: ");
+        def = new Label("Defence: ");
+        spe = new Label("Speed: ");
         plusButtonsP1 = new ArrayList<>();
         minusButtonsP1 = new ArrayList<>();
         plusButtonsP2 = new ArrayList<>();
         minusButtonsP2 = new ArrayList<>();
-        initButton();
-        initMap();
-        setButtonDimension();
-        att = new Label("Attack: ");
-        def = new Label("Defence: ");
-        spe = new Label("Speed: ");
         attackPointP1 = 0;
         defencePointP1 = 0;
         speedPointP1 = 0;
         attackPointP2 = 0;
         defencePointP2 = 0;
         speedPointP2 = 0;
+        initButton();
+        // initMap();
+        setButtonDimension();
+        attackTextP1 = new Text("" + attackPointP1);
+        defenceTextP1 = new Text("" + defencePointP1);
+        speedTextP1 = new Text("" + speedPointP1);
+        attackTextP2 = new Text("" + attackPointP2);
+        defenceTextP2 = new Text("" + defencePointP2);
+        speedTextP2= new Text(""+speedPointP2);
+        new Text();
         setAlignment(Pos.CENTER);
         setVgap(15);
         setHgap(15);
@@ -81,37 +92,74 @@ public class StatsSettingMenu extends GridPane {
                         add(attackTextP1, 3, 0);
                     });
                     minusButtonsP1.get(i).getKey().setOnAction(e -> {
+                        getChildren().remove(attackTextP1);
                         attackPointP1 = control.decreaseAtt(attackPointP1);
-                        System.out.println(attackPointP1);
+                        attackTextP1 = new Text("" + attackPointP1);
+                        add(attackTextP1, 3, 0);
                     });
                     plusButtonsP2.get(i).getKey().setOnAction(e -> {
-                        attackPointP2 = control.increaseAtt(attackPointP1);
+                        getChildren().remove(attackTextP2);
+                        attackPointP2 = control.increaseAtt(attackPointP2);
+                        attackTextP2 = new Text("" + attackPointP2);
+                        add(attackTextP2, 7, 0);
                     });
                     minusButtonsP2.get(i).getKey().setOnAction(e -> {
-                        attackPointP1 = control.increaseAtt(attackPointP1);
+                        getChildren().remove(attackTextP2);
+                        attackPointP2 = control.decreaseAtt(attackPointP2);
+                        attackTextP2 = new Text("" + attackPointP2);
+                        add(attackTextP2, 7, 0);
                     });
                     break;
                 case "DEFENCE":
-
                     plusButtonsP1.get(i).getKey().setOnAction(e -> {
+                        getChildren().remove(defenceTextP1);
                         defencePointP1 = control.increaseDef(defencePointP1);
+                        defenceTextP1 = new Text("" + defencePointP1);
+                        add(defenceTextP1, 3, 1);
                     });
                     minusButtonsP1.get(i).getKey().setOnAction(e -> {
+                        getChildren().remove(defenceTextP1);
                         defencePointP1 = control.decreaseDef(defencePointP1);
+                        defenceTextP1 = new Text("" + defencePointP1);
+                        add(defenceTextP1, 3, 1);
                     });
                     plusButtonsP2.get(i).getKey().setOnAction(e -> {
-                        defencePointP2 = control.increaseDef(defencePointP1);
+                        getChildren().remove(defenceTextP2);
+                        defencePointP2 = control.increaseDef(defencePointP2);
+                        defenceTextP2 = new Text("" + defencePointP2);
+                        add(defenceTextP2, 7, 1);
                     });
                     minusButtonsP2.get(i).getKey().setOnAction(e -> {
-                        defencePointP1 = control.increaseDef(defencePointP1);
+                        getChildren().remove(defenceTextP2);
+                        defencePointP2 = control.decreaseDef(defencePointP2);
+                        defenceTextP2 = new Text("" + defencePointP2);
+                        add(defenceTextP2, 7, 1);
                     });
                     break;
                 case "SPEED":
                     plusButtonsP1.get(i).getKey().setOnAction(e -> {
-
+                        getChildren().remove(speedTextP1);
+                        speedPointP1 = control.increaseSpe(speedPointP1);
+                        speedTextP1 = new Text("" + speedPointP1);
+                        add(speedTextP1, 3, 2);
                     });
                     minusButtonsP1.get(i).getKey().setOnAction(e -> {
-
+                        getChildren().remove(speedTextP1);
+                        speedPointP1 = control.decreaseSpe(speedPointP1);
+                        speedTextP1 = new Text("" + speedPointP1);
+                        add(speedTextP1, 3, 2);
+                    });
+                    plusButtonsP2.get(i).getKey().setOnAction(e -> {
+                        getChildren().remove(speedTextP2);
+                        speedPointP2 = control.increaseSpe(speedPointP2);
+                        speedTextP2 = new Text("" + speedPointP2);
+                        add(speedTextP2, 7, 2);
+                    });
+                    minusButtonsP2.get(i).getKey().setOnAction(e -> {
+                        getChildren().remove(speedTextP2);
+                        speedPointP2 = control.decreaseAtt(speedPointP2);
+                        speedTextP2 = new Text("" + speedPointP2);
+                        add(speedTextP2, 7, 2);
                     });
                     break;
             }
@@ -120,7 +168,9 @@ public class StatsSettingMenu extends GridPane {
             statsP1.setAttack(attackPointP1);
             statsP1.setDefence(defencePointP1);
             statsP1.setSpeed(speedPointP1);
-            finish.getScene().setRoot(new GameInterface());
+            statsP1.build();
+            Stage s = new Stage();
+            s.setScene(new WordRenderImpl().render());
         });
     }
 
@@ -166,55 +216,68 @@ public class StatsSettingMenu extends GridPane {
             add(plusButtonsP2.get(i).getKey(), 6, i);
         }
         add(attackTextP1, 3, 0);
-        add(new Text("" + defencePointP1), 3, 1);
-        add(new Text("" + speedPointP1), 3, 2);
-        add(new Text("" + attackPointP2), 7, 0);
-        add(new Text("" + defencePointP2), 7, 1);
-        add(new Text("" + speedPointP2), 7, 2);
+        add(defenceTextP1, 3, 1);
+        add(speedTextP1, 3, 2);
+        add(attackTextP2, 7, 0);
+        add(defenceTextP2, 7, 1);
+        add(speedTextP2, 7, 2);
         add(exit, 10, 10);
         add(finish, 0, 10);
     }
 
-    private void initMap() {
-        for (int i = 0; i < 2; i++) {
-            for (var v : statList) {
-                statsMap.put(v, 0);
-            }
-            statsMapG.put(i, statsMap);
-        }
-    }
+    // private void initMap() {
+    // for (int i = 0; i < 2; i++) {
+    // for (var v : statList) {
+    // statsMap.put(v, 0);
+    // }
+    // statsMapG.put(i, statsMap);
+    // }
+    // }
 
-    private void updateText(Text text) {
-        getChildren().remove(text);
-        for (var v : statsMapG.entrySet()) {
-            for (var d: v.getValue().entrySet()) {
-                switch (d.getKey()) {
-                    case "ATTACK":
-                        if(v.getKey()==0){
-                            text= new Text(""+d.getValue());
-                            add(text, 3, 0);
-                        }else{
-                            text= new Text(""+d.getValue());
-                            add(text, 7, 0);
-                        }
-                        case "DEFENCE":
-                        if(v.getKey()==0){
-                            text= new Text(""+d.getValue());
-                            add(text, 3, 1);
-                        }else{
-                            text= new Text(""+d.getValue());
-                            add(text, 7, 1);
-                        }
-                        case "SPEED":
-                        if(v.getKey()==0){
-                            text= new Text(""+d.getValue());
-                            add(text, 3, 2);
-                        }else{
-                            text= new Text(""+d.getValue());
-                            add(text, 7, 2);
-                        }
-                }
-            }
-        }
-    }
+    // private void buttonIncr(Text t, int val, Pair<String, Button> p) {
+    // getChildren().remove(t);
+    // if (p.getKey() == "ATTACK") {
+    // attackPointP1 = control.increaseAtt(attackPointP1);
+    // attackTextP1 = new Text("" + attackPointP1);
+    // add(attackTextP1, 3, 0);
+    // }
+    // }
+    /*
+     * private void updateText(Text text) {
+     * for (var v : statsMapG.entrySet()) {
+     * for (var d: v.getValue().entrySet()) {
+     * switch (d.getKey()) {
+     * case "ATTACK":
+     * if(v.getKey()==0){
+     * getChildren().remove(text);
+     * text= new Text(""+d.getValue());
+     * add(text, 3, 0);
+     * }else{
+     * getChildren().remove(text);
+     * text= new Text(""+d.getValue());
+     * add(text, 7, 0);
+     * }
+     * case "DEFENCE":
+     * if(v.getKey()==0){
+     * getChildren().remove(text);
+     * text= new Text(""+d.getValue());
+     * add(text, 3, 1);
+     * }else{
+     * getChildren().remove(text);
+     * text= new Text(""+d.getValue());
+     * add(text, 7, 1);
+     * }
+     * case "SPEED":
+     * if(v.getKey()==0){
+     * text= new Text(""+d.getValue());
+     * add(text, 3, 2);
+     * }else{
+     * text= new Text(""+d.getValue());
+     * add(text, 7, 2);
+     * }
+     * }
+     * }
+     * }
+     * }
+     */
 }
