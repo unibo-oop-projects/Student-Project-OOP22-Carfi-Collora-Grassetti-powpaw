@@ -1,8 +1,6 @@
 package powpaw.controller.impl;
 
 import powpaw.controller.api.StatsController;
-import powpaw.model.api.StatsBuilder;
-import powpaw.model.impl.StatsBuilderImpl;
 
 public class StatsControllerImpl implements StatsController {
     private final static int maxPoint = 5;

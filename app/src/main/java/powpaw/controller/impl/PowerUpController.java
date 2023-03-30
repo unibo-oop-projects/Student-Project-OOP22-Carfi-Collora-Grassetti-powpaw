@@ -21,10 +21,10 @@ public class PowerUpController {
         powerUps.add(PowerUpFactory.createPowerUp(15 * ScreenController.SIZE_HD_W / 30,
                 1 * ScreenController.SIZE_HD_H / 10));
         powerUps.add(
-                PowerUpFactory.createPowerUp(1 * ScreenController.SIZE_HD_W / 30, 1 * ScreenController.SIZE_HD_H / 10));
+                PowerUpFactory.createPowerUp(10 * ScreenController.SIZE_HD_W / 30, 1 * ScreenController.SIZE_HD_H / 10));
         powerUps.add(
                 PowerUpFactory.createPowerUp(5 * ScreenController.SIZE_HD_W / 30, 1 * ScreenController.SIZE_HD_H / 10));
-        powerUps.add(PowerUpFactory.createPowerUp(10 * ScreenController.SIZE_HD_W / 30,
+        powerUps.add(PowerUpFactory.createPowerUp(1 * ScreenController.SIZE_HD_W / 30,
                 1 * ScreenController.SIZE_HD_H / 10));
         powerUps.add(PowerUpFactory.createPowerUp(25 * ScreenController.SIZE_HD_W / 30,
                 1 * ScreenController.SIZE_HD_H / 10));
@@ -40,8 +40,7 @@ public class PowerUpController {
 
     public void pickPowerUp(Player player) {
         for (Circle powerUp : powerUps) {
-            if (powerUp.getBoundsInParent().intersects(player.getHitbox().getHitbox().getBoundsInParent())) {
-                //powerUps.remove(powerUp); 
+            if (powerUp.getBoundsInParent().intersects(player.getHitbox().getHitbox().getBoundsInParent())) { 
                 powerUp.setCenterY(10000);
             }
         }
