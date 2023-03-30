@@ -14,22 +14,25 @@ import powpaw.view.impl.PlayerRender;
 public class PlayerController {
 
     private PlayerObservable playerObservable;
-    private PlayerRender playerRender;
-    private Player playerOne;
-    private Player playerTwo;
+    private List<PlayerRender> playersRender = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
 
     public PlayerController() {
 
-        playerOne = new PlayerImpl(
-                new Point2D(ScreenController.SIZE_HD_W / 3, ScreenController.SIZE_HD_H / 2));
-        playerTwo = new PlayerImpl(
-                new Point2D(ScreenController.SIZE_HD_W / 1.5, ScreenController.SIZE_HD_H / 2));
-        playerObservable = new PlayerObservableImpl(new ArrayList<>(List.of(playerOne, playerTwo)));
-        playerRender = new PlayerRender(playerOne, playerTwo);
+        players.add(
+                new PlayerImpl(
+                        new Point2D(ScreenController.SIZE_HD_W / 3, ScreenController.SIZE_HD_H / 2)));
+        players.add(new PlayerImpl(
+                new Point2D(ScreenController.SIZE_HD_W / 1.5, ScreenController.SIZE_HD_H / 2)));
+        playerObservable = new PlayerObservableImpl(players);
+
+        for (int i = 0; i < 2; i++) {
+            playersRender.add(new PlayerRender(players.get(i), i + 1));
+        }
     }
 
-    public PlayerRender getRender() {
-        return this.playerRender;
+    public List<PlayerRender> getRender() {
+        return this.playersRender;
     }
 
     public PlayerObservable getPlayerObservable() {

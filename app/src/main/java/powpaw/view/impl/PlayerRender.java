@@ -1,47 +1,58 @@
 package powpaw.view.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.transform.Rotate;
 import powpaw.model.api.Player;
+import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public class PlayerRender {
 
-    // oddio mi sa che l'hitbox la deve avere lo sprite e basta
+    final List<Image> sprites = new ArrayList<>();
+    final Image idleSprite;
+    final Image attackSprite;
+    final ImageView sprite;
+    private Player player;
 
-    private final Player playerOne;
-    private final Player playerTwo;
-    final Image idleOne = new Image("/spritep1_idle_right.png");
-    final Image idleTwo = new Image("/spritep2_idle_left.png");
-    final ImageView spriteP1 = new ImageView(idleOne);
-    final ImageView spriteP2 = new ImageView(idleTwo);
-
-    public PlayerRender(Player playerOne, Player playerTwo) {
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
+    public PlayerRender(Player player, int playerNum) {
+        this.player = player;
+        this.idleSprite = new Image("p" + playerNum + "_idle.png");
+        this.attackSprite = new Image("p" + playerNum + "_attack.png");
+        this.sprite = new ImageView(this.idleSprite);
+        if (playerNum % 2 == 0) {
+            this.rotate(sprite, 180);
+        }
     }
 
-    public ImageView getSpritePlayerOne() {
-        return this.spriteP1;
+    public ImageView getSprite() {
+        return this.sprite;
     }
 
-    public ImageView getSpritePlayerTwo() {
-        return this.spriteP2;
+    public void renderPlayer() {
+        if (this.player.getState() == PlayerState.WALK_RIGHT) {
+            rotate(this.sprite, 0);
+
+        }
+        if (this.player.getState() == PlayerState.WALK_LEFT) {
+            rotate(this.sprite, 180);
+        }
+        this.sprite.setImage(this.player.getState() == PlayerState.ATTACK ? attackSprite : idleSprite);
+        this.sprite.setLayoutX(this.player.getPosition().getX());
+        this.sprite.setLayoutY(this.player.getPosition().getY());
+        this.sprite.setFitWidth(this.player.getWidth());
+        this.sprite.setFitHeight(this.player.getHeight());
     }
 
-    public void renderPlayerOne() {
-        this.spriteP1.setLayoutX(playerOne.getPosition().getX());
-        this.spriteP1.setLayoutY(playerOne.getPosition().getY());
-        this.spriteP1.setFitWidth(playerOne.getWidth());
-        this.spriteP1.setFitHeight(playerOne.getHeight());
-    }
-
-    public void renderPlayerTwo() {
-        this.spriteP2.setLayoutX(playerTwo.getPosition().getX());
-        this.spriteP2.setLayoutY(playerTwo.getPosition().getY());
-        this.spriteP2.setFitWidth(playerTwo.getWidth());
-        this.spriteP2.setFitHeight(playerTwo.getHeight());
+    private ImageView rotate(ImageView sprite, int angle) {
+        sprite.setTranslateZ(sprite.getBoundsInLocal().getWidth() / 2.0);
+        sprite.setRotationAxis(Rotate.Y_AXIS);
+        sprite.setRotate(angle);
+        return sprite;
     }
 
 }

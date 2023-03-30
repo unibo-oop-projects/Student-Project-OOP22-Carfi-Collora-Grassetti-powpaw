@@ -18,7 +18,7 @@ public class GameLoop extends AnimationTimer {
     public void start() {
         super.start();
         lastFrameTime = Instant.now();
-        
+
     }
 
     @Override
@@ -34,8 +34,7 @@ public class GameLoop extends AnimationTimer {
         // for (final var player : world.getPlayers()) {
         // player.getRenderComponent().render();
         // }
-        playerController.getRender().renderPlayerOne();
-        playerController.getRender().renderPlayerTwo();
+        playerController.getRender().forEach(player -> player.renderPlayer());
         weaponController.getRender().render();
         weaponController.getWeapons().update();
     }
