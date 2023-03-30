@@ -8,14 +8,14 @@ import powpaw.controller.impl.PowerUpController;
 
 public class PowerUpRender {
     private ArrayList<Circle> powerUps;
+    PowerUpController contr = new PowerUpController();
 
     public PowerUpRender(ArrayList<Circle> powerUps) {
         this.powerUps = powerUps;
     }
 
-    public void update(Pane pane,PowerUpController contr) {
-        pane.getChildren().remove(contr.getPowerUps());
-        pane.getChildren().addAll(contr.getPowerUps());
+    public void update() {
+        
     }
 
     public ArrayList<Circle> getPowerUp() {

@@ -41,9 +41,8 @@ public class PowerUpController {
     public void pickPowerUp(Player player) {
         for (Circle powerUp : powerUps) {
             if (powerUp.getBoundsInParent().intersects(player.getHitbox().getHitbox().getBoundsInParent())) {
-                powerUps.remove(powerUp);
-                
-                //  PowerUpImpl.attackUp((int) player.getAttackPower());
+                //powerUps.remove(powerUp); 
+                powerUp.setCenterY(10000);
             }
         }
     }
