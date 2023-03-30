@@ -10,7 +10,7 @@ import powpaw.view.impl.WorldRenderImpl;
 
 public class App extends Application {
     private GameLoop loop = new GameLoop();
-    private WorldRender wordRender = new WorldRenderImpl();
+    private WorldRender worldRender = new WorldRenderImpl();
 
     public static void main(String[] args) {
         Application.launch(App.class, args);
@@ -19,13 +19,13 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        primaryStage.setScene(wordRender.render());
+        primaryStage.setScene(worldRender.render());
         primaryStage.setTitle("PowPaw");
         primaryStage.setResizable(false);
         primaryStage.show();
-        wordRender.playersCommands();
-        loop.setPlayerController(wordRender.getPlayerController());
-        loop.setWeaponController(wordRender.getWeaponController());
+        worldRender.playersCommands();
+        loop.setPlayerController(worldRender.getPlayerController());
+        loop.setWeaponController(worldRender.getWeaponController());
         loop.start();
     }
 }

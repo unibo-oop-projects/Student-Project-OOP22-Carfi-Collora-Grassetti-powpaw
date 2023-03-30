@@ -3,6 +3,7 @@ package powpaw.model.api;
 import java.time.Duration;
 
 import javafx.geometry.Point2D;
+import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public interface Player {
 
@@ -15,6 +16,8 @@ public interface Player {
     double getWidth();
 
     double getHeight();
+
+    PlayerState getState();
 
     void setWidth(double width);
 

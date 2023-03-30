@@ -24,6 +24,7 @@ public class WorldRenderImpl implements WorldRender {
         return this.playerController;
     }
 
+    @Override
     public WeaponController getWeaponController() {
         return this.weaponController;
     }
@@ -36,13 +37,15 @@ public class WorldRenderImpl implements WorldRender {
     @Override
     public Scene render() {
         Pane worldPane = mapRender.createPane();
-        worldPane.setBackground(Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
+        worldPane.setBackground(
+                Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
         worldPane.getChildren().add(playerController.getRender().getSpritePlayerOne());
         worldPane.getChildren().add(playerController.getRender().getSpritePlayerTwo());
-        worldPane.getChildren().addAll(mapRender.getTerrains());
-        worldPane.getChildren().addAll(weaponController.getWeapons());
+        mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
+        worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
         weaponController.getRender().setTerrains(mapRender.getTerrains());
-        this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
+        this.worldScene =
+                new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
     }
 
@@ -52,7 +55,8 @@ public class WorldRenderImpl implements WorldRender {
 
             @Override
             public void handle(KeyEvent event) {
-                playerController.getPlayerObservable().getKeyObservable().notifyObserversPressed(event);
+                playerController.getPlayerObservable().getKeyObservable()
+                        .notifyObserversPressed(event);
             }
         });
 
@@ -60,7 +64,8 @@ public class WorldRenderImpl implements WorldRender {
 
             @Override
             public void handle(KeyEvent event) {
-                playerController.getPlayerObservable().getKeyObservable().notifyObserversReleased(event);
+                playerController.getPlayerObservable().getKeyObservable()
+                        .notifyObserversReleased(event);
             }
 
         });

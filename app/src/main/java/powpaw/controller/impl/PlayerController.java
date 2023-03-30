@@ -28,7 +28,6 @@ public class PlayerController {
         playerRender = new PlayerRender(playerOne, playerTwo);
     }
 
-    // qui o nel model?
     public PlayerRender getRender() {
         return this.playerRender;
     }
