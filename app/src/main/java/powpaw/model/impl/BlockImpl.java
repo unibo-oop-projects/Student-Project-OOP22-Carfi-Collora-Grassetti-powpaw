@@ -2,9 +2,10 @@ package powpaw.model.impl;
 
 import javafx.geometry.Point2D;
 import powpaw.controller.api.ScreenController;
+import powpaw.model.api.Block;
 import powpaw.model.api.Hitbox;
 
-public class BlockImpl {
+public class BlockImpl implements Block{
 
     private Hitbox hitbox;
     private Point2D position;
@@ -18,34 +19,42 @@ public class BlockImpl {
                 height * ScreenController.SIZE_HD_H / 10);
     }
 
+    @Override
     public double getHeight() {
         return height;
     }
 
+    @Override
     public Point2D getPosition() {
         return this.position;
     }
 
+    @Override
     public void setX(double x) {
         this.position = new Point2D(x, this.position.getY());
     }
 
+    @Override
     public void setY(double y) {
         this.position = new Point2D(this.position.getX(), y);
     }
 
+    @Override
     public Hitbox getHitbox() {
         return this.hitbox;
     }
 
+    @Override
     public double getWidth() {
         return width;
     }
 
+    @Override
     public void setWidth(double width) {
         this.width = width;
     }
 
+    @Override
     public void setHeight(double height) {
         this.height = height;
     }

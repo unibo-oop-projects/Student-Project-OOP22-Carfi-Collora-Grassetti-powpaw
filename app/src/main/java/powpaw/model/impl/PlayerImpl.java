@@ -9,13 +9,19 @@ import powpaw.model.api.Player;
 
 public class PlayerImpl implements Player {
 
+    public enum PlayerState {
+        IDLE, JUMP, DODGE, ATTACK, WALK_RIGHT, WALK_LEFT;
+    }
+
     private static final double SPEED = 0.3;
     private static final int JUMP_HEIGHT = 50;
     private static final int MAX_JUMP = 3;
     // private static final double KNOCKBACK = 0.2;
     private static final Point2D GRAVITY = new Point2D(0, 0.01);
-    
-    private TransitionFactory transition;
+
+    private TransitionImpl transition;
+
+    private PlayerState currentState;
 
     private Point2D position;
     private Point2D velocity;
@@ -29,7 +35,7 @@ public class PlayerImpl implements Player {
     private Hitbox hitbox;
 
     public PlayerImpl(Point2D position) {
-        this.transition = new TransitionFactory();
+        this.transition = new TransitionImpl();
         this.position = position;
         // this.attackPower = 0.25;
         this.height = ScreenController.SIZE_HD_W / 20;
@@ -78,6 +84,11 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public PlayerState getState() {
+        return this.currentState;
+    }
+
+    @Override
     public void setWidth(double width) {
         this.width = width;
         this.hitbox.setOffsetX(width);
@@ -91,25 +102,29 @@ public class PlayerImpl implements Player {
 
     @Override
     public void moveLeft() {
+        this.currentState = PlayerState.WALK_LEFT;
         this.velocity = velocity.add(DirectionVector.LEFT.getPoint());
         this.velocity = this.velocity.normalize();
     }
 
     @Override
     public void moveRight() {
+        this.currentState = PlayerState.WALK_RIGHT;
         this.velocity = velocity.add(DirectionVector.RIGHT.getPoint());
         this.velocity = this.velocity.normalize();
     }
 
     @Override
     public void jump() {
-        if ( (!isFalling() && this.countJump < MAX_JUMP) || (isFalling() && this.countJump < MAX_JUMP)) {
+        if ((!isFalling() && this.countJump < MAX_JUMP)
+                || (isFalling() && this.countJump < MAX_JUMP)) {
             doJump();
         }
         this.velocity = this.velocity.normalize();
     }
-    
-    private void doJump(){
+
+    private void doJump() {
+        this.currentState = PlayerState.JUMP;
         this.countJump++;
         for (int i = 0; i < JUMP_HEIGHT; i++) {
             this.position = this.position.add(DirectionVector.UP.getPoint());
@@ -118,12 +133,14 @@ public class PlayerImpl implements Player {
 
     @Override
     public void idle() {
+        this.currentState = PlayerState.IDLE;
         this.velocity = new Point2D(0, 0);
     }
 
     @Override
     public void dodge() {
         hitbox.switchDodge();
+        this.currentState = PlayerState.DODGE;
         try {
             Thread.sleep(Duration.ofMillis(1).toMillis());
         } catch (InterruptedException e) {
