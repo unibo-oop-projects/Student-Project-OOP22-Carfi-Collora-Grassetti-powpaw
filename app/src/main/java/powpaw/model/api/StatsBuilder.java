@@ -1,5 +1,7 @@
 package powpaw.model.api;
 
+import powpaw.model.impl.PlayerStats;
+
 public interface StatsBuilder {
 
     void setAttack(int attack);
@@ -7,4 +9,6 @@ public interface StatsBuilder {
     void setDefence(int defence);
 
     void setSpeed(int speed);
+
+    PlayerStats build();
 }
