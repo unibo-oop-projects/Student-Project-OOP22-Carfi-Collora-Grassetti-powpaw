@@ -5,12 +5,13 @@ package powpaw;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import powpaw.view.api.WordRender;
-import powpaw.view.impl.WordRenderImpl;
+import powpaw.common.GameState;
+import powpaw.view.api.GameStateView;
+import powpaw.view.impl.GameStateViewImpl;
 
 public class App extends Application {
-    private GameLoop loop = new GameLoop();
-    private WordRender wordRender = new WordRenderImpl();
+    private GameState state = GameState.STATS;
+    private GameStateView stateV = new GameStateViewImpl();
 
     public static void main(String[] args) {
         Application.launch(App.class, args);
@@ -19,14 +20,19 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        primaryStage.setScene(wordRender.render());
-        primaryStage.setTitle("PowPaw");
-        primaryStage.setResizable(false);
-        primaryStage.show();
-        wordRender.setKeyCommands();
-        loop.setPlayerController(wordRender.getPlayerController());
-        loop.setWeaponController(wordRender.getWeaponController());
-        loop.setPowerUpController(wordRender.getPowerUpController());
-        loop.start();
+        switch (state) {
+            case START:
+                stateV.showStartMenu();
+                break;
+            case STATS:
+                stateV.showCharacterCreation();
+                break;
+            case GAME:
+                stateV.showGame();
+                break;
+            case GAMEOVER:
+                stateV.showGameOver();
+                break;
+        }
     }
 }
