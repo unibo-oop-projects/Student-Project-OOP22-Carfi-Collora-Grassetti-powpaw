@@ -5,7 +5,7 @@ import powpaw.controller.api.GameStateController;
 
 public class GameStateControllerImpl implements GameStateController {
 
-    GameState state = GameState.START;
+    private GameState state = GameState.START;
 
     @Override
     public void start() {
@@ -26,5 +26,4 @@ public class GameStateControllerImpl implements GameStateController {
     public void gameOver() {
         state.setCurrentState(GameState.GAMEOVER);
     }
-
 }

@@ -1,9 +1,12 @@
 package powpaw.view.api;
 
+
+
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import powpaw.model.impl.GameStateHandler;
 
 public class StartMenu extends GridPane {
     private final Button start;
@@ -25,7 +28,7 @@ public class StartMenu extends GridPane {
         add(exit, 0, 1);
         start.setOnAction(e -> {
             try {
-                start.getScene().setRoot(new StatsSettingMenu());
+                GameStateHandler.getGameStateView().showCharacterCreation();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }

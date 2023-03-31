@@ -6,12 +6,12 @@ package powpaw;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import powpaw.common.GameState;
-import powpaw.view.api.GameStateView;
-import powpaw.view.impl.GameStateViewImpl;
+import powpaw.controller.api.GameStateController;
+import powpaw.model.impl.GameStateHandler;
 
 public class App extends Application {
-    private GameState state = GameState.STATS;
-    private GameStateView stateV = new GameStateViewImpl();
+
+    private GameState state = GameState.START;
 
     public static void main(String[] args) {
         Application.launch(App.class, args);
@@ -22,16 +22,16 @@ public class App extends Application {
 
         switch (state) {
             case START:
-                stateV.showStartMenu();
+                GameStateHandler.getGameStateView().showStartMenu();
                 break;
             case STATS:
-                stateV.showCharacterCreation();
+                GameStateHandler.getGameStateView().showCharacterCreation();
                 break;
             case GAME:
-                stateV.showGame();
+                GameStateHandler.getGameStateView().showGame();
                 break;
             case GAMEOVER:
-                stateV.showGameOver();
+                GameStateHandler.getGameStateView().showGameOver();
                 break;
         }
     }
