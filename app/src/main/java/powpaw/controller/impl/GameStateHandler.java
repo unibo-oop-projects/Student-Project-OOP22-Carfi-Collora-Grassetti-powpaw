@@ -1,4 +1,4 @@
-package powpaw.model.impl;
+package powpaw.controller.impl;
 
 import powpaw.view.api.GameStateView;
 import powpaw.view.impl.GameStateViewImpl;
