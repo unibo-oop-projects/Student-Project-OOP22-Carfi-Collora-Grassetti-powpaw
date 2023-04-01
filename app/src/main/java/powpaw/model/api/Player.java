@@ -31,13 +31,13 @@ public interface Player {
 
     void idle();
 
-    // void attack();
+    void attack();
 
     void dodge();
 
-    // double getAttackPower();
+    double getAttackPower();
 
-    // double getCurrentHealth();
+    double getCurrentHealth();
 
     Hitbox getHitbox();
 
