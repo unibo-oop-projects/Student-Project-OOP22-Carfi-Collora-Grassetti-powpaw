@@ -21,8 +21,8 @@ public class PowerUpController {
 
     private ArrayList<Circle> createPowerUp() {
         powerUps = new ArrayList<>();
-        powerUps.add(PowerUpFactory.createPowerUp(15 * ScreenController.SIZE_HD_W / 30,
-                1 * ScreenController.SIZE_HD_H / 10));
+        powerUps.add(PowerUpFactory.createPowerUp(ScreenController.SIZE_HD_W / 50,
+         ScreenController.SIZE_HD_H / 30));
         powerUps.add(
                 PowerUpFactory.createPowerUp(10 * ScreenController.SIZE_HD_W / 30, 1 * ScreenController.SIZE_HD_H / 10));
         powerUps.add(

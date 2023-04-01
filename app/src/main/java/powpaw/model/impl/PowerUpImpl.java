@@ -1,8 +1,6 @@
 package powpaw.model.impl;
 
-import java.util.concurrent.TimeUnit;
 
-import powpaw.controller.impl.StatsHandler;
 import powpaw.model.api.PowerUp;
 import powpaw.model.api.SpeedPowerUp;
 

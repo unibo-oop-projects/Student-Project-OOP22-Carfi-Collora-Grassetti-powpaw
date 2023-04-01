@@ -6,6 +6,7 @@ import powpaw.GameLoop;
 import powpaw.controller.api.GameStateController;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.GameStateControllerImpl;
+import powpaw.controller.impl.PlayerController;
 import powpaw.view.api.GameStateView;
 import powpaw.view.api.StartMenu;
 
@@ -44,6 +45,8 @@ public class GameStateViewImpl implements GameStateView {
         worldRender.playersCommands();
         loop.setPlayerController(worldRender.getPlayerController());
         loop.setWeaponController(worldRender.getWeaponController());
+        loop.setPowerUpController(worldRender.getPowerUpController());
+        loop.setAttackController(worldRender.getAttackController());
         loop.start();
     }
 

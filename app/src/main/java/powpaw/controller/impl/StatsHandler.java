@@ -1,6 +1,5 @@
 package powpaw.controller.impl;
 
-import powpaw.model.api.Stats;
 import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.PlayerStats;
 

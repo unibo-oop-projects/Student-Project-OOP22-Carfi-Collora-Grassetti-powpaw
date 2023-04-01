@@ -10,6 +10,7 @@ import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.AttackControllerImpl;
 import powpaw.controller.impl.PlayerController;
+import powpaw.controller.impl.PowerUpController;
 import powpaw.controller.impl.WeaponController;
 import powpaw.view.api.WorldRender;
 
@@ -18,6 +19,7 @@ public class WorldRenderImpl implements WorldRender {
     private final MapRender mapRender = new MapRender();
     private final WeaponController weaponController = new WeaponController();
     private final PlayerController playerController = new PlayerController();
+    private final PowerUpController powerUpController = new PowerUpController();
 
     //TODO qui o nel PlayerController?
     private final AttackControllerImpl attackController = new AttackControllerImpl(playerController.getPlayerObservable().getPlayers().get(0), playerController.getPlayerObservable().getPlayers().get(1));
@@ -33,16 +35,20 @@ public class WorldRenderImpl implements WorldRender {
     public WeaponController getWeaponController() {
         return this.weaponController;
     }
-
+    @Override
+    public PowerUpController getPowerUpController() {
+        return this.powerUpController;
+    }
+    
     public AttackControllerImpl getAttackController(){
         return this.attackController;
     }
-
+    
     @Override
     public MapRender getMapRender() {
         return this.mapRender;
     }
-
+    
 
     @Override
     public Scene render() {
@@ -53,6 +59,7 @@ public class WorldRenderImpl implements WorldRender {
         worldPane.getChildren().add(playerController.getRender().get(1).getSprite());
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
+        worldPane.getChildren().addAll(powerUpController.getPowerUps());
         weaponController.getRender().setTerrains(mapRender.getTerrains());
         this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
@@ -79,4 +86,5 @@ public class WorldRenderImpl implements WorldRender {
 
         });
     }
+
 }
