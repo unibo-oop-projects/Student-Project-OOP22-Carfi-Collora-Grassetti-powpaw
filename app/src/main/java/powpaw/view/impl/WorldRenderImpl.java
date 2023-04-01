@@ -8,6 +8,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
+import powpaw.controller.impl.AttackControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.WeaponController;
 import powpaw.view.api.WorldRender;
@@ -17,6 +18,10 @@ public class WorldRenderImpl implements WorldRender {
     private final MapRender mapRender = new MapRender();
     private final WeaponController weaponController = new WeaponController();
     private final PlayerController playerController = new PlayerController();
+
+    //TODO qui o nel PlayerController?
+    private final AttackControllerImpl attackController = new AttackControllerImpl(playerController.getPlayerObservable().getPlayers().get(0), playerController.getPlayerObservable().getPlayers().get(1));
+    
     private Scene worldScene;
 
     @Override
@@ -29,10 +34,15 @@ public class WorldRenderImpl implements WorldRender {
         return this.weaponController;
     }
 
+    public AttackControllerImpl getAttackController(){
+        return this.attackController;
+    }
+
     @Override
     public MapRender getMapRender() {
         return this.mapRender;
     }
+
 
     @Override
     public Scene render() {

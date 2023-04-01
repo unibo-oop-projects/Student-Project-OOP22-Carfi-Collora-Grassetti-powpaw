@@ -3,6 +3,7 @@ package powpaw;
 import java.time.Duration;
 import java.time.Instant;
 import javafx.animation.AnimationTimer;
+import powpaw.controller.impl.AttackControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.WeaponController;
 
@@ -11,6 +12,7 @@ public class GameLoop extends AnimationTimer {
     private Instant lastFrameTime;
     private PlayerController playerController;
     private WeaponController weaponController;
+    private AttackControllerImpl attackController;
 
     @Override
     public void start() {
@@ -40,5 +42,9 @@ public class GameLoop extends AnimationTimer {
 
     public void setWeaponController(WeaponController weaponController) {
         this.weaponController = weaponController;
+    }
+
+    public void setAttackController(AttackControllerImpl attackController){
+        this.attackController = attackController;
     }
 }

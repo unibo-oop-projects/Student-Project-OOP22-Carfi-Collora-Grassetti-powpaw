@@ -13,6 +13,8 @@ public class PlayerImpl implements Player {
         IDLE, JUMP, DODGE, ATTACK, WALK_RIGHT, WALK_LEFT;
     }
 
+    private static final long LONG_JUMP_PRESS = 150l;
+    private static final double JUMP_SPEED = 0.6;
     private static final double SPEED = 0.3;
     private static final double JUMP_SPEED = 1.7;
     private static final int MAX_JUMP = 3;
@@ -32,8 +34,8 @@ public class PlayerImpl implements Player {
     private double width;
     private double height;
     private int countJump = 0;
-    // private double attackPower;
-    // private int currentHealth;
+    private double attackPower;
+    private int currentHealth;
     private Hitbox hitbox;
 
     public PlayerImpl(Point2D position, int number) {
@@ -139,6 +141,7 @@ public class PlayerImpl implements Player {
             this.velocity = this.velocity.add(DirectionVector.UP.multiply(JUMP_SPEED)).normalize();
             this.currentState = PlayerState.IDLE;
         }
+        */
     }
 
     @Override
@@ -166,30 +169,41 @@ public class PlayerImpl implements Player {
         }
         return true;
     }
-    // @Override
-    // public void attack() {
-    // currentHealth += KNOCKBACK * attackPower;
-    // }
 
-    // @Override
-    // public double getAttackPower() {
-    // return this.attackPower;
-    // }
+    @Override
+    public void attack() {
+        currentHealth += KNOCKBACK * attackPower;
+    }
 
-    // @Override
-    // public double getCurrentHealth() {
-    // return this.currentHealth;
-    // }
+    @Override
+    public double getAttackPower() {
+        return this.attackPower;
+    }
+
+    @Override
+    public double getCurrentHealth() {
+        return this.currentHealth;
+    }
 
     @Override
     public void update(Duration deltaTime) {
+
+        System.out.println(this.jumpingPressed);
         if (isFalling()) {
             this.position = new Point2D(this.position.getX(),
                     this.position.add(DirectionVector.DOWN.multiply(GRAVITY)).getY());
         }
+        /*
+         * if(this.position.getY() >= jumpPositionY){
+         * this.position = this.position.add(0, velocity.getY());
+         * jumpingPressed = false;
+         * }else{
+         * jumpingPressed = true;
+         * }
+         */
+
         position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
         hitbox.updateCenter(position);
-        ScreenController.isOutOfScreen(hitbox);
     }
 
 }
