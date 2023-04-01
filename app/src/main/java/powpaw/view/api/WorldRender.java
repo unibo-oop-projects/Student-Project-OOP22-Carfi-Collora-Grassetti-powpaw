@@ -6,7 +6,7 @@ import powpaw.controller.impl.PowerUpController;
 import powpaw.controller.impl.WeaponController;
 import powpaw.view.impl.MapRender;
 
-public interface WordRender {
+public interface WorldRender {
 
     PlayerController getPlayerController();
 
@@ -18,5 +18,5 @@ public interface WordRender {
 
     Scene render();
 
-    void setKeyCommands();
+    void playersCommands();
 }

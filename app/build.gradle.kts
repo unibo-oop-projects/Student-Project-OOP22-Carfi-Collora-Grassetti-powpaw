@@ -13,9 +13,14 @@ plugins {
 
 }
 
+tasks.javadoc {
+    isFailOnError = false
+}
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+    jcenter()
 }
 
 javafx {
@@ -25,10 +30,16 @@ javafx {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
+
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:30.1.1-jre")
+
+    // Use yaml
+    implementation("org.yaml:snakeyaml:2.0")
 }
 
 application {
@@ -40,11 +51,17 @@ sourceSets {
     main {
         resources {
             srcDirs("src/assets")
+            srcDirs("src/main/java/powpaw/config")
+            exclude("src/test")
         }
     }
 }
 
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
+val test by tasks.getting(Test::class) {
+    // Use junit platform for unit tests
     useJUnitPlatform()
+    testLogging {
+        events(*(org.gradle.api.tasks.testing.logging.TestLogEvent.values())) // events("passed", "skipped", "failed")
+    }
+    testLogging.showStandardStreams = true    
 }

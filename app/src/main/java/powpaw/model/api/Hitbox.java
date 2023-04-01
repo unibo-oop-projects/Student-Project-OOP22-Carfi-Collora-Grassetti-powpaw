@@ -9,7 +9,7 @@ public interface Hitbox {
 
     Point2D getCenter();
 
-    Shape getHitbox();
+    Shape getShape();
 
     void setOffsetX(double width);
 

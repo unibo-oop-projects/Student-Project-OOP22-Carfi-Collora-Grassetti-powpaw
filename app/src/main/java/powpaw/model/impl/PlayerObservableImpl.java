@@ -1,9 +1,9 @@
 package powpaw.model.impl;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
+import powpaw.config.Parser;
 import powpaw.controller.impl.KeyObserverImpl;
 import powpaw.model.api.Player;
 import powpaw.model.api.PlayerObservable;
@@ -12,12 +12,14 @@ import powpaw.view.impl.KeyObservableImpl;
 
 public class PlayerObservableImpl implements PlayerObservable {
 
-    private List<Player> playerList = new ArrayList<>();
+    private List<Player> playerList;
     private final KeyObservable observable = new KeyObservableImpl();
+    private final Parser config;
 
     public PlayerObservableImpl(List<Player> playerList) {
         this.playerList = playerList;
-        this.playerList.forEach(player -> observable.addObserver(new KeyObserverImpl(player)));
+        this.config = new Parser();
+        this.playerList.forEach(player -> observable.addObserver(new KeyObserverImpl(player, this.config)));
     }
 
     @Override

@@ -36,16 +36,16 @@ public class GameStateViewImpl implements GameStateView {
     @Override
     public void showGame() {
         gameStateController.game();
-        WordRenderImpl wordRender = new WordRenderImpl();
+        WorldRenderImpl worldRender = new WorldRenderImpl();
         GameLoop loop = new GameLoop();
-        stage.setScene(wordRender.render());
+        stage.setScene(worldRender.render());
         stage.setTitle("PowPaw");
         stage.setResizable(false);
         stage.show();
-        wordRender.setKeyCommands();
-        loop.setPlayerController(wordRender.getPlayerController());
-        loop.setWeaponController(wordRender.getWeaponController());
-        loop.setPowerUpController(wordRender.getPowerUpController());
+        worldRender.setKeyCommands();
+        loop.setPlayerController(worldRender.getPlayerController());
+        loop.setWeaponController(worldRender.getWeaponController());
+        loop.setPowerUpController(worldRender.getPowerUpController());
         loop.start();
     }
 

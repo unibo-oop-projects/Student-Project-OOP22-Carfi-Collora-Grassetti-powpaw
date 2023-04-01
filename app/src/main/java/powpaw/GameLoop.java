@@ -3,6 +3,7 @@ package powpaw;
 import java.time.Duration;
 import java.time.Instant;
 import javafx.animation.AnimationTimer;
+import powpaw.controller.impl.AttackControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.PowerUpController;
 import powpaw.controller.impl.WeaponController;
@@ -13,13 +14,13 @@ public class GameLoop extends AnimationTimer {
     private PlayerController playerController;
     private WeaponController weaponController;
     private PowerUpController powerUpController;
-
-    // serve una classe per la view dove si istanziano le scene e cose varie.
+    private AttackControllerImpl attackController;
 
     @Override
     public void start() {
         super.start();
         lastFrameTime = Instant.now();
+
     }
 
     @Override
@@ -31,14 +32,12 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void update(Duration deltaTime) {
-        playerController.getWorld().update(deltaTime);
-        // for (final var player : world.getPlayers()) {
-        // player.getRenderComponent().render();
-        // }
-        playerController.getRender().render();
-        weaponController.getRender().update();
+        playerController.getPlayerObservable().update(deltaTime);
+        playerController.getRender().forEach(player -> player.renderPlayer());
+        weaponController.getRender().render();
+        weaponController.getWeapons().update();
         powerUpController.getRender();
-        powerUpController.pickPowerUp(playerController.getWorld().getPlayers().get(0));
+       // powerUpController.pickPowerUp(playerController.getWorld().getPlayers().get(0));
     }
 
     public void setPlayerController(PlayerController playerController) {
@@ -51,5 +50,9 @@ public class GameLoop extends AnimationTimer {
 
     public void setPowerUpController(PowerUpController powerUpController) {
         this.powerUpController = powerUpController;
+    }
+
+    public void setAttackController(AttackControllerImpl attackController){
+        this.attackController = attackController;
     }
 }
