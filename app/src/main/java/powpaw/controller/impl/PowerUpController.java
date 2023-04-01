@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import javafx.scene.shape.Circle;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
+import powpaw.model.api.PowerUp;
 import powpaw.model.impl.PowerUpFactory;
+import powpaw.model.impl.PowerUpImpl;
 import powpaw.view.impl.PowerUpRender;
 
 public class PowerUpController {
     private ArrayList<Circle> powerUps;
     private PowerUpRender powerUpRender;
+    private PowerUp pow = new PowerUpImpl();
 
     public PowerUpController() {
         powerUps = createPowerUp();
@@ -42,6 +45,7 @@ public class PowerUpController {
         for (Circle powerUp : powerUps) {
             if (powerUp.getBoundsInParent().intersects(player.getHitbox().getHitbox().getBoundsInParent())) { 
                 powerUp.setCenterY(10000);
+                pow.attackUp();
             }
         }
     }

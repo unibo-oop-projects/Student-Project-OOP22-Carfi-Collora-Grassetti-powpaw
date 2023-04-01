@@ -3,23 +3,23 @@ package powpaw.model.impl;
 import powpaw.model.api.StatsBuilder;
 
 public class StatsBuilderImpl implements StatsBuilder {
-    private double attack = 0.5;
-    private double defence = 0.5;
-    private double speed = 0.5;
+    private double attack = 0;
+    private double defence = 0;
+    private double speed = 0;
 
     @Override
     public void setAttack(int attack) {
-        this.attack += toDouble(attack);
+        this.attack = toDouble(attack);
     }
 
     @Override
     public void setDefence(int defence) {
-        this.defence += toDouble(defence);
+        this.defence = toDouble(defence);
     }
 
     @Override
     public void setSpeed(int speed) {
-        this.speed += toDouble(speed);
+        this.speed = toDouble(speed);
     }
 
     @Override
@@ -28,6 +28,6 @@ public class StatsBuilderImpl implements StatsBuilder {
     }
 
     private double toDouble(int value) {
-        return value / 10;
+        return (double) value / 10;
     }
 }

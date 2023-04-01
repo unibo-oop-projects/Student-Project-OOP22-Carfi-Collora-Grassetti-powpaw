@@ -6,8 +6,7 @@ package powpaw;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import powpaw.common.GameState;
-import powpaw.controller.api.GameStateController;
-import powpaw.model.impl.GameStateHandler;
+import powpaw.controller.impl.GameStateHandler;
 
 public class App extends Application {
 

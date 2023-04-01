@@ -13,8 +13,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import powpaw.controller.impl.GameStateHandler;
 import powpaw.controller.impl.StatsControllerImpl;
+import powpaw.controller.impl.StatsHandler;
+import powpaw.model.api.Stats;
 import powpaw.model.api.StatsBuilder;
+import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.StatsBuilderImpl;
 import powpaw.view.api.GameInterface;
 import powpaw.view.api.StartMenu;
@@ -48,7 +52,7 @@ public class StatsSettingMenu extends GridPane {
     private Text defenceTextP2;
     private Text speedTextP2;
     private StatsBuilder statsP1 = new StatsBuilderImpl();
-
+    private StatsBuilder statsP2 = new StatsBuilderImpl();
     private StatsControllerImpl control = new StatsControllerImpl();
 
     public StatsSettingMenu() {
@@ -59,12 +63,12 @@ public class StatsSettingMenu extends GridPane {
         minusButtonsP1 = new ArrayList<>();
         plusButtonsP2 = new ArrayList<>();
         minusButtonsP2 = new ArrayList<>();
-        attackPointP1 = 0;
-        defencePointP1 = 0;
-        speedPointP1 = 0;
-        attackPointP2 = 0;
-        defencePointP2 = 0;
-        speedPointP2 = 0;
+        attackPointP1 = 5;
+        defencePointP1 = 5;
+        speedPointP1 = 5;
+        attackPointP2 = 5;
+        defencePointP2 = 5;
+        speedPointP2 = 5;
         initButton();
         // initMap();
         setButtonDimension();
@@ -73,7 +77,7 @@ public class StatsSettingMenu extends GridPane {
         speedTextP1 = new Text("" + speedPointP1);
         attackTextP2 = new Text("" + attackPointP2);
         defenceTextP2 = new Text("" + defencePointP2);
-        speedTextP2= new Text(""+speedPointP2);
+        speedTextP2 = new Text("" + speedPointP2);
         new Text();
         setAlignment(Pos.CENTER);
         setVgap(15);
@@ -165,12 +169,12 @@ public class StatsSettingMenu extends GridPane {
             }
         }
         finish.setOnAction(e -> {
-            statsP1.setAttack(attackPointP1);
-            statsP1.setDefence(defencePointP1);
-            statsP1.setSpeed(speedPointP1);
-            statsP1.build();
-            Stage s = new Stage();
-            s.setScene(new WordRenderImpl().render());
+            setAllStats();
+            StatsHandler.buildStatsP1(statsP1);
+            StatsHandler.buildStatsP2(statsP2);
+            System.out.println("A " + StatsHandler.getStatsP1().getAttack() + " D " + StatsHandler.getStatsP1().getDefence() + " S " + StatsHandler.getStatsP1().getSpeed());
+            System.out.println("A " + StatsHandler.getStatsP2().getAttack() + " D " + StatsHandler.getStatsP2().getDefence() + " S " + StatsHandler.getStatsP2().getSpeed());
+            GameStateHandler.getGameStateView().showGame();
         });
     }
 
@@ -203,6 +207,9 @@ public class StatsSettingMenu extends GridPane {
         exit.prefWidthProperty().bind(widthProperty().divide(5));
         exit.prefHeightProperty().bind(heightProperty().divide(5));
         exit.setMaxSize(50, 50);
+        finish.prefWidthProperty().bind(widthProperty().divide(5));
+        finish.prefHeightProperty().bind(heightProperty().divide(5));
+        finish.setMaxSize(50, 50);
     }
 
     private void addButtonPosition() {
@@ -221,8 +228,17 @@ public class StatsSettingMenu extends GridPane {
         add(attackTextP2, 7, 0);
         add(defenceTextP2, 7, 1);
         add(speedTextP2, 7, 2);
-        add(exit, 10, 10);
-        add(finish, 0, 10);
+        add(exit, 0, 10);
+        add(finish, 10, 10);
+    }
+
+    private void setAllStats(){
+        statsP1.setAttack(attackPointP1);
+        statsP1.setDefence(defencePointP1);
+        statsP1.setSpeed(speedPointP1);
+        statsP2.setAttack(attackPointP2);
+        statsP2.setDefence(defencePointP2);
+        statsP2.setSpeed(speedPointP2);
     }
 
     // private void initMap() {

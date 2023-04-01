@@ -6,7 +6,7 @@ import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import powpaw.model.impl.GameStateHandler;
+import powpaw.controller.impl.GameStateHandler;
 
 public class StartMenu extends GridPane {
     private final Button start;

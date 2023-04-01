@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import powpaw.GameLoop;
 import powpaw.controller.api.GameStateController;
+import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.GameStateControllerImpl;
 import powpaw.view.api.GameStateView;
 import powpaw.view.api.StartMenu;
@@ -17,7 +18,7 @@ public class GameStateViewImpl implements GameStateView {
     @Override
     public void showStartMenu() {
         gameStateController.start();
-        stage.setScene(new Scene(new StartMenu(),400,300));
+        stage.setScene(new Scene(new StartMenu(),ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H));
         stage.setTitle("PowPaw");
         stage.setResizable(false);
         stage.show();
@@ -26,7 +27,7 @@ public class GameStateViewImpl implements GameStateView {
     @Override
     public void showCharacterCreation() {
         gameStateController.characterCreation();
-        stage.setScene(new Scene(new StatsSettingMenu(),400,300));
+        stage.setScene(new Scene(new StatsSettingMenu(),ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H));
         stage.setTitle("PowPaw");
         stage.setResizable(false);
         stage.show();
