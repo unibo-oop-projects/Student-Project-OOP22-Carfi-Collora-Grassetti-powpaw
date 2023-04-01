@@ -12,8 +12,6 @@ public class GameLoop extends AnimationTimer {
     private PlayerController playerController;
     private WeaponController weaponController;
 
-    // serve una classe per la view dove si istanziano le scene e cose varie.
-
     @Override
     public void start() {
         super.start();
@@ -31,9 +29,6 @@ public class GameLoop extends AnimationTimer {
 
     private void update(Duration deltaTime) {
         playerController.getPlayerObservable().update(deltaTime);
-        // for (final var player : world.getPlayers()) {
-        // player.getRenderComponent().render();
-        // }
         playerController.getRender().forEach(player -> player.renderPlayer());
         weaponController.getRender().render();
         weaponController.getWeapons().update();

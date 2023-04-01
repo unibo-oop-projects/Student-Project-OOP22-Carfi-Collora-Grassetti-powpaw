@@ -19,8 +19,9 @@ public class PlayerRender {
     final ImageView sprite;
     private Player player;
 
-    public PlayerRender(Player player, int playerNum) {
+    public PlayerRender(Player player) {
         this.player = player;
+        int playerNum = player.getNumber();
         this.idleSprite = new Image("p" + playerNum + "_idle.png");
         this.attackSprite = new Image("p" + playerNum + "_attack.png");
         this.sprite = new ImageView(this.idleSprite);

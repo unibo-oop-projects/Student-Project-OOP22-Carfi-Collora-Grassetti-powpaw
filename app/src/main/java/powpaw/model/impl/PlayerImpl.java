@@ -14,10 +14,10 @@ public class PlayerImpl implements Player {
     }
 
     private static final double SPEED = 0.3;
-    private static final int JUMP_HEIGHT = 50;
+    private static final double JUMP_SPEED = 1.7;
     private static final int MAX_JUMP = 3;
     // private static final double KNOCKBACK = 0.2;
-    private static final Point2D GRAVITY = new Point2D(0, 0.01);
+    private static final double GRAVITY = 1.3;
 
     private TransitionImpl transition;
 
@@ -27,6 +27,8 @@ public class PlayerImpl implements Player {
     private Point2D velocity;
     private Point2D acceleration;
 
+    private int number;
+    private int jumpTime = 0;
     private double width;
     private double height;
     private int countJump = 0;
@@ -34,14 +36,21 @@ public class PlayerImpl implements Player {
     // private int currentHealth;
     private Hitbox hitbox;
 
-    public PlayerImpl(Point2D position) {
+    public PlayerImpl(Point2D position, int number) {
         this.transition = new TransitionImpl();
         this.position = position;
+        this.number = number;
         // this.attackPower = 0.25;
-        this.height = ScreenController.SIZE_HD_W / 20;
-        this.width = ScreenController.SIZE_HD_W / 20;
+        this.height = ScreenController.SIZE_HD_W / 15;
+        this.width = ScreenController.SIZE_HD_W / 15;
         hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
+        this.currentState = PlayerState.IDLE;
         this.idle();
+    }
+
+    @Override
+    public int getNumber() {
+        return this.number;
     }
 
     @Override
@@ -102,31 +111,33 @@ public class PlayerImpl implements Player {
     @Override
     public void moveLeft() {
         this.currentState = PlayerState.WALK_LEFT;
-        this.velocity = velocity.add(DirectionVector.LEFT.getPoint());
-        this.velocity = this.velocity.normalize();
+        this.velocity = velocity.add(DirectionVector.LEFT.getPoint()).normalize();
     }
 
     @Override
     public void moveRight() {
         this.currentState = PlayerState.WALK_RIGHT;
-        this.velocity = velocity.add(DirectionVector.RIGHT.getPoint());
-        this.velocity = this.velocity.normalize();
+        this.velocity = velocity.add(DirectionVector.RIGHT.getPoint()).normalize();
     }
 
     @Override
     public void jump() {
-        if ((!isFalling() && this.countJump < MAX_JUMP)
-                || (isFalling() && this.countJump < MAX_JUMP)) {
+        jumpTime++;
+        if (jumpTime > 5) {
+            this.currentState = PlayerState.IDLE;
+            jumpTime = 0;
+        }
+        if (this.countJump < MAX_JUMP) {
             doJump();
         }
-        this.velocity = this.velocity.normalize();
     }
 
     private void doJump() {
-        this.currentState = PlayerState.JUMP;
-        this.countJump++;
-        for (int i = 0; i < JUMP_HEIGHT; i++) {
-            this.position = this.position.add(DirectionVector.UP.getPoint());
+        if (this.currentState != PlayerState.JUMP) {
+            this.currentState = PlayerState.JUMP;
+            this.countJump++;
+            this.velocity = this.velocity.add(DirectionVector.UP.multiply(JUMP_SPEED)).normalize();
+            this.currentState = PlayerState.IDLE;
         }
     }
 
@@ -174,7 +185,7 @@ public class PlayerImpl implements Player {
     public void update(Duration deltaTime) {
         if (isFalling()) {
             this.position = new Point2D(this.position.getX(),
-                    this.position.add(DirectionVector.DOWN.getPoint()).add(GRAVITY).getY());
+                    this.position.add(DirectionVector.DOWN.multiply(GRAVITY)).getY());
         }
         position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
         hitbox.updateCenter(position);

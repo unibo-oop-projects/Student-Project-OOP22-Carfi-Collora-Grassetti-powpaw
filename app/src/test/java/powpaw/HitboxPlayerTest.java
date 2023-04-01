@@ -14,7 +14,7 @@ public class HitboxPlayerTest {
 
     @Test
     void updateCenterTest() {
-        Player player = new PlayerImpl(new Point2D(0, 0));
+        Player player = new PlayerImpl(new Point2D(0, 0), 1);
         player.setHeight(20);
         player.setWidth(10);
 
