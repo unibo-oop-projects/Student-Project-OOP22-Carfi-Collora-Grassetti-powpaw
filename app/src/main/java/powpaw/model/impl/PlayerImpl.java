@@ -14,11 +14,10 @@ public class PlayerImpl implements Player {
     }
 
     private static final long LONG_JUMP_PRESS = 150l;
-    private static final double JUMP_SPEED = 0.6;
     private static final double SPEED = 0.3;
     private static final double JUMP_SPEED = 1.7;
     private static final int MAX_JUMP = 3;
-    // private static final double KNOCKBACK = 0.2;
+    private static final double KNOCKBACK = 0.2;
     private static final double GRAVITY = 1.3;
 
     private TransitionImpl transition;
@@ -141,7 +140,6 @@ public class PlayerImpl implements Player {
             this.velocity = this.velocity.add(DirectionVector.UP.multiply(JUMP_SPEED)).normalize();
             this.currentState = PlayerState.IDLE;
         }
-        */
     }
 
     @Override
@@ -187,21 +185,10 @@ public class PlayerImpl implements Player {
 
     @Override
     public void update(Duration deltaTime) {
-
-        System.out.println(this.jumpingPressed);
         if (isFalling()) {
             this.position = new Point2D(this.position.getX(),
                     this.position.add(DirectionVector.DOWN.multiply(GRAVITY)).getY());
         }
-        /*
-         * if(this.position.getY() >= jumpPositionY){
-         * this.position = this.position.add(0, velocity.getY());
-         * jumpingPressed = false;
-         * }else{
-         * jumpingPressed = true;
-         * }
-         */
-
         position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
         hitbox.updateCenter(position);
     }

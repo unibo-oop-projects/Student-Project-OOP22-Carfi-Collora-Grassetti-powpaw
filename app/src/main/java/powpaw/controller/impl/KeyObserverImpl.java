@@ -13,6 +13,7 @@ public class KeyObserverImpl implements KeyObserver {
 
     private final Player player;
     private Set<KeyCode> pressedKeys = new HashSet<>();
+    private boolean isJumping = false;
 
     private KeyCode keyJump;
     private KeyCode keyLeft;
@@ -33,7 +34,12 @@ public class KeyObserverImpl implements KeyObserver {
 
         pressedKeys.forEach(key -> {
             if (key == this.keyJump) {
-                this.player.jump();
+                if (!isJumping) {
+                    this.player.jump();
+                    isJumping = true;
+                } else {
+                    this.player.idle();
+                }
             }
             if (key == this.keyLeft) {
                 this.player.moveLeft();
@@ -48,6 +54,9 @@ public class KeyObserverImpl implements KeyObserver {
     public void keyReleased(KeyEvent event) {
         if (pressedKeys.contains(event.getCode())) {
             pressedKeys.remove(event.getCode());
+            if (event.getCode().equals(keyJump)) {
+                isJumping = false;
+            }
             this.player.idle();
         }
     }
