@@ -2,7 +2,10 @@ package powpaw.controller.impl;
 
 import java.util.ArrayList;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
 import powpaw.model.api.PowerUp;
@@ -21,16 +24,15 @@ public class PowerUpController {
 
     private ArrayList<Circle> createPowerUp() {
         powerUps = new ArrayList<>();
-        powerUps.add(PowerUpFactory.createPowerUp(ScreenController.SIZE_HD_W / 50,
-         ScreenController.SIZE_HD_H / 30));
-        powerUps.add(
-                PowerUpFactory.createPowerUp(10 * ScreenController.SIZE_HD_W / 30, 1 * ScreenController.SIZE_HD_H / 10));
-        powerUps.add(
-                PowerUpFactory.createPowerUp(5 * ScreenController.SIZE_HD_W / 30, 1 * ScreenController.SIZE_HD_H / 10));
-        powerUps.add(PowerUpFactory.createPowerUp(1 * ScreenController.SIZE_HD_W / 30,
-                1 * ScreenController.SIZE_HD_H / 10));
-        powerUps.add(PowerUpFactory.createPowerUp(25 * ScreenController.SIZE_HD_W / 30,
-                1 * ScreenController.SIZE_HD_H / 10));
+        powerUps.add(PowerUpFactory.createPowerUp(ScreenController.SIZE_HD_W/2 ,
+        ScreenController.SIZE_HD_H/2));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), event ->{
+            if(powerUps.size()<4){
+                powerUps.add(PowerUpFactory.createPowerUp(ScreenController.SIZE_HD_W/2, ScreenController.SIZE_HD_H/2));
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
         return powerUps;
     }
 
