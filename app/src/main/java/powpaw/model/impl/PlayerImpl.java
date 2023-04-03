@@ -4,7 +4,6 @@ import java.time.Duration;
 import javafx.geometry.Point2D;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
-import powpaw.controller.impl.StatsHandler;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
 

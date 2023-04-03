@@ -1,20 +1,22 @@
 package powpaw.view.impl;
 
-import java.util.ArrayList;
-
+import java.util.Random;
 
 import javafx.scene.shape.Circle;
-import powpaw.controller.impl.PowerUpController;
 
 public class PowerUpRender {
-    private ArrayList<Circle> powerUps;
-    PowerUpController contr = new PowerUpController();
+    private Circle powerUps;
+    Random rand = new Random();
 
-    public PowerUpRender(ArrayList<Circle> powerUps) {
+    public PowerUpRender(Circle powerUps) {
         this.powerUps = powerUps;
     }
 
-    public ArrayList<Circle> getPowerUp() {
+    public Circle getPowerUp() {
         return this.powerUps;
+    }
+    public void render(){
+        powerUps.setCenterX(powerUps.getCenterX());
+        powerUps.setCenterY(powerUps.getCenterY());
     }
 }
