@@ -20,12 +20,14 @@ public class WorldRenderImpl implements WorldRender {
     private final MapRender mapRender = new MapRender();
     private final WeaponController weaponController = new WeaponController();
     private final PlayerController playerController = new PlayerController();
-    private final PowerUpController powerUpController = new PowerUpController();
+    private PowerUpController powerUpController = new PowerUpController();
     private final DamageMeterControllerImpl damageMeterController = new DamageMeterControllerImpl();
 
-    //TODO qui o nel PlayerController?
-    private final AttackControllerImpl attackController = new AttackControllerImpl(playerController.getPlayerObservable().getPlayers().get(0), playerController.getPlayerObservable().getPlayers().get(1));
-    
+    // TODO qui o nel PlayerController?
+    private final AttackControllerImpl attackController = new AttackControllerImpl(
+            playerController.getPlayerObservable().getPlayers().get(0),
+            playerController.getPlayerObservable().getPlayers().get(1));
+
     private Scene worldScene;
 
     @Override
@@ -37,20 +39,20 @@ public class WorldRenderImpl implements WorldRender {
     public WeaponController getWeaponController() {
         return this.weaponController;
     }
+
     @Override
     public PowerUpController getPowerUpController() {
         return this.powerUpController;
     }
-    
-    public AttackControllerImpl getAttackController(){
+
+    public AttackControllerImpl getAttackController() {
         return this.attackController;
     }
-    
+
     @Override
     public MapRender getMapRender() {
         return this.mapRender;
     }
-    
 
     @Override
     public Scene render() {
@@ -61,7 +63,7 @@ public class WorldRenderImpl implements WorldRender {
         worldPane.getChildren().add(playerController.getRender().get(1).getSprite());
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
-        worldPane.getChildren().add(powerUpController.getRender().getPowerUp());
+        worldPane.getChildren().add(powerUpController.getRender().getSprite());
         worldPane.getChildren().add(damageMeterController.getRender().getDamageP1());
         worldPane.getChildren().add(damageMeterController.getRender().getDamageP2());
         System.out.println(damageMeterController.getRender().getDamageP1());
@@ -88,8 +90,6 @@ public class WorldRenderImpl implements WorldRender {
                 playerController.getPlayerObservable().getKeyObservable()
                         .notifyObserversReleased(event);
             }
-
         });
     }
-
 }

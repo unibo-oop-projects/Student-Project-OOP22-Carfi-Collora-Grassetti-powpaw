@@ -37,7 +37,7 @@ public class GameLoop extends AnimationTimer {
         playerController.getRender().forEach(player -> player.renderPlayer());
         weaponController.getRender().render();
         weaponController.getWeapons().update();
-        powerUpController.pickPowerUp(playerController,StatsHandler.getStatsP1(), StatsHandler.getStatsP2());
+        powerUpController.pickPowerUp(playerController, StatsHandler.getStatsP1(), StatsHandler.getStatsP2());
         powerUpController.getRender().render();
     }
 
@@ -53,7 +53,7 @@ public class GameLoop extends AnimationTimer {
         this.powerUpController = powerUpController;
     }
 
-    public void setAttackController(AttackControllerImpl attackController){
+    public void setAttackController(AttackControllerImpl attackController) {
         this.attackController = attackController;
     }
 }

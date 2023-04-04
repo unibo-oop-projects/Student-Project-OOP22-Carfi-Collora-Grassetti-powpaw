@@ -7,6 +7,7 @@ import powpaw.controller.api.GameStateController;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.GameStateControllerImpl;
 import powpaw.controller.impl.PlayerController;
+import powpaw.controller.impl.PowerUpController;
 import powpaw.view.api.GameStateView;
 import powpaw.view.api.StartMenu;
 

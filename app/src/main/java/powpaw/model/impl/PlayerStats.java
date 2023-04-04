@@ -23,13 +23,16 @@ public class PlayerStats {
     public double getSpeed() {
         return this.speed;
     }
-    public void setAttack(double attack){
+
+    public void setAttack(double attack) {
         this.attack = attack;
     }
-    public void setDefence(double defence){
+
+    public void setDefence(double defence) {
         this.defence = defence;
     }
-    public void setSpeed(double speed){
+
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 

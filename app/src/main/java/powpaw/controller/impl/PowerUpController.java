@@ -4,10 +4,7 @@ import java.util.Random;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
-import powpaw.controller.api.ScreenController;
-import powpaw.model.api.Player;
 import powpaw.model.api.PowerUp;
 import powpaw.model.impl.AttackPowerUp;
 import powpaw.model.impl.PlayerStats;
@@ -16,15 +13,14 @@ import powpaw.view.impl.PowerUpRender;
 
 public class PowerUpController {
     private PowerUpRender powerUpRender;
-    private PowerUp factoryPow;
-    private final Random rand = new Random();
-    private Circle powerUp;
+    private PowerUp powerUp;
     private boolean isCollected = false;
     private int powerUpIndex;
+    private Random rand = new Random();
 
     public PowerUpController() {
-        randomPowerUp();
-        powerUpRender = new PowerUpRender(powerUp);
+        this.powerUpRender = new PowerUpRender();
+        this.choosePowerUp();
     }
 
     public PowerUpRender getRender() {
@@ -33,39 +29,26 @@ public class PowerUpController {
 
     public void pickPowerUp(PlayerController playerController, PlayerStats statsP1, PlayerStats statsP2) {
 
-        for (Player player : playerController.getPlayerObservable().getPlayers()) {
-            if (powerUp.getBoundsInParent().intersects(player.getHitbox().getShape().getBoundsInParent())) {
+        playerController.getPlayerObservable().getPlayers().forEach(player -> {
+            if (powerUp.getHurtbox().getBoundsInParent()
+                    .intersects(player.getHitbox().getShape().getBoundsInParent())) {
                 if (!isCollected) {
-                    if (player.getNumber() == 1) {
-                        factoryPow.statPowerUp(statsP1);
-                    } else {
-                        factoryPow.statPowerUp(statsP2);
-                    }
+                    powerUp.statPowerUp(player.getNumber() == 0 ? statsP1 : statsP2);
                     isCollected = true;
                     powerUp.setVisible(false);
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+                    new Timeline(new KeyFrame(Duration.seconds(10), event -> {
                         isCollected = false;
+                        this.choosePowerUp();
                         powerUp.setVisible(true);
-                        powerUp = factoryPow.createPowerUp(ScreenController.SIZE_HD_W / rand.nextDouble(1.5, 5.0),
-                                ScreenController.SIZE_HD_H / rand.nextDouble(1.5, 5.0));
-                        // randomPowerUp();
-                    }));
-                    timeline.play();
+                    })).play();
                 }
             }
-        }
+        });
     }
 
-    private void randomPowerUp() {
+    private void choosePowerUp() {
         powerUpIndex = rand.nextInt(2);
-        if (powerUpIndex == 0) {
-            factoryPow = new SpeedPowerUp();
-            powerUp = factoryPow.createPowerUp(ScreenController.SIZE_HD_W / rand.nextDouble(1.5, 5.0),
-                    ScreenController.SIZE_HD_H / rand.nextDouble(1.5, 5.0));
-        } else {
-            factoryPow = new AttackPowerUp();
-            powerUp = factoryPow.createPowerUp(ScreenController.SIZE_HD_W / rand.nextDouble(1.5, 5.0),
-                    ScreenController.SIZE_HD_H / rand.nextDouble(1.5, 5.0));
-        }
+        powerUp = powerUpIndex == 0 ? new SpeedPowerUp() : new AttackPowerUp();
+        powerUpRender.setPowerUp(powerUp, powerUpIndex);
     }
 }
