@@ -2,6 +2,7 @@ package powpaw.model.impl;
 
 import java.time.Duration;
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Shape;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Hitbox;
@@ -13,7 +14,6 @@ public class PlayerImpl implements Player {
         IDLE, JUMP, DODGE, ATTACK, WALK_RIGHT, WALK_LEFT;
     }
 
-    private static final long LONG_JUMP_PRESS = 150l;
     private static final double SPEED = 0.3;
     private static final double JUMP_SPEED = 1.7;
     private static final int MAX_JUMP = 3;
@@ -35,7 +35,7 @@ public class PlayerImpl implements Player {
     private int countJump = 0;
     private double attackPower;
     private int currentHealth;
-    private Hitbox hitbox;
+    private PlayerHitboxImpl hitbox;
 
     public PlayerImpl(Point2D position, int number) {
         this.transition = new TransitionImpl();
@@ -75,6 +75,11 @@ public class PlayerImpl implements Player {
 
     public void setAcceleration(Point2D acceleration) {
         this.acceleration = acceleration;
+    }
+
+    @Override
+    public Shape getFeetBox() {
+        return this.hitbox.getFeetShape();
     }
 
     @Override

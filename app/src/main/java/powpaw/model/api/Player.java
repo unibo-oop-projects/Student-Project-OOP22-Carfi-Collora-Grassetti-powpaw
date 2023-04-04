@@ -3,6 +3,7 @@ package powpaw.model.api;
 import java.time.Duration;
 
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Shape;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public interface Player {
@@ -18,6 +19,8 @@ public interface Player {
     double getHeight();
 
     int getNumber();
+
+    Shape getFeetBox();
 
     PlayerState getState();
 

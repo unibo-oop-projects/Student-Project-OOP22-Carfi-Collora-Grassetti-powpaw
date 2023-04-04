@@ -15,7 +15,8 @@ public class ScreenController {
         if (hitbox.getCenter().getX() >= SIZE_HD_W
                 || hitbox.getCenter().getY() <= -SIZE_HD_H / 10) { // margine alto - destro
             return true;
-        } else if (hitbox.getCenter().getX() <= 0 || hitbox.getCenter().getY() >= SIZE_HD_H) { // margine basso - sinistro
+        } else if (hitbox.getCenter().getX() <= 0 || hitbox.getCenter().getY() >= SIZE_HD_H) { // margine basso -
+                                                                                               // sinistro
             return true;
         }
         return false;
