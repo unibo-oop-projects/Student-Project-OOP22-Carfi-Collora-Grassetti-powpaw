@@ -8,7 +8,7 @@ import powpaw.model.impl.PlayerImpl.PlayerState;
 public class AttackControllerImpl {
 
     // si riferisce in percentuale
-    private static final double MAX_DAMAGE = 1; // * 100
+    private static final double MAX_PERC = 1; // * 100
     private Player playerOne;
     private Player playerTwo;
 
@@ -19,9 +19,9 @@ public class AttackControllerImpl {
 
     // nel PlayerImpl
     public Optional<Player> checkHealtStatus() {
-        if (playerOne.getCurrentHealth() >= MAX_DAMAGE) {
+        if (playerOne.getCurrentHealth() >= MAX_PERC) {
             return Optional.of(this.playerOne);
-        } else if (playerOne.getCurrentHealth() >= MAX_DAMAGE) {
+        } else if (playerOne.getCurrentHealth() >= MAX_PERC) {
             return Optional.of(this.playerTwo);
         }
         return Optional.empty();
