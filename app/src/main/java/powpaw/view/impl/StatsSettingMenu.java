@@ -16,7 +16,6 @@ import javafx.util.Pair;
 import powpaw.controller.impl.GameStateHandler;
 import powpaw.controller.impl.StatsControllerImpl;
 import powpaw.controller.impl.StatsHandler;
-import powpaw.model.api.Stats;
 import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.StatsBuilderImpl;

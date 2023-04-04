@@ -1,5 +1,7 @@
 package powpaw.controller.impl;
 
+import java.util.Random;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.shape.Circle;
@@ -7,43 +9,63 @@ import javafx.util.Duration;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
 import powpaw.model.api.PowerUp;
-import powpaw.model.impl.PowerUpFactory;
-import powpaw.model.impl.PowerUpImpl;
+import powpaw.model.impl.AttackPowerUp;
+import powpaw.model.impl.PlayerStats;
+import powpaw.model.impl.SpeedPowerUp;
 import powpaw.view.impl.PowerUpRender;
 
 public class PowerUpController {
-    private Circle powerUps;
     private PowerUpRender powerUpRender;
-    private PowerUp pow = new PowerUpImpl();
+    private PowerUp factoryPow;
+    private final Random rand = new Random();
+    private Circle powerUp;
+    private boolean isCollected = false;
+    private int powerUpIndex;
 
     public PowerUpController() {
-        powerUps = createPowerUp();
-        powerUpRender = new PowerUpRender(this.powerUps);
-    }
-
-     public Circle createPowerUp() {
-        powerUps = PowerUpFactory.createPowerUp(ScreenController.SIZE_HD_W / 2, ScreenController.SIZE_HD_H / 2);
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
-            powerUps= PowerUpFactory.createPowerUp(ScreenController.SIZE_HD_W / 2, ScreenController.SIZE_HD_H / 2);
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-        return powerUps;
-    }
-
-    public Circle getPowerUps() {
-        return this.powerUps;
+        randomPowerUp();
+        powerUpRender = new PowerUpRender(powerUp);
     }
 
     public PowerUpRender getRender() {
         return this.powerUpRender;
     }
 
-    public void pickPowerUp(Player player) {
+    public void pickPowerUp(PlayerController playerController, PlayerStats statsP1, PlayerStats statsP2) {
 
-        if (powerUps.getBoundsInParent().intersects(player.getHitbox().getShape().getBoundsInParent())) {
-            powerUps.setCenterY(300);
-            pow.attackUp();
+        for (Player player : playerController.getPlayerObservable().getPlayers()) {
+            if (powerUp.getBoundsInParent().intersects(player.getHitbox().getShape().getBoundsInParent())) {
+                if (!isCollected) {
+                    if (player.getNumber() == 1) {
+                        factoryPow.statPowerUp(statsP1);
+                    } else {
+                        factoryPow.statPowerUp(statsP2);
+                    }
+                    isCollected = true;
+                    powerUp.setVisible(false);
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+                        isCollected = false;
+                        powerUp.setVisible(true);
+                        powerUp = factoryPow.createPowerUp(ScreenController.SIZE_HD_W / rand.nextDouble(1.5, 5.0),
+                                ScreenController.SIZE_HD_H / rand.nextDouble(1.5, 5.0));
+                        // randomPowerUp();
+                    }));
+                    timeline.play();
+                }
+            }
+        }
+    }
+
+    private void randomPowerUp() {
+        powerUpIndex = rand.nextInt(2);
+        if (powerUpIndex == 0) {
+            factoryPow = new SpeedPowerUp();
+            powerUp = factoryPow.createPowerUp(ScreenController.SIZE_HD_W / rand.nextDouble(1.5, 5.0),
+                    ScreenController.SIZE_HD_H / rand.nextDouble(1.5, 5.0));
+        } else {
+            factoryPow = new AttackPowerUp();
+            powerUp = factoryPow.createPowerUp(ScreenController.SIZE_HD_W / rand.nextDouble(1.5, 5.0),
+                    ScreenController.SIZE_HD_H / rand.nextDouble(1.5, 5.0));
         }
     }
 }

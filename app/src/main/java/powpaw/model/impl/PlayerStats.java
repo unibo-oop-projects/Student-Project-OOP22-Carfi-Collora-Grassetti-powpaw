@@ -2,9 +2,9 @@ package powpaw.model.impl;
 
 public class PlayerStats {
 
-    private final double attack;
-    private final double defence;
-    private final double speed;
+    private double attack;
+    private double defence;
+    private double speed;
 
     public PlayerStats(double attack, double defence, double speed) {
         this.attack = attack;
@@ -23,4 +23,14 @@ public class PlayerStats {
     public double getSpeed() {
         return this.speed;
     }
+    public void setAttack(double attack){
+        this.attack = attack;
+    }
+    public void setDefence(double defence){
+        this.defence = defence;
+    }
+    public void setSpeed(double speed){
+        this.speed = speed;
+    }
+
 }

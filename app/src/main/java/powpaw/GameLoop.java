@@ -6,6 +6,7 @@ import javafx.animation.AnimationTimer;
 import powpaw.controller.impl.AttackControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.PowerUpController;
+import powpaw.controller.impl.StatsHandler;
 import powpaw.controller.impl.WeaponController;
 
 public class GameLoop extends AnimationTimer {
@@ -36,7 +37,7 @@ public class GameLoop extends AnimationTimer {
         playerController.getRender().forEach(player -> player.renderPlayer());
         weaponController.getRender().render();
         weaponController.getWeapons().update();
-        powerUpController.pickPowerUp(playerController.getPlayerObservable().getPlayers().get(0));
+        powerUpController.pickPowerUp(playerController,StatsHandler.getStatsP1(), StatsHandler.getStatsP2());
         powerUpController.getRender().render();
     }
 
