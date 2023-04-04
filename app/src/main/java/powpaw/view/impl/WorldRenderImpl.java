@@ -31,6 +31,7 @@ public class WorldRenderImpl implements WorldRender {
     public WeaponController getWeaponController() {
         return this.weaponController;
     }
+
     @Override
     public PowerUpController getPowerUpController() {
         return this.powerUpController;
@@ -40,14 +41,13 @@ public class WorldRenderImpl implements WorldRender {
     public MapRender getMapRender() {
         return this.mapRender;
     }
-    
 
     @Override
     public Scene render() {
         Pane worldPane = mapRender.createPane();
         worldPane.setBackground(
                 Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
-        worldPane.getChildren().add(playerController.getRender().get(0).getSprite());
+        worldPane.getChildren().add(playerController.getRender().get(0).getSprite()); // TODO fix
         worldPane.getChildren().add(playerController.getRender().get(1).getSprite());
 
         //debug

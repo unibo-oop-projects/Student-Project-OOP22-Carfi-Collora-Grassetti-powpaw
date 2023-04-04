@@ -2,25 +2,19 @@ package powpaw.view.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Pair;
 import powpaw.controller.impl.GameStateHandler;
 import powpaw.controller.impl.StatsControllerImpl;
 import powpaw.controller.impl.StatsHandler;
-import powpaw.model.api.Stats;
 import powpaw.model.api.StatsBuilder;
-import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.StatsBuilderImpl;
-import powpaw.view.api.GameInterface;
 import powpaw.view.api.StartMenu;
 
 public class StatsSettingMenu extends GridPane {
@@ -172,8 +166,10 @@ public class StatsSettingMenu extends GridPane {
             setAllStats();
             StatsHandler.buildStatsP1(statsP1);
             StatsHandler.buildStatsP2(statsP2);
-            System.out.println("A " + StatsHandler.getStatsP1().getAttack() + " D " + StatsHandler.getStatsP1().getDefence() + " S " + StatsHandler.getStatsP1().getSpeed());
-            System.out.println("A " + StatsHandler.getStatsP2().getAttack() + " D " + StatsHandler.getStatsP2().getDefence() + " S " + StatsHandler.getStatsP2().getSpeed());
+            System.out.println("A " + StatsHandler.getStatsP1().getAttack() + " D "
+                    + StatsHandler.getStatsP1().getDefence() + " S " + StatsHandler.getStatsP1().getSpeed());
+            System.out.println("A " + StatsHandler.getStatsP2().getAttack() + " D "
+                    + StatsHandler.getStatsP2().getDefence() + " S " + StatsHandler.getStatsP2().getSpeed());
             GameStateHandler.getGameStateView().showGame();
         });
     }
@@ -232,7 +228,7 @@ public class StatsSettingMenu extends GridPane {
         add(finish, 10, 10);
     }
 
-    private void setAllStats(){
+    private void setAllStats() {
         statsP1.setAttack(attackPointP1);
         statsP1.setDefence(defencePointP1);
         statsP1.setSpeed(speedPointP1);
