@@ -8,7 +8,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
-import powpaw.controller.impl.AttackControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.WeaponController;
 import powpaw.view.api.WorldRender;
@@ -18,12 +17,6 @@ public class WorldRenderImpl implements WorldRender {
     private final MapRender mapRender = new MapRender();
     private final WeaponController weaponController = new WeaponController();
     private final PlayerController playerController = new PlayerController();
-
-    // TODO qui o nel PlayerController?
-    private final AttackControllerImpl attackController = new AttackControllerImpl(
-            playerController.getPlayerObservable().getPlayers().get(0),
-            playerController.getPlayerObservable().getPlayers().get(1));
-
     private Scene worldScene;
 
     @Override
@@ -34,10 +27,6 @@ public class WorldRenderImpl implements WorldRender {
     @Override
     public WeaponController getWeaponController() {
         return this.weaponController;
-    }
-
-    public AttackControllerImpl getAttackController() {
-        return this.attackController;
     }
 
     @Override
@@ -52,7 +41,11 @@ public class WorldRenderImpl implements WorldRender {
                 Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
         worldPane.getChildren().add(playerController.getRender().get(0).getSprite());
         worldPane.getChildren().add(playerController.getRender().get(1).getSprite());
+
+        //debug
         worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getFeetBox());
+        worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getArmHitbox());
+
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
         weaponController.getRender().setTerrains(mapRender.getTerrains());

@@ -22,6 +22,8 @@ public interface Player {
 
     Shape getFeetBox();
 
+    Shape getArmHitbox();
+
     PlayerState getState();
 
     void setWidth(double width);
@@ -36,13 +38,7 @@ public interface Player {
 
     void idle();
 
-    void attack();
-
     void dodge();
-
-    double getAttackPower();
-
-    double getCurrentHealth();
 
     Hitbox getHitbox();
 

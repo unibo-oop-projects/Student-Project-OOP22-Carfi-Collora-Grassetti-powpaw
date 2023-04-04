@@ -42,8 +42,8 @@ public class PlayerImpl implements Player {
         this.position = position;
         this.number = number;
         // this.attackPower = 0.25;
-        this.height = ScreenController.SIZE_HD_H / 15;
-        this.width = ScreenController.SIZE_HD_W / 25;
+        this.height = ScreenController.SIZE_HD_W / 15;
+        this.width = ScreenController.SIZE_HD_W / 15;
         this.hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
         this.currentState = PlayerState.IDLE;
         this.idle();
@@ -80,6 +80,11 @@ public class PlayerImpl implements Player {
     @Override
     public Shape getFeetBox() {
         return this.hitbox.getFeetShape();
+    }
+
+    @Override
+    public Shape getArmHitbox() {
+        return this.hitbox.getArmShape();
     }
 
     @Override
@@ -171,21 +176,6 @@ public class PlayerImpl implements Player {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public void attack() {
-        currentHealth += KNOCKBACK * attackPower;
-    }
-
-    @Override
-    public double getAttackPower() {
-        return this.attackPower;
-    }
-
-    @Override
-    public double getCurrentHealth() {
-        return this.currentHealth;
     }
 
     @Override

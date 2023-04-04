@@ -1,5 +1,7 @@
 package powpaw.controller.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Optional;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
@@ -12,49 +14,42 @@ public class AttackControllerImpl {
     private Player playerOne;
     private Player playerTwo;
 
-    public AttackControllerImpl(Player playerOne, Player playerTwo) {
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
+    public AttackControllerImpl(ArrayList<Player> players) {
+        this.playerOne = players.get(0);
+        this.playerTwo = players.get(1);
     }
 
     // nel PlayerImpl
-    public Optional<Player> checkHealtStatus() {
+    /* public Optional<Player> checkHealtStatus() {
         if (playerOne.getCurrentHealth() >= MAX_PERC) {
             return Optional.of(this.playerOne);
         } else if (playerOne.getCurrentHealth() >= MAX_PERC) {
             return Optional.of(this.playerTwo);
         }
         return Optional.empty();
-    }
+    } */
 
     public Optional<Player> checkDeath() {
-        if (ScreenController.isOutOfScreen(this.playerOne.getHitbox())) {
-            if (checkHit().get() == this.playerOne) {
-                return Optional.of(this.playerOne);
-            }
-        } else if (ScreenController.isOutOfScreen(this.playerTwo.getHitbox())) {
-            if (checkHit().get() == this.playerOne) {
-                return Optional.of(this.playerTwo);
-            }
+        if(ScreenController.isOutOfScreen(this.playerOne.getHitbox())){
+            return Optional.of(playerOne);
+        } if (ScreenController.isOutOfScreen(this.playerOne.getHitbox())){
+            return Optional.of(playerOne);
         }
         return Optional.empty();
     }
 
-    private Optional<Player> checkHit() {
-        if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getShape())) {
-            if (this.playerOne.getState().equals(PlayerState.ATTACK)) {
-                this.playerOne.attack();
-                return Optional.of(this.playerOne);
-            } else if (this.playerTwo.getState().equals(PlayerState.ATTACK)) {
-                this.playerTwo.attack();
-                return Optional.of(this.playerTwo);
-            }
+    //return hit player
+    public Optional<Player> checkHit() {
+        if (this.playerOne.getArmHitbox().intersects(this.playerTwo.getHitbox().getShape().getBoundsInParent())){
+            return Optional.of(this.playerTwo);
+        } if (this.playerTwo.getArmHitbox().intersects(this.playerOne.getHitbox().getShape().getBoundsInParent())){
+            return Optional.of(this.playerOne);
         }
         return Optional.empty();
     }
 
-    public Optional<Player> update() {
+    /* public boolean update() {
         return checkDeath();
-    }
+    } */
 
 }
