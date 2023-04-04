@@ -52,7 +52,7 @@ sourceSets {
         resources {
             srcDirs("src/assets")
             srcDirs("src/main/java/powpaw/config")
-            exclude("src/test")
+            //exclude ("src/test")
         }
     }
 }
