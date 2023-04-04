@@ -33,7 +33,7 @@ public class PowerUpController {
             if (powerUp.getHurtbox().getBoundsInParent()
                     .intersects(player.getHitbox().getShape().getBoundsInParent())) {
                 if (!isCollected) {
-                    powerUp.statPowerUp(player.getNumber() == 0 ? statsP1 : statsP2);
+                    powerUp.statPowerUp(player.getNumber() == 1 ? statsP1 : statsP2);
                     isCollected = true;
                     powerUp.setVisible(false);
                     new Timeline(new KeyFrame(Duration.seconds(10), event -> {
