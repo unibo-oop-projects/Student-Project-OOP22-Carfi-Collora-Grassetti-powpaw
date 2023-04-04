@@ -5,6 +5,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
+import powpaw.controller.impl.StatsHandler;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
 
@@ -47,6 +48,7 @@ public class PlayerImpl implements Player {
         hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
         this.currentState = PlayerState.IDLE;
         this.idle();
+
     }
 
     @Override
