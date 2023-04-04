@@ -5,6 +5,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
+import powpaw.controller.impl.StatsHandler;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
 
@@ -14,7 +15,6 @@ public class PlayerImpl implements Player {
         IDLE, JUMP, DODGE, ATTACK, WALK_RIGHT, WALK_LEFT;
     }
 
-    private static final double SPEED = 0.3;
     private static final double JUMP_SPEED = 1.7;
     private static final int MAX_JUMP = 3;
     private static final double KNOCKBACK = 0.2;
@@ -35,18 +35,19 @@ public class PlayerImpl implements Player {
     private int countJump = 0;
     private double attackPower;
     private int currentHealth;
-    private PlayerHitboxImpl hitbox;
+    private PlayerStats stats;
+    private PlayerHitboxImpl hitbox; // TODO fix
 
     public PlayerImpl(Point2D position, int number) {
         this.transition = new TransitionImpl();
         this.position = position;
         this.number = number;
-        // this.attackPower = 0.25;
-        this.height = ScreenController.SIZE_HD_H / 15;
-        this.width = ScreenController.SIZE_HD_W / 25;
-        this.hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
+        this.height = ScreenController.SIZE_HD_W / 15;
+        this.width = ScreenController.SIZE_HD_W / 15;
+        hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
         this.currentState = PlayerState.IDLE;
         this.idle();
+        this.stats = number == 1 ? StatsHandler.getStatsP1() : StatsHandler.getStatsP2();
     }
 
     @Override
@@ -191,9 +192,10 @@ public class PlayerImpl implements Player {
     @Override
     public void update(Duration deltaTime) {
         if (isFalling()) {
-            this.position = new Point2D(this.position.getX(), this.position.add(DirectionVector.DOWN.multiply(GRAVITY)).getY());
+            this.position = new Point2D(this.position.getX(),
+                    this.position.add(DirectionVector.DOWN.multiply(GRAVITY)).getY());
         }
-        position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
+        position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(stats.getSpeed()));
         hitbox.updateCenter(position);
     }
 
