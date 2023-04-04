@@ -42,9 +42,9 @@ public class PlayerImpl implements Player {
         this.position = position;
         this.number = number;
         // this.attackPower = 0.25;
-        this.height = ScreenController.SIZE_HD_W / 15;
-        this.width = ScreenController.SIZE_HD_W / 15;
-        hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
+        this.height = ScreenController.SIZE_HD_H / 15;
+        this.width = ScreenController.SIZE_HD_W / 25;
+        this.hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
         this.currentState = PlayerState.IDLE;
         this.idle();
     }
@@ -191,8 +191,7 @@ public class PlayerImpl implements Player {
     @Override
     public void update(Duration deltaTime) {
         if (isFalling()) {
-            this.position = new Point2D(this.position.getX(),
-                    this.position.add(DirectionVector.DOWN.multiply(GRAVITY)).getY());
+            this.position = new Point2D(this.position.getX(), this.position.add(DirectionVector.DOWN.multiply(GRAVITY)).getY());
         }
         position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(SPEED));
         hitbox.updateCenter(position);
