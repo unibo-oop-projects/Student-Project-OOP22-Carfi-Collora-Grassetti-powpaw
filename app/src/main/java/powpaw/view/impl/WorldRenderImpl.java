@@ -11,7 +11,6 @@ import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.AttackControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.WeaponController;
-import powpaw.model.impl.PlayerHitboxImpl;
 import powpaw.view.api.WorldRender;
 
 public class WorldRenderImpl implements WorldRender {
@@ -53,6 +52,7 @@ public class WorldRenderImpl implements WorldRender {
                 Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
         worldPane.getChildren().add(playerController.getRender().get(0).getSprite());
         worldPane.getChildren().add(playerController.getRender().get(1).getSprite());
+        worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getFeetBox());
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
         weaponController.getRender().setTerrains(mapRender.getTerrains());

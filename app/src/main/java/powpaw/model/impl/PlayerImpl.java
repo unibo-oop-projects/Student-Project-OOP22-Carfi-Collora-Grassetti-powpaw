@@ -166,7 +166,7 @@ public class PlayerImpl implements Player {
     }
 
     private boolean isFalling() {
-        if (transition.checkPlayerCollisionByHitbox(hitbox)) {
+        if (transition.checkPlayerInTerrain(hitbox.getFeetShape())) {
             this.countJump = 0;
             return false;
         }
