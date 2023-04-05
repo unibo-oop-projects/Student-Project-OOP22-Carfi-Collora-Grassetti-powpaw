@@ -99,7 +99,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public PlayerStats getPlayerStats(){
+    public PlayerStats getPlayerStats() {
         return this.stats;
     }
 
@@ -171,6 +171,7 @@ public class PlayerImpl implements Player {
         hitbox.switchDodge();
     }
 
+    @Override
     public boolean isFalling() {
         return !transition.checkPlayerCollisionByHitbox(hitbox);
     }

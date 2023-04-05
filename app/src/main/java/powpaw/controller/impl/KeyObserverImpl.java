@@ -7,12 +7,11 @@ import java.util.Set;
 import javafx.scene.input.KeyCode;
 import powpaw.config.Parser;
 import powpaw.model.api.Player;
-import powpaw.model.impl.PlayerImpl;
 import powpaw.view.api.KeyObserver;
 
 public class KeyObserverImpl implements KeyObserver {
 
-    private final PlayerImpl player;
+    private final Player player;
 
     private KeyCode keyJump;
     private KeyCode keyLeft;
@@ -20,7 +19,7 @@ public class KeyObserverImpl implements KeyObserver {
     private Set<KeyCode> keys = new HashSet<>();
 
     public KeyObserverImpl(Player player, Parser parser) {
-        this.player = (PlayerImpl) player;
+        this.player = player;
         Map<String, KeyCode> commands = parser.getCommands(player.getNumber());
 
         this.keyJump = commands.get("jump");

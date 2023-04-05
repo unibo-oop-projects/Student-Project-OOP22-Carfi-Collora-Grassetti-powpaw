@@ -35,6 +35,8 @@ public interface Player {
 
     void idle();
 
+    boolean isFalling();
+
     void attack();
 
     void dodge();
