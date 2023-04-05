@@ -1,10 +1,7 @@
 package powpaw.model.impl;
 
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
-import javafx.scene.transform.Shear;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Transition;

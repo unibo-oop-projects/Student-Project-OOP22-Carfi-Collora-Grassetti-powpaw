@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
+import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public interface Player {
@@ -23,6 +24,8 @@ public interface Player {
     Shape getFeetBox();
 
     PlayerState getState();
+
+    PlayerStats getPlayerStats();
 
     void setWidth(double width);
 

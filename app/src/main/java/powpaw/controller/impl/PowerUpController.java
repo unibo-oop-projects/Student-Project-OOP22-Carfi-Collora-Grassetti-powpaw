@@ -27,13 +27,15 @@ public class PowerUpController {
         return this.powerUpRender;
     }
 
-    public void pickPowerUp(PlayerController playerController, PlayerStats statsP1, PlayerStats statsP2) {
+    public void pickPowerUp(PlayerController playerController) {
 
         playerController.getPlayerObservable().getPlayers().forEach(player -> {
             if (powerUp.getHurtbox().getBoundsInParent()
                     .intersects(player.getHitbox().getShape().getBoundsInParent())) {
                 if (!isCollected) {
-                    powerUp.statPowerUp(player.getNumber() == 1 ? statsP1 : statsP2);
+                    powerUp.statPowerUp(player.getNumber() == 1
+                            ? playerController.getPlayerObservable().getPlayers().get(0).getPlayerStats()
+                            : playerController.getPlayerObservable().getPlayers().get(1).getPlayerStats());
                     isCollected = true;
                     powerUp.setVisible(false);
                     new Timeline(new KeyFrame(Duration.seconds(10), event -> {

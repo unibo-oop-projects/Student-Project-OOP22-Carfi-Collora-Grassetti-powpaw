@@ -104,6 +104,11 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public PlayerStats getPlayerStats(){
+        return this.stats;
+    }
+
+    @Override
     public void setWidth(double width) {
         this.width = width;
         this.hitbox.setOffsetX(width);
