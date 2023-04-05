@@ -7,11 +7,12 @@ import powpaw.controller.api.ScreenController;
 
 public class WeaponFactory {
 
+    private final static double START_TERRAIN = 300;
+    private final static double END_TERRAIN = ScreenController.SIZE_HD_W - 300;
+
     public static WeaponImpl createWeapon(int id) {
         Random rand = new Random();
-        // Point2D position = new Point2D( rand.nextDouble(250,
-        // ScreenController.SIZE_HD_W - 250), 200);
-        Point2D position = new Point2D(ScreenController.SIZE_HD_W - 250, 200);
+        Point2D position = new Point2D(rand.nextDouble(START_TERRAIN, END_TERRAIN), 200);
         WeaponImpl weapon = new WeaponImpl(position, id);
         switch (id) {
             case 0:

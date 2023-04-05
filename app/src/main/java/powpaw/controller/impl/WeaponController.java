@@ -51,7 +51,7 @@ public class WeaponController {
     private void createWeapon() {
         weaponIndex = rand.nextInt(2);
         this.weapon = WeaponFactory.createWeapon(weaponIndex);
-        this.weaponRender.setWeapon(weapon, weaponIndex);
+        this.weaponRender.setWeapon(weapon);
         /*
          * weaponRender = new WeaponRender(weapon);
          * weaponRender.setWeapon(weapon, weaponIndex);

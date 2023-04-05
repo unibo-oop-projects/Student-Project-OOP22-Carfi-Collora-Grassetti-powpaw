@@ -13,7 +13,6 @@ public class WeaponRender {
     private ArrayList<BlockImpl> terrains;
     private Image image;
     private ImageView weaponSprite = new ImageView();
-    private int id;
 
     public void setTerrains(ArrayList<BlockImpl> terrains) {
         this.terrains = terrains;
@@ -27,9 +26,8 @@ public class WeaponRender {
         return this.weaponSprite;
     }
 
-    public void setWeapon(WeaponImpl weapon, int id) {
+    public void setWeapon(WeaponImpl weapon) {
         this.weapons = weapon;
-        this.id = id;
         setSpriteImage();
     }
 

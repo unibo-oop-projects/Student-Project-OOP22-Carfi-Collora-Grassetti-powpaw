@@ -36,6 +36,7 @@ public class GameLoop extends AnimationTimer {
         powerUpController.getRender().render();
         weaponController.pickWeapon(playerController);
         weaponController.getRender().render();
+        weaponController.getWeapon().update();
     }
 
     public void setPlayerController(PlayerController playerController) {
