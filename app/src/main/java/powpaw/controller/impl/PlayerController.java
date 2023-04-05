@@ -22,7 +22,6 @@ public class PlayerController {
     private PlayerObservable playerObservable;
     private List<PlayerRender> playersRender = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
-    
 
     public PlayerController() {
         AtomicInteger index = new AtomicInteger();
@@ -31,9 +30,12 @@ public class PlayerController {
             players.add(player);
             playersRender.add(new PlayerRender(player));
         });
-
         playerObservable = new PlayerObservableImpl(players);
-        
+
+    }
+
+    public List<Player> getPlayerList() {
+        return this.players;
     }
 
     public List<PlayerRender> getRender() {

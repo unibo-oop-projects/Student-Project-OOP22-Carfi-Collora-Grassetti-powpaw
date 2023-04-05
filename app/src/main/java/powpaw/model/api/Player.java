@@ -26,6 +26,10 @@ public interface Player {
 
     Rectangle getArmHitbox();
 
+    void increaseArmHitbox();
+
+    void reduceArmHitbox();
+
     PlayerState getState();
 
     PlayerStats getPlayerStats();
@@ -40,11 +44,17 @@ public interface Player {
 
     void setIsMovingLeft(boolean b);
 
+    void setIsHit(boolean b);
+
     void idle();
 
     void dodge();
 
+    void setDirectionDeath(Point2D direction);
+
     Hitbox getHitbox();
+
+    void receiveAttack(Point2D direction, double damage);
 
     void update(Duration deltaTime);
 

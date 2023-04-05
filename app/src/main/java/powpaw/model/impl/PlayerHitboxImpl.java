@@ -15,6 +15,8 @@ public class PlayerHitboxImpl implements Hitbox {
     private double offsetY;
     private double offsetFeet;
     private Circle hitbox;
+    private Rectangle hitboxLeft;
+    private Rectangle hitboxRight;
     private Circle feetBox;
     private Rectangle armHitbox;
     private boolean isDodging;
@@ -30,10 +32,15 @@ public class PlayerHitboxImpl implements Hitbox {
         final double yFeet = PlayerPosition.getY() + this.offsetFeet;
         final double yArm = PlayerPosition.getY() + this.offsetY;
         this.hitbox = new Circle(x, y, this.radius);
-        this.armHitbox = new Rectangle(x, yArm, this.offsetX, this.offsetY/2);
-        this.armHitbox.setFill(Color.GREEN);
+        this.hitbox.setFill(Color.BEIGE); // debug
+        this.hitboxLeft = new Rectangle(x, y, this.offsetX, height);
+        this.hitboxLeft.setFill(Color.AQUA); // debug
+        this.hitboxRight = new Rectangle(x, y, this.offsetX, height);
+        this.hitboxRight.setFill(Color.AZURE); // debug
+        this.armHitbox = new Rectangle(x, yArm, this.offsetX, this.offsetY / 2);
+        this.armHitbox.setFill(Color.GREEN); // debug
         this.feetBox = new Circle(x, yFeet, this.feetRadius);
-        this.feetBox.setFill(Color.RED);
+        this.feetBox.setFill(Color.RED); // debug
         this.isDodging = false;
     }
 
@@ -58,13 +65,28 @@ public class PlayerHitboxImpl implements Hitbox {
     }
 
     @Override
-    public Rectangle getArmShape(){
+    public Rectangle getArmShape() {
         return this.armHitbox;
+    }
+
+    @Override
+    public Rectangle getHitboxLeft() {
+        return this.hitboxLeft;
+    }
+
+    @Override
+    public Rectangle getHitboxRight() {
+        return this.hitboxRight;
     }
 
     @Override
     public void setOffsetX(double width) {
         this.offsetX = width / 2;
+    }
+
+    @Override
+    public double getOffsetX() {
+        return this.offsetX;
     }
 
     @Override
@@ -88,6 +110,11 @@ public class PlayerHitboxImpl implements Hitbox {
         this.armHitbox.setX(position.getX() + offsetX);
         this.armHitbox.setY(position.getY() + offsetY);
 
+        this.hitboxLeft.setX(position.getX());
+        this.hitboxLeft.setY(position.getY());
+
+        this.hitboxRight.setX(position.getX() + offsetX);
+        this.hitboxRight.setY(position.getY());
     }
 
     @Override

@@ -3,7 +3,6 @@ package powpaw.model.impl;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Transition;
 

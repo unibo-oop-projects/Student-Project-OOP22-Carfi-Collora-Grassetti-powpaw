@@ -5,7 +5,6 @@ import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 import powpaw.controller.api.ScreenController;
-import powpaw.model.api.Hitbox;
 import powpaw.model.api.Weapon;
 
 public class WeaponImpl implements Weapon {
@@ -19,6 +18,7 @@ public class WeaponImpl implements Weapon {
     private double speed;
     private boolean isVisible = true;
     private int id;
+    private int count = 10;
 
     private final TransitionImpl transition = new TransitionImpl();
 

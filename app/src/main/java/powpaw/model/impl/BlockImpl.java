@@ -3,7 +3,6 @@ package powpaw.model.impl;
 import javafx.geometry.Point2D;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Block;
-import powpaw.model.api.Hitbox;
 
 public class BlockImpl implements Block{
 

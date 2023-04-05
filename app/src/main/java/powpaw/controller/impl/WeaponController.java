@@ -21,7 +21,7 @@ public class WeaponController {
         weaponRender = new WeaponRender();
         createWeapon();
     }
-    
+
     public void pickWeapon(PlayerController playerController) {
         playerController.getPlayerObservable().getPlayers().forEach(player -> {
             if (weapon.getHitbox().getShape().getBoundsInParent()
@@ -30,11 +30,22 @@ public class WeaponController {
                     weapon.addAttack(player.getNumber() == 1
                             ? playerController.getPlayerObservable().getPlayers().get(0).getPlayerStats()
                             : playerController.getPlayerObservable().getPlayers().get(1).getPlayerStats());
+                    // TODO refactor
+                    if (player.getNumber() == 1) {
+                        playerController.getPlayerObservable().getPlayers().get(0).increaseArmHitbox();
+                    } else {
+                        playerController.getPlayerObservable().getPlayers().get(1).increaseArmHitbox();
+                    }
                     isCollected = true;
                     weapon.setVisible(false);
                     weaponRender.getWeaponSprite().setVisible(false);
                     new Timeline(new KeyFrame(Duration.seconds(10), event -> {
                         isCollected = false;
+                        if (player.getNumber() == 1) {
+                            playerController.getPlayerObservable().getPlayers().get(0).reduceArmHitbox();
+                        } else {
+                            playerController.getPlayerObservable().getPlayers().get(1).reduceArmHitbox();
+                        }
                         this.createWeapon();
                         weapon.setVisible(true);
                         weaponRender.getWeaponSprite().setVisible(true);

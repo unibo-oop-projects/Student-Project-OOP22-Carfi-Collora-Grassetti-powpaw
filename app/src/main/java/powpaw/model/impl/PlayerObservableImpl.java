@@ -16,11 +16,13 @@ public class PlayerObservableImpl implements PlayerObservable {
     private List<Player> playerList;
     private final KeyObservable observable = new KeyObservableImpl();
     private final Parser config;
+    private AttackControllerImpl attackController = new AttackControllerImpl();
     
     public PlayerObservableImpl(List<Player> playerList) {
         this.playerList = playerList;
         this.config = new Parser();
-        this.playerList.forEach(player -> observable.addObserver(new KeyObserverImpl(player, this.config)));
+        this.attackController.setPlayers(playerList);
+        this.playerList.forEach(player -> observable.addObserver(new KeyObserverImpl(player, this.config, this.attackController)));
     }
 
     @Override

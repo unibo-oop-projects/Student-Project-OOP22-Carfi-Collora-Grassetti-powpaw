@@ -51,8 +51,24 @@ public class WorldRenderImpl implements WorldRender {
                 .addAll(playerController.getRender().stream().map(r -> r.getSprite()).collect(Collectors.toList()));
 
         // debug
+        worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getHitbox().getShape());
         worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getFeetBox());
         worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getArmHitbox());
+        /*
+         * worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().
+         * getHitbox().getHitboxLeft());
+         * worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().
+         * getHitbox().getHitboxRight());
+         */
+        worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().getHitbox().getShape());
+        worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().getFeetBox());
+        worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().getArmHitbox());
+        /*
+         * worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().
+         * getHitbox().getHitboxLeft());
+         * worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().
+         * getHitbox().getHitboxRight());
+         */
 
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
