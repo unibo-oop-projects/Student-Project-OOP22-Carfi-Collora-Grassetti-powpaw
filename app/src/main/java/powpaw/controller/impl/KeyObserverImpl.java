@@ -3,62 +3,71 @@ package powpaw.controller.impl;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import powpaw.config.Parser;
 import powpaw.model.api.Player;
+import powpaw.model.impl.PlayerImpl;
 import powpaw.view.api.KeyObserver;
 
 public class KeyObserverImpl implements KeyObserver {
 
-    private final Player player;
-    private Set<KeyCode> pressedKeys = new HashSet<>();
-    private boolean isJumping = false;
+    private final PlayerImpl player;
 
     private KeyCode keyJump;
     private KeyCode keyLeft;
     private KeyCode keyRight;
+    private Set<KeyCode> keys = new HashSet<>();
 
     public KeyObserverImpl(Player player, Parser parser) {
-        this.player = player;
+        this.player = (PlayerImpl) player;
         Map<String, KeyCode> commands = parser.getCommands(player.getNumber());
 
         this.keyJump = commands.get("jump");
         this.keyLeft = commands.get("left");
         this.keyRight = commands.get("right");
+
+        this.keys.add(keyJump);
+        this.keys.add(keyLeft);
+        this.keys.add(keyRight);
     }
 
     @Override
-    public void keyPressed(KeyEvent event) {
-        pressedKeys.add(event.getCode());
-
-        pressedKeys.forEach(key -> {
-            if (key == this.keyJump) {
-                if (!isJumping) {
-                    this.player.jump();
-                    isJumping = true;
-                } else {
-                    this.player.idle();
-                }
-            }
-            if (key == this.keyLeft) {
-                this.player.moveLeft();
-            }
-            if (key == this.keyRight) {
-                this.player.moveRight();
-            }
-        });
-    }
-
-    @Override
-    public void keyReleased(KeyEvent event) {
-        if (pressedKeys.contains(event.getCode())) {
-            pressedKeys.remove(event.getCode());
-            if (event.getCode().equals(keyJump)) {
-                isJumping = false;
-            }
-            this.player.idle();
+    public void keyPressed(KeyCode event) {
+        if (!keys.contains(event)) {
+            return;
         }
+
+        if (event == keyJump) {
+            if (!this.player.isFalling()) {
+                this.player.setIsJumping(true);
+            }
+        }
+        if (event == keyRight) {
+            this.player.setIsMovingRight(true);
+        }
+        if (event == keyLeft) {
+            this.player.setIsMovingLeft(true);
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyCode event) {
+
+        if (!keys.contains(event)) {
+            return;
+        }
+
+        if (event == keyJump) {
+            this.player.setIsJumping(false);
+        }
+        if (event == keyRight) {
+            this.player.setIsMovingRight(false);
+        }
+        if (event == keyLeft) {
+            this.player.setIsMovingLeft(false);
+        }
+
     }
 
 }

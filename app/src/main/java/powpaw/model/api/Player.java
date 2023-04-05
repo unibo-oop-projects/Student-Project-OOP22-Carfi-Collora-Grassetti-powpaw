@@ -3,16 +3,15 @@ package powpaw.model.api;
 import java.time.Duration;
 
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Shape;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public interface Player {
 
     Point2D getPosition();
 
-    Point2D getVelocity();
+    Point2D getDirection();
 
-    void setVelocity(Point2D velocity);
+    void setDirection(Point2D direction);
 
     double getWidth();
 
@@ -20,19 +19,17 @@ public interface Player {
 
     int getNumber();
 
-    Shape getFeetBox();
-
     PlayerState getState();
 
     void setWidth(double width);
 
     void setHeight(double height);
 
-    void moveLeft();
+    void setIsJumping(boolean b);
 
-    void moveRight();
+    void setIsMovingRight(boolean b);
 
-    void jump();
+    void setIsMovingLeft(boolean b);
 
     void idle();
 

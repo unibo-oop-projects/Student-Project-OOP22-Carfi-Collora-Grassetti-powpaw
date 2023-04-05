@@ -1,10 +1,10 @@
 package powpaw.view.api;
 
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
 
 public interface KeyObserver {
 
-    void keyPressed(KeyEvent event);
+    void keyPressed(KeyCode event);
 
-    void keyReleased(KeyEvent event);
+    void keyReleased(KeyCode event);
 }
