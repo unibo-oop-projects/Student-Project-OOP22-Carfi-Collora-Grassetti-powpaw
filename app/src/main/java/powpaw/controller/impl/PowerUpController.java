@@ -7,7 +7,6 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import powpaw.model.api.PowerUp;
 import powpaw.model.impl.AttackPowerUp;
-import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.SpeedPowerUp;
 import powpaw.view.impl.PowerUpRender;
 

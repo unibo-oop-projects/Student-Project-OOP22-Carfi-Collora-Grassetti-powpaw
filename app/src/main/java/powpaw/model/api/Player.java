@@ -1,8 +1,8 @@
 package powpaw.model.api;
 
 import java.time.Duration;
-
 import javafx.geometry.Point2D;
+import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public interface Player {
