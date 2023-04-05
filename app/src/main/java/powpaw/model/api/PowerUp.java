@@ -1,9 +1,36 @@
 package powpaw.model.api;
 
-public interface PowerUp {
+import java.util.Random;
 
-    void attackUp();
+import javafx.scene.shape.Circle;
+import powpaw.controller.api.ScreenController;
+import powpaw.model.impl.PlayerStats;
 
-    void speedUp(int speed);
+public abstract class PowerUp {
 
+    protected final static double POWNUMBER = 0.2;
+    private final double radius = ScreenController.SIZE_HD_W / 40;
+    private final Random rand = new Random();
+    private Circle hurtbox;
+    private boolean isVisible = true;
+
+    public PowerUp() {
+        this.hurtbox = new Circle(rand.nextDouble(radius + 2.5, ScreenController.SIZE_HD_W - radius - 2.5),
+                rand.nextDouble(radius, ScreenController.SIZE_HD_H / 3), radius);
+    }
+
+    public Circle getHurtbox() {
+        return this.hurtbox;
+    }
+
+    public void setVisible(boolean b) {
+        this.isVisible = b;
+        this.hurtbox.setVisible(b);
+    }
+
+    public boolean getIsVisible() {
+        return this.isVisible;
+    }
+
+    public abstract void statPowerUp(PlayerStats stats);
 }

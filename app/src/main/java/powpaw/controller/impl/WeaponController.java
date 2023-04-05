@@ -1,27 +1,69 @@
 package powpaw.controller.impl;
 
-import javafx.geometry.Point2D;
-import powpaw.controller.api.ScreenController;
-import powpaw.model.impl.Entity;
+import java.util.Random;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+import powpaw.model.impl.WeaponFactory;
 import powpaw.model.impl.WeaponImpl;
 import powpaw.view.impl.WeaponRender;
 
 public class WeaponController {
-    
-    private WeaponImpl weapons;
+
+    private WeaponImpl weapon;
     private WeaponRender weaponRender;
+    private boolean isCollected = false;
+    private int weaponIndex;
+    private Random rand = new Random();
 
-    public WeaponController(){
-        this.weapons = Entity.createWeapon(new Point2D(15 * ScreenController.SIZE_HD_W/30, 1 * ScreenController.SIZE_HD_H/10), ScreenController.SIZE_HD_W/50, ScreenController.SIZE_HD_H/30);
-        weaponRender = new WeaponRender(this.weapons);
+    public WeaponController() {
+        weaponRender = new WeaponRender();
+        createWeapon();
+    }
+    
+    public void pickWeapon(PlayerController playerController) {
+        playerController.getPlayerObservable().getPlayers().forEach(player -> {
+            if (weapon.getHitbox().getShape().getBoundsInParent()
+                    .intersects(player.getHitbox().getShape().getBoundsInParent())) {
+                if (!isCollected) {
+                    weapon.addAttack(player.getNumber() == 1
+                            ? playerController.getPlayerObservable().getPlayers().get(0).getPlayerStats()
+                            : playerController.getPlayerObservable().getPlayers().get(1).getPlayerStats());
+                    isCollected = true;
+                    weapon.setVisible(false);
+                    weaponRender.getWeaponSprite().setVisible(false);
+                    new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+                        isCollected = false;
+                        this.createWeapon();
+                        weapon.setVisible(true);
+                        weaponRender.getWeaponSprite().setVisible(true);
+                    })).play();
+                }
+            }
+        });
     }
 
-    public WeaponImpl getWeapons(){
-        return this.weapons;
+    public boolean isCollected() {
+        return this.isCollected;
     }
 
-    public WeaponRender getRender(){
+    private void createWeapon() {
+        weaponIndex = rand.nextInt(2);
+        this.weapon = WeaponFactory.createWeapon(weaponIndex);
+        this.weaponRender.setWeapon(weapon);
+        /*
+         * weaponRender = new WeaponRender(weapon);
+         * weaponRender.setWeapon(weapon, weaponIndex);
+         */
+    }
+
+    public WeaponImpl getWeapon() {
+        return this.weapon;
+    }
+
+    public WeaponRender getRender() {
         return this.weaponRender;
     }
-    
+
 }

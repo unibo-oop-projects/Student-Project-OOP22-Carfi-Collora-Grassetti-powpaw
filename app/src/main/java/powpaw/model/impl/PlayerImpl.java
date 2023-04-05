@@ -5,6 +5,8 @@ import java.time.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.StatsHandler;
@@ -78,6 +80,24 @@ public class PlayerImpl implements Player {
         this.direction = direction;
     }
 
+    public Point2D getAcceleration() {
+        return this.acceleration;
+    }
+
+    public void setAcceleration(Point2D acceleration) {
+        this.acceleration = acceleration;
+    }
+
+    @Override
+    public Shape getFeetBox() {
+        return this.hitbox.getFeetShape();
+    }
+
+    @Override
+    public Rectangle getArmHitbox() {
+        return this.hitbox.getArmShape();
+    }
+
     @Override
     public double getWidth() {
         return this.width;
@@ -96,6 +116,11 @@ public class PlayerImpl implements Player {
     @Override
     public PlayerState getState() {
         return this.currentState;
+    }
+
+    @Override
+    public PlayerStats getPlayerStats() {
+        return this.stats;
     }
 
     @Override
@@ -123,14 +148,6 @@ public class PlayerImpl implements Player {
     @Override
     public void setIsMovingRight(boolean b) {
         this.isMovingRight = b;
-    }
-
-    public Point2D getAcceleration() {
-        return this.acceleration;
-    }
-
-    public void setAcceleration(Point2D acceleration) {
-        this.acceleration = acceleration;
     }
 
     private void moveLeft() {
@@ -170,19 +187,8 @@ public class PlayerImpl implements Player {
         return !transition.checkPlayerCollisionByHitbox(hitbox);
     }
 
-    @Override
-    public void attack() {
-        currentHealth += KNOCKBACK * attackPower;
-    }
-
-    @Override
-    public double getAttackPower() {
-        return this.attackPower;
-    }
-
-    @Override
-    public double getCurrentHealth() {
-        return this.currentHealth;
+    public void receiveAttack() {
+        this.acceleration.add(acceleration.getX() + 0.2, acceleration.getY());
     }
 
     @Override
@@ -220,4 +226,5 @@ public class PlayerImpl implements Player {
 
         this.hitbox.updateCenter(this.position);
     }
+
 }

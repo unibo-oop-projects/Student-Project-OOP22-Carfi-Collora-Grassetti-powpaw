@@ -3,6 +3,7 @@ package powpaw.model.impl;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import powpaw.model.api.Hitbox;
 
@@ -15,6 +16,7 @@ public class PlayerHitboxImpl implements Hitbox {
     private double offsetFeet;
     private Circle hitbox;
     private Circle feetBox;
+    private Rectangle armHitbox;
     private boolean isDodging;
 
     public PlayerHitboxImpl(Point2D PlayerPosition, double width, double height) {
@@ -26,7 +28,10 @@ public class PlayerHitboxImpl implements Hitbox {
         final double x = PlayerPosition.getX() + this.offsetX;
         final double y = PlayerPosition.getY() + this.offsetY;
         final double yFeet = PlayerPosition.getY() + this.offsetFeet;
+        final double yArm = PlayerPosition.getY() + this.offsetY;
         this.hitbox = new Circle(x, y, this.radius);
+        this.armHitbox = new Rectangle(x, yArm, this.offsetX, this.offsetY/2);
+        this.armHitbox.setFill(Color.GREEN);
         this.feetBox = new Circle(x, yFeet, this.feetRadius);
         this.feetBox.setFill(Color.RED);
         this.isDodging = false;
@@ -47,8 +52,14 @@ public class PlayerHitboxImpl implements Hitbox {
         return this.hitbox;
     }
 
+    @Override
     public Shape getFeetShape() {
         return this.feetBox;
+    }
+
+    @Override
+    public Rectangle getArmShape(){
+        return this.armHitbox;
     }
 
     @Override
@@ -70,12 +81,17 @@ public class PlayerHitboxImpl implements Hitbox {
     public void updateCenter(Point2D position) {
         this.hitbox.setCenterX(position.getX() + offsetX);
         this.hitbox.setCenterY(position.getY() + offsetY);
+
         this.feetBox.setCenterX(position.getX() + offsetX);
         this.feetBox.setCenterY(position.getY() + offsetFeet);
+
+        this.armHitbox.setX(position.getX() + offsetX);
+        this.armHitbox.setY(position.getY() + offsetY);
+
     }
 
     @Override
     public boolean checkCollision(Shape otherHitbox) {
-        return this.isDodging ? false : this.hitbox.getBoundsInParent().intersects(otherHitbox.getBoundsInParent());
+        return this.isDodging ? false : this.armHitbox.getBoundsInParent().intersects(otherHitbox.getBoundsInParent());
     }
 }

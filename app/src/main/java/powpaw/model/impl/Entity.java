@@ -11,9 +11,9 @@ public class Entity {
     }
 
     // factory for weapon entity
-    public static WeaponImpl createWeapon(Point2D pos, double width, double height) {
+    /* public static WeaponImpl createWeapon(Point2D pos, double width, double height) {
         WeaponImpl weapon = new WeaponImpl(pos);
         return weapon;
-    }
+    } */
 
 }

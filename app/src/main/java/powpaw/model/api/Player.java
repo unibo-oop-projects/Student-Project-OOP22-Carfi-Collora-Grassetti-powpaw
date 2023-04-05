@@ -3,6 +3,9 @@ package powpaw.model.api;
 import java.time.Duration;
 
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public interface Player {
@@ -19,7 +22,13 @@ public interface Player {
 
     int getNumber();
 
+    Shape getFeetBox();
+
+    Rectangle getArmHitbox();
+
     PlayerState getState();
+
+    PlayerStats getPlayerStats();
 
     void setWidth(double width);
 
@@ -33,13 +42,7 @@ public interface Player {
 
     void idle();
 
-    void attack();
-
     void dodge();
-
-    double getAttackPower();
-
-    double getCurrentHealth();
 
     Hitbox getHitbox();
 

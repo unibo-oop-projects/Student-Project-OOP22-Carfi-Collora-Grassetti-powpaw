@@ -8,7 +8,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
-import powpaw.controller.impl.AttackControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.PowerUpController;
 import powpaw.controller.impl.WeaponController;
@@ -20,11 +19,6 @@ public class WorldRenderImpl implements WorldRender {
     private final WeaponController weaponController = new WeaponController();
     private final PlayerController playerController = new PlayerController();
     private final PowerUpController powerUpController = new PowerUpController();
-
-    // TODO qui o nel PlayerController?
-    private final AttackControllerImpl attackController = new AttackControllerImpl(
-            playerController.getPlayerObservable().getPlayers().get(0),
-            playerController.getPlayerObservable().getPlayers().get(1));
 
     private Scene worldScene;
 
@@ -43,10 +37,6 @@ public class WorldRenderImpl implements WorldRender {
         return this.powerUpController;
     }
 
-    public AttackControllerImpl getAttackController() {
-        return this.attackController;
-    }
-
     @Override
     public MapRender getMapRender() {
         return this.mapRender;
@@ -59,9 +49,15 @@ public class WorldRenderImpl implements WorldRender {
                 Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
         worldPane.getChildren()
                 .addAll(playerController.getRender().stream().map(r -> r.getSprite()).collect(Collectors.toList()));
+
+        // debug
+        worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getFeetBox());
+        worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getArmHitbox());
+
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
-        worldPane.getChildren().addAll(powerUpController.getPowerUps());
+        worldPane.getChildren().add(powerUpController.getRender().getSprite());
+
         weaponController.getRender().setTerrains(mapRender.getTerrains());
         this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
@@ -79,5 +75,4 @@ public class WorldRenderImpl implements WorldRender {
                     .notifyObserversReleased(event.getCode());
         });
     }
-
 }

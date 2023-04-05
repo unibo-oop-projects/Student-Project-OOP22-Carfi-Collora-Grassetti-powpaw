@@ -1,10 +1,8 @@
 package powpaw.model.impl;
 
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.scene.transform.Shear;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Transition;
@@ -48,12 +46,10 @@ public class TransitionImpl implements Transition {
     }
 
     @Override
-    public boolean checkPlayerContainedByHitbox(Hitbox hitbox) {
-        Rectangle tmp = new Rectangle(hitbox.getShape().getTranslateX(), hitbox.getShape().getTranslateX(), ScreenController.SIZE_HD_W / 15, ScreenController.SIZE_HD_H / 15);
+    public boolean checkPlayerInTerrain(Shape feetBox) {
         for (BlockImpl obs : this.map.getTerrains()) {
-
-            if (tmp.getBoundsInParent()
-                        .contains(obs.getHitbox().getShape().getBoundsInParent())) {
+            if (feetBox.getBoundsInParent()
+                    .intersects(obs.getHitbox().getShape().getBoundsInParent())) {
                 return true;
             }
         }
