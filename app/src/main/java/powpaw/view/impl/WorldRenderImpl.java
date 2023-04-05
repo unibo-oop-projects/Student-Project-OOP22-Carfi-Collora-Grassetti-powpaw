@@ -8,8 +8,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
-import powpaw.controller.impl.AttackControllerImpl;
-import powpaw.controller.impl.DamageMeterControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.PowerUpController;
 import powpaw.controller.impl.WeaponController;

@@ -28,7 +28,6 @@ public class WeaponFactory {
     }
 
     private static WeaponImpl createSword(Point2D pos, int id) {
-
         WeaponImpl sword = new WeaponImpl(pos, id);
         sword.setAttack(0.25);
         sword.setSpeed(0.4);

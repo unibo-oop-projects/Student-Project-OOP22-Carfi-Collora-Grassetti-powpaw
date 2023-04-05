@@ -21,7 +21,7 @@ public class WeaponController {
         weaponRender = new WeaponRender();
         createWeapon();
     }
-
+    
     public void pickWeapon(PlayerController playerController) {
         playerController.getPlayerObservable().getPlayers().forEach(player -> {
             if (weapon.getHitbox().getShape().getBoundsInParent()
