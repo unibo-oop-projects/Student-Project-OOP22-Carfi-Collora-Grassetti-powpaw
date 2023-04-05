@@ -34,8 +34,6 @@ public class PlayerObservableImpl implements PlayerObservable {
 
     @Override
     public void update(Duration deltaTime) {
-        playerList.forEach(player -> {
-            player.update(deltaTime);
-        });
+        playerList.forEach(player -> player.update(deltaTime));
     }
 }

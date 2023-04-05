@@ -1,9 +1,9 @@
 package powpaw.view.impl;
 
-import javafx.event.EventHandler;
+import java.util.stream.Collectors;
+
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
@@ -57,8 +57,8 @@ public class WorldRenderImpl implements WorldRender {
         Pane worldPane = mapRender.createPane();
         worldPane.setBackground(
                 Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
-        worldPane.getChildren().add(playerController.getRender().get(0).getSprite()); // TODO fix
-        worldPane.getChildren().add(playerController.getRender().get(1).getSprite());
+        worldPane.getChildren()
+                .addAll(playerController.getRender().stream().map(r -> r.getSprite()).collect(Collectors.toList()));
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
         worldPane.getChildren().addAll(powerUpController.getPowerUps());
@@ -69,23 +69,14 @@ public class WorldRenderImpl implements WorldRender {
 
     public void playersCommands() {
 
-        this.worldScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-            @Override
-            public void handle(KeyEvent event) {
-                playerController.getPlayerObservable().getKeyObservable()
-                        .notifyObserversPressed(event);
-            }
+        this.worldScene.setOnKeyPressed(event -> {
+            playerController.getPlayerObservable().getKeyObservable()
+                    .notifyObserversPressed(event.getCode());
         });
 
-        this.worldScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-
-            @Override
-            public void handle(KeyEvent event) {
-                playerController.getPlayerObservable().getKeyObservable()
-                        .notifyObserversReleased(event);
-            }
-
+        this.worldScene.setOnKeyReleased(event -> {
+            playerController.getPlayerObservable().getKeyObservable()
+                    .notifyObserversReleased(event.getCode());
         });
     }
 
