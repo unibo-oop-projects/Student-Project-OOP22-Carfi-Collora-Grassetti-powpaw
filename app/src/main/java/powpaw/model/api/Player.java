@@ -21,6 +21,8 @@ public interface Player {
 
     PlayerState getState();
 
+    PlayerStats getPlayerStats();
+
     void setWidth(double width);
 
     void setHeight(double height);

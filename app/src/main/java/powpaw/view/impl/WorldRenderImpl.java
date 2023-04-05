@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.AttackControllerImpl;
+import powpaw.controller.impl.DamageMeterControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.PowerUpController;
 import powpaw.controller.impl.WeaponController;
@@ -19,7 +20,8 @@ public class WorldRenderImpl implements WorldRender {
     private final MapRender mapRender = new MapRender();
     private final WeaponController weaponController = new WeaponController();
     private final PlayerController playerController = new PlayerController();
-    private final PowerUpController powerUpController = new PowerUpController();
+    private PowerUpController powerUpController = new PowerUpController();
+    private final DamageMeterControllerImpl damageMeterController = new DamageMeterControllerImpl();
 
     // TODO qui o nel PlayerController?
     private final AttackControllerImpl attackController = new AttackControllerImpl(
@@ -61,7 +63,10 @@ public class WorldRenderImpl implements WorldRender {
                 .addAll(playerController.getRender().stream().map(r -> r.getSprite()).collect(Collectors.toList()));
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
-        worldPane.getChildren().addAll(powerUpController.getPowerUps());
+        worldPane.getChildren().add(powerUpController.getRender().getSprite());
+        worldPane.getChildren().add(damageMeterController.getRender().getDamageP1());
+        worldPane.getChildren().add(damageMeterController.getRender().getDamageP2());
+        System.out.println(damageMeterController.getRender().getDamageP1());
         weaponController.getRender().setTerrains(mapRender.getTerrains());
         this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
@@ -69,15 +74,10 @@ public class WorldRenderImpl implements WorldRender {
 
     public void playersCommands() {
 
-        this.worldScene.setOnKeyPressed(event -> {
-            playerController.getPlayerObservable().getKeyObservable()
-                    .notifyObserversPressed(event.getCode());
-        });
+        this.worldScene.setOnKeyPressed(event -> playerController.getPlayerObservable().getKeyObservable()
+                .notifyObserversPressed(event.getCode()));
 
-        this.worldScene.setOnKeyReleased(event -> {
-            playerController.getPlayerObservable().getKeyObservable()
-                    .notifyObserversReleased(event.getCode());
-        });
+        this.worldScene.setOnKeyReleased(event -> playerController.getPlayerObservable().getKeyObservable()
+                .notifyObserversReleased(event.getCode()));
     }
-
 }
