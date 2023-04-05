@@ -8,6 +8,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
+import powpaw.controller.impl.AttackControllerImpl;
+import powpaw.controller.impl.DamageMeterControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.PowerUpController;
 import powpaw.controller.impl.WeaponController;
@@ -36,7 +38,7 @@ public class WorldRenderImpl implements WorldRender {
     public PowerUpController getPowerUpController() {
         return this.powerUpController;
     }
-    
+
     @Override
     public MapRender getMapRender() {
         return this.mapRender;
@@ -50,13 +52,14 @@ public class WorldRenderImpl implements WorldRender {
         worldPane.getChildren().add(playerController.getRender().get(0).getSprite()); // TODO fix
         worldPane.getChildren().add(playerController.getRender().get(1).getSprite());
 
-        //debug
+        // debug
         worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getFeetBox());
         worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getArmHitbox());
 
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
-        worldPane.getChildren().addAll(powerUpController.getPowerUps());
+        worldPane.getChildren().add(powerUpController.getRender().getSprite());
+
         weaponController.getRender().setTerrains(mapRender.getTerrains());
         this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
@@ -80,8 +83,6 @@ public class WorldRenderImpl implements WorldRender {
                 playerController.getPlayerObservable().getKeyObservable()
                         .notifyObserversReleased(event);
             }
-
         });
     }
-
 }

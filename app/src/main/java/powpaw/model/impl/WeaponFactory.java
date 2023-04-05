@@ -3,34 +3,39 @@ package powpaw.model.impl;
 import java.util.Random;
 
 import javafx.geometry.Point2D;
+import powpaw.controller.api.ScreenController;
 
 public class WeaponFactory {
 
-    public static WeaponImpl createWeapon(double x, double y){
+    public static WeaponImpl createWeapon(int id) {
         Random rand = new Random();
-        WeaponImpl weapon = new WeaponImpl(new Point2D(x, y));
-        switch(rand.nextInt(2)){
+        // Point2D position = new Point2D( rand.nextDouble(250,
+        // ScreenController.SIZE_HD_W - 250), 200);
+        Point2D position = new Point2D(ScreenController.SIZE_HD_W - 250, 200);
+        WeaponImpl weapon = new WeaponImpl(position, id);
+        switch (id) {
             case 0:
-                weapon = createSword(x, y);
+                System.out.println("SWORD");
+                weapon = createSword(position, id);
                 break;
             case 1:
-                weapon = createHammer(x, y);
+                System.out.println("Hammer");
+                weapon = createHammer(position, id);
                 break;
         }
         return weapon;
     }
 
-    
-    private static WeaponImpl createSword(double x, double y) {
-        
-        WeaponImpl sword = new WeaponImpl(new Point2D(x, y));
+    private static WeaponImpl createSword(Point2D pos, int id) {
+
+        WeaponImpl sword = new WeaponImpl(pos, id);
         sword.setAttack(0.25);
         sword.setSpeed(0.4);
         return sword;
     }
 
-    private static  WeaponImpl createHammer(double x, double y){
-        WeaponImpl hammer = new WeaponImpl(new Point2D(x, y));
+    private static WeaponImpl createHammer(Point2D pos, int id) {
+        WeaponImpl hammer = new WeaponImpl(pos, id);
         hammer.setAttack(0.4);
         hammer.setSpeed(0.2);
         return hammer;

@@ -12,13 +12,8 @@ public class WeaponRender {
     private WeaponImpl weapons;
     private ArrayList<BlockImpl> terrains;
     private Image image;
-    private ImageView weaponSprite;
-
-    public WeaponRender(WeaponImpl weapons) {
-        this.weapons = weapons;
-        this.image = new Image("/sword.png");
-        this.weaponSprite = new ImageView(this.image);
-    }
+    private ImageView weaponSprite = new ImageView();
+    private int id;
 
     public void setTerrains(ArrayList<BlockImpl> terrains) {
         this.terrains = terrains;
@@ -32,13 +27,25 @@ public class WeaponRender {
         return this.weaponSprite;
     }
 
+    public void setWeapon(WeaponImpl weapon, int id) {
+        this.weapons = weapon;
+        this.id = id;
+        setSpriteImage();
+    }
+
     public void render() {
         this.weaponSprite.setLayoutX(weapons.getPosition().getX());
         this.weaponSprite.setLayoutY(weapons.getPosition().getY());
         this.weaponSprite.setFitWidth(WeaponImpl.WIDTH);
         this.weaponSprite.setFitHeight(WeaponImpl.HEIGHT);
-
+        setSpriteImage();
+        this.weaponSprite.setVisible(this.weapons.getIsVisible());
     }
 
+    private void setSpriteImage() {
+        this.image = this.weapons.getId() == 0 ? new Image("/sword.png")
+                : new Image("/hammer3.png");
+        this.weaponSprite.setImage(image);
+    }
 
 }

@@ -1,55 +1,56 @@
 package powpaw.controller.impl;
 
-import java.util.ArrayList;
+import java.util.Random;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
-import powpaw.controller.api.ScreenController;
-import powpaw.model.api.Player;
 import powpaw.model.api.PowerUp;
-import powpaw.model.impl.PowerUpFactory;
-import powpaw.model.impl.PowerUpImpl;
+import powpaw.model.impl.AttackPowerUp;
+import powpaw.model.impl.PlayerStats;
+import powpaw.model.impl.SpeedPowerUp;
 import powpaw.view.impl.PowerUpRender;
 
 public class PowerUpController {
-    private ArrayList<Circle> powerUps;
     private PowerUpRender powerUpRender;
-    private PowerUp pow = new PowerUpImpl();
+    private PowerUp powerUp;
+    private boolean isCollected = false;
+    private int powerUpIndex;
+    private Random rand = new Random();
 
     public PowerUpController() {
-        powerUps = createPowerUp();
+        this.powerUpRender = new PowerUpRender();
+        this.choosePowerUp();
     }
 
-    private ArrayList<Circle> createPowerUp() {
-        powerUps = new ArrayList<>();
-        powerUps.add(PowerUpFactory.createPowerUp(ScreenController.SIZE_HD_W/2 ,
-        ScreenController.SIZE_HD_H/2));
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), event ->{
-            if(powerUps.size()<4){
-                powerUps.add(PowerUpFactory.createPowerUp(ScreenController.SIZE_HD_W/2, ScreenController.SIZE_HD_H/2));
-            }
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-        return powerUps;
-    }
-
-    public ArrayList<Circle> getPowerUps() {
-        return this.powerUps;
-    }
-    public PowerUpRender getRender(){
+    public PowerUpRender getRender() {
         return this.powerUpRender;
     }
 
-    public void pickPowerUp(Player player) {
-        for (Circle powerUp : powerUps) {
-            if (powerUp.getBoundsInParent().intersects(player.getHitbox().getShape().getBoundsInParent())) { 
-                powerUp.setCenterY(10000);
-                pow.attackUp();
+    public void pickPowerUp(PlayerController playerController) {
+
+        playerController.getPlayerObservable().getPlayers().forEach(player -> {
+            if (powerUp.getHurtbox().getBoundsInParent()
+                    .intersects(player.getHitbox().getShape().getBoundsInParent())) {
+                if (!isCollected) {
+                    powerUp.statPowerUp(player.getNumber() == 1
+                            ? playerController.getPlayerObservable().getPlayers().get(0).getPlayerStats()
+                            : playerController.getPlayerObservable().getPlayers().get(1).getPlayerStats());
+                    isCollected = true;
+                    powerUp.setVisible(false);
+                    new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+                        isCollected = false;
+                        this.choosePowerUp();
+                        powerUp.setVisible(true);
+                    })).play();
+                }
             }
-        }
+        });
     }
 
+    private void choosePowerUp() {
+        powerUpIndex = rand.nextInt(2);
+        powerUp = powerUpIndex == 0 ? new SpeedPowerUp() : new AttackPowerUp();
+        powerUpRender.setPowerUp(powerUp, powerUpIndex);
+    }
 }
