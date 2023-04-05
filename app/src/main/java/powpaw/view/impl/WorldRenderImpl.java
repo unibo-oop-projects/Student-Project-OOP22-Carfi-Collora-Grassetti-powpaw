@@ -59,7 +59,7 @@ public class WorldRenderImpl implements WorldRender {
         Pane worldPane = mapRender.createPane();
         worldPane.setBackground(
                 Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
-        worldPane.getChildren().add(playerController.getRender().get(0).getSprite());
+        worldPane.getChildren().add(playerController.getRender().get(0).getSprite()); // TODO fix
         worldPane.getChildren().add(playerController.getRender().get(1).getSprite());
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());

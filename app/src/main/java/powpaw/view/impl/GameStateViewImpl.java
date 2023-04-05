@@ -47,7 +47,6 @@ public class GameStateViewImpl implements GameStateView {
         loop.setPlayerController(worldRender.getPlayerController());
         loop.setWeaponController(worldRender.getWeaponController());
         loop.setPowerUpController(worldRender.getPowerUpController());
-        loop.setAttackController(worldRender.getAttackController());
         loop.start();
     }
 

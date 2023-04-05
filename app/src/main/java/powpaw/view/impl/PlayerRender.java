@@ -34,6 +34,10 @@ public class PlayerRender {
         return this.sprite;
     }
 
+    public Player getPlayer(){
+        return this.player;
+    }
+
     public void renderPlayer() {
         if (this.player.getState() == PlayerState.WALK_RIGHT) {
             rotate(this.sprite, 0);
