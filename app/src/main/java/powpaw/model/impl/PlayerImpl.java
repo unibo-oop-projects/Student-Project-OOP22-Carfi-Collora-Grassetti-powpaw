@@ -2,9 +2,11 @@ package powpaw.model.impl;
 
 import java.time.Duration;
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
+import powpaw.controller.impl.StatsHandler;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
 
@@ -83,7 +85,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public Shape getArmHitbox() {
+    public Rectangle getArmHitbox() {
         return this.hitbox.getArmShape();
     }
 
@@ -176,6 +178,10 @@ public class PlayerImpl implements Player {
             return false;
         }
         return true;
+    }
+
+    public void receiveAttack(){
+        this.acceleration.add(acceleration.getX() + 0.2, acceleration.getY());
     }
 
     @Override

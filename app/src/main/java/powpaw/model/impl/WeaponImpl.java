@@ -7,10 +7,15 @@ import powpaw.model.api.Weapon;
 
 public class WeaponImpl implements Weapon {
 
-    private Hitbox hitbox;
-    private Point2D position;
+    
     public static double WIDTH = ScreenController.SIZE_HD_W / 50;
     public static double HEIGHT = ScreenController.SIZE_HD_H / 30;
+
+    private Hitbox hitbox;
+    private Point2D position;
+    private double attack;
+    private double speed;
+
     private final TransitionImpl transition = new TransitionImpl();
 
     public WeaponImpl(Point2D position) {
@@ -28,6 +33,15 @@ public class WeaponImpl implements Weapon {
         return this.position;
     }
 
+    @Override
+    public void setAttack(double attack){
+        this.attack = attack;
+    }
+
+    @Override
+    public void setSpeed(double speed){
+        this.speed = speed;
+    }
     @Override
     public void update() {
         this.position = transition.fallTransition(position);

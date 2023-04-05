@@ -22,10 +22,10 @@ public class PlayerController {
     private PlayerObservable playerObservable;
     private List<PlayerRender> playersRender = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
+    
 
     public PlayerController() {
         AtomicInteger index = new AtomicInteger();
-
         POSITIONS.forEach(point -> {
             Player player = new PlayerImpl(point, index.incrementAndGet());
             players.add(player);
@@ -33,6 +33,7 @@ public class PlayerController {
         });
 
         playerObservable = new PlayerObservableImpl(players);
+        
     }
 
     public List<PlayerRender> getRender() {

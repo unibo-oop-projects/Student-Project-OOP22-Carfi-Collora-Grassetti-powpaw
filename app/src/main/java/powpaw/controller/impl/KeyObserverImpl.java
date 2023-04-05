@@ -12,10 +12,9 @@ import powpaw.view.api.KeyObserver;
 public class KeyObserverImpl implements KeyObserver {
 
     private final Player player;
-    private AttackControllerImpl attackController;
     private Set<KeyCode> pressedKeys = new HashSet<>();
     private boolean isJumping = false;
-
+    
     private KeyCode keyJump;
     private KeyCode keyLeft;
     private KeyCode keyRight;
@@ -51,7 +50,6 @@ public class KeyObserverImpl implements KeyObserver {
                 this.player.moveRight();
             }
             if (key == this.keyAttack){
-                
             }
         });
     }
@@ -65,10 +63,6 @@ public class KeyObserverImpl implements KeyObserver {
             }
             this.player.idle();
         }
-    }
-
-    public void setAttackController(AttackControllerImpl ac){
-        this.attackController = ac;
     }
 
 }

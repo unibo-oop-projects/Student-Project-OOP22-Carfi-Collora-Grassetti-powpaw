@@ -3,6 +3,7 @@ package powpaw.model.api;
 import java.time.Duration;
 
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
@@ -22,7 +23,7 @@ public interface Player {
 
     Shape getFeetBox();
 
-    Shape getArmHitbox();
+    Rectangle getArmHitbox();
 
     PlayerState getState();
 

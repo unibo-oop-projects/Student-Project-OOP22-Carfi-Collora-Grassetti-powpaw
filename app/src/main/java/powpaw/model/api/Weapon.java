@@ -9,5 +9,9 @@ public interface Weapon {
     Point2D getPosition();
 
     void update();
+
+    void setAttack(double attack);
+
+    void setSpeed(double speed);
     
 }

@@ -2,6 +2,7 @@ package powpaw.controller.impl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
@@ -14,20 +15,10 @@ public class AttackControllerImpl {
     private Player playerOne;
     private Player playerTwo;
 
-    public AttackControllerImpl(ArrayList<Player> players) {
+    public AttackControllerImpl(List<Player> players) {
         this.playerOne = players.get(0);
         this.playerTwo = players.get(1);
     }
-
-    // nel PlayerImpl
-    /* public Optional<Player> checkHealtStatus() {
-        if (playerOne.getCurrentHealth() >= MAX_PERC) {
-            return Optional.of(this.playerOne);
-        } else if (playerOne.getCurrentHealth() >= MAX_PERC) {
-            return Optional.of(this.playerTwo);
-        }
-        return Optional.empty();
-    } */
 
     public Optional<Player> checkDeath() {
         if(ScreenController.isOutOfScreen(this.playerOne.getHitbox())){
@@ -47,6 +38,8 @@ public class AttackControllerImpl {
         }
         return Optional.empty();
     }
+
+
 
     /* public boolean update() {
         return checkDeath();

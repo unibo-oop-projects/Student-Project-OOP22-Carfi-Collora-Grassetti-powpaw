@@ -56,7 +56,7 @@ public class PlayerHitboxImpl implements Hitbox {
         return this.feetBox;
     }
 
-    public Shape getArmShape(){
+    public Rectangle getArmShape(){
         return this.armHitbox;
     }
 
