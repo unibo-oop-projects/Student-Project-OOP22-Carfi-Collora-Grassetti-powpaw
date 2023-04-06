@@ -6,6 +6,7 @@ import powpaw.GameLoop;
 import powpaw.controller.api.GameStateController;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.GameStateControllerImpl;
+import powpaw.model.api.Player;
 import powpaw.view.api.GameStateView;
 import powpaw.view.api.StartMenu;
 
@@ -49,9 +50,8 @@ public class GameStateViewImpl implements GameStateView {
     }
 
     @Override
-    public void showGameOver() {
+    public void showGameOver(Player player) {
         gameStateController.gameOver();
-
     }
 
 }

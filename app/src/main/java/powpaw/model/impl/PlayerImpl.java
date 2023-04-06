@@ -34,7 +34,6 @@ public class PlayerImpl implements Player {
     private int number;
     private double width;
     private double height;
-    private double attackPower;
     private double knockback = 1;
     private double currentHealth = 0.5;
     private PlayerStats stats;
@@ -59,7 +58,6 @@ public class PlayerImpl implements Player {
         this.currentState = PlayerState.IDLE;
         this.idle();
         this.stats = number == 1 ? StatsHandler.getStatsP1() : StatsHandler.getStatsP2();
-        // this.directionDeath = new Point2D(0, 0);
     }
 
     @Override

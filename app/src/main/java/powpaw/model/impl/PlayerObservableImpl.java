@@ -5,6 +5,7 @@ import java.util.List;
 
 import powpaw.config.Parser;
 import powpaw.controller.impl.AttackControllerImpl;
+import powpaw.controller.impl.GameStateHandler;
 import powpaw.controller.impl.KeyObserverImpl;
 import powpaw.model.api.Player;
 import powpaw.model.api.PlayerObservable;
@@ -37,6 +38,9 @@ public class PlayerObservableImpl implements PlayerObservable {
 
     @Override
     public void update(Duration deltaTime) {
+        if (attackController.checkDeath().isPresent()){
+            GameStateHandler.getGameStateView().showGameOver(attackController.checkDeath().get());
+        }
         playerList.forEach(player -> player.update(deltaTime));
     }
 }
