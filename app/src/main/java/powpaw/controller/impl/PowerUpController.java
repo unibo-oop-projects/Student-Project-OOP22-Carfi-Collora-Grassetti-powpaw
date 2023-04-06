@@ -5,6 +5,7 @@ import java.util.Random;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import powpaw.controller.api.PlayerController;
 import powpaw.model.api.PowerUp;
 import powpaw.model.impl.AttackPowerUp;
 import powpaw.model.impl.SpeedPowerUp;

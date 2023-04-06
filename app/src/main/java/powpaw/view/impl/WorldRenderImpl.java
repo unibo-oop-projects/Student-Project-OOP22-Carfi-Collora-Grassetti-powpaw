@@ -7,10 +7,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
+import powpaw.controller.api.PlayerController;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.AttackControllerImpl;
 import powpaw.controller.impl.DamageMeterControllerImpl;
-import powpaw.controller.impl.PlayerController;
+import powpaw.controller.impl.PlayerControllerImpl;
 import powpaw.controller.impl.PowerUpController;
 import powpaw.controller.impl.WeaponController;
 import powpaw.view.api.WorldRender;
@@ -19,7 +20,7 @@ public class WorldRenderImpl implements WorldRender {
 
     private final MapRender mapRender = new MapRender();
     private final WeaponController weaponController = new WeaponController();
-    private final PlayerController playerController = new PlayerController();
+    private final PlayerController playerController = new PlayerControllerImpl();
     private PowerUpController powerUpController = new PowerUpController();
     private final DamageMeterControllerImpl damageMeterController = new DamageMeterControllerImpl();
 

@@ -2,16 +2,14 @@ package powpaw.view.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
-// import java.util.List;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
 import powpaw.model.api.Player;
 import powpaw.model.impl.PlayerImpl.PlayerState;
+import powpaw.view.api.PlayerRender;
 
-public class PlayerRender {
+public class PlayerRenderImpl implements PlayerRender {
 
     final List<Image> sprites = new ArrayList<>();
     final Image idleSprite;
@@ -19,7 +17,7 @@ public class PlayerRender {
     final ImageView sprite;
     private Player player;
 
-    public PlayerRender(Player player) {
+    public PlayerRenderImpl(Player player) {
         this.player = player;
         int playerNum = player.getNumber();
         this.idleSprite = new Image("p" + playerNum + "_idle.png");
@@ -30,14 +28,17 @@ public class PlayerRender {
         }
     }
 
+    @Override
     public ImageView getSprite() {
         return this.sprite;
     }
 
-    public Player getPlayer(){
+    @Override
+    public Player getPlayer() {
         return this.player;
     }
 
+    @Override
     public void renderPlayer() {
         if (this.player.getState() == PlayerState.WALK_RIGHT) {
             rotate(this.sprite, 0);
