@@ -28,6 +28,7 @@ public class PlayerRender {
         if (playerNum % 2 == 0) {
             this.rotate(sprite, 180);
         }
+        
     }
 
     public ImageView getSprite() {
@@ -41,10 +42,12 @@ public class PlayerRender {
     public void renderPlayer() {
         if (this.player.getState() == PlayerState.WALK_RIGHT) {
             rotate(this.sprite, 0);
-
+            this.player.getArmHitbox().setRotate(0);
+            this.player.getArmHitbox().setTranslateX(0);
         }
         if (this.player.getState() == PlayerState.WALK_LEFT) {
             rotate(this.sprite, 180);
+            this.player.getArmHitbox().setTranslateX( - this.player.getArmHitbox().getWidth());
         }
         this.sprite.setImage(this.player.getState() == PlayerState.ATTACK ? attackSprite : idleSprite);
         this.sprite.setLayoutX(this.player.getPosition().getX());

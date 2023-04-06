@@ -1,6 +1,7 @@
 package powpaw.model.api;
 
 import javafx.geometry.Point2D;
+import powpaw.model.impl.BlockHitboxImpl;
 
 public interface Block {
 
@@ -10,7 +11,7 @@ public interface Block {
 
     void setY(double y);
 
-    Hitbox getHitbox();
+    BlockHitboxImpl getHitbox();
 
     double getWidth();
 

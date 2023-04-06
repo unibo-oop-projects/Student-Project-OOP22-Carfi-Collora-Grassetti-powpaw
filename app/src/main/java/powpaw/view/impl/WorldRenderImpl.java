@@ -8,8 +8,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import powpaw.controller.api.ScreenController;
-import powpaw.controller.impl.AttackControllerImpl;
-import powpaw.controller.impl.DamageMeterControllerImpl;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.PowerUpController;
 import powpaw.controller.impl.WeaponController;
@@ -20,13 +18,7 @@ public class WorldRenderImpl implements WorldRender {
     private final MapRender mapRender = new MapRender();
     private final WeaponController weaponController = new WeaponController();
     private final PlayerController playerController = new PlayerController();
-    private PowerUpController powerUpController = new PowerUpController();
-    private final DamageMeterControllerImpl damageMeterController = new DamageMeterControllerImpl();
-
-    // TODO qui o nel PlayerController?
-    private final AttackControllerImpl attackController = new AttackControllerImpl(
-            playerController.getPlayerObservable().getPlayers().get(0),
-            playerController.getPlayerObservable().getPlayers().get(1));
+    private final PowerUpController powerUpController = new PowerUpController();
 
     private Scene worldScene;
 
@@ -45,10 +37,6 @@ public class WorldRenderImpl implements WorldRender {
         return this.powerUpController;
     }
 
-    public AttackControllerImpl getAttackController() {
-        return this.attackController;
-    }
-
     @Override
     public MapRender getMapRender() {
         return this.mapRender;
@@ -61,6 +49,27 @@ public class WorldRenderImpl implements WorldRender {
                 Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
         worldPane.getChildren()
                 .addAll(playerController.getRender().stream().map(r -> r.getSprite()).collect(Collectors.toList()));
+
+        // debug
+        worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getHitbox().getShape());
+        worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getFeetBox());
+        worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getArmHitbox());
+        /*
+         * worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().
+         * getHitbox().getHitboxLeft());
+         * worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().
+         * getHitbox().getHitboxRight());
+         */
+        worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().getHitbox().getShape());
+        worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().getFeetBox());
+        worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().getArmHitbox());
+        /*
+         * worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().
+         * getHitbox().getHitboxLeft());
+         * worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().
+         * getHitbox().getHitboxRight());
+         */
+
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
         worldPane.getChildren().add(powerUpController.getRender().getSprite());

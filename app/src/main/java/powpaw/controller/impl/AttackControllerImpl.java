@@ -1,60 +1,50 @@
 package powpaw.controller.impl;
 
+import java.util.List;
 import java.util.Optional;
+
+import javafx.geometry.Point2D;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
-import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public class AttackControllerImpl {
 
-    // si riferisce in percentuale
-    private static final double MAX_PERC = 1; // * 100
     private Player playerOne;
     private Player playerTwo;
 
-    public AttackControllerImpl(Player playerOne, Player playerTwo) {
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
-    }
-
-    // nel PlayerImpl
-    public Optional<Player> checkHealtStatus() {
-        if (playerOne.getCurrentHealth() >= MAX_PERC) {
-            return Optional.of(this.playerOne);
-        } else if (playerOne.getCurrentHealth() >= MAX_PERC) {
-            return Optional.of(this.playerTwo);
-        }
-        return Optional.empty();
+    public void setPlayers(List<Player> players) {
+        this.playerOne = players.get(0);
+        this.playerTwo = players.get(1);
     }
 
     public Optional<Player> checkDeath() {
-        if (ScreenController.isOutOfScreen(this.playerOne.getHitbox())) {
-            if (checkHit().get() == this.playerOne) {
-                return Optional.of(this.playerOne);
-            }
-        } else if (ScreenController.isOutOfScreen(this.playerTwo.getHitbox())) {
-            if (checkHit().get() == this.playerOne) {
-                return Optional.of(this.playerTwo);
-            }
+        if (ScreenController.isOutOfScreen(playerOne.getHitbox())) {
+            return Optional.of(playerOne);
+        }
+        if (ScreenController.isOutOfScreen(this.playerTwo.getHitbox())) {
+            return Optional.of(playerTwo);
         }
         return Optional.empty();
     }
 
-    private Optional<Player> checkHit() {
-        if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getShape())) {
-            if (this.playerOne.getState().equals(PlayerState.ATTACK)) {
-                this.playerOne.attack();
-                return Optional.of(this.playerOne);
-            } else if (this.playerTwo.getState().equals(PlayerState.ATTACK)) {
-                this.playerTwo.attack();
-                return Optional.of(this.playerTwo);
-            }
+    public void checkHit(Player player) {
+        if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getHitboxLeft())
+                && player.getNumber() == 1) {
+            System.out.println(player.getNumber() + "left");
+            this.playerTwo.receiveAttack(new Point2D(1, 0), StatsHandler.getStatsP1().getAttack());
+        } else if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getHitboxRight())
+                && player.getNumber() == 1) {
+            System.out.println(player.getNumber() + "right");
+            this.playerTwo.receiveAttack(new Point2D(-1, 0), StatsHandler.getStatsP1().getAttack());
+        } else if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getHitboxLeft())
+                && player.getNumber() == 2) {
+            System.out.println(player.getNumber() + "left");
+            this.playerOne.receiveAttack(new Point2D(1, 0), StatsHandler.getStatsP2().getAttack());
+        } else if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getHitboxRight())
+                && player.getNumber() == 2) {
+            System.out.println(player.getNumber() + "right");
+            this.playerOne.receiveAttack(new Point2D(-1, 0), StatsHandler.getStatsP2().getAttack());
         }
-        return Optional.empty();
-    }
-
-    public Optional<Player> update() {
-        return checkDeath();
     }
 
 }
