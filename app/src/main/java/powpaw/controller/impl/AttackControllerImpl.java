@@ -31,19 +31,19 @@ public class AttackControllerImpl {
         if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getHitboxLeft())
                 && player.getNumber() == 1) {
             System.out.println(player.getNumber() + "left");
-            this.playerTwo.receiveAttack(new Point2D(1, 0), StatsHandler.getStatsP1().getAttack());
+            this.playerTwo.receiveAttack(new Point2D(1, 0), StatsHandler.getStatsP1().getAttack()-StatsHandler.getStatsP2().getDefence());
         } else if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getHitboxRight())
                 && player.getNumber() == 1) {
             System.out.println(player.getNumber() + "right");
-            this.playerTwo.receiveAttack(new Point2D(-1, 0), StatsHandler.getStatsP1().getAttack());
+            this.playerTwo.receiveAttack(new Point2D(-1, 0), StatsHandler.getStatsP1().getAttack()-StatsHandler.getStatsP2().getDefence());
         } else if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getHitboxLeft())
                 && player.getNumber() == 2) {
             System.out.println(player.getNumber() + "left");
-            this.playerOne.receiveAttack(new Point2D(1, 0), StatsHandler.getStatsP2().getAttack());
+            this.playerOne.receiveAttack(new Point2D(1, 0), StatsHandler.getStatsP2().getAttack()-StatsHandler.getStatsP1().getDefence());
         } else if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getHitboxRight())
                 && player.getNumber() == 2) {
             System.out.println(player.getNumber() + "right");
-            this.playerOne.receiveAttack(new Point2D(-1, 0), StatsHandler.getStatsP2().getAttack());
+            this.playerOne.receiveAttack(new Point2D(-1, 0), StatsHandler.getStatsP2().getAttack()-StatsHandler.getStatsP1().getDefence());
         }
     }
 

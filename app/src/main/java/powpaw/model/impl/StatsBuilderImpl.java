@@ -14,7 +14,7 @@ public class StatsBuilderImpl implements StatsBuilder {
 
     @Override
     public void setDefence(int defence) {
-        this.defence = toDouble(defence);
+        this.defence = toDouble(defence/3);
     }
 
     @Override
