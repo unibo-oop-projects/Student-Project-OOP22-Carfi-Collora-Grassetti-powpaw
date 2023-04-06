@@ -6,8 +6,7 @@ import powpaw.GameLoop;
 import powpaw.controller.api.GameStateController;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.GameStateControllerImpl;
-import powpaw.controller.impl.PlayerController;
-import powpaw.controller.impl.PowerUpController;
+import powpaw.view.api.GameOver;
 import powpaw.view.api.GameStateView;
 import powpaw.view.api.StartMenu;
 
@@ -53,6 +52,8 @@ public class GameStateViewImpl implements GameStateView {
     @Override
     public void showGameOver() {
         gameStateController.gameOver();
+        stage.setScene(new Scene(new GameOver(), ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H));
+        stage.show();
 
     }
 

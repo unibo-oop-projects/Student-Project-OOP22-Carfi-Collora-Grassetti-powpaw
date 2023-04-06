@@ -64,9 +64,10 @@ public class WorldRenderImpl implements WorldRender {
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
         worldPane.getChildren().add(powerUpController.getRender().getSprite());
-        worldPane.getChildren().add(damageMeterController.getRender().getDamageP1());
-        worldPane.getChildren().add(damageMeterController.getRender().getDamageP2());
-        System.out.println(damageMeterController.getRender().getDamageP1());
+        worldPane.getChildren()
+                .add(playerController.getPlayerObservable().getPlayers().get(0).getCurrentHealth().toText(playerController.getPlayerObservable().getPlayers().get(0)));
+        worldPane.getChildren()
+                .add(playerController.getPlayerObservable().getPlayers().get(1).getCurrentHealth().toText(playerController.getPlayerObservable().getPlayers().get(1)));
         weaponController.getRender().setTerrains(mapRender.getTerrains());
         this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;

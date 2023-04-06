@@ -19,9 +19,9 @@ public class AttackControllerImpl {
 
     // nel PlayerImpl
     public Optional<Player> checkHealtStatus() {
-        if (playerOne.getCurrentHealth() >= MAX_PERC) {
+        if (playerOne.getCurrentHealth().getDamage() >= MAX_PERC) {
             return Optional.of(this.playerOne);
-        } else if (playerOne.getCurrentHealth() >= MAX_PERC) {
+        } else if (playerOne.getCurrentHealth().getDamage() >= MAX_PERC) {
             return Optional.of(this.playerTwo);
         }
         return Optional.empty();

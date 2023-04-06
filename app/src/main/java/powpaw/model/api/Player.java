@@ -43,9 +43,7 @@ public interface Player {
 
     void dodge();
 
-    double getAttackPower();
-
-    double getCurrentHealth();
+    DamageMeter getCurrentHealth();
 
     Hitbox getHitbox();
 

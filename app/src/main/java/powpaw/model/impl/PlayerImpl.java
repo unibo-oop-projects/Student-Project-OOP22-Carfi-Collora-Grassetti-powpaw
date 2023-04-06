@@ -6,6 +6,7 @@ import javafx.scene.shape.Shape;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.StatsHandler;
+import powpaw.model.api.DamageMeter;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
 
@@ -33,8 +34,7 @@ public class PlayerImpl implements Player {
     private double width;
     private double height;
     private int countJump = 0;
-    private double attackPower;
-    private int currentHealth;
+    private DamageMeter currentHealth;
     private PlayerStats stats;
     private PlayerHitboxImpl hitbox; // TODO fix
 
@@ -48,6 +48,7 @@ public class PlayerImpl implements Player {
         this.currentState = PlayerState.IDLE;
         this.idle();
         this.stats = number == 1 ? StatsHandler.getStatsP1() : StatsHandler.getStatsP2();
+        currentHealth = new DamageMeterImpl();
     }
 
     @Override
@@ -181,16 +182,11 @@ public class PlayerImpl implements Player {
 
     @Override
     public void attack() {
-        currentHealth += KNOCKBACK * attackPower;
+        currentHealth.setDamage(KNOCKBACK * stats.getAttack());
     }
 
     @Override
-    public double getAttackPower() {
-        return this.attackPower;
-    }
-
-    @Override
-    public double getCurrentHealth() {
+    public DamageMeter getCurrentHealth() {
         return this.currentHealth;
     }
 
