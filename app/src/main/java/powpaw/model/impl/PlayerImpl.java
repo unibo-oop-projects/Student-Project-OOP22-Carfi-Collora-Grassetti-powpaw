@@ -1,8 +1,10 @@
 package powpaw.model.impl;
 
 import java.time.Duration;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
-import javafx.scene.shape.Shape;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.StatsHandler;
@@ -16,39 +18,46 @@ public class PlayerImpl implements Player {
         IDLE, JUMP, DODGE, ATTACK, WALK_RIGHT, WALK_LEFT;
     }
 
-    private static final double JUMP_SPEED = 1.7;
-    private static final int MAX_JUMP = 3;
+    private static final double JUMP_SPEED = 0.8;
+    private static final double JUMP_TIME = 0.4;
     private static final double KNOCKBACK = 0.2;
-    private static final double GRAVITY = 1.3;
+    private static final double GRAVITY = 0.5;
 
     private TransitionImpl transition;
 
     private PlayerState currentState;
 
     private Point2D position;
-    private Point2D velocity;
+    private Point2D direction;
     private Point2D acceleration;
 
     private int number;
-    private int jumpTime = 0;
     private double width;
     private double height;
-    private int countJump = 0;
-    private DamageMeter currentHealth;
+    private double attackPower;
+    private double currentHealth;
     private PlayerStats stats;
-    private PlayerHitboxImpl hitbox; // TODO fix
+    private Hitbox hitbox;
+
+    private boolean isJumping = false;
+    private boolean isMovingLeft = false;
+    private boolean isMovingRight = false;
+    private Timeline timeline = new Timeline(
+            new KeyFrame(javafx.util.Duration.seconds(JUMP_TIME), event -> {
+                this.isJumping = false;
+            }));
 
     public PlayerImpl(Point2D position, int number) {
         this.transition = new TransitionImpl();
         this.position = position;
         this.number = number;
-        this.height = ScreenController.SIZE_HD_W / 15;
+        this.height = ScreenController.SIZE_HD_H / 8;
         this.width = ScreenController.SIZE_HD_W / 15;
         hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
         this.currentState = PlayerState.IDLE;
         this.idle();
         this.stats = number == 1 ? StatsHandler.getStatsP1() : StatsHandler.getStatsP2();
-        currentHealth = new DamageMeterImpl();
+        currentHealth = 0;
     }
 
     @Override
@@ -62,26 +71,13 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public Point2D getVelocity() {
-        return this.velocity;
+    public Point2D getDirection() {
+        return this.direction;
     }
 
     @Override
-    public void setVelocity(Point2D velocity) {
-        this.velocity = velocity;
-    }
-
-    public Point2D getAcceleration() {
-        return this.acceleration;
-    }
-
-    public void setAcceleration(Point2D acceleration) {
-        this.acceleration = acceleration;
-    }
-
-    @Override
-    public Shape getFeetBox() {
-        return this.hitbox.getFeetShape();
+    public void setDirection(Point2D direction) {
+        this.direction = direction;
     }
 
     @Override
@@ -122,42 +118,47 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void moveLeft() {
+    public void setIsJumping(boolean b) {
+        this.isJumping = b;
+    }
+
+    @Override
+    public void setIsMovingLeft(boolean b) {
+        this.isMovingLeft = b;
+    }
+
+    @Override
+    public void setIsMovingRight(boolean b) {
+        this.isMovingRight = b;
+    }
+
+    public Point2D getAcceleration() {
+        return this.acceleration;
+    }
+
+    public void setAcceleration(Point2D acceleration) {
+        this.acceleration = acceleration;
+    }
+
+    private void moveLeft() {
         this.currentState = PlayerState.WALK_LEFT;
-        this.velocity = velocity.add(DirectionVector.LEFT.getPoint()).normalize();
+        this.direction = direction.add(DirectionVector.LEFT.getPoint());
     }
 
-    @Override
-    public void moveRight() {
+    private void moveRight() {
         this.currentState = PlayerState.WALK_RIGHT;
-        this.velocity = velocity.add(DirectionVector.RIGHT.getPoint()).normalize();
+        this.direction = direction.add(DirectionVector.RIGHT.getPoint());
     }
 
-    @Override
-    public void jump() {
-        jumpTime++;
-        if (jumpTime > 5) {
-            this.currentState = PlayerState.IDLE;
-            jumpTime = 0;
-        }
-        if (this.countJump < MAX_JUMP) {
-            doJump();
-        }
-    }
-
-    private void doJump() {
-        if (this.currentState != PlayerState.JUMP) {
-            this.currentState = PlayerState.JUMP;
-            this.countJump++;
-            this.velocity = this.velocity.add(DirectionVector.UP.multiply(JUMP_SPEED)).normalize();
-            this.currentState = PlayerState.IDLE;
-        }
+    private void jump() {
+        this.currentState = PlayerState.JUMP;
+        this.direction = this.direction.add(DirectionVector.UP.getPoint());
     }
 
     @Override
     public void idle() {
         this.currentState = PlayerState.IDLE;
-        this.velocity = new Point2D(0, 0);
+        this.direction = new Point2D(0, 0);
     }
 
     @Override
@@ -172,32 +173,53 @@ public class PlayerImpl implements Player {
         hitbox.switchDodge();
     }
 
-    private boolean isFalling() {
-        if (transition.checkPlayerCollisionByHitbox(hitbox)) {
-            this.countJump = 0;
-            return false;
-        }
-        return true;
+    public boolean isFalling() {
+        return !transition.checkPlayerCollisionByHitbox(hitbox);
     }
 
     @Override
     public void attack() {
-        currentHealth.setDamage(KNOCKBACK * stats.getAttack());
+        currentHealth += KNOCKBACK * stats.getAttack();
     }
 
     @Override
-    public DamageMeter getCurrentHealth() {
+    public double getCurrentHealth() {
         return this.currentHealth;
     }
 
     @Override
     public void update(Duration deltaTime) {
-        if (isFalling()) {
-            this.position = new Point2D(this.position.getX(),
-                    this.position.add(DirectionVector.DOWN.multiply(GRAVITY)).getY());
-        }
-        position = position.add(velocity.multiply(deltaTime.toMillis()).multiply(stats.getSpeed()));
-        hitbox.updateCenter(position);
-    }
 
+        this.idle();
+
+        if (isFalling() && !isJumping) {
+            this.direction = this.direction.add(DirectionVector.DOWN.getPoint());
+            timeline.stop();
+        }
+
+        if (this.isJumping) {
+            this.jump();
+            timeline.play();
+        }
+
+        if (this.isMovingLeft)
+
+        {
+            this.moveLeft();
+        }
+
+        if (this.isMovingRight) {
+            this.moveRight();
+        }
+
+        this.direction = this.direction.normalize();
+
+        System.out.println(this.direction);
+        this.position = this.position.add(new Point2D(this.direction.getX() * stats.getSpeed(),
+                this.direction.getY() * (isJumping ? JUMP_SPEED : GRAVITY)
+
+        ).multiply(deltaTime.toMillis()));
+
+        this.hitbox.updateCenter(this.position);
+    }
 }

@@ -1,6 +1,6 @@
 package powpaw.view.api;
 
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
 
 public interface KeyObservable {
 
@@ -8,7 +8,7 @@ public interface KeyObservable {
 
     void removeObserver(KeyObserver observer);
 
-    void notifyObserversPressed(KeyEvent event);
+    void notifyObserversPressed(KeyCode event);
 
-    void notifyObserversReleased(KeyEvent event);
+    void notifyObserversReleased(KeyCode event);
 }
