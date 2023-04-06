@@ -7,6 +7,7 @@ import javafx.geometry.Point2D;
 import powpaw.controller.api.AttackController;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
+import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public class AttackControllerImpl implements AttackController {
 
@@ -34,15 +35,19 @@ public class AttackControllerImpl implements AttackController {
     public void checkHit(Player player) {
         if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getHitboxLeft())
                 && player.getNumber() == 1) {
+            this.playerOne.serCurrentState(PlayerState.HIT);
             this.playerTwo.receiveAttack(new Point2D(1, 0), StatsHandler.getStatsP1().getAttack());
         } else if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getHitboxRight())
                 && player.getNumber() == 1) {
+            this.playerOne.serCurrentState(PlayerState.HIT);
             this.playerTwo.receiveAttack(new Point2D(-1, 0), StatsHandler.getStatsP1().getAttack());
         } else if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getHitboxLeft())
                 && player.getNumber() == 2) {
+            this.playerTwo.serCurrentState(PlayerState.HIT);
             this.playerOne.receiveAttack(new Point2D(1, 0), StatsHandler.getStatsP2().getAttack());
         } else if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getHitboxRight())
                 && player.getNumber() == 2) {
+                this.playerTwo.serCurrentState(PlayerState.HIT);
             this.playerOne.receiveAttack(new Point2D(-1, 0), StatsHandler.getStatsP2().getAttack());
         }
     }

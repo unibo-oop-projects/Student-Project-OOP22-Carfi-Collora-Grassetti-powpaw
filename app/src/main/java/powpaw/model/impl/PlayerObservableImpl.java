@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import powpaw.config.Parser;
+import powpaw.controller.api.AttackController;
 import powpaw.controller.impl.AttackControllerImpl;
 import powpaw.controller.impl.GameStateHandler;
 import powpaw.controller.impl.KeyObserverImpl;
@@ -17,7 +18,7 @@ public class PlayerObservableImpl implements PlayerObservable {
     private List<Player> playerList;
     private final KeyObservable observable = new KeyObservableImpl();
     private final Parser config;
-    private AttackControllerImpl attackController = new AttackControllerImpl();
+    private AttackController attackController = new AttackControllerImpl();
     
     public PlayerObservableImpl(List<Player> playerList) {
         this.playerList = playerList;

@@ -40,6 +40,7 @@ dependencies {
 
     // Use yaml
     implementation("org.yaml:snakeyaml:2.0")
+
 }
 
 application {

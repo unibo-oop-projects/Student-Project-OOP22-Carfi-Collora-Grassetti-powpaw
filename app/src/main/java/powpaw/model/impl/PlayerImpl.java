@@ -93,7 +93,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void increaseArmHitbox() {
-        getArmHitbox().setWidth(getHitbox().getOffsetX() + getHitbox().getOffsetX()/2);
+        getArmHitbox().setWidth(getHitbox().getOffsetX() + getHitbox().getOffsetX() / 2);
     }
 
     @Override
@@ -119,6 +119,11 @@ public class PlayerImpl implements Player {
     @Override
     public PlayerState getState() {
         return this.currentState;
+    }
+
+    @Override
+    public void serCurrentState(PlayerState state) {
+        this.currentState = state;
     }
 
     @Override

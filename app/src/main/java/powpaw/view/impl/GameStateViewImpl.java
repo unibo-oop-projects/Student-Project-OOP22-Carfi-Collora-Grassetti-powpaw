@@ -6,6 +6,7 @@ import powpaw.GameLoop;
 import powpaw.controller.api.GameStateController;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.GameStateControllerImpl;
+import powpaw.controller.impl.MediaAudio;
 import powpaw.view.api.GameOver;
 import powpaw.view.api.GameStateView;
 import powpaw.view.api.StartMenu;
@@ -25,6 +26,7 @@ public class GameStateViewImpl implements GameStateView {
     public void showStartMenu() {
         gameStateController.start();
         stage.setScene(new Scene(new StartMenu(), ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H));
+        MediaAudio.playSound("/mainTitle.wav");
         stage.show();
     }
 

@@ -31,6 +31,8 @@ public interface Player {
 
     PlayerState getState();
 
+    void serCurrentState(PlayerState state);
+
     PlayerStats getPlayerStats();
 
     void setWidth(double width);

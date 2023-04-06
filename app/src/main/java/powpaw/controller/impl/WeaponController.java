@@ -1,7 +1,6 @@
 package powpaw.controller.impl;
 
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
