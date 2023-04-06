@@ -36,7 +36,7 @@ public class PlayerImpl implements Player {
     private double width;
     private double height;
     private double knockback = 1;
-    private double currentHealth = 0.5;
+    private DamageMeter currentHealth;
     private PlayerStats stats;
     private Hitbox hitbox;
 
@@ -59,7 +59,7 @@ public class PlayerImpl implements Player {
         this.currentState = PlayerState.IDLE;
         this.idle();
         this.stats = number == 1 ? StatsHandler.getStatsP1() : StatsHandler.getStatsP2();
-        currentHealth = 0;
+        currentHealth = new DamageMeterImpl();
     }
 
     @Override
@@ -125,6 +125,11 @@ public class PlayerImpl implements Player {
     @Override
     public PlayerStats getPlayerStats() {
         return this.stats;
+    }
+
+    @Override
+    public DamageMeter getCurrentHealth(){
+        return this.currentHealth;
     }
 
     @Override
@@ -206,7 +211,8 @@ public class PlayerImpl implements Player {
         this.currentState = PlayerState.HIT;
         isHit = true;
         this.directionDeath = direction;
-        this.knockback += currentHealth;
+        currentHealth.setDamage(damage);
+        this.knockback += currentHealth.getDamage();
     }
 
     @Override

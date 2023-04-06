@@ -8,6 +8,4 @@ public interface DamageMeter {
 
     void setDamage(double damage);
 
-    Text toText(Player player);
-
 }

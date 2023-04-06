@@ -15,6 +15,7 @@ public class GameStateViewImpl implements GameStateView {
 
     Stage stage = new Stage();
     GameStateController gameStateController = new GameStateControllerImpl();
+    GameLoop loop = new GameLoop();
 
     public GameStateViewImpl() {
         stage.setTitle("PowPaw");
@@ -30,27 +31,26 @@ public class GameStateViewImpl implements GameStateView {
 
     @Override
     public void showCharacterCreation() {
-        stage.close();
         gameStateController.characterCreation();
         stage.setScene(new Scene(new StatsSettingMenu(), ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H));
-        stage.show();
     }
 
     @Override
     public void showGame() {
         gameStateController.game();
         WorldRenderImpl worldRender = new WorldRenderImpl();
-        GameLoop loop = new GameLoop();
         stage.setScene(worldRender.render());
         worldRender.playersCommands();
         loop.setPlayerController(worldRender.getPlayerController());
         loop.setWeaponController(worldRender.getWeaponController());
         loop.setPowerUpController(worldRender.getPowerUpController());
+        loop.setDamageMeterController(worldRender.getDamageMeterController());
         loop.start();
     }
 
     @Override
     public void showGameOver() {
+        loop.stop();
         gameStateController.gameOver();
         stage.setScene(new Scene(new GameOver(), ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H));
     }

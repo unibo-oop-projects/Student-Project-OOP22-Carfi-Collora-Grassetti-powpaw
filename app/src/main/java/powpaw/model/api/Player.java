@@ -33,6 +33,8 @@ public interface Player {
 
     PlayerStats getPlayerStats();
 
+    DamageMeter getCurrentHealth();
+
     void setWidth(double width);
 
     void setHeight(double height);
