@@ -1,6 +1,7 @@
 package powpaw.controller.impl;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -30,12 +31,12 @@ public class WeaponController {
                     weapon.addAttack(player.getNumber() == 1
                             ? playerController.getPlayerObservable().getPlayers().get(0).getPlayerStats()
                             : playerController.getPlayerObservable().getPlayers().get(1).getPlayerStats());
-                    // TODO refactor
                     if (player.getNumber() == 1) {
                         playerController.getPlayerObservable().getPlayers().get(0).increaseArmHitbox();
                     } else {
                         playerController.getPlayerObservable().getPlayers().get(1).increaseArmHitbox();
                     }
+
                     isCollected = true;
                     weapon.setVisible(false);
                     weaponRender.getWeaponSprite().setVisible(false);
@@ -63,10 +64,6 @@ public class WeaponController {
         weaponIndex = rand.nextInt(2);
         this.weapon = WeaponFactory.createWeapon(weaponIndex);
         this.weaponRender.setWeapon(weapon);
-        /*
-         * weaponRender = new WeaponRender(weapon);
-         * weaponRender.setWeapon(weapon, weaponIndex);
-         */
     }
 
     public WeaponImpl getWeapon() {

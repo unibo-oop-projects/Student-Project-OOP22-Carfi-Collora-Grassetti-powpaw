@@ -2,11 +2,10 @@ package powpaw.model.api;
 
 import javafx.geometry.Point2D;
 import powpaw.model.impl.PlayerStats;
-import powpaw.model.impl.WeaponHitboxImpl;
 
 public interface Weapon {
 
-    WeaponHitboxImpl getHitbox();
+    WeaponHitbox getHitbox();
 
     Point2D getPosition();
 

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javafx.scene.input.KeyCode;
 import powpaw.config.Parser;
+import powpaw.controller.api.AttackController;
 import powpaw.model.api.Player;
 import powpaw.model.impl.PlayerImpl;
 import powpaw.view.api.KeyObserver;
@@ -19,9 +20,9 @@ public class KeyObserverImpl implements KeyObserver {
     private KeyCode keyRight;
     private KeyCode keyAttack;
     private Set<KeyCode> keys = new HashSet<>();
-    private AttackControllerImpl attackController;
+    private AttackController attackController;
 
-    public KeyObserverImpl(Player player, Parser parser, AttackControllerImpl ac) {
+    public KeyObserverImpl(Player player, Parser parser, AttackController ac) {
         this.player = (PlayerImpl) player;
         Map<String, KeyCode> commands = parser.getCommands(player.getNumber());
         this.attackController = ac;

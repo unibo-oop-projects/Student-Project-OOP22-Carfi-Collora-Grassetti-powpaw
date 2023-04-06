@@ -6,13 +6,14 @@ import javafx.geometry.Point2D;
 import javafx.util.Duration;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Weapon;
+import powpaw.model.api.WeaponHitbox;
 
 public class WeaponImpl implements Weapon {
 
     public static double WIDTH = ScreenController.SIZE_HD_W / 50;
     public static double HEIGHT = ScreenController.SIZE_HD_H / 30;
 
-    private WeaponHitboxImpl hitbox;
+    private WeaponHitbox hitbox;
     private Point2D position;
     private double attack;
     private double speed;
@@ -29,7 +30,7 @@ public class WeaponImpl implements Weapon {
     }
 
     @Override
-    public WeaponHitboxImpl getHitbox() {
+    public WeaponHitbox getHitbox() {
         return this.hitbox;
     }
 
