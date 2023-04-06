@@ -1,7 +1,6 @@
 package powpaw.model.api;
 
 import java.time.Duration;
-
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;

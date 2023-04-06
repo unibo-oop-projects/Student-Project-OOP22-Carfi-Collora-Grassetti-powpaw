@@ -21,8 +21,8 @@ public class AttackControllerImpl {
         if (ScreenController.isOutOfScreen(playerOne.getHitbox())) {
             return Optional.of(playerOne);
         }
-        if (ScreenController.isOutOfScreen(this.playerOne.getHitbox())) {
-            return Optional.of(playerOne);
+        if (ScreenController.isOutOfScreen(this.playerTwo.getHitbox())) {
+            return Optional.of(playerTwo);
         }
         return Optional.empty();
     }

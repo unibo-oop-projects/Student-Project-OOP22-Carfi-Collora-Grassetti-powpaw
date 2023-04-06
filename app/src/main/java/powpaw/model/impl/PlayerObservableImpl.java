@@ -13,7 +13,7 @@ import powpaw.view.api.KeyObservable;
 import powpaw.view.impl.KeyObservableImpl;
 
 public class PlayerObservableImpl implements PlayerObservable {
-
+    private boolean gameOver = false;
     private List<Player> playerList;
     private final KeyObservable observable = new KeyObservableImpl();
     private final Parser config;
@@ -38,9 +38,12 @@ public class PlayerObservableImpl implements PlayerObservable {
 
     @Override
     public void update(Duration deltaTime) {
-        if (attackController.checkDeath().isPresent()){
-            GameStateHandler.getGameStateView().showGameOver(attackController.checkDeath().get());
+        if(!gameOver){
+            if (attackController.checkDeath().isPresent()){
+                gameOver = true;
+                GameStateHandler.getGameStateView().showGameOver();
+            }
+            playerList.forEach(player -> player.update(deltaTime));
         }
-        playerList.forEach(player -> player.update(deltaTime));
     }
 }

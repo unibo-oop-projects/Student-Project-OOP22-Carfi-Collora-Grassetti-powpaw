@@ -10,6 +10,7 @@ import javafx.scene.shape.Shape;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.StatsHandler;
+import powpaw.model.api.DamageMeter;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
 
@@ -58,6 +59,7 @@ public class PlayerImpl implements Player {
         this.currentState = PlayerState.IDLE;
         this.idle();
         this.stats = number == 1 ? StatsHandler.getStatsP1() : StatsHandler.getStatsP2();
+        currentHealth = 0;
     }
 
     @Override

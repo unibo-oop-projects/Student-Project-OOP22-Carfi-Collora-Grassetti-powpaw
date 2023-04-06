@@ -174,6 +174,8 @@ public class StatsSettingMenu extends GridPane {
         });
     }
 
+
+    
     private void initButton() {
         for (int i = 0; i < numStatistics; i++) {
             plusButtonsP1.add(new Pair<Button, String>(new Button("+"), statList.get(i)));

@@ -73,7 +73,6 @@ public class WorldRenderImpl implements WorldRender {
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
         worldPane.getChildren().add(powerUpController.getRender().getSprite());
-
         weaponController.getRender().setTerrains(mapRender.getTerrains());
         this.worldScene = new Scene(worldPane, ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H);
         return worldScene;
@@ -81,14 +80,10 @@ public class WorldRenderImpl implements WorldRender {
 
     public void playersCommands() {
 
-        this.worldScene.setOnKeyPressed(event -> {
-            playerController.getPlayerObservable().getKeyObservable()
-                    .notifyObserversPressed(event.getCode());
-        });
+        this.worldScene.setOnKeyPressed(event -> playerController.getPlayerObservable().getKeyObservable()
+                .notifyObserversPressed(event.getCode()));
 
-        this.worldScene.setOnKeyReleased(event -> {
-            playerController.getPlayerObservable().getKeyObservable()
-                    .notifyObserversReleased(event.getCode());
-        });
+        this.worldScene.setOnKeyReleased(event -> playerController.getPlayerObservable().getKeyObservable()
+                .notifyObserversReleased(event.getCode()));
     }
 }

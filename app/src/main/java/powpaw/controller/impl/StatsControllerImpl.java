@@ -6,7 +6,7 @@ public class StatsControllerImpl implements StatsController {
     private final static int maxPoint = 10;
     private final static int minPoint = 5;
     private final static int plusMinus = 1;
-
+    
     @Override
     public int increaseAtt(int attack) {
         if (attack < maxPoint) {

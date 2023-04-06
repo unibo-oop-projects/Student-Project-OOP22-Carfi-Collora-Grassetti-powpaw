@@ -1,14 +1,13 @@
 package powpaw.model.api;
 
 import javafx.scene.text.Text;
-import powpaw.model.impl.PlayerStats;
 
 public interface DamageMeter {
 
-    int getDamage();
+    double getDamage();
 
-    void setDamage(PlayerStats stats, PlayerStats statsP2);
+    void setDamage(double damage);
 
-    Text toText();
+    Text toText(Player player);
 
 }

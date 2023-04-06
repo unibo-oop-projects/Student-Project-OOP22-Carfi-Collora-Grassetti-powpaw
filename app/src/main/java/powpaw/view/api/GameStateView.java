@@ -1,7 +1,5 @@
 package powpaw.view.api;
 
-import powpaw.model.api.Player;
-
 public interface GameStateView {
 
     void showStartMenu();
@@ -10,5 +8,5 @@ public interface GameStateView {
 
     void showGame();
 
-    void showGameOver(Player player);
+    void showGameOver();
 }
