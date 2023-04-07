@@ -34,8 +34,6 @@ public class StatsSettingMenu extends GridPane {
     private int attackPointsP2;
     private int defencePointsP2;
     private int speedPointsP2;
-    // private Map<Integer, Map<String, Integer>> statsMapG = new HashMap<>();
-    // private Map<String, Integer> statsMap = new HashMap<>();
     private Label att;
     private Label def;
     private Label spe;
@@ -70,7 +68,6 @@ public class StatsSettingMenu extends GridPane {
         defencePointsP2 = 5;
         speedPointsP2 = 5;
         initButton();
-        // initMap();
         setButtonDimension();
         attackTextP1 = new Text("" + attackPointsP1);
         defenceTextP1 = new Text("" + defencePointsP1);
@@ -227,33 +224,12 @@ public class StatsSettingMenu extends GridPane {
         text.setText("" + points);
         pointLeftP1Text.setText("Points left:" + pointsLeftP1);
         pointLeftP2Text.setText("Points left:" + pointsLeftP2);
-        // for (int i = 0; i < plusButtonsP1.size(); i++) {
-        // if (pointsLeftP1 == 0) {
-        // plusButtonsP1.get(i).getKey().setDisable(true);
-        // } else {
-        // minusButtonsP1.get(i).getKey().setDisable(false);
-        // }
-        // if (pointsLeftP2 == 0) {
-        // plusButtonsP2.get(i).getKey().setDisable(true);
-        // } else {
-        // minusButtonsP2.get(i).getKey().setDisable(false);
-        // }
-        // }
         return points;
     }
 
     private int updateStatMinus(int points, Text text) {
         points = control.decrease(points);
         text.setText("" + points);
-        // for (int i = 0; i < plusButtonsP1.size(); i++) {
-        // if (pointsLeftP1 >= 7) {
-        // minusButtonsP1.get(i).getKey().setDisable(true);
-        // } else if (pointsLeftP2 == 0) {
-        // minusButtonsP2.get(i).getKey().setDisable(true);
-        // } else {
-
-        // }
-        // }
         return points;
     }
 
