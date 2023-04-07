@@ -6,9 +6,14 @@ import powpaw.model.impl.PlayerStats;
 public class StatsHandler {
     private static PlayerStats statsP1;
     private static PlayerStats statsP2;
+    private static int limit = 22;
 
     public static PlayerStats getStatsP1() {
         return statsP1;
+    }
+
+    public static int getLimit() {
+        return limit;
     }
 
     public static PlayerStats getStatsP2() {

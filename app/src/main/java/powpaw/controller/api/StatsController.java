@@ -2,16 +2,8 @@ package powpaw.controller.api;
 
 public interface StatsController {
 
-    int increaseAtt(int attack);
+    int increase(int stat);
 
-    int increaseDef(int defence);
-
-    int increaseSpe(int speed);
-
-    int decreaseAtt(int attack);
-
-    int decreaseDef(int defence);
-
-    int decreaseSpe(int speed);
+    int decrease(int stat);
 
 }

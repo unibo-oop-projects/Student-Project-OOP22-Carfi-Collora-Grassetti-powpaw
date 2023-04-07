@@ -3,9 +3,9 @@ package powpaw.model.impl;
 import powpaw.model.api.StatsBuilder;
 
 public class StatsBuilderImpl implements StatsBuilder {
-    private double attack = 0;
-    private double defence = 0;
-    private double speed = 0;
+    private double attack;
+    private double defence;
+    private double speed;
 
     @Override
     public void setAttack(int attack) {
