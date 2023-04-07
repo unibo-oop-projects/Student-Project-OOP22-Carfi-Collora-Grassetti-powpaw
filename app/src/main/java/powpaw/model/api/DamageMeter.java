@@ -1,7 +1,5 @@
 package powpaw.model.api;
 
-import javafx.scene.text.Text;
-
 public interface DamageMeter {
 
     double getDamage();

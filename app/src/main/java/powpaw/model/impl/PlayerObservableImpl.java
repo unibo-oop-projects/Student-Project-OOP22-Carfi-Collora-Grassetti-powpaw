@@ -46,4 +46,8 @@ public class PlayerObservableImpl implements PlayerObservable {
             playerList.forEach(player -> player.update(deltaTime));
         }
     }
+
+    public AttackControllerImpl getAttackController(){
+        return this.attackController;
+    }
 }

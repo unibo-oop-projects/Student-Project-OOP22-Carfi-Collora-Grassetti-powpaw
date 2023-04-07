@@ -8,15 +8,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import powpaw.controller.impl.GameStateHandler;
+import powpaw.controller.impl.PlayerController;
 
 public class GameOver extends VBox {
     private final Button newGame;
     private final Button exit;
     private final Text gameOver;
 
-    public GameOver() {
+    public GameOver(PlayerController controller) {
         setAlignment(Pos.CENTER);
-        gameOver = new Text("GAME OVER");
+        gameOver = new Text("P" + controller.getPlayerObservable().getAttackController().checkDeath().get().getNumber() +" WIN");
         newGame = new Button("NEW GAME");
         exit = new Button("EXIT");
         setSpacing(15);

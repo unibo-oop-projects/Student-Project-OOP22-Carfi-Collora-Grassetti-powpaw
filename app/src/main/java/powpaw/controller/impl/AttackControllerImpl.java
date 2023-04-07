@@ -19,10 +19,10 @@ public class AttackControllerImpl {
 
     public Optional<Player> checkDeath() {
         if (ScreenController.isOutOfScreen(playerOne.getHitbox())) {
-            return Optional.of(playerOne);
+            return Optional.of(playerTwo);
         }
         if (ScreenController.isOutOfScreen(this.playerTwo.getHitbox())) {
-            return Optional.of(playerTwo);
+            return Optional.of(playerOne);
         }
         return Optional.empty();
     }
