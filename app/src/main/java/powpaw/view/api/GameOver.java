@@ -17,7 +17,8 @@ public class GameOver extends VBox {
 
     public GameOver(PlayerController controller) {
         setAlignment(Pos.CENTER);
-        gameOver = new Text("P" + controller.getPlayerObservable().getAttackController().checkDeath().get().getNumber() +" WIN");
+        int winnerNumber = controller.getPlayerObservable().getAttackController().checkDeath().get().getNumber();
+        gameOver = new Text("P" + winnerNumber +" WIN");
         newGame = new Button("NEW GAME");
         exit = new Button("EXIT");
         setSpacing(15);
@@ -28,7 +29,7 @@ public class GameOver extends VBox {
         newGame.setMaxSize(300, 70);
         exit.setMaxSize(300, 70);
         gameOver.setStyle("-fx-font: 70 arial;");
-        gameOver.setFill(Color.RED);
+        gameOver.setFill(winnerNumber == 1 ? Color.RED : Color.BLUE);
         gameOver.setTextAlignment(TextAlignment.CENTER);
         getChildren().addAll(gameOver,newGame,exit);
         newGame.setOnAction(e -> {
