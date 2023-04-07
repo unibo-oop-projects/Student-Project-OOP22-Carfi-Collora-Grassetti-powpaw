@@ -12,7 +12,7 @@ public class DamageMeterRender {
 
     public DamageMeterRender(List<Player> players) {
         for(int i = 0; i<2; i++){
-            damage.add(new Text(players.get(i).getCurrentHealth().getDamage() + "%"));
+            damage.add(new Text((int)(players.get(i).getCurrentHealth().getDamage()*10) + "%"));
             damage.get(i).setStyle("-fx-font: 50 arial;");
             damage.get(i).setY(ScreenController.SIZE_HD_H / 6);
         }
@@ -26,7 +26,7 @@ public class DamageMeterRender {
 
     public void update(List<Player> players) {
         for(int i = 0; i<2; i++){
-            damage.get(i).setText(players.get(i).getCurrentHealth().getDamage() + "%");
+            damage.get(i).setText((int)(players.get(i).getCurrentHealth().getDamage()*10) + "%");
         }
     }
 

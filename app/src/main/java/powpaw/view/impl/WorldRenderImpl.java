@@ -38,6 +38,7 @@ public class WorldRenderImpl implements WorldRender {
     public PowerUpController getPowerUpController() {
         return this.powerUpController;
     }
+
     public DamageMeterController getDamageMeterController() {
         return this.damageMeterController;
     }
