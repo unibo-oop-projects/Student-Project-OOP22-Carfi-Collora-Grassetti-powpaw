@@ -53,21 +53,7 @@ public class WorldRenderImpl implements WorldRender {
         worldPane.getChildren()
                 .addAll(playerController.getRender().stream().map(r -> r.getArmSprite()).collect(Collectors.toList()));
 
-        //playerController.getRender().forEach( p ->  worldPane.getChildren().add(p.getArmSprite()));
-        
-
-        // debug
-
-        //worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getHitbox().getShape());
-        //worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getFeetBox());
-        worldPane.getChildren().add(playerController.getRender().get(0).getPlayer().getArmHitbox());
-        //worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().getHitbox().getShape());
-        //worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().getFeetBox());
-        worldPane.getChildren().add(playerController.getRender().get(1).getPlayer().getArmHitbox()); 
-      
-
         mapRender.getTerrains().forEach(b -> worldPane.getChildren().add(b.getHitbox().getShape()));
-        //worldPane.getChildren().add(weaponController.getWeapon().getHitbox().getShape());
         worldPane.getChildren().add(weaponController.getRender().getWeaponSprite());
         worldPane.getChildren().add(powerUpController.getRender().getSprite());
         weaponController.getRender().setTerrains(mapRender.getTerrains());
