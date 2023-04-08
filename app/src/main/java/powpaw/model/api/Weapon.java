@@ -12,10 +12,18 @@ public interface Weapon {
     void update();
 
     void setAttack(double attack);
+    
+    int getDurability();
 
-    void setSpeed(double speed);
+    void decrementDurability();
+
+    void resetDurability();
 
     int getId();
+
+    boolean isPicked();
+
+    void setPicked(boolean isPicked);
 
     void addAttack(PlayerStats ps);
 

@@ -3,7 +3,7 @@ package powpaw.controller.impl;
 import java.util.List;
 import java.util.Optional;
 
-import javafx.geometry.Point2D;
+import powpaw.common.DirectionVector;
 import powpaw.controller.api.AttackController;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
@@ -33,22 +33,32 @@ public class AttackControllerImpl implements AttackController {
 
     @Override
     public void checkHit(Player player) {
-        if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getHitboxLeft())
+        if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getShape())
                 && player.getNumber() == 1) {
-            this.playerOne.serCurrentState(PlayerState.HIT);
-            this.playerTwo.receiveAttack(new Point2D(1, 0), StatsHandler.getStatsP1().getAttack());
-        } else if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getHitboxRight())
-                && player.getNumber() == 1) {
-            this.playerOne.serCurrentState(PlayerState.HIT);
-            this.playerTwo.receiveAttack(new Point2D(-1, 0), StatsHandler.getStatsP1().getAttack());
-        } else if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getHitboxLeft())
+            this.playerOne.serCurrentState(PlayerState.ATTACK);
+            if(this.playerOne.getWeapon().isPresent()){
+                System.out.println("Durability 2:" + this.playerOne.getWeapon().get().getDurability());
+                this.playerOne.getWeapon().get().decrementDurability();
+            }
+            if (this.playerOne.getDirectionState().equals(PlayerState.WALK_LEFT)) {
+                this.playerTwo.receiveAttack(DirectionVector.LEFT.getPoint(), StatsHandler.getStatsP1().getAttack());
+            } else {
+                this.playerTwo.receiveAttack(DirectionVector.RIGHT.getPoint(), StatsHandler.getStatsP1().getAttack());
+            }
+        }
+        if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getShape())
                 && player.getNumber() == 2) {
-            this.playerTwo.serCurrentState(PlayerState.HIT);
-            this.playerOne.receiveAttack(new Point2D(1, 0), StatsHandler.getStatsP2().getAttack());
-        } else if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getHitboxRight())
-                && player.getNumber() == 2) {
-                this.playerTwo.serCurrentState(PlayerState.HIT);
-            this.playerOne.receiveAttack(new Point2D(-1, 0), StatsHandler.getStatsP2().getAttack());
+            this.playerTwo.serCurrentState(PlayerState.ATTACK);
+            if(this.playerTwo.getWeapon().isPresent()){
+                this.playerTwo.getWeapon().get().decrementDurability();
+                System.out.println("Durability 2:" + this.playerTwo.getWeapon().get().getDurability());
+            }
+            if (this.playerTwo.getDirectionState().equals(PlayerState.WALK_LEFT)) {
+                this.playerOne.receiveAttack(DirectionVector.LEFT.getPoint(), StatsHandler.getStatsP2().getAttack());
+            } else {
+                this.playerOne.receiveAttack(DirectionVector.RIGHT.getPoint(), StatsHandler.getStatsP2().getAttack());
+            }
+
         }
     }
 

@@ -16,12 +16,13 @@ public class MediaAudio {
                 File file = new File(url);
                 try {
                     Clip clip = AudioSystem.getClip();
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new FileInputStream("mainTitle.wav"));
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new FileInputStream("/mainTitle.wav"));
 
                     clip.open(inputStream);
                     clip.start();
                 } catch (Exception e) {
                     System.err.println("MEDIA ERROR " + e.getMessage());
+                    System.err.println("MEDIA ERROR " + file.getAbsolutePath());
                 }
             }
         }).start();

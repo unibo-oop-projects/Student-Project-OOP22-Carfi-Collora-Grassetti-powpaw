@@ -1,71 +1,72 @@
 package powpaw.controller.impl;
 
+import java.util.Optional;
 import java.util.Random;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
+import powpaw.model.api.Player;
+import powpaw.model.api.Weapon;
 import powpaw.model.impl.WeaponFactory;
-import powpaw.model.impl.WeaponImpl;
 import powpaw.view.impl.WeaponRender;
 
 public class WeaponController {
 
-    private WeaponImpl weapon;
+    private Weapon weapon;
     private WeaponRender weaponRender;
-    private boolean isCollected = false;
     private int weaponIndex;
+    private PlayerController playerController;
     private Random rand = new Random();
 
-    public WeaponController() {
+    public WeaponController(PlayerController playerController) {
+        this.playerController = playerController;
         weaponRender = new WeaponRender();
-        createWeapon();
+        spownWeapons();
     }
 
-    public void pickWeapon(PlayerController playerController) {
+    public void pickWeapon() {
         playerController.getPlayerObservable().getPlayers().forEach(player -> {
-            if (weapon.getHitbox().getShape().getBoundsInParent()
-                    .intersects(player.getHitbox().getShape().getBoundsInParent())) {
-                if (!isCollected) {
-                    weapon.addAttack(player.getNumber() == 1
-                            ? playerController.getPlayerObservable().getPlayers().get(0).getPlayerStats()
-                            : playerController.getPlayerObservable().getPlayers().get(1).getPlayerStats());
-                    if (player.getNumber() == 1) {
-                        playerController.getPlayerObservable().getPlayers().get(0).increaseArmHitbox();
-                    } else {
-                        playerController.getPlayerObservable().getPlayers().get(1).increaseArmHitbox();
-                    }
-
-                    isCollected = true;
-                    weapon.setVisible(false);
-                    weaponRender.getWeaponSprite().setVisible(false);
-                    new Timeline(new KeyFrame(Duration.seconds(10), event -> {
-                        isCollected = false;
-                        if (player.getNumber() == 1) {
-                            playerController.getPlayerObservable().getPlayers().get(0).reduceArmHitbox();
-                        } else {
-                            playerController.getPlayerObservable().getPlayers().get(1).reduceArmHitbox();
-                        }
-                        this.createWeapon();
-                        weapon.setVisible(true);
-                        weaponRender.getWeaponSprite().setVisible(true);
-                    })).play();
-                }
+            if (player.getHitbox().checkCollision(weapon.getHitbox().getShape())) {
+                setWeaponToPlayer(player);
             }
+            dropWeapon(player);
         });
     }
 
-    public boolean isCollected() {
-        return this.isCollected;
+    private void setWeaponToPlayer(Player player) {
+        if (player.getWeapon().isEmpty() && !this.weapon.isPicked()) {
+            this.weapon.setPicked(true);
+            player.setWeapon(Optional.of(weapon));
+            player.increaseArmHitbox();
+            this.weapon.addAttack(player.getPlayerStats());
+            this.weapon.setVisible(false);
+            this.weaponRender.getWeaponSprite().setVisible(false);
+        }
     }
 
-    private void createWeapon() {
+    private void dropWeapon(Player player) {
+        if (player.getWeapon().isPresent()) {
+            if (player.getWeapon().get().getDurability() == 0) {
+                player.setWeapon(Optional.empty());
+                player.reduceArmHitbox();
+                spownWeapons();
+            }
+        }
+    }
+
+    private void spownWeapons() {
+        this.createNewWeapon();
+        weapon.setPicked(false);
+        weapon.setVisible(true);
+        weaponRender.getWeaponSprite().setVisible(true);
+
+    }
+
+    private void createNewWeapon() {
         weaponIndex = rand.nextInt(2);
         this.weapon = WeaponFactory.createWeapon(weaponIndex);
         this.weaponRender.setWeapon(weapon);
     }
 
-    public WeaponImpl getWeapon() {
+    public Weapon getWeapon() {
         return this.weapon;
     }
 

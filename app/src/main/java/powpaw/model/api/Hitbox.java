@@ -16,6 +16,8 @@ public interface Hitbox {
 
     double getOffsetX();
 
+    double getOffsetY();
+
     void setOffsetY(double height);
 
     void switchDodge();
@@ -27,8 +29,4 @@ public interface Hitbox {
     Shape getFeetShape();
 
     Rectangle getArmShape();
-
-    Rectangle getHitboxLeft();
-
-    Rectangle getHitboxRight();
 }
