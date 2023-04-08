@@ -3,7 +3,7 @@ package powpaw.model.api;
 import java.time.Duration;
 import java.util.List;
 
-import powpaw.controller.impl.AttackControllerImpl;
+import powpaw.controller.api.AttackController;
 import powpaw.view.api.KeyObservable;
 
 public interface PlayerObservable {
@@ -14,6 +14,6 @@ public interface PlayerObservable {
 
     void update(Duration deltaTime);
 
-    AttackControllerImpl getAttackController();
+    AttackController getAttackController();
 
 }

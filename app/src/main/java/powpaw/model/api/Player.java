@@ -1,6 +1,8 @@
 package powpaw.model.api;
 
 import java.time.Duration;
+import java.util.Optional;
+
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -8,6 +10,10 @@ import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public interface Player {
+
+    Optional<Weapon> getWeapon();
+
+    void setWeapon(Optional<Weapon> weapon);
 
     Point2D getPosition();
 
@@ -31,6 +37,10 @@ public interface Player {
 
     PlayerState getState();
 
+    void serCurrentState(PlayerState state);
+
+    PlayerState getDirectionState();
+
     PlayerStats getPlayerStats();
 
     DamageMeter getCurrentHealth();
@@ -49,6 +59,8 @@ public interface Player {
 
     void idle();
 
+    boolean isFalling();
+
     void dodge();
 
     void setDirectionDeath(Point2D direction);
@@ -58,5 +70,4 @@ public interface Player {
     void receiveAttack(Point2D direction, double damage);
 
     void update(Duration deltaTime);
-
 }

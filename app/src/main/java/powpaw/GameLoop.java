@@ -4,9 +4,9 @@ import java.time.Duration;
 import java.time.Instant;
 import javafx.animation.AnimationTimer;
 import powpaw.controller.impl.DamageMeterController;
-import powpaw.controller.impl.PlayerController;
+import powpaw.controller.api.WeaponController;
+import powpaw.controller.api.PlayerController;
 import powpaw.controller.impl.PowerUpController;
-import powpaw.controller.impl.WeaponController;
 
 public class GameLoop extends AnimationTimer {
 
@@ -36,10 +36,10 @@ public class GameLoop extends AnimationTimer {
         playerController.getRender().forEach(player -> player.renderPlayer());
         powerUpController.pickPowerUp(playerController);
         powerUpController.getRender().render();
-        weaponController.pickWeapon(playerController);
+        weaponController.pickWeapon();
         weaponController.getRender().render();
         weaponController.getWeapon().update();
-        damageMeterController.getRender().update(playerController.getPlayerList());
+        damageMeterController.getRender().update(playerController.getPlayers());
     }
 
     public void setPlayerController(PlayerController playerController) {

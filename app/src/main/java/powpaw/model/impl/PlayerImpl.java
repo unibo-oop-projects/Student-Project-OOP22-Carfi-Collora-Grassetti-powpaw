@@ -1,6 +1,7 @@
 package powpaw.model.impl;
 
 import java.time.Duration;
+import java.util.Optional;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,6 +14,7 @@ import powpaw.controller.impl.StatsHandler;
 import powpaw.model.api.DamageMeter;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
+import powpaw.model.api.Weapon;
 
 public class PlayerImpl implements Player {
 
@@ -26,7 +28,10 @@ public class PlayerImpl implements Player {
 
     private TransitionImpl transition;
 
+    private Optional<Weapon> weapon;
+
     private PlayerState currentState;
+    private PlayerState directionState;
 
     private Point2D position;
     private Point2D direction;
@@ -59,7 +64,19 @@ public class PlayerImpl implements Player {
         this.currentState = PlayerState.IDLE;
         this.idle();
         this.stats = number == 1 ? StatsHandler.getStatsP1() : StatsHandler.getStatsP2();
+        this.directionState = number == 1 ? PlayerState.WALK_RIGHT : PlayerState.WALK_LEFT;
         currentHealth = new DamageMeterImpl();
+        this.weapon = Optional.empty();
+    }
+
+    @Override
+    public Optional<Weapon> getWeapon() {
+        return weapon;
+    }
+
+    @Override
+    public void setWeapon(Optional<Weapon> weapon) {
+        this.weapon = weapon;
     }
 
     @Override
@@ -94,7 +111,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void increaseArmHitbox() {
-        getArmHitbox().setWidth(getHitbox().getOffsetX() + getHitbox().getOffsetX()/2);
+        getArmHitbox().setWidth(getHitbox().getOffsetX() + getHitbox().getOffsetX() / 2);
     }
 
     @Override
@@ -120,6 +137,16 @@ public class PlayerImpl implements Player {
     @Override
     public PlayerState getState() {
         return this.currentState;
+    }
+
+    @Override
+    public void serCurrentState(PlayerState state) {
+        this.currentState = state;
+    }
+
+    @Override
+    public PlayerState getDirectionState() {
+        return this.directionState;
     }
 
     @Override
@@ -166,11 +193,13 @@ public class PlayerImpl implements Player {
 
     private void moveLeft() {
         this.currentState = PlayerState.WALK_LEFT;
+        this.directionState = PlayerState.WALK_LEFT;
         this.direction = direction.add(DirectionVector.LEFT.getPoint());
     }
 
     private void moveRight() {
         this.currentState = PlayerState.WALK_RIGHT;
+        this.directionState = PlayerState.WALK_RIGHT;
         this.direction = direction.add(DirectionVector.RIGHT.getPoint());
     }
 
@@ -197,6 +226,7 @@ public class PlayerImpl implements Player {
         hitbox.switchDodge();
     }
 
+    @Override
     public boolean isFalling() {
         return !transition.checkPlayerInTerrain(hitbox.getFeetShape());
     }

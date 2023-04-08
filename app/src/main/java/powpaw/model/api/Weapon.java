@@ -2,21 +2,28 @@ package powpaw.model.api;
 
 import javafx.geometry.Point2D;
 import powpaw.model.impl.PlayerStats;
-import powpaw.model.impl.WeaponHitboxImpl;
 
 public interface Weapon {
 
-    WeaponHitboxImpl getHitbox();
+    WeaponHitbox getHitbox();
 
     Point2D getPosition();
 
     void update();
 
     void setAttack(double attack);
+    
+    int getDurability();
 
-    void setSpeed(double speed);
+    void decrementDurability();
+
+    void resetDurability();
 
     int getId();
+
+    boolean isPicked();
+
+    void setPicked(boolean isPicked);
 
     void addAttack(PlayerStats ps);
 

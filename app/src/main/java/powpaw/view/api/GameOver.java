@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import powpaw.controller.impl.GameStateHandler;
-import powpaw.controller.impl.PlayerController;
+import powpaw.controller.api.PlayerController;
 
 public class GameOver extends VBox {
     private final Button newGame;

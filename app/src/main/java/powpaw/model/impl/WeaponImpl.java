@@ -1,24 +1,24 @@
 package powpaw.model.impl;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
-import javafx.util.Duration;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Weapon;
+import powpaw.model.api.WeaponHitbox;
 
 public class WeaponImpl implements Weapon {
 
     public static double WIDTH = ScreenController.SIZE_HD_W / 50;
     public static double HEIGHT = ScreenController.SIZE_HD_H / 30;
+    public static int MAX_DURABILITY = 10;
+    
 
-    private WeaponHitboxImpl hitbox;
+    private WeaponHitbox hitbox;
     private Point2D position;
     private double attack;
-    private double speed;
     private boolean isVisible = true;
     private int id;
-    private int count = 10;
+    private int durability = MAX_DURABILITY;
+    private boolean isPicked;
 
     private final TransitionImpl transition = new TransitionImpl();
 
@@ -29,7 +29,7 @@ public class WeaponImpl implements Weapon {
     }
 
     @Override
-    public WeaponHitboxImpl getHitbox() {
+    public WeaponHitbox getHitbox() {
         return this.hitbox;
     }
 
@@ -44,8 +44,18 @@ public class WeaponImpl implements Weapon {
     }
 
     @Override
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public int getDurability() {
+        return durability;
+    }
+
+    @Override
+    public void decrementDurability(){
+        this.durability--;
+    }
+
+    @Override
+    public void resetDurability() {
+        this.durability = MAX_DURABILITY;
     }
 
     @Override
@@ -54,14 +64,23 @@ public class WeaponImpl implements Weapon {
     }
 
     @Override
+    public boolean isPicked() {
+        return isPicked;
+    }
+
+    @Override
+    public void setPicked(boolean isPicked) {
+        this.isPicked = isPicked;
+    }
+
+    @Override
     public void addAttack(PlayerStats ps) {
         double oldAttack = ps.getAttack();
         ps.setAttack(oldAttack + this.attack);
         System.out.println("WEAPON ATK PLUS: " + ps.getAttack());
-        new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+        if(this.durability == 0) {
             ps.setAttack(oldAttack);
-            System.out.println("WEAPON ATK: " + ps.getAttack());
-        })).play();
+        }
     }
 
     @Override
