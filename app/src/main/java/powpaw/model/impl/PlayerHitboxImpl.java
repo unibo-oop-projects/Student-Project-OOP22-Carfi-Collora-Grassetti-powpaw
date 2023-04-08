@@ -1,11 +1,15 @@
 package powpaw.model.impl;
 
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import powpaw.model.api.Hitbox;
+
+/**
+ * 
+ * @author Giacomo Grassetti
+ */
 
 public class PlayerHitboxImpl implements Hitbox {
 
@@ -30,11 +34,8 @@ public class PlayerHitboxImpl implements Hitbox {
         final double yFeet = PlayerPosition.getY() + this.offsetFeet;
         final double yArm = PlayerPosition.getY() + this.offsetY;
         this.hitbox = new Circle(x, y, this.radius);
-        this.hitbox.setFill(Color.BEIGE); // debug
         this.armHitbox = new Rectangle(x, yArm, this.offsetX, this.offsetY / 2);
-        this.armHitbox.setFill(Color.GREEN); // debug
         this.feetBox = new Circle(x, yFeet, this.feetRadius);
-        this.feetBox.setFill(Color.RED); // debug
         this.isDodging = false;
     }
 
@@ -58,6 +59,11 @@ public class PlayerHitboxImpl implements Hitbox {
         return this.feetBox;
     }
 
+    /**
+     * Getter for the hitbox shape of an arm as a rectangle.
+     * 
+     * @return The shape of ArmHitbox
+     */
     @Override
     public Rectangle getArmShape() {
         return this.armHitbox;

@@ -9,6 +9,11 @@ import powpaw.model.api.Player;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 import powpaw.view.api.PlayerRender;
 
+/**
+ * 
+ * @author Giacomo Grassetti
+ */
+
 public class PlayerRenderImpl implements PlayerRender {
 
     final List<Image> sprites = new ArrayList<>();
@@ -39,6 +44,11 @@ public class PlayerRenderImpl implements PlayerRender {
         return this.sprite;
     }
 
+    /**
+     * Getter fo an ImageView representing the armSprite.
+     * 
+     * @return An ImageView armSprite
+     */
     @Override
     public ImageView getArmSprite() {
         return this.armSprite;

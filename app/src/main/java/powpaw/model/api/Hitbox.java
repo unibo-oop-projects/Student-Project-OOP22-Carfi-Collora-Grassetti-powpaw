@@ -4,6 +4,11 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+/**
+ * 
+ * @author Giacomo Grassetti
+ */
+
 public interface Hitbox {
 
     double getRadius();
@@ -28,5 +33,10 @@ public interface Hitbox {
 
     Shape getFeetShape();
 
+    /**
+     * Getter for the hitbox shape of an arm as a rectangle.
+     * 
+     * @return The shape of ArmHitbox
+     */
     Rectangle getArmShape();
 }

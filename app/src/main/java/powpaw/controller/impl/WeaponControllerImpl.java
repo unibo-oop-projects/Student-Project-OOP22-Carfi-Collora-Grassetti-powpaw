@@ -8,8 +8,15 @@ import powpaw.controller.api.WeaponController;
 import powpaw.model.api.Player;
 import powpaw.model.api.Weapon;
 import powpaw.model.impl.WeaponFactory;
-import powpaw.view.impl.WeaponRender;
+import powpaw.view.api.WeaponRender;
+import powpaw.view.impl.WeaponRenderImpl;
 
+/**
+ * Class WeaponControllerImpl class that controls the spawning, picking up, and
+ * dropping of weapons for players in a game.
+ * 
+ * @author Giacomo Grassetti
+ */
 public class WeaponControllerImpl implements WeaponController {
 
     private Weapon weapon;
@@ -18,12 +25,25 @@ public class WeaponControllerImpl implements WeaponController {
     private PlayerController playerController;
     private Random rand = new Random();
 
+    /**
+     * This is a constructor for the WeaponControllerImp class that initializes the
+     * playerController field with
+     * the passed object, creating a new WeaponRender object. Spawn automatically
+     * the first weapon.
+     * 
+     * @param playerController
+     */
     public WeaponControllerImpl(PlayerController playerController) {
         this.playerController = playerController;
-        weaponRender = new WeaponRender();
+        weaponRender = new WeaponRenderImpl();
         spownWeapons();
     }
 
+    /**
+     * The function checks if a player collides with a weapon and either sets the
+     * weapon to the player
+     * or drops it.
+     */
     @Override
     public void pickWeapon() {
         playerController.getPlayerObservable().getPlayers().forEach(player -> {
@@ -34,6 +54,14 @@ public class WeaponControllerImpl implements WeaponController {
         });
     }
 
+    /**
+     * Method that sets a weapon to a player if the it doesn't already have a weapon
+     * and the
+     * weapon has not been picked up yet.
+     * 
+     * @param player Player in the game.
+     * 
+     */
     private void setWeaponToPlayer(Player player) {
         if (player.getWeapon().isEmpty() && !this.weapon.isPicked()) {
             this.weapon.setPicked(true);
@@ -45,6 +73,12 @@ public class WeaponControllerImpl implements WeaponController {
         }
     }
 
+    /**
+     * The function drops a player's weapon if it has no durability left and spawns
+     * new weapons.
+     * 
+     * @param player Player in the game.
+     */
     private void dropWeapon(Player player) {
         if (player.getWeapon().isPresent()) {
             if (player.getWeapon().get().getDurability() == 0) {
@@ -55,6 +89,9 @@ public class WeaponControllerImpl implements WeaponController {
         }
     }
 
+    /**
+     * Method that spawns a new weapon and sets its visibility to true.
+     */
     private void spownWeapons() {
         this.createNewWeapon();
         weapon.setPicked(false);
@@ -63,17 +100,31 @@ public class WeaponControllerImpl implements WeaponController {
 
     }
 
+    /**
+     * Method that creates a new weapon using a random index and sets it to the
+     * weaponRender.
+     */
     private void createNewWeapon() {
         weaponIndex = rand.nextInt(2);
         this.weapon = WeaponFactory.createWeapon(weaponIndex);
         this.weaponRender.setWeapon(weapon);
     }
 
+    /**
+     * Getter for weapon.
+     * 
+     * @return The Weapon
+     */
     @Override
     public Weapon getWeapon() {
         return this.weapon;
     }
 
+    /**
+     * Getterfor the weapon render.
+     * 
+     * @return A WeaponRender
+     */
     @Override
     public WeaponRender getRender() {
         return this.weaponRender;

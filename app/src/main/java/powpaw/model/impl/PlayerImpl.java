@@ -16,8 +16,16 @@ import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
 import powpaw.model.api.Weapon;
 
+/**
+ * 
+ * @author Giacomo Grassetti
+ */
+
 public class PlayerImpl implements Player {
 
+    /**
+     * Enum for different state of player
+     */
     public enum PlayerState {
         IDLE, JUMP, DODGE, ATTACK, WALK_RIGHT, WALK_LEFT, HIT;
     }
@@ -104,6 +112,11 @@ public class PlayerImpl implements Player {
         return this.hitbox.getFeetShape();
     }
 
+    /**
+     * Getter for the hitbox shape of an arm as a rectangle.
+     * 
+     * @return The shape of ArmHitbox
+     */
     @Override
     public Rectangle getArmHitbox() {
         return this.hitbox.getArmShape();
@@ -134,6 +147,11 @@ public class PlayerImpl implements Player {
         return this.hitbox;
     }
 
+    /**
+     * Getter of the current state of the player.
+     * 
+     * @return The current state of the player (PlayerState)
+     */
     @Override
     public PlayerState getState() {
         return this.currentState;
@@ -155,7 +173,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public DamageMeter getCurrentHealth(){
+    public DamageMeter getCurrentHealth() {
         return this.currentHealth;
     }
 
@@ -226,16 +244,37 @@ public class PlayerImpl implements Player {
         hitbox.switchDodge();
     }
 
+    /**
+     * Method that checks if the player is falling by verifying if their feet are in
+     * contact with the
+     * terrain.
+     * 
+     * @return True if the feet player don't intersect the terrain, false otherwise
+     */
     @Override
     public boolean isFalling() {
         return !transition.checkPlayerInTerrain(hitbox.getFeetShape());
     }
 
+    /**
+     * Method that sets the direction knockback for a player hitted.
+     * 
+     * @param direction Point2D with the direction to apply the knockback
+     */
     @Override
     public void setDirectionDeath(Point2D direction) {
         this.directionDeath = direction;
     }
 
+    /**
+     * Method that updates the player's state to HIT, sets the direction of the
+     * attack, reduces the
+     * player's health by the damage received, and increases the player's knockback.
+     * 
+     * @param direction The direction from which the attack is coming, represented
+     *                  as a Point2D.
+     * @param damage    The amount of damage the player receives from the attack.
+     */
     @Override
     public void receiveAttack(Point2D direction, double damage) {
         this.currentState = PlayerState.HIT;
