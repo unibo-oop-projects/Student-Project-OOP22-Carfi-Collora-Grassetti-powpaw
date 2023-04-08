@@ -36,7 +36,7 @@ public class AttackControllerImpl implements AttackController {
         if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getShape())
                 && player.getNumber() == 1) {
             this.playerOne.serCurrentState(PlayerState.ATTACK);
-            if(this.playerOne.getWeapon().isPresent()){
+            if (this.playerOne.getWeapon().isPresent()) {
                 System.out.println("Durability 2:" + this.playerOne.getWeapon().get().getDurability());
                 this.playerOne.getWeapon().get().decrementDurability();
             }
@@ -49,7 +49,7 @@ public class AttackControllerImpl implements AttackController {
         if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getShape())
                 && player.getNumber() == 2) {
             this.playerTwo.serCurrentState(PlayerState.ATTACK);
-            if(this.playerTwo.getWeapon().isPresent()){
+            if (this.playerTwo.getWeapon().isPresent()) {
                 this.playerTwo.getWeapon().get().decrementDurability();
                 System.out.println("Durability 2:" + this.playerTwo.getWeapon().get().getDurability());
             }

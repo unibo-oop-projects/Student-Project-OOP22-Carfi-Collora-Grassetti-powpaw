@@ -2,7 +2,7 @@ package powpaw.view.api;
 
 import javafx.scene.Scene;
 import powpaw.controller.api.WeaponController;
-import powpaw.controller.impl.PlayerController;
+import powpaw.controller.api.PlayerController;
 import powpaw.controller.impl.PowerUpController;
 import powpaw.view.impl.MapRender;
 

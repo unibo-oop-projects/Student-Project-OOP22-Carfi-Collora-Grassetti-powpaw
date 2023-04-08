@@ -57,6 +57,8 @@ public interface Player {
 
     void idle();
 
+    boolean isFalling();
+
     void dodge();
 
     void setDirectionDeath(Point2D direction);
@@ -66,5 +68,4 @@ public interface Player {
     void receiveAttack(Point2D direction, double damage);
 
     void update(Duration deltaTime);
-
 }

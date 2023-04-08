@@ -78,7 +78,6 @@ public class PlayerImpl implements Player {
         this.weapon = weapon;
     }
 
-
     @Override
     public int getNumber() {
         return this.number;
@@ -221,6 +220,7 @@ public class PlayerImpl implements Player {
         hitbox.switchDodge();
     }
 
+    @Override
     public boolean isFalling() {
         return !transition.checkPlayerInTerrain(hitbox.getFeetShape());
     }
