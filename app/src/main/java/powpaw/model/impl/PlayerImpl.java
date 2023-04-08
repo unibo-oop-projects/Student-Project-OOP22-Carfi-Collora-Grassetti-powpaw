@@ -237,8 +237,7 @@ public class PlayerImpl implements Player {
         this.direction = new Point2D(0, 0);
     }
 
-    @Override
-    public void dodge() {
+    private void dodge() {
         canMove = false;
         this.currentState = PlayerState.DODGE;
         dodgeTimeline.play();
@@ -266,29 +265,23 @@ public class PlayerImpl implements Player {
     @Override
     public void update(Duration deltaTime) {
         this.idle();
-
         if (isFalling() && !isJumping) {
             this.direction = this.direction.add(DirectionVector.DOWN.getPoint());
             jumpTimeline.stop();
         }
         if (canMove) {
-
             if (this.isJumping) {
                 this.jump();
             }
-
             if (this.isMovingLeft) {
                 this.moveLeft();
             }
-
             if (this.isMovingRight) {
                 this.moveRight();
             }
-
             if (this.isAttacking) {
                 this.attack();
             }
-
             if (this.isDodging) {
                 this.dodge();
             }

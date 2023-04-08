@@ -65,8 +65,6 @@ public interface Player {
 
     boolean isFalling();
 
-    void dodge();
-
     void setDirectionDeath(Point2D direction);
 
     Hitbox getHitbox();
