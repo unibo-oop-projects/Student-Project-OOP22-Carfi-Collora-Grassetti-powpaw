@@ -3,9 +3,9 @@ package powpaw;
 import java.time.Duration;
 import java.time.Instant;
 import javafx.animation.AnimationTimer;
+import powpaw.controller.api.WeaponController;
 import powpaw.controller.impl.PlayerController;
 import powpaw.controller.impl.PowerUpController;
-import powpaw.controller.impl.WeaponController;
 
 public class GameLoop extends AnimationTimer {
 

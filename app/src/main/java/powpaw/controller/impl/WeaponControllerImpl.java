@@ -3,12 +3,13 @@ package powpaw.controller.impl;
 import java.util.Optional;
 import java.util.Random;
 
+import powpaw.controller.api.WeaponController;
 import powpaw.model.api.Player;
 import powpaw.model.api.Weapon;
 import powpaw.model.impl.WeaponFactory;
 import powpaw.view.impl.WeaponRender;
 
-public class WeaponController {
+public class WeaponControllerImpl implements WeaponController {
 
     private Weapon weapon;
     private WeaponRender weaponRender;
@@ -16,12 +17,13 @@ public class WeaponController {
     private PlayerController playerController;
     private Random rand = new Random();
 
-    public WeaponController(PlayerController playerController) {
+    public WeaponControllerImpl(PlayerController playerController) {
         this.playerController = playerController;
         weaponRender = new WeaponRender();
         spownWeapons();
     }
 
+    @Override
     public void pickWeapon() {
         playerController.getPlayerObservable().getPlayers().forEach(player -> {
             if (player.getHitbox().checkCollision(weapon.getHitbox().getShape())) {
@@ -66,10 +68,12 @@ public class WeaponController {
         this.weaponRender.setWeapon(weapon);
     }
 
+    @Override
     public Weapon getWeapon() {
         return this.weapon;
     }
 
+    @Override
     public WeaponRender getRender() {
         return this.weaponRender;
     }
