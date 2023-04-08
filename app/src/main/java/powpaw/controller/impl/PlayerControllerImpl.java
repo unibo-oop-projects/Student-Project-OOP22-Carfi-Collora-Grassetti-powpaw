@@ -27,14 +27,17 @@ public class PlayerControllerImpl implements PlayerController {
 
     public PlayerControllerImpl() {
         AtomicInteger index = new AtomicInteger();
-
         POSITIONS.forEach(point -> {
             Player player = new PlayerImpl(point, index.incrementAndGet());
             players.add(player);
             playersRender.add(new PlayerRenderImpl(player));
         });
-
         playerObservable = new PlayerObservableImpl(players);
+
+    }
+
+    public List<Player> getPlayerList() {
+        return this.players;
     }
 
     @Override

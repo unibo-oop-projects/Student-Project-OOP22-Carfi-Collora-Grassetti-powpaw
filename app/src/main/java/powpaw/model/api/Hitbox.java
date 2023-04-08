@@ -1,6 +1,7 @@
 package powpaw.model.api;
 
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public interface Hitbox {
@@ -13,6 +14,10 @@ public interface Hitbox {
 
     void setOffsetX(double width);
 
+    double getOffsetX();
+
+    double getOffsetY();
+
     void setOffsetY(double height);
 
     void switchDodge();
@@ -20,4 +25,8 @@ public interface Hitbox {
     void updateCenter(Point2D position);
 
     boolean checkCollision(Shape otherHitbox);
+
+    Shape getFeetShape();
+
+    Rectangle getArmShape();
 }

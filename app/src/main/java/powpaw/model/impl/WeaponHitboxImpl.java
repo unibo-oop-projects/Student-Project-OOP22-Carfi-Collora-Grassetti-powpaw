@@ -1,29 +1,17 @@
 package powpaw.model.impl;
 
 import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import powpaw.model.api.Hitbox;
+import powpaw.model.api.WeaponHitbox;
 
-public class WeaponHitboxImpl implements Hitbox {
-    private double offsetX;
-    private double offsetY;
+public class WeaponHitboxImpl implements WeaponHitbox {
     private Rectangle shape;
 
     public WeaponHitboxImpl(Point2D pos, double width, double height) {
         this.shape = new Rectangle(pos.getX(), pos.getY(), width, height);
-        this.offsetX = width / 2;
-        this.offsetY = height / 2;
-    }
-
-    @Override
-    public double getRadius() {
-        return this.shape.getWidth() / 2;
-    }
-
-    @Override
-    public Point2D getCenter() {
-        return new Point2D(this.shape.getWidth() / 2, this.shape.getHeight() / 2);
+        shape.setFill(Color.BLACK);
     }
 
     @Override
@@ -32,24 +20,9 @@ public class WeaponHitboxImpl implements Hitbox {
     }
 
     @Override
-    public void setOffsetX(double width) {
-        this.offsetX = this.shape.getWidth() / 2;
-    }
-
-    @Override
-    public void setOffsetY(double height) {
-        this.offsetY = this.shape.getHeight() / 2;
-    }
-
-    @Override
-    public void switchDodge() {
-        return;
-    }
-
-    @Override
     public void updateCenter(Point2D position) {
-        this.shape.setX(position.getX() + offsetX);
-        this.shape.setY(position.getY() + offsetY);
+        this.shape.setX(position.getX());
+        this.shape.setY(position.getY());
     }
 
     @Override

@@ -3,11 +3,11 @@ package powpaw.model.impl;
 import javafx.geometry.Point2D;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Block;
-import powpaw.model.api.Hitbox;
+import powpaw.model.api.BlockHitbox;
 
-public class BlockImpl implements Block{
+public class BlockImpl implements Block {
 
-    private Hitbox hitbox;
+    private BlockHitbox hitbox;
     private Point2D position;
     public double width;
     public double height;
@@ -40,7 +40,7 @@ public class BlockImpl implements Block{
     }
 
     @Override
-    public Hitbox getHitbox() {
+    public BlockHitbox getHitbox() {
         return this.hitbox;
     }
 

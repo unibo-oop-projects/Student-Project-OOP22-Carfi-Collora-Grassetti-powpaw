@@ -12,7 +12,7 @@ public class SpeedPowerUp extends PowerUp {
         double oldSpeed = stats.getSpeed();
         stats.setSpeed(oldSpeed + POWNUMBER);
         System.out.print(stats.getSpeed());
-        new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+        new Timeline(new KeyFrame(Duration.seconds(7), event -> {
             stats.setSpeed(oldSpeed);
             System.out.print(stats.getSpeed());
         })).play();

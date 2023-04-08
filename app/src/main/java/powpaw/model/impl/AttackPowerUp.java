@@ -13,7 +13,7 @@ public class AttackPowerUp extends PowerUp {
         double oldAttack = stats.getAttack();
         stats.setAttack(oldAttack + POWNUMBER);
         System.out.print(stats.getAttack());
-        new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+        new Timeline(new KeyFrame(Duration.seconds(7), event -> {
             stats.setAttack(oldAttack);
             System.out.print(stats.getAttack());
         })).play();

@@ -10,7 +10,7 @@ public interface Block {
 
     void setY(double y);
 
-    Hitbox getHitbox();
+    BlockHitbox getHitbox();
 
     double getWidth();
 

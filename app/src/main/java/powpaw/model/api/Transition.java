@@ -1,6 +1,7 @@
 package powpaw.model.api;
 
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Shape;
 
 public interface Transition {
 
@@ -8,5 +9,5 @@ public interface Transition {
 
     boolean checkPlayerCollisionByHitbox(Hitbox hitbox);
 
-    boolean checkPlayerContainedByHitbox(Hitbox hitbox);
+    boolean checkPlayerInTerrain(Shape hitbox);
 }

@@ -1,60 +1,65 @@
 package powpaw.controller.impl;
 
+import java.util.List;
 import java.util.Optional;
+
+import powpaw.common.DirectionVector;
+import powpaw.controller.api.AttackController;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
-public class AttackControllerImpl {
+public class AttackControllerImpl implements AttackController {
 
-    // si riferisce in percentuale
-    private static final double MAX_PERC = 1; // * 100
     private Player playerOne;
     private Player playerTwo;
 
-    public AttackControllerImpl(Player playerOne, Player playerTwo) {
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
+    @Override
+    public void setPlayers(List<Player> players) {
+        this.playerOne = players.get(0);
+        this.playerTwo = players.get(1);
     }
 
-    // nel PlayerImpl
-    public Optional<Player> checkHealtStatus() {
-        if (playerOne.getCurrentHealth() >= MAX_PERC) {
-            return Optional.of(this.playerOne);
-        } else if (playerOne.getCurrentHealth() >= MAX_PERC) {
-            return Optional.of(this.playerTwo);
-        }
-        return Optional.empty();
-    }
-
+    @Override
     public Optional<Player> checkDeath() {
-        if (ScreenController.isOutOfScreen(this.playerOne.getHitbox())) {
-            if (checkHit().get() == this.playerOne) {
-                return Optional.of(this.playerOne);
-            }
-        } else if (ScreenController.isOutOfScreen(this.playerTwo.getHitbox())) {
-            if (checkHit().get() == this.playerOne) {
-                return Optional.of(this.playerTwo);
-            }
+        if (ScreenController.isOutOfScreen(playerOne.getHitbox())) {
+            return Optional.of(playerOne);
+        }
+        if (ScreenController.isOutOfScreen(this.playerTwo.getHitbox())) {
+            return Optional.of(playerTwo);
         }
         return Optional.empty();
     }
 
-    private Optional<Player> checkHit() {
-        if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getShape())) {
-            if (this.playerOne.getState().equals(PlayerState.ATTACK)) {
-                this.playerOne.attack();
-                return Optional.of(this.playerOne);
-            } else if (this.playerTwo.getState().equals(PlayerState.ATTACK)) {
-                this.playerTwo.attack();
-                return Optional.of(this.playerTwo);
+    @Override
+    public void checkHit(Player player) {
+        if (this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getShape())
+                && player.getNumber() == 1) {
+            this.playerOne.serCurrentState(PlayerState.ATTACK);
+            if (this.playerOne.getWeapon().isPresent()) {
+                System.out.println("Durability 2:" + this.playerOne.getWeapon().get().getDurability());
+                this.playerOne.getWeapon().get().decrementDurability();
+            }
+            if (this.playerOne.getDirectionState().equals(PlayerState.WALK_LEFT)) {
+                this.playerTwo.receiveAttack(DirectionVector.LEFT.getPoint(), StatsHandler.getStatsP1().getAttack());
+            } else {
+                this.playerTwo.receiveAttack(DirectionVector.RIGHT.getPoint(), StatsHandler.getStatsP1().getAttack());
             }
         }
-        return Optional.empty();
-    }
+        if (this.playerTwo.getHitbox().checkCollision(this.playerOne.getHitbox().getShape())
+                && player.getNumber() == 2) {
+            this.playerTwo.serCurrentState(PlayerState.ATTACK);
+            if (this.playerTwo.getWeapon().isPresent()) {
+                this.playerTwo.getWeapon().get().decrementDurability();
+                System.out.println("Durability 2:" + this.playerTwo.getWeapon().get().getDurability());
+            }
+            if (this.playerTwo.getDirectionState().equals(PlayerState.WALK_LEFT)) {
+                this.playerOne.receiveAttack(DirectionVector.LEFT.getPoint(), StatsHandler.getStatsP2().getAttack());
+            } else {
+                this.playerOne.receiveAttack(DirectionVector.RIGHT.getPoint(), StatsHandler.getStatsP2().getAttack());
+            }
 
-    public Optional<Player> update() {
-        return checkDeath();
+        }
     }
 
 }
