@@ -30,11 +30,9 @@ public class WeaponFactory {
         Weapon weapon = new WeaponImpl(position, id);
         switch (id) {
             case 0:
-                System.out.println("SWORD");
                 weapon = createSword(position, id);
                 break;
             case 1:
-                System.out.println("Hammer");
                 weapon = createHammer(position, id);
                 break;
         }

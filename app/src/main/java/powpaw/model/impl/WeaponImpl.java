@@ -138,7 +138,6 @@ public class WeaponImpl implements Weapon {
     public void addAttack(PlayerStats ps) {
         double oldAttack = ps.getAttack();
         ps.setAttack(oldAttack + this.attack);
-        System.out.println("WEAPON ATK PLUS: " + ps.getAttack());
         if(this.durability == 0) {
             ps.setAttack(oldAttack);
         }

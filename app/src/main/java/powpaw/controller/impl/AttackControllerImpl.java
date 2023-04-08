@@ -71,7 +71,6 @@ public class AttackControllerImpl implements AttackController {
                 && player.getNumber() == 1) {
             this.playerOne.serCurrentState(PlayerState.ATTACK);
             if (this.playerOne.getWeapon().isPresent()) {
-                System.out.println("Durability 2:" + this.playerOne.getWeapon().get().getDurability());
                 this.playerOne.getWeapon().get().decrementDurability();
             }
             if (this.playerOne.getDirectionState().equals(PlayerState.WALK_LEFT)) {
@@ -85,7 +84,6 @@ public class AttackControllerImpl implements AttackController {
             this.playerTwo.serCurrentState(PlayerState.ATTACK);
             if (this.playerTwo.getWeapon().isPresent()) {
                 this.playerTwo.getWeapon().get().decrementDurability();
-                System.out.println("Durability 2:" + this.playerTwo.getWeapon().get().getDurability());
             }
             if (this.playerTwo.getDirectionState().equals(PlayerState.WALK_LEFT)) {
                 this.playerOne.receiveAttack(DirectionVector.LEFT.getPoint(), StatsHandler.getStatsP2().getAttack());
