@@ -8,6 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import powpaw.controller.impl.GameStateHandler;
 
+/**
+ * Start menu view
+ * 
+ * @author Simone Collorà
+ */
 public class StartMenu extends GridPane {
     private final Button start;
     private final Button exit;

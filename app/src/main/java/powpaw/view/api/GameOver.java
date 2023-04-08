@@ -9,12 +9,21 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import powpaw.controller.impl.GameStateHandler;
 import powpaw.controller.api.PlayerController;
-
+/**
+ * GameOver view
+ * 
+ * @author Simone Collorà
+ */
 public class GameOver extends VBox {
     private final Button newGame;
     private final Button exit;
     private final Text gameOver;
 
+    /**
+     * GameOver create a VBox as with gridPane Text appeared a little decentralized
+     * 
+     * @param controller in order to get the player who won and set his color on the win text
+     */
     public GameOver(PlayerController controller) {
         setAlignment(Pos.CENTER);
         int winnerNumber = controller.getPlayerObservable().getAttackController().checkDeath().get().getNumber();

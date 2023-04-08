@@ -2,7 +2,11 @@ package powpaw.controller.impl;
 
 import powpaw.common.GameState;
 import powpaw.controller.api.GameStateController;
-
+/**
+ * GameStateController implementation.The first state is Start.
+ * 
+ * @author Simone Collorà
+ */
 public class GameStateControllerImpl implements GameStateController {
 
     private GameState state = GameState.START;

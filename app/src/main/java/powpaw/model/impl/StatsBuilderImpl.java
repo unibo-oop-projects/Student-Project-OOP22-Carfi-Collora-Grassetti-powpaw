@@ -2,6 +2,13 @@ package powpaw.model.impl;
 
 import powpaw.model.api.StatsBuilder;
 
+/**
+ * StatsBuilder implementation. As every stat is a double but double are inaccurate, every setter get an int
+ * and later that became a double with toDouble method
+ * 
+ * 
+ * @author Simone Collorà
+ */
 public class StatsBuilderImpl implements StatsBuilder {
     private double attack;
     private double defence;
@@ -22,11 +29,19 @@ public class StatsBuilderImpl implements StatsBuilder {
         this.speed = toDouble(speed);
     }
 
+    /**
+     * Build the new player with the stats passed before
+     */
     @Override
     public PlayerStats build() {
         return new PlayerStats(this.attack, this.defence, this.speed);
     }
 
+    /**
+     * 
+     * @param value
+     * @return value/10 in double because the int passed would be too big
+     */
     private double toDouble(int value) {
         return (double) value / 10;
     }

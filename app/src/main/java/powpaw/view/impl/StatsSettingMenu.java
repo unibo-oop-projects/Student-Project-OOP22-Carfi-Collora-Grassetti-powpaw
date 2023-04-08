@@ -16,7 +16,12 @@ import powpaw.controller.impl.StatsHandler;
 import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.StatsBuilderImpl;
 import powpaw.view.api.StartMenu;
-
+/**
+ * Stats Setting Menu view
+ * 
+ * 
+ * @author Simone Collorà
+ */
 public class StatsSettingMenu extends GridPane {
 
     private static final int numStatistics = 3;
@@ -90,56 +95,56 @@ public class StatsSettingMenu extends GridPane {
                 case "ATTACK":
                     plusButtonsP1.get(i).getKey().setOnAction(e -> {
                         attackPointsP1 = updateStatPlus(attackPointsP1, attackTextP1);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     minusButtonsP1.get(i).getKey().setOnAction(e -> {
                         attackPointsP1 = updateStatMinus(attackPointsP1, attackTextP1);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     plusButtonsP2.get(i).getKey().setOnAction(e -> {
                         attackPointsP2 = updateStatPlus(attackPointsP2, attackTextP2);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     minusButtonsP2.get(i).getKey().setOnAction(e -> {
                         attackPointsP2 = updateStatMinus(attackPointsP2, attackTextP2);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
-                    updatePointLeft();
+                    updatePointsLeft();
                     break;
                 case "DEFENCE":
                     plusButtonsP1.get(i).getKey().setOnAction(e -> {
                         defencePointsP1 = updateStatPlus(defencePointsP1, defenceTextP1);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     minusButtonsP1.get(i).getKey().setOnAction(e -> {
                         defencePointsP1 = updateStatMinus(defencePointsP1, defenceTextP1);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     plusButtonsP2.get(i).getKey().setOnAction(e -> {
                         defencePointsP2 = updateStatPlus(defencePointsP2, defenceTextP2);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     minusButtonsP2.get(i).getKey().setOnAction(e -> {
                         defencePointsP2 = updateStatMinus(defencePointsP2, defenceTextP2);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     break;
                 case "SPEED":
                     plusButtonsP1.get(i).getKey().setOnAction(e -> {
                         speedPointsP1 = updateStatPlus(speedPointsP1, speedTextP1);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     minusButtonsP1.get(i).getKey().setOnAction(e -> {
                         speedPointsP1 = updateStatMinus(speedPointsP1, speedTextP1);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     plusButtonsP2.get(i).getKey().setOnAction(e -> {
                         speedPointsP2 = updateStatPlus(speedPointsP2, speedTextP2);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     minusButtonsP2.get(i).getKey().setOnAction(e -> {
                         speedPointsP2 = updateStatMinus(speedPointsP2, speedTextP2);
-                        updatePointLeft();
+                        updatePointsLeft();
                     });
                     break;
             }
@@ -152,6 +157,9 @@ public class StatsSettingMenu extends GridPane {
         });
     }
 
+    /**
+     * Initialize buttons
+     */
     private void initButton() {
         for (int i = 0; i < numStatistics; i++) {
             plusButtonsP1.add(new Pair<Button, String>(new Button("+"), statList.get(i)));
@@ -164,7 +172,9 @@ public class StatsSettingMenu extends GridPane {
         exit = new Button("MENU");
         finish = new Button("Finish");
     }
-
+    /**
+     * Set Button dimension
+     */
     private void setButtonDimension() {
         for (int i = 0; i < numStatistics; i++) {
             plusButtonsP1.get(i).getKey().prefWidthProperty().bind(widthProperty().divide(5));
@@ -219,21 +229,35 @@ public class StatsSettingMenu extends GridPane {
         statsP2.setSpeed(speedPointsP2);
     }
 
+    /**
+     * Update stat when increased
+     * @param points old points
+     * @param text points text
+     * @return new points increased
+     */
     private int updateStatPlus(int points, Text text) {
         points = control.increase(points);
         text.setText("" + points);
-        pointLeftP1Text.setText("Points left:" + pointsLeftP1);
-        pointLeftP2Text.setText("Points left:" + pointsLeftP2);
         return points;
     }
 
+      /**
+     * Update stat when decreased
+     * @param points old points
+     * @param text points text
+     * @return new points decreased
+     */
     private int updateStatMinus(int points, Text text) {
         points = control.decrease(points);
         text.setText("" + points);
         return points;
     }
 
-    private void updatePointLeft() {
+    /**
+     * Update points left and update the text. If the pointsLeft are maximum(7 in our case) minus button
+     * are disabled and when points left are 0 the plus buttons are disabled
+     */
+    private void updatePointsLeft() {
         pointsLeftP1 = StatsHandler.getLimit() - (attackPointsP1 + defencePointsP1 + speedPointsP1);
         pointsLeftP2 = StatsHandler.getLimit() - (attackPointsP2 + defencePointsP2 + speedPointsP2);
         pointLeftP1Text.setText("Points left:" + pointsLeftP1);

@@ -2,6 +2,12 @@ package powpaw.controller.impl;
 
 import powpaw.controller.api.StatsController;
 
+/**
+ * StatsController implementation. For balance reason every stat have a minimum
+ * of 5 and a max of 10.
+ * 
+ * @author Simone Collorà
+ */
 public class StatsControllerImpl implements StatsController {
     private final static int maxPoint = 10;
     private final static int minPoint = 5;

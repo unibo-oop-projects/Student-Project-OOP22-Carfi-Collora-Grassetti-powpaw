@@ -11,6 +11,11 @@ import powpaw.view.api.GameOver;
 import powpaw.view.api.GameStateView;
 import powpaw.view.api.StartMenu;
 
+/**
+ * GameStateView implementation
+ * 
+ * @author Simone Collorà
+ */
 public class GameStateViewImpl implements GameStateView {
 
     Stage stage = new Stage();
@@ -23,21 +28,29 @@ public class GameStateViewImpl implements GameStateView {
         stage.setResizable(false);
     }
 
+    /**
+     * show StartMenu and set GameState to START
+     */
     @Override
     public void showStartMenu() {
         stage.show();
         gameStateController.start();
         stage.setScene(new Scene(new StartMenu(), ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H));
         MediaAudio.playSound("/mainTitle.wav");
-        stage.show();
     }
 
+    /**
+     * show stats setting menu and set GameState to STATS
+     */
     @Override
     public void showCharacterCreation() {
         gameStateController.characterCreation();
         stage.setScene(new Scene(new StatsSettingMenu(), ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H));
     }
 
+    /**
+     * show the game itself and set GameState to GAME. It also start the gameloop and inizialize the render.
+     */
     @Override
     public void showGame() {
         worldRender = new WorldRenderImpl();
@@ -50,7 +63,9 @@ public class GameStateViewImpl implements GameStateView {
         loop.setDamageMeterController(worldRender.getDamageMeterController());
         loop.start();
     }
-
+    /**
+     * show GameOver and set GameState to GAMEOVER. It also stop the loop
+     */
     @Override
     public void showGameOver() {
         loop.stop();

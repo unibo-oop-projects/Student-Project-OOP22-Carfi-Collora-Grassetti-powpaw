@@ -1,5 +1,9 @@
 package powpaw.model.impl;
-
+/**
+ * PlayerStats model with getter and setter
+ * 
+ * @author Simone Collorà
+ */
 public class PlayerStats {
 
     private double attack;

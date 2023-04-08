@@ -3,6 +3,12 @@ package powpaw.controller.impl;
 import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.PlayerStats;
 
+/**
+ * this class contain the static stats of every player and the limit. It also have getter for stats and limit
+ *  and build for stats
+ * 
+ * @author Simone Collorà
+ */
 public class StatsHandler {
     private static PlayerStats statsP1;
     private static PlayerStats statsP2;

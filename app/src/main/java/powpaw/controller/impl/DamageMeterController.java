@@ -3,6 +3,11 @@ package powpaw.controller.impl;
 import powpaw.controller.api.PlayerController;
 import powpaw.view.impl.DamageMeterRender;
 
+/**
+ * DamageMeterController that create and set DamageMeterRender
+ * 
+ * @author Simone Collorà
+ */
 public class DamageMeterController {
     private DamageMeterRender render;
 

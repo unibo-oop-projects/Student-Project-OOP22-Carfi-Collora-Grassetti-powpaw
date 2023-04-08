@@ -6,6 +6,13 @@ import javafx.scene.shape.Circle;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.impl.PlayerStats;
 
+/**
+ * abstract PowerUp. This class create the base of the powerUp. POWNUMBER is a static double which
+ * indicate how much points a stats will get when increased by the powerUp
+ * 
+ * 
+ * @author Simone Collorà
+ */
 public abstract class PowerUp {
 
     protected final static double POWNUMBER = 0.2;
