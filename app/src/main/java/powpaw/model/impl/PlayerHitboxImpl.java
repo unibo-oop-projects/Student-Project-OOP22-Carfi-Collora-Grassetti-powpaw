@@ -17,7 +17,6 @@ public class PlayerHitboxImpl implements Hitbox {
     private Circle hitbox;
     private Circle feetBox;
     private Rectangle armHitbox;
-    private boolean isDodging;
 
     public PlayerHitboxImpl(Point2D PlayerPosition, double width, double height) {
         this.radius = width / 2;
@@ -35,7 +34,6 @@ public class PlayerHitboxImpl implements Hitbox {
         this.armHitbox.setFill(Color.GREEN); // debug
         this.feetBox = new Circle(x, yFeet, this.feetRadius);
         this.feetBox.setFill(Color.RED); // debug
-        this.isDodging = false;
     }
 
     @Override
@@ -84,11 +82,6 @@ public class PlayerHitboxImpl implements Hitbox {
     }
 
     @Override
-    public void switchDodge() {
-        this.isDodging = !isDodging;
-    }
-
-    @Override
     public void updateCenter(Point2D position) {
         this.hitbox.setCenterX(position.getX() + offsetX);
         this.hitbox.setCenterY(position.getY() + offsetY);
@@ -102,6 +95,6 @@ public class PlayerHitboxImpl implements Hitbox {
 
     @Override
     public boolean checkCollision(Shape otherHitbox) {
-        return this.isDodging ? false : this.armHitbox.getBoundsInParent().intersects(otherHitbox.getBoundsInParent());
+        return this.armHitbox.getBoundsInParent().intersects(otherHitbox.getBoundsInParent());
     }
 }

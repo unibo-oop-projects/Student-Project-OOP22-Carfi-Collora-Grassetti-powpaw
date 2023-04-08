@@ -37,7 +37,7 @@ public interface Player {
 
     PlayerState getState();
 
-    void serCurrentState(PlayerState state);
+    void setCurrentState(PlayerState state);
 
     PlayerState getDirectionState();
 
@@ -55,7 +55,11 @@ public interface Player {
 
     void setIsMovingLeft(boolean b);
 
+    void setIsAttacking(boolean b);
+
     void setIsHit(boolean b);
+
+    void setIsDodging(boolean b);
 
     void idle();
 

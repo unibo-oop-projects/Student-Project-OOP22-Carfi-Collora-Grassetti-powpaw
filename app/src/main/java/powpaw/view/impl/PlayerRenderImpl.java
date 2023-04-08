@@ -6,7 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
 import powpaw.model.api.Player;
-import powpaw.model.impl.PlayerImpl.PlayerState;
 import powpaw.view.api.PlayerRender;
 
 public class PlayerRenderImpl implements PlayerRender {
@@ -14,6 +13,8 @@ public class PlayerRenderImpl implements PlayerRender {
     final List<Image> sprites = new ArrayList<>();
     final Image idleSprite;
     final Image attackSprite;
+    final Image hitSprite;
+    final Image dodgeSprite;
     final Image swordSprite;
     final Image hammerSprite;
     final ImageView sprite;
@@ -25,6 +26,8 @@ public class PlayerRenderImpl implements PlayerRender {
         int playerNum = player.getNumber();
         this.idleSprite = new Image("p" + playerNum + "_idle.png");
         this.attackSprite = new Image("p" + playerNum + "_attack.png");
+        this.hitSprite = new Image("p" + playerNum + "_damage.png");
+        this.dodgeSprite = new Image("p" + playerNum + "_dodge.png");
         this.swordSprite = new Image("swordPlayer.png");
         this.hammerSprite = new Image("hammerPlayer.png");
         this.armSprite = new ImageView();
@@ -51,20 +54,37 @@ public class PlayerRenderImpl implements PlayerRender {
 
     @Override
     public void renderPlayer() {
-        if (this.player.getState() == PlayerState.WALK_RIGHT) {
-            rotate(this.sprite, 0);
-            this.armSprite.setRotate(0);
-            this.armSprite.setTranslateX(0);
-            this.player.getArmHitbox().setRotate(0);
-            this.player.getArmHitbox().setTranslateX(0);
+        if (this.player.getNumber() == 1)
+            System.out.println(this.player.getState());
+        switch (this.player.getState()) {
+            case HIT:
+                this.sprite.setImage(this.hitSprite);
+                break;
+            case DODGE:
+                this.sprite.setImage(this.dodgeSprite);
+                break;
+            case WALK_RIGHT:
+                rotate(this.sprite, 0);
+                this.armSprite.setRotate(0);
+                this.armSprite.setTranslateX(0);
+                this.player.getArmHitbox().setRotate(0);
+                this.player.getArmHitbox().setTranslateX(0);
+                this.sprite.setImage(this.idleSprite);
+                break;
+            case WALK_LEFT:
+                rotate(this.sprite, 180);
+                this.player.getArmHitbox().setTranslateX(-this.player.getArmHitbox().getWidth());
+                this.armSprite.setRotate(180);
+                this.armSprite.setTranslateX(-this.player.getArmHitbox().getWidth());
+                this.sprite.setImage(this.idleSprite);
+                break;
+            case ATTACK:
+                this.sprite.setImage(this.attackSprite);
+                break;
+            default:
+                this.sprite.setImage(this.idleSprite);
+                break;
         }
-        if (this.player.getState() == PlayerState.WALK_LEFT) {
-            rotate(this.sprite, 180);
-            this.player.getArmHitbox().setTranslateX(-this.player.getArmHitbox().getWidth());
-            this.armSprite.setRotate(180);
-            this.armSprite.setTranslateX(-this.player.getArmHitbox().getWidth());
-        }
-        this.sprite.setImage(this.player.getState() == PlayerState.ATTACK ? attackSprite : idleSprite);
         this.sprite.setLayoutX(this.player.getPosition().getX());
         this.sprite.setLayoutY(this.player.getPosition().getY());
         this.sprite.setFitWidth(this.player.getWidth());

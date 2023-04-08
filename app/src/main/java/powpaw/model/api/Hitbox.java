@@ -20,8 +20,6 @@ public interface Hitbox {
 
     void setOffsetY(double height);
 
-    void switchDodge();
-
     void updateCenter(Point2D position);
 
     boolean checkCollision(Shape otherHitbox);

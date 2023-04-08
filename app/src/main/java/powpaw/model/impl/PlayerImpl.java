@@ -24,6 +24,7 @@ public class PlayerImpl implements Player {
 
     private static final double JUMP_SPEED = 0.8;
     private static final double JUMP_TIME = 0.4;
+    private static final double DODGE_TIME = 0.5;
     private static final double GRAVITY = 0.5;
 
     private TransitionImpl transition;
@@ -48,11 +49,19 @@ public class PlayerImpl implements Player {
     private boolean isJumping = false;
     private boolean isMovingLeft = false;
     private boolean isMovingRight = false;
+    private boolean isAttacking = false;
     private boolean isHit = false;
-    private Timeline timeline = new Timeline(
+    private boolean isDodging = false;
+    private Timeline jumpTimeline = new Timeline(
             new KeyFrame(javafx.util.Duration.seconds(JUMP_TIME), event -> {
                 this.isJumping = false;
             }));
+    private Timeline dodgeTimeline = new Timeline(
+            new KeyFrame(javafx.util.Duration.seconds(DODGE_TIME), event -> {
+                canMove = true;
+                this.currentState = PlayerState.IDLE;
+            }));
+    private boolean canMove = true;
 
     public PlayerImpl(Point2D position, int number) {
         this.transition = new TransitionImpl();
@@ -140,7 +149,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void serCurrentState(PlayerState state) {
+    public void setCurrentState(PlayerState state) {
         this.currentState = state;
     }
 
@@ -155,7 +164,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public DamageMeter getCurrentHealth(){
+    public DamageMeter getCurrentHealth() {
         return this.currentHealth;
     }
 
@@ -187,8 +196,18 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public void setIsAttacking(boolean b) {
+        this.isAttacking = b;
+    }
+
+    @Override
     public void setIsHit(boolean b) {
         this.isHit = b;
+    }
+
+    @Override
+    public void setIsDodging(boolean b) {
+        this.isDodging = b;
     }
 
     private void moveLeft() {
@@ -206,24 +225,23 @@ public class PlayerImpl implements Player {
     private void jump() {
         this.currentState = PlayerState.JUMP;
         this.direction = this.direction.add(DirectionVector.UP.getPoint());
+        jumpTimeline.play();
+    }
+
+    private void attack() {
+        this.currentState = PlayerState.ATTACK;
     }
 
     @Override
     public void idle() {
-        this.currentState = PlayerState.IDLE;
         this.direction = new Point2D(0, 0);
     }
 
     @Override
     public void dodge() {
-        hitbox.switchDodge();
+        canMove = false;
         this.currentState = PlayerState.DODGE;
-        try {
-            Thread.sleep(Duration.ofMillis(1).toMillis());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        hitbox.switchDodge();
+        dodgeTimeline.play();
     }
 
     @Override
@@ -251,20 +269,29 @@ public class PlayerImpl implements Player {
 
         if (isFalling() && !isJumping) {
             this.direction = this.direction.add(DirectionVector.DOWN.getPoint());
-            timeline.stop();
+            jumpTimeline.stop();
         }
+        if (canMove) {
 
-        if (this.isJumping) {
-            this.jump();
-            timeline.play();
-        }
+            if (this.isJumping) {
+                this.jump();
+            }
 
-        if (this.isMovingLeft) {
-            this.moveLeft();
-        }
+            if (this.isMovingLeft) {
+                this.moveLeft();
+            }
 
-        if (this.isMovingRight) {
-            this.moveRight();
+            if (this.isMovingRight) {
+                this.moveRight();
+            }
+
+            if (this.isAttacking) {
+                this.attack();
+            }
+
+            if (this.isDodging) {
+                this.dodge();
+            }
         }
 
         this.direction = this.direction.normalize();
@@ -279,5 +306,4 @@ public class PlayerImpl implements Player {
         }
         this.hitbox.updateCenter(this.position);
     }
-
 }

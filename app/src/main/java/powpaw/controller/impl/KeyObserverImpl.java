@@ -18,6 +18,7 @@ public class KeyObserverImpl implements KeyObserver {
     private KeyCode keyLeft;
     private KeyCode keyRight;
     private KeyCode keyAttack;
+    private KeyCode keyDodge;
     private Set<KeyCode> keys = new HashSet<>();
     private AttackController attackController;
 
@@ -30,11 +31,13 @@ public class KeyObserverImpl implements KeyObserver {
         this.keyLeft = commands.get("left");
         this.keyRight = commands.get("right");
         this.keyAttack = commands.get("attack");
+        this.keyDodge = commands.get("dodge");
 
         this.keys.add(keyJump);
         this.keys.add(keyLeft);
         this.keys.add(keyRight);
         this.keys.add(keyAttack);
+        this.keys.add(keyDodge);
     }
 
     @Override
@@ -55,7 +58,11 @@ public class KeyObserverImpl implements KeyObserver {
             this.player.setIsMovingLeft(true);
         }
         if (event == keyAttack) {
+            this.player.setIsAttacking(true);
             this.attackController.checkHit(this.player);
+        }
+        if (event == keyDodge) {
+            this.player.setIsDodging(true);
         }
     }
 
@@ -76,9 +83,11 @@ public class KeyObserverImpl implements KeyObserver {
             this.player.setIsMovingLeft(false);
         }
         if (event == keyAttack) {
-            this.player.idle();
+            this.player.setIsAttacking(false);
         }
-
+        if (event == keyDodge) {
+            this.player.setIsDodging(false);
+        }
     }
 
 }
