@@ -3,8 +3,11 @@ package powpaw.view.api;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import powpaw.controller.impl.GameStateHandler;
@@ -25,6 +28,7 @@ public class GameOver extends VBox {
      * @param controller in order to get the player who won and set his color on the win text
      */
     public GameOver(PlayerController controller) {
+        setBackground(Background.fill(new ImagePattern(new Image("/background_menu.png"))));
         setAlignment(Pos.CENTER);
         int winnerNumber = controller.getPlayerObservable().getAttackController().checkDeath().get().getNumber();
         gameOver = new Text("P" + winnerNumber +" WIN");

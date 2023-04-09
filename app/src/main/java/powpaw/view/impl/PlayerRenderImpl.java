@@ -61,7 +61,6 @@ public class PlayerRenderImpl implements PlayerRender {
 
     @Override
     public void renderPlayer() {
-        if (this.player.getNumber() == 1)
         switch (this.player.getState()) {
             case HIT:
                 this.sprite.setImage(this.hitSprite);
