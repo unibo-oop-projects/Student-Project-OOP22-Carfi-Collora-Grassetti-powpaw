@@ -6,16 +6,15 @@ import java.util.List;
 import javafx.scene.text.Text;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
+import powpaw.view.api.DamageMeterRender;
 /**
- * DamageMeterRender. The costructor create a list of Text with the players damage and
- *  multiply it x10 in order to be more user friendly
- * 
+ * DamageMeterRender implementation
  * @author Simone Collorà
  */
-public class DamageMeterRender {
+public class DamageMeterRenderImpl implements DamageMeterRender {
    private List<Text> damage = new ArrayList<>();
 
-    public DamageMeterRender(List<Player> players) {
+    public DamageMeterRenderImpl(List<Player> players) {
         for(int i = 0; i<2; i++){
             damage.add(new Text((int)(players.get(i).getCurrentHealth().getDamage()*10) + "%"));
             damage.get(i).setStyle("-fx-font: 50 arial;");
@@ -25,10 +24,12 @@ public class DamageMeterRender {
         damage.get(1).setX(ScreenController.SIZE_HD_W / 1.3);
     }
 
+    @Override
     public List<Text> getDamage() {
         return this.damage;
     }
 
+    @Override
     public void update(List<Player> players) {
         for(int i = 0; i<2; i++){
             damage.get(i).setText((int)(players.get(i).getCurrentHealth().getDamage()*10) + "%");

@@ -6,40 +6,36 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import powpaw.controller.api.PlayerController;
+import powpaw.controller.api.PowerUpController;
 import powpaw.model.api.PowerUp;
 import powpaw.model.impl.AttackPowerUp;
 import powpaw.model.impl.SpeedPowerUp;
-import powpaw.view.impl.PowerUpRender;
+import powpaw.view.api.PowerUpRender;
+import powpaw.view.impl.PowerUpRenderImpl;
 
 /**
  * PowerUpController that create render and set powerUp behaviour
  * 
  * @author Simone Collorà
  */
-public class PowerUpController {
+public class PowerUpControllerImpl implements PowerUpController {
     private PowerUpRender powerUpRender;
     private PowerUp powerUp;
     private boolean isCollected = false;
     private int powerUpIndex;
     private Random rand = new Random();
 
-    public PowerUpController() {
-        this.powerUpRender = new PowerUpRender();
+    public PowerUpControllerImpl() {
+        this.powerUpRender = new PowerUpRenderImpl();
         this.choosePowerUp();
     }
 
+    @Override
     public PowerUpRender getRender() {
         return this.powerUpRender;
     }
 
-    /**
-     * pickPowerUp check if a player pick the PowerUp and increase a determinated stat of the player
-     * who pick the PowerUp, When someone pick the power up after the stat is increased isCollected became true
-     * in order to block the powerUp to be picked more than one time and became invisble. After 10 seconds
-     * isCollected return false and another powerUp is created.
-     * 
-     * @param playerController
-     */
+    @Override
     public void pickPowerUp(PlayerController playerController) {
 
         playerController.getPlayerObservable().getPlayers().forEach(player -> {

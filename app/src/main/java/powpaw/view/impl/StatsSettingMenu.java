@@ -15,7 +15,7 @@ import powpaw.controller.impl.StatsControllerImpl;
 import powpaw.controller.impl.StaticStats;
 import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.StatsBuilderImpl;
-import powpaw.view.api.StartMenu;
+
 /**
  * Stats Setting Menu view
  * 
@@ -172,6 +172,7 @@ public class StatsSettingMenu extends GridPane {
         exit = new Button("MENU");
         finish = new Button("Finish");
     }
+
     /**
      * Set Button dimension
      */
@@ -198,6 +199,9 @@ public class StatsSettingMenu extends GridPane {
         finish.setMaxSize(50, 50);
     }
 
+    /**
+     * Set nodes positions
+     */
     private void addPosition() {
         add(att, 0, 1);
         add(def, 0, 2);
@@ -220,6 +224,9 @@ public class StatsSettingMenu extends GridPane {
         add(finish, 10, 10);
     }
 
+    /**
+     * Set all stats
+     */
     private void setAllStats() {
         statsP1.setAttack(attackPointsP1);
         statsP1.setDefence(defencePointsP1);
@@ -231,8 +238,9 @@ public class StatsSettingMenu extends GridPane {
 
     /**
      * Update stat when increased
+     * 
      * @param points old points
-     * @param text points text
+     * @param text   points text
      * @return new points increased
      */
     private int updateStatPlus(int points, Text text) {
@@ -241,10 +249,11 @@ public class StatsSettingMenu extends GridPane {
         return points;
     }
 
-      /**
+    /**
      * Update stat when decreased
+     * 
      * @param points old points
-     * @param text points text
+     * @param text   points text
      * @return new points decreased
      */
     private int updateStatMinus(int points, Text text) {
@@ -254,7 +263,8 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Update points left and update the text. If the pointsLeft are maximum(7 in our case) minus button
+     * Update points left and update the text. If the pointsLeft are maximum(7 in
+     * our case) minus button
      * are disabled and when points left are 0 the plus buttons are disabled
      */
     private void updatePointsLeft() {
