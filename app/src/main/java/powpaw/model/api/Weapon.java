@@ -35,7 +35,6 @@ public interface Weapon {
      * Getter of the attack of a weapon.
      * 
      * @param attack
-     * @return The weapon attack (double)
      */
     void setAttack(double attack);
 
