@@ -31,11 +31,6 @@ public class MapRenderImpl implements MapRender {
         this.textureBlock = new ImagePattern(new Image("/block.png"));
     }
 
-    /**
-     * Method that creates a Pane and draws blocks on it.
-     * 
-     * @return A Pane object.
-     */
     @Override
     public Pane createPane() {
         Pane worldPane = new Pane();
@@ -43,15 +38,13 @@ public class MapRenderImpl implements MapRender {
         return worldPane;
     }
 
+    /**
+     * Setter that fill color of the hitbox shape of each terrain block to a texture block.
+     */
     private void drawBlocks() {
         this.terrains.stream().forEach(b -> b.getHitbox().getShape().setFill(this.textureBlock));
     }
 
-    /**
-     * Getters for an ArrayList of BlockImpl representing terrains.
-     * 
-     * @return An ArrayList of BlockImpl
-     */
     @Override
     public ArrayList<BlockImpl> getTerrains() {
         return this.terrains;

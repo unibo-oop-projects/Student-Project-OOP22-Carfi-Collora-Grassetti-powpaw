@@ -9,11 +9,23 @@ public interface GameStateController {
      * @author Simone Collorà
      */
 
+    /**
+     * Set State to START
+     */
     void start();
 
+    /**
+     * Set State to STATS
+     */
     void characterCreation();
 
+    /**
+     * Set State to GAME
+     */
     void game();
 
+    /**
+     * Set State to GAMEOVER
+     */
     void gameOver();
 }

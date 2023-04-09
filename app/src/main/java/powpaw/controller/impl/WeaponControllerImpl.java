@@ -39,11 +39,6 @@ public class WeaponControllerImpl implements WeaponController {
         spownWeapons();
     }
 
-    /**
-     * The function checks if a player collides with a weapon and either sets the
-     * weapon to the player
-     * or drops it.
-     */
     @Override
     public void pickWeapon() {
         playerController.getPlayerObservable().getPlayers().forEach(player -> {
@@ -110,21 +105,11 @@ public class WeaponControllerImpl implements WeaponController {
         this.weaponRender.setWeapon(weapon);
     }
 
-    /**
-     * Getter for weapon.
-     * 
-     * @return The Weapon
-     */
     @Override
     public Weapon getWeapon() {
         return this.weapon;
     }
 
-    /**
-     * Getterfor the weapon render.
-     * 
-     * @return A WeaponRender
-     */
     @Override
     public WeaponRender getRender() {
         return this.weaponRender;

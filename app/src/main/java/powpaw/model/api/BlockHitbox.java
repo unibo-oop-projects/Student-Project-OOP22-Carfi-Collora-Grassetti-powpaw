@@ -3,7 +3,7 @@ package powpaw.model.api;
 import javafx.scene.shape.Shape;
 
 /**
- * Interface for BlockHitboxImpl
+ * Interface for BlockHitboxImpl representing the hitbox entity of a Block.
  * 
  * @author Giacomo Grassetti
  */

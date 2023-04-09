@@ -57,7 +57,7 @@ public class PlayerObservableImpl implements PlayerObservable {
         if (!gameOver) {
             if (attackController.checkDeath().isPresent()) {
                 gameOver = true;
-                GameStateHandler.getGameStateView().showGameOver();
+                StaticGameState.getGameStateView().showGameOver();
             }
             playerList.forEach(player -> player.update(deltaTime));
         }

@@ -15,6 +15,10 @@ public class DamageMeterController {
         render = new DamageMeterRender(controller.getPlayers());
     }
 
+    /**
+     * Get render
+     * @return render
+     */
     public DamageMeterRender getRender() {
         return this.render;
     }

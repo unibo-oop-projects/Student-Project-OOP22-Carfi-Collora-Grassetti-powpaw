@@ -10,9 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
-import powpaw.controller.impl.GameStateHandler;
+import powpaw.controller.impl.StaticGameState;
 import powpaw.controller.impl.StatsControllerImpl;
-import powpaw.controller.impl.StatsHandler;
+import powpaw.controller.impl.StaticStats;
 import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.StatsBuilderImpl;
 import powpaw.view.api.StartMenu;
@@ -151,9 +151,9 @@ public class StatsSettingMenu extends GridPane {
         }
         finish.setOnAction(e -> {
             setAllStats();
-            StatsHandler.buildStatsP1(statsP1);
-            StatsHandler.buildStatsP2(statsP2);
-            GameStateHandler.getGameStateView().showGame();
+            StaticStats.buildStatsP1(statsP1);
+            StaticStats.buildStatsP2(statsP2);
+            StaticGameState.getGameStateView().showGame();
         });
     }
 
@@ -258,8 +258,8 @@ public class StatsSettingMenu extends GridPane {
      * are disabled and when points left are 0 the plus buttons are disabled
      */
     private void updatePointsLeft() {
-        pointsLeftP1 = StatsHandler.getLimit() - (attackPointsP1 + defencePointsP1 + speedPointsP1);
-        pointsLeftP2 = StatsHandler.getLimit() - (attackPointsP2 + defencePointsP2 + speedPointsP2);
+        pointsLeftP1 = StaticStats.getLimit() - (attackPointsP1 + defencePointsP1 + speedPointsP1);
+        pointsLeftP2 = StaticStats.getLimit() - (attackPointsP2 + defencePointsP2 + speedPointsP2);
         pointLeftP1Text.setText("Points left:" + pointsLeftP1);
         pointLeftP2Text.setText("Points left:" + pointsLeftP2);
 
