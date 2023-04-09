@@ -58,6 +58,9 @@ public class StatsSettingMenu extends GridPane {
     private StatsBuilder statsP2 = new StatsBuilderImpl();
     private StatsControllerImpl control = new StatsControllerImpl();
 
+    /**
+     * StatsSetting costructor
+     */
     public StatsSettingMenu() {
         att = new Label("Attack: ");
         def = new Label("Defence: ");
@@ -245,7 +248,7 @@ public class StatsSettingMenu extends GridPane {
      * @param text   points text
      * @return new points increased
      */
-    private int updateStatPlus(int points, Text text) {
+    private int updateStatPlus(int points,final Text text) {
         points = control.increase(points);
         text.setText("" + points);
         return points;
@@ -258,7 +261,7 @@ public class StatsSettingMenu extends GridPane {
      * @param text   points text
      * @return new points decreased
      */
-    private int updateStatMinus(int points, Text text) {
+    private int updateStatMinus(int points,final Text text) {
         points = control.decrease(points);
         text.setText("" + points);
         return points;

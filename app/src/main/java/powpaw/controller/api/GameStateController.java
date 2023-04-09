@@ -1,13 +1,12 @@
 package powpaw.controller.api;
 
+/**
+ * GameStateController. Every method set a determinated state:
+ * Start,Character Creation, Game and Game over.
+ * 
+ * @author Simone Collorà
+ */
 public interface GameStateController {
-
-    /**
-     * GameStateController. Every method set a determinated state:
-     * Start,Character Creation, Game and Game over.
-     * 
-     * @author Simone Collorà
-     */
 
     /**
      * Set State to START.

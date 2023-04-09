@@ -48,7 +48,7 @@ public class StaticStats {
      * @param build
      * @return builded player 1 stats.
      */
-    public static PlayerStats buildStatsP1(StatsBuilder build) {
+    public static PlayerStats buildStatsP1(final StatsBuilder build) {
         statsP1 = build.build();
         return statsP1;
     }
@@ -59,7 +59,7 @@ public class StaticStats {
      * @param build
      * @return builded player 2 stats.
      */
-    public static PlayerStats buildStatsP2(StatsBuilder build) {
+    public static PlayerStats buildStatsP2(final StatsBuilder build) {
         statsP2 = build.build();
         return statsP2;
     }

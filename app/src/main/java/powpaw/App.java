@@ -7,13 +7,21 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import powpaw.controller.impl.StaticGameState;
 
+/**
+ * Main app.
+ */
 public class App extends Application {
-    public static void main(String[] args) {
+    /**
+     * Main.
+     * 
+     * @param args
+     */
+    public static void main(final String[] args) {
         Application.launch(App.class, args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
         StaticGameState.getGameStateView().showStartMenu();
     }
 }

@@ -13,7 +13,11 @@ import powpaw.view.impl.DamageMeterRenderImpl;
 public class DamageMeterControllerImpl implements DamageMeterController {
     private DamageMeterRender render;
 
-    public DamageMeterControllerImpl(PlayerController controller) {
+    /**
+     * DamageMeter costructor.
+     * @param controller for every player damage meter.
+     */
+    public DamageMeterControllerImpl(final PlayerController controller) {
         render = new DamageMeterRenderImpl(controller.getPlayers());
     }
 

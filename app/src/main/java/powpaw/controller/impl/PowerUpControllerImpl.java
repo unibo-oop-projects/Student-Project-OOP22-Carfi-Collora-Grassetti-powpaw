@@ -25,6 +25,9 @@ public class PowerUpControllerImpl implements PowerUpController {
     private int powerUpIndex;
     private Random rand = new Random();
 
+    /**
+     * PowerUpController costructor.
+     */
     public PowerUpControllerImpl() {
         this.powerUpRender = new PowerUpRenderImpl();
         this.choosePowerUp();
