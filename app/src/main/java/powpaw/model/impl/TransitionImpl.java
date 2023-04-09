@@ -23,20 +23,6 @@ public class TransitionImpl implements Transition {
         this.map = new CreateMap();
     }
 
-    /**
-     * Method that checks collision and returns a new position if there is no
-     * collision, otherwise
-     * it returns the current position.
-     * 
-     * @param pos The current position of an object in a 2D coordinate system,
-     *            represented by a Point2D
-     *            object.
-     * @return If there is no collision detected at the given position, returns a
-     *         new
-     *         position that is 2 units below the current position. If there is a
-     *         collision, the method returns
-     *         the current position without any changes.
-     */
     @Override
     public Point2D fallTransition(Point2D pos) {
         if (!checkCollisionByPos(pos)) {
@@ -66,13 +52,6 @@ public class TransitionImpl implements Transition {
         return false;
     }
 
-    /**
-     * method that checks if a player's hitbox collides with any terrain blocks in a
-     * map.
-     * 
-     * @param hitbox Hibox of the player
-     * @return True if player hitbox intersect with terrains, false otherwise.
-     */
     @Override
     public boolean checkPlayerCollisionByHitbox(Hitbox hitbox) {
         for (BlockImpl obs : this.map.getTerrains()) {
@@ -84,13 +63,6 @@ public class TransitionImpl implements Transition {
         return false;
     }
 
-    /**
-     * This function checks if a player is within the boundaries of a terrain block
-     * in a game map.
-     * 
-     * @param feetBox A Shape object representing the hitbox of the player's feet.
-     * @return True if player feet intersect with terrains, false otherwise.
-     */
     @Override
     public boolean checkPlayerInTerrain(Shape feetBox) {
         for (BlockImpl obs : this.map.getTerrains()) {
