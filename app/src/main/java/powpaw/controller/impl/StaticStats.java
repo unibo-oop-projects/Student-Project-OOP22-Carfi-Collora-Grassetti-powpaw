@@ -9,7 +9,7 @@ import powpaw.model.impl.PlayerStats;
  * 
  * @author Simone Collorà
  */
-public class StatsHandler {
+public class StaticStats {
     private static PlayerStats statsP1;
     private static PlayerStats statsP2;
     private static int limit = 22;

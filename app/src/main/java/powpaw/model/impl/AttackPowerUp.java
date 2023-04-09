@@ -14,7 +14,6 @@ public class AttackPowerUp extends PowerUp {
     /**
      * increase attack by POWNUMBER for 7 seconds
      * 
-     * @author Simone Collorà
      * @param stats
      */
     @Override

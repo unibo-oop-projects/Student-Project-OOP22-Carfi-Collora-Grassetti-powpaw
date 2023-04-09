@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
-import powpaw.controller.impl.GameStateHandler;
+import powpaw.controller.impl.StaticGameState;
 
 /**
  * Start menu view
@@ -37,7 +37,7 @@ public class StartMenu extends GridPane {
         add(exit, 0, 1);
         start.setOnAction(e -> {
             try {
-                GameStateHandler.getGameStateView().showCharacterCreation();
+                StaticGameState.getGameStateView().showCharacterCreation();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }

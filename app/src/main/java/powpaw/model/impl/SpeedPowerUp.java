@@ -14,8 +14,7 @@ public class SpeedPowerUp extends PowerUp {
 
      /**
      * increase speed by POWNUMBER for 7 seconds
-     * 
-     * @author Simone Collorà
+     *
      * @param stats
      */
     @Override

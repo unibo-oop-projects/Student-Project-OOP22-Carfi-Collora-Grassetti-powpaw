@@ -75,9 +75,9 @@ public class AttackControllerImpl implements AttackController {
                 this.playerOne.getWeapon().get().decrementDurability();
             }
             if (this.playerOne.getDirectionState().equals(PlayerState.WALK_LEFT)) {
-                this.playerTwo.receiveAttack(DirectionVector.LEFT.getPoint(), StatsHandler.getStatsP1().getAttack());
+                this.playerTwo.receiveAttack(DirectionVector.LEFT.getPoint(), StaticStats.getStatsP1().getAttack());
             } else {
-                this.playerTwo.receiveAttack(DirectionVector.RIGHT.getPoint(), StatsHandler.getStatsP1().getAttack());
+                this.playerTwo.receiveAttack(DirectionVector.RIGHT.getPoint(), StaticStats.getStatsP1().getAttack());
             }
         }
         if (this.playerOne.getState() != PlayerState.DODGE
@@ -87,9 +87,9 @@ public class AttackControllerImpl implements AttackController {
                 this.playerTwo.getWeapon().get().decrementDurability();
             }
             if (this.playerTwo.getDirectionState().equals(PlayerState.WALK_LEFT)) {
-                this.playerOne.receiveAttack(DirectionVector.LEFT.getPoint(), StatsHandler.getStatsP2().getAttack());
+                this.playerOne.receiveAttack(DirectionVector.LEFT.getPoint(), StaticStats.getStatsP2().getAttack());
             } else {
-                this.playerOne.receiveAttack(DirectionVector.RIGHT.getPoint(), StatsHandler.getStatsP2().getAttack());
+                this.playerOne.receiveAttack(DirectionVector.RIGHT.getPoint(), StaticStats.getStatsP2().getAttack());
             }
 
         }

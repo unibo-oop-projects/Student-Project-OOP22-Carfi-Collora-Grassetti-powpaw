@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import powpaw.controller.impl.GameStateHandler;
+import powpaw.controller.impl.StaticGameState;
 import powpaw.controller.api.PlayerController;
 /**
  * GameOver view
@@ -47,7 +47,7 @@ public class GameOver extends VBox {
         getChildren().addAll(gameOver,newGame,exit);
         newGame.setOnAction(e -> {
             try {
-                GameStateHandler.getGameStateView().showCharacterCreation();
+                StaticGameState.getGameStateView().showCharacterCreation();
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
