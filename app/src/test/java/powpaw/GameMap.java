@@ -22,7 +22,7 @@ public class GameMap {
     }
 
     @Test
-    void chekBlockPositionTest() {
+    void checkBlockPositionTest() {
         BlockImpl blockOne = BlockFactory.createBlock(200, 200);
         blockOne.setX(400);
         BlockImpl blockTwo = BlockFactory.createBlock(250, 200);
