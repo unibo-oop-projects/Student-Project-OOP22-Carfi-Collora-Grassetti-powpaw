@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javafx.scene.shape.Circle;
 import powpaw.controller.api.ScreenController;
+import powpaw.model.api.PlayerStats;
 import powpaw.model.api.PowerUp;
 
 /**

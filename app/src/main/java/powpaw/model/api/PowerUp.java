@@ -1,7 +1,6 @@
 package powpaw.model.api;
 
 import javafx.scene.shape.Circle;
-import powpaw.model.impl.PlayerStats;
 
 /**
  * Power Up interface.

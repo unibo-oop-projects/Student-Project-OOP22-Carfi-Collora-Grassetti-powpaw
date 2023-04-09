@@ -1,7 +1,5 @@
 package powpaw.model.api;
 
-import powpaw.model.impl.PlayerStats;
-
 /**
  * StatsBuilder interface.
  * 

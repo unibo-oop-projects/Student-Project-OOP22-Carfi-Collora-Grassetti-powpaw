@@ -1,7 +1,6 @@
 package powpaw.model.api;
 
 import javafx.geometry.Point2D;
-import powpaw.model.impl.PlayerStats;
 
 /**
  * Interface for WeaponImpl class that defines the properties and methods of a
@@ -96,7 +95,7 @@ public interface Weapon {
 
     /**
      * Method in the Weapon interface that returns a boolean value indicating
-     * whether the weapon is currently visible or not
+     * whether the weapon is currently visible or not.
      */
     boolean isVisible();
 

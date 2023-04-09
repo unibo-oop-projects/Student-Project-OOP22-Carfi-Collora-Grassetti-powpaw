@@ -1,7 +1,7 @@
 package powpaw.controller.impl;
 
+import powpaw.model.api.PlayerStats;
 import powpaw.model.api.StatsBuilder;
-import powpaw.model.impl.PlayerStats;
 
 /**
  * this class contain the static stats of every player and the limit. It also

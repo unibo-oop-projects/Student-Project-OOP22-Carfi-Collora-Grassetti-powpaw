@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
-import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
 /**

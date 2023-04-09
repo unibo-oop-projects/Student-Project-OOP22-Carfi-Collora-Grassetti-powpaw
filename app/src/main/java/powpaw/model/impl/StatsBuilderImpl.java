@@ -1,5 +1,6 @@
 package powpaw.model.impl;
 
+import powpaw.model.api.PlayerStats;
 import powpaw.model.api.StatsBuilder;
 
 /**
@@ -35,7 +36,7 @@ public class StatsBuilderImpl implements StatsBuilder {
      */
     @Override
     public PlayerStats build() {
-        return new PlayerStats(this.attack, this.defence, this.speed);
+        return new PlayerStatsImpl(this.attack, this.defence, this.speed);
     }
 
     /**

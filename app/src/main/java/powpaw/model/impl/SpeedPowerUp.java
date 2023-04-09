@@ -3,6 +3,7 @@ package powpaw.model.impl;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import powpaw.model.api.PlayerStats;
 
 /**
  * PowerUp for increase speed

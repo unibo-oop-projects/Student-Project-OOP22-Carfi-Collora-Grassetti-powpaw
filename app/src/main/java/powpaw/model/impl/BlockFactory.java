@@ -3,7 +3,7 @@ package powpaw.model.impl;
 import javafx.geometry.Point2D;
 
 /**
- * Static class for the creation of different Blocks
+ * Static class for the creation of different Blocks.
  * 
  * @author Giacomo Grassetti
  */

@@ -13,6 +13,7 @@ import powpaw.controller.impl.StaticStats;
 import powpaw.model.api.DamageMeter;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
+import powpaw.model.api.PlayerStats;
 import powpaw.model.api.Weapon;
 
 /**

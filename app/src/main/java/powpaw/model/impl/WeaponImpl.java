@@ -2,6 +2,7 @@ package powpaw.model.impl;
 
 import javafx.geometry.Point2D;
 import powpaw.controller.api.ScreenController;
+import powpaw.model.api.PlayerStats;
 import powpaw.model.api.Weapon;
 import powpaw.model.api.WeaponHitbox;
 
