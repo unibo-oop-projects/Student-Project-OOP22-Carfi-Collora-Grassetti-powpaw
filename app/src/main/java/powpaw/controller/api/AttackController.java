@@ -7,8 +7,7 @@ import powpaw.model.api.Player;
 
 /**
  * Interface for AttackControllerImpl that controll if a player hit another
- * player and their
- * respective deaths
+ * player and their respective deaths.
  * 
  * @author Giacomo Grassetti
  */
@@ -16,7 +15,7 @@ import powpaw.model.api.Player;
 public interface AttackController {
 
     /**
-     * Player setters for the class
+     * Player setters for the class.
      * 
      * @param players A list of Player objects that contains players.
      */

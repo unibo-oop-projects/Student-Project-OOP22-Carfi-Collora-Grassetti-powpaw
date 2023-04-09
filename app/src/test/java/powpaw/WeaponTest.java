@@ -20,7 +20,7 @@ class WeaponTest {
         final Player player = new PlayerImpl(new Point2D(0, 0), 0);
         final Weapon sword = WeaponFactory.createWeapon(0);
         player.setWeapon(Optional.of(sword));
-        assertTrue( player.getWeapon().isPresent());
+        assertTrue(player.getWeapon().isPresent());
         final Weapon hammer = WeaponFactory.createWeapon(1);
         player.setWeapon(Optional.of(hammer));
         assertTrue(player.getWeapon().isPresent());
@@ -29,8 +29,11 @@ class WeaponTest {
     @Test
     void weaponDurabilityTest() {
         final Weapon sword = WeaponFactory.createWeapon(0);
-        sword.decrementDurability();
-        assertEquals(9, sword.getDurability());
+        int maxDurability = sword.getDurability();
+        for (int i = 1; i < maxDurability; i++) {
+            sword.decrementDurability();
+        }
+        assertEquals(1, sword.getDurability());
     }
 
     @Test

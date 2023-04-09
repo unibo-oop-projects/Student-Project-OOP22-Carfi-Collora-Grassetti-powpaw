@@ -13,12 +13,16 @@ import powpaw.model.api.Weapon;
  * 
  * @author Giacomo Grassetti
  */
-public abstract class WeaponFactory {
+public final class WeaponFactory {
 
-    private final static double START_TERRAIN = 300;
-    private final static double END_TERRAIN = ScreenController.SIZE_HD_W - 300;
-    private final static double ATK_SWORD = 0.25;
-    private final static double ATK_HAMMER = 0.4;
+    private static final double START_TERRAIN = 300;
+    private static final double END_TERRAIN = ScreenController.SIZE_HD_W - 300;
+    private static final double ATK_SWORD = 0.25;
+    private static final double ATK_HAMMER = 0.4;
+
+    private WeaponFactory() {
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * Static method that creates a weapon with a random position and type based on

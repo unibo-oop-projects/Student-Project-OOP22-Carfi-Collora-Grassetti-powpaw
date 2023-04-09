@@ -48,7 +48,7 @@ public interface Block {
     /**
      * Setter for width of the block.
      * 
-     * @param width block width value (double)
+     * @param width block value (double)
      */
     void setWidth(double width);
 
@@ -62,7 +62,7 @@ public interface Block {
     /**
      * Setter for heigth of the block.
      * 
-     * @param width block heigth value (double)
+     * @param height block value (double)
      */
     void setHeight(double height);
 }

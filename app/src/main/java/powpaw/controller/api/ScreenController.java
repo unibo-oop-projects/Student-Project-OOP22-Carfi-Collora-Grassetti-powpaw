@@ -9,13 +9,28 @@ import powpaw.model.api.Hitbox;
  * 
  * @author Giacomo Grassetti
  */
-public class ScreenController {
+public final class ScreenController {
 
+    /**
+     * Width size of the screen.
+     */
     public static final int SIZE_HD_W = 1280;
+    /**
+     * Height size of the screen.
+     */
     public static final int SIZE_HD_H = 720;
+    /**
+     * Grid column size.
+     */
     public static final int NUM_BLOCK_W = 30;
+    /**
+     * Grid row size.
+     */
     public static final int NUM_BLOCK_H = 10;
 
+    private ScreenController() {
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * Method that checks if a given hitbox is out of the screen boundaries.

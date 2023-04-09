@@ -12,7 +12,7 @@ import powpaw.model.api.Transition;
  * 
  * @author Giacomo Grassetti
  */
-public class TransitionImpl implements Transition {
+public final class TransitionImpl implements Transition {
 
     private final CreateMap map;
 

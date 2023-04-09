@@ -16,7 +16,7 @@ import powpaw.view.api.WeaponRender;
  * 
  * @author Giacomo Grassetti
  */
-public class WeaponRenderImpl implements WeaponRender {
+public final class WeaponRenderImpl implements WeaponRender {
 
     private Weapon weapon;
     private List<BlockImpl> terrains;

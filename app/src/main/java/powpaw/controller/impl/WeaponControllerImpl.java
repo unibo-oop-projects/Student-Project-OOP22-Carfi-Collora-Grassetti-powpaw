@@ -17,7 +17,7 @@ import powpaw.view.impl.WeaponRenderImpl;
  * 
  * @author Giacomo Grassetti
  */
-public class WeaponControllerImpl implements WeaponController {
+public final class WeaponControllerImpl implements WeaponController {
 
     private Weapon weapon;
     private final WeaponRender weaponRender;
@@ -32,7 +32,7 @@ public class WeaponControllerImpl implements WeaponController {
      * 
      * @param playerController
      */
-    public WeaponControllerImpl(PlayerController playerController) {
+    public WeaponControllerImpl(final PlayerController playerController) {
         this.playerController = playerController;
         weaponRender = new WeaponRenderImpl();
         spownWeapons();

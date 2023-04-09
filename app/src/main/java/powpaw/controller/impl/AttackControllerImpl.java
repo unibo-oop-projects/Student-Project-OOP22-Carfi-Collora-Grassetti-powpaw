@@ -11,17 +11,17 @@ import powpaw.model.impl.PlayerImpl.PlayerState;
 
 /**
  * Class AttackController that controll if a player hit another player and their
- * respective deaths
+ * respective deaths.
  * 
  * @author Giacomo Grassetti
  */
-public class AttackControllerImpl implements AttackController {
+public final class AttackControllerImpl implements AttackController {
 
     private Player playerOne;
     private Player playerTwo;
 
     /**
-     * Player setters for the class
+     * Player setters for the class.
      * 
      * @param players A list of Player objects that contains players.
      */

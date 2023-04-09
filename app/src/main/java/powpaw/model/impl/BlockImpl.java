@@ -11,12 +11,12 @@ import powpaw.model.api.BlockHitbox;
  * @author Giacomo Grassetti
  */
 
-public class BlockImpl implements Block {
+public final class BlockImpl implements Block {
 
     private final BlockHitbox hitbox;
     private Point2D position;
-    public double width;
-    public double height;
+    private double width;
+    private double height;
 
     /**
      * Constructor of the BlockImpl class.

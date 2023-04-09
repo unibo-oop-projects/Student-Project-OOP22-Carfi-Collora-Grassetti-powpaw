@@ -33,9 +33,9 @@ public interface Weapon {
     void update();
 
     /**
-     * Getter of the attack of a weapon.
+     * Setter of the attack of a weapon.
      * 
-     * @return The weapon attack (double)
+     * @param attack The weapon attack (double)
      */
     void setAttack(double attack);
 
@@ -96,7 +96,9 @@ public interface Weapon {
 
     /**
      * Method in the Weapon interface that returns a boolean value indicating
-     * whether the weapon is currently visible or not
+     * whether the weapon is currently visible or not.
+     * 
+     * @return True if weapon is visible, false otherwise
      */
     boolean isVisible();
 
