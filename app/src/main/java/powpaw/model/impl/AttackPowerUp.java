@@ -20,7 +20,7 @@ public class AttackPowerUp extends PowerUpImpl {
     public void statPowerUp(final PlayerStats stats) {
         double oldAttack = stats.getAttack();
         stats.setAttack(oldAttack + POWNUMBER);
-        new Timeline(new KeyFrame(Duration.seconds(7), event -> {
+        new Timeline(new KeyFrame(Duration.seconds(powerUpDuration), event -> {
             stats.setAttack(oldAttack);
         })).play();
     }
