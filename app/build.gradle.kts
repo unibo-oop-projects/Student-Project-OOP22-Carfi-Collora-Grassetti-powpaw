@@ -10,7 +10,8 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
     id("org.openjfx.javafxplugin") version "0.0.13"
-
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("org.danilopianini.gradle-java-qa") version "1.6.0"
 }
 
 tasks.javadoc {
@@ -40,6 +41,9 @@ dependencies {
 
     // Use yaml
     implementation("org.yaml:snakeyaml:2.0")
+
+    // spotbugs
+    compileOnly("com.github.spotbugs:spotbugs-annotations:4.7.3")
 
 }
 
