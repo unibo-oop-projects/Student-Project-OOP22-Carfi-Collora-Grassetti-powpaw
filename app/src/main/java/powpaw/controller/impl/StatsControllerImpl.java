@@ -17,8 +17,6 @@ public class StatsControllerImpl implements StatsController {
     public int increase(int stat) {
         if (stat < maxPoint) {
             stat += plusMinus;
-        } else {
-            System.err.println("Max Point Reached");
         }
         return stat;
     }
@@ -27,8 +25,6 @@ public class StatsControllerImpl implements StatsController {
     public int decrease(int stat) {
         if (stat > minPoint) {
             stat -= plusMinus;
-        } else {
-            System.err.println("Min Point Reached");
         }
         return stat;
     }
