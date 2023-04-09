@@ -32,81 +32,41 @@ public class BlockImpl implements Block {
                 height * ScreenController.SIZE_HD_H / 10);
     }
 
-    /**
-     * Getter for position of the block.
-     * 
-     * @return position of the block (Point2D)
-     */
     @Override
     public Point2D getPosition() {
         return this.position;
     }
 
-    /**
-     * Setter for X axis position of the block.
-     * 
-     * @param x double value of X axis
-     */
     @Override
     public void setX(double x) {
         this.position = new Point2D(x, this.position.getY());
     }
 
-    /**
-     * Setter for Y axis position of the block.
-     * 
-     * @param y double value of X axis
-     */
     @Override
     public void setY(double y) {
         this.position = new Point2D(this.position.getX(), y);
     }
 
-    /**
-     * Getter for hitbox of the block.
-     * 
-     * @return hitbox of the block (BlockHitbox)
-     */
     @Override
     public BlockHitbox getHitbox() {
         return this.hitbox;
     }
 
-    /**
-     * Getter for width of the block.
-     * 
-     * @return width of the block (double)
-     */
     @Override
     public double getWidth() {
         return width;
     }
 
-    /**
-     * Setter for width of the block.
-     * 
-     * @param width block width value (double)
-     */
     @Override
     public void setWidth(double width) {
         this.width = width;
     }
 
-    /**
-     * Getter for height of the block.
-     * 
-     * @return height of the block (double)
-     */
     @Override
     public double getHeight() {
         return height;
     }
 
-    /**
-     * Setter for heigth of the block.
-     * 
-     * @param width block heigth value (double)
-     */
     @Override
     public void setHeight(double height) {
         this.height = height;

@@ -34,41 +34,22 @@ public class WeaponRenderImpl implements WeaponRender {
         this.terrains = terrains;
     }
 
-    /**
-     * Getter for an ArrayList of BlockImpl representing terrains.
-     * 
-     * @return An ArrayList of BlockImpl
-     */
     @Override
     public ArrayList<BlockImpl> getTerrains() {
         return this.terrains;
     }
 
-    /**
-     * Getter for an ImageView representing a weapon sprite.
-     * 
-     * @return An ImageView
-     */
     @Override
     public ImageView getWeaponSprite() {
         return this.weaponSprite;
     }
 
-    /**
-     * Setterfor the Weapon and updates its sprite image.
-     * 
-     * @param weapon The weapon to set
-     */
     @Override
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
         setSpriteImage();
     }
 
-    /**
-     * Method for updates the position, size, image, and visibility of a weapon
-     * sprite.
-     */
     @Override
     public void render() {
         this.weaponSprite.setLayoutX(weapon.getPosition().getX());
@@ -79,6 +60,9 @@ public class WeaponRenderImpl implements WeaponRender {
         this.weaponSprite.setVisible(this.weapon.getIsVisible());
     }
 
+    /**
+     * Setter for image of a weapon sprite based on the weapon ID.
+     */
     private void setSpriteImage() {
         this.image = this.weapon.getId() == 0 ? new Image("/swordPlayer.png")
                 : new Image("/hammerPlayer.png");

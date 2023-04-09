@@ -33,25 +33,11 @@ public class BlockHitboxImpl implements BlockHitbox {
         this.shape = new Rectangle(pos.getX(), pos.getY(), width, height);
     }
 
-    /**
-     * Getter for the hitbox shape.
-     * 
-     * @return Shape of the hitbox
-     */
     @Override
     public Shape getShape() {
         return this.shape;
     }
 
-    /**
-     * This function checks if the hitbox of one shape intersects with the hitbox of
-     * another shape.
-     * 
-     * @param otherHitbox Shape representing the hitbox of
-     *                    another object that we want to check for collision with
-     *                    the hitbox of the current hitbox.
-     * @return True if hitbox intersect the other hitbox, false otherwise
-     */
     @Override
     public boolean checkCollision(Shape otherHitbox) {
         if (this.shape.getBoundsInParent().intersects(otherHitbox.getBoundsInParent())) {

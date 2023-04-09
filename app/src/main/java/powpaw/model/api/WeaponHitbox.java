@@ -4,7 +4,12 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
 
 /**
- * Interface for WeaponHitboxImpl class.
+ * Interface for WeaponHitboxImpl class that implements the WeaponHitbox
+ * interface and provides methods for
+ * creating
+ * and updating a rectangular hitbox for a weapon in a game, as well as checking
+ * for collisions with
+ * other hitboxes.
  * 
  * @author Giacomo Grassetti
  */

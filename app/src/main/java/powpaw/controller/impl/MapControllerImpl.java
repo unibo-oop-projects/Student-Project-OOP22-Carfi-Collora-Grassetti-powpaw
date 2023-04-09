@@ -40,11 +40,6 @@ public class MapControllerImpl implements MapController {
         });
     }
 
-    /**
-     * Getter of map terrains
-     * 
-     * @return ArrayList<BlockImpl>
-     */
     @Override
     public ArrayList<BlockImpl> getPlatforms() {
         return this.terrains;

@@ -3,7 +3,7 @@ package powpaw.model.api;
 import javafx.geometry.Point2D;
 
 /**
- * Interface for BlockImpl class.
+ * Interface for BlockImpl class representing the block (terrain) entity.
  * 
  * @author Giacomo Grassetti
  */
