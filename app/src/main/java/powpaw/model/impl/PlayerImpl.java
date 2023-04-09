@@ -7,7 +7,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import powpaw.common.DirectionVector;
 import powpaw.controller.api.ScreenController;
 import powpaw.controller.impl.StaticStats;
