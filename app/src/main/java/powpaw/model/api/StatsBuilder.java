@@ -32,6 +32,7 @@ public interface StatsBuilder {
 
     /**
      * Build player
+     * 
      * @return buided player
      */
     PlayerStats build();

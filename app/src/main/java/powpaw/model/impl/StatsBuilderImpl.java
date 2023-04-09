@@ -3,7 +3,8 @@ package powpaw.model.impl;
 import powpaw.model.api.StatsBuilder;
 
 /**
- * StatsBuilder implementation. As every stat is a double but double are inaccurate, every setter get an int
+ * StatsBuilder implementation. As every stat is a double but double are
+ * inaccurate, every setter get an int
  * and later that became a double with toDouble method
  * 
  * 
@@ -21,7 +22,7 @@ public class StatsBuilderImpl implements StatsBuilder {
 
     @Override
     public void setDefence(int defence) {
-        this.defence = toDouble(defence/3);
+        this.defence = toDouble(defence / 3);
     }
 
     @Override

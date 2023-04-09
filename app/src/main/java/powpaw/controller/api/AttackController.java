@@ -6,7 +6,8 @@ import java.util.Optional;
 import powpaw.model.api.Player;
 
 /**
- * Interface for AttackControllerImpl that controll if a player hit another player and their
+ * Interface for AttackControllerImpl that controll if a player hit another
+ * player and their
  * respective deaths
  * 
  * @author Giacomo Grassetti

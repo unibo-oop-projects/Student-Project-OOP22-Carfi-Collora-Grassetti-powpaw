@@ -27,7 +27,8 @@ public interface Weapon {
     Point2D getPosition();
 
     /**
-     * The update function updates the position and hitbox of a weapont using a fall transition (TransitionImpl).
+     * The update function updates the position and hitbox of a weapont using a fall
+     * transition (TransitionImpl).
      */
     void update();
 

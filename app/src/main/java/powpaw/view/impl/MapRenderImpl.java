@@ -40,7 +40,8 @@ public class MapRenderImpl implements MapRender {
     }
 
     /**
-     * Setter that fill color of the hitbox shape of each terrain block to a texture block.
+     * Setter that fill color of the hitbox shape of each terrain block to a texture
+     * block.
      */
     private void drawBlocks() {
         this.terrains.stream().forEach(b -> b.getHitbox().getShape().setFill(this.textureBlock));

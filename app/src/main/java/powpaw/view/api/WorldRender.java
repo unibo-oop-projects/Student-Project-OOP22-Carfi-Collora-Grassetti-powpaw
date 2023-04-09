@@ -27,7 +27,7 @@ public interface WorldRender {
      */
     WeaponController getWeaponController();
 
-     /**
+    /**
      * Getter for the PowerUpController
      * 
      * @return an instance of the PowerUpController
@@ -35,7 +35,7 @@ public interface WorldRender {
      */
     PowerUpController getPowerUpController();
 
-     /**
+    /**
      * Getter for the DamageMeterController
      * 
      * @return an instance of the DamageMeterController

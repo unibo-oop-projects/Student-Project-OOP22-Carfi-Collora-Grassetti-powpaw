@@ -4,7 +4,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Shape;
 
 /**
- * Interface of TransitionImpl class for checking collision and implementing transitions for a
+ * Interface of TransitionImpl class for checking collision and implementing
+ * transitions for a
  * game entity.
  * 
  * @author Giacomo Grassetti

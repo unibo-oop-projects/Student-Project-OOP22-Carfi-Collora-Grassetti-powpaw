@@ -1,4 +1,5 @@
 package powpaw.model.impl;
+
 /**
  * PlayerStats model with getter and setter
  * 
