@@ -11,7 +11,7 @@ import powpaw.model.api.Hitbox;
  * 
  * @author Alessia Carfì, Giacomo Grassetti
  */
-public class PlayerHitboxImpl implements Hitbox {
+public final class PlayerHitboxImpl implements Hitbox {
 
     private double radius;
     private double feetRadius;
@@ -71,7 +71,7 @@ public class PlayerHitboxImpl implements Hitbox {
     }
 
     @Override
-    public void setOffsetX(double width) {
+    public void setOffsetX(final double width) {
         this.offsetX = width / 2;
     }
 
@@ -86,12 +86,12 @@ public class PlayerHitboxImpl implements Hitbox {
     }
 
     @Override
-    public void setOffsetY(double height) {
+    public void setOffsetY(final double height) {
         this.offsetY = height / 2;
     }
 
     @Override
-    public void updateCenter(Point2D position) {
+    public void updateCenter(final Point2D position) {
         this.hitbox.setCenterX(position.getX() + offsetX);
         this.hitbox.setCenterY(position.getY() + offsetY);
 
@@ -103,7 +103,7 @@ public class PlayerHitboxImpl implements Hitbox {
     }
 
     @Override
-    public boolean checkCollision(Shape otherHitbox) {
+    public boolean checkCollision(final Shape otherHitbox) {
         return this.armHitbox.getBoundsInParent().intersects(otherHitbox.getBoundsInParent());
     }
 }

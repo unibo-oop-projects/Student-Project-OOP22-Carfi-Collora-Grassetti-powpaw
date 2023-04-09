@@ -16,7 +16,7 @@ import powpaw.view.impl.KeyObservableImpl;
  * 
  * @author Alessia Carfì
  */
-public class PlayerObservableImpl implements PlayerObservable {
+public final class PlayerObservableImpl implements PlayerObservable {
     private boolean gameOver = false;
     private List<Player> playerList;
     private final KeyObservable observable = new KeyObservableImpl();

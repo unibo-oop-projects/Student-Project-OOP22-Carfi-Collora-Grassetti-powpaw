@@ -13,7 +13,7 @@ public class PlayerStatsImpl implements PlayerStats {
     private double defence;
     private double speed;
 
-    public PlayerStatsImpl(double attack, double defence, double speed) {
+    public PlayerStatsImpl(final double attack, final double defence, final double speed) {
         this.attack = attack;
         this.defence = defence;
         this.speed = speed;
@@ -35,17 +35,17 @@ public class PlayerStatsImpl implements PlayerStats {
     }
 
     @Override
-    public void setAttack(double attack) {
+    public void setAttack(final double attack) {
         this.attack = attack;
     }
 
     @Override
-    public void setDefence(double defence) {
+    public void setDefence(final double defence) {
         this.defence = defence;
     }
 
     @Override
-    public void setSpeed(double speed) {
+    public void setSpeed(final double speed) {
         this.speed = speed;
     }
 

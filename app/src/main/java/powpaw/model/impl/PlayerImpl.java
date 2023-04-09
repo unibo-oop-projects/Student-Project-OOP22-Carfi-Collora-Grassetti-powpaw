@@ -26,7 +26,7 @@ import powpaw.model.api.Weapon;
  * @author Alessia Carfì, Giacomo Grassetti, Simone Collorà
  */
 
-public class PlayerImpl implements Player {
+public final class PlayerImpl implements Player {
 
     /**
      * Enumerated type representing the various states of the player.

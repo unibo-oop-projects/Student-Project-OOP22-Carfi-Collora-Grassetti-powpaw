@@ -18,7 +18,7 @@ import powpaw.view.impl.PowerUpRenderImpl;
  * 
  * @author Simone Collorà
  */
-public class PowerUpControllerImpl implements PowerUpController {
+public final class PowerUpControllerImpl implements PowerUpController {
     private PowerUpRender powerUpRender;
     private PowerUp powerUp;
     private boolean isCollected = false;
