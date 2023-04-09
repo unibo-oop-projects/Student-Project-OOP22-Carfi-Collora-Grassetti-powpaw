@@ -20,12 +20,12 @@ Durante la battaglia, cadranno _oggetti_ dall'alto e ogni giocatore potrà racco
 ### Funzionalità minime ritenute obbligatorie:
 
 - [x] Movimento 2D
-- [ ] Gestione delle hitbox
-- [ ] Comandi di attacco, schivata
+- [x] Gestione delle hitbox
+- [x] Comandi di attacco, schivata
 - [x] Oggetti random che cadono dall'alto in un posto randomico della mappa
-- [ ] Gestione la piattaforma e le aree di morte
-- [ ] Almeno 2 armi e 2 powerup
-- [ ] Gestione del dannometro
+- [x] Gestione la piattaforma e le aree di morte
+- [x] Almeno 2 armi e 2 powerup
+- [x] Gestione del dannometro
 
 ### Funzionalità opzionali:
 

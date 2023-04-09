@@ -4,7 +4,6 @@
   right: D
   attack: G
   dodge: H
-  pickup: F
 
 2:
   jump: UP
@@ -12,4 +11,3 @@
   right: RIGHT
   attack: NUMPAD2
   dodge: NUMPAD3
-  pickup: NUMPAD1
