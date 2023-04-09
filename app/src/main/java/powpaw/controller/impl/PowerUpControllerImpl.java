@@ -39,7 +39,7 @@ public class PowerUpControllerImpl implements PowerUpController {
     }
 
     @Override
-    public void pickPowerUp(PlayerController playerController) {
+    public void pickPowerUp(final PlayerController playerController) {
 
         playerController.getPlayerObservable().getPlayers().forEach(player -> {
             if (powerUp.getHurtbox().getBoundsInParent()

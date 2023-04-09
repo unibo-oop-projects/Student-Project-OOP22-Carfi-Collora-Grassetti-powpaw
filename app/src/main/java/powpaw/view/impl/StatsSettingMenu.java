@@ -25,7 +25,7 @@ import powpaw.model.impl.StatsBuilderImpl;
 public class StatsSettingMenu extends GridPane {
 
     private static final int numStatistics = 3;
-    private static final List<String> statList = new ArrayList<>(
+    private static final List<String> STATLIST = new ArrayList<>(
             Arrays.asList(new String[] { "ATTACK", "DEFENCE", "SPEED" }));
     private Button finish;
     private Button exit;
@@ -92,9 +92,9 @@ public class StatsSettingMenu extends GridPane {
         });
         add(p1, 1, 0);
         add(p2, 5, 0);
-        for (int i = 0; i < statList.size(); i++) {
+        for (int i = 0; i < STATLIST.size(); i++) {
 
-            switch (statList.get(i)) {
+            switch (STATLIST.get(i)) {
                 case "ATTACK":
                     plusButtonsP1.get(i).getKey().setOnAction(e -> {
                         attackPointsP1 = updateStatPlus(attackPointsP1, attackTextP1);
@@ -167,10 +167,10 @@ public class StatsSettingMenu extends GridPane {
      */
     private void initButton() {
         for (int i = 0; i < numStatistics; i++) {
-            plusButtonsP1.add(new Pair<Button, String>(new Button("+"), statList.get(i)));
-            plusButtonsP2.add(new Pair<Button, String>(new Button("+"), statList.get(i)));
-            minusButtonsP1.add(new Pair<Button, String>(new Button("-"), statList.get(i)));
-            minusButtonsP2.add(new Pair<Button, String>(new Button("-"), statList.get(i)));
+            plusButtonsP1.add(new Pair<Button, String>(new Button("+"), STATLIST.get(i)));
+            plusButtonsP2.add(new Pair<Button, String>(new Button("+"), STATLIST.get(i)));
+            minusButtonsP1.add(new Pair<Button, String>(new Button("-"), STATLIST.get(i)));
+            minusButtonsP2.add(new Pair<Button, String>(new Button("-"), STATLIST.get(i)));
             minusButtonsP1.get(i).getKey().setDisable(true);
             minusButtonsP2.get(i).getKey().setDisable(true);
         }

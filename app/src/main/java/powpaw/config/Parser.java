@@ -52,7 +52,7 @@ public class Parser {
      * @param playerNumber the number of the player whose key inputs are requested.
      * @return a mapping of key input names to their corresponding KeyCode objects.
      */
-    public Map<String, KeyCode> getCommands(int playerNumber) {
+    public Map<String, KeyCode> getCommands(final int playerNumber) {
         return this.commands.get(playerNumber);
     }
 
