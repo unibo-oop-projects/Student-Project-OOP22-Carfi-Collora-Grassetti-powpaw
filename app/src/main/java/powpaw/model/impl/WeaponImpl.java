@@ -13,10 +13,19 @@ import powpaw.model.api.WeaponHitbox;
  * 
  * @author Giacomo Grassetti
  */
-public class WeaponImpl implements Weapon {
+public final class WeaponImpl implements Weapon {
 
+    /**
+     * Width of the weapon.
+     */
     public static final double WIDTH = ScreenController.SIZE_HD_W / 50;
+    /**
+     * Height of the weapon.
+     */
     public static final double HEIGHT = ScreenController.SIZE_HD_H / 30;
+    /**
+     * Max durability of the weapon.
+     */
     public static final int MAX_DURABILITY = 10;
 
     private final WeaponHitbox hitbox;

@@ -14,7 +14,7 @@ import powpaw.model.impl.CreateMap;
  * @author Giacomo Grassetti
  */
 
-public class MapControllerImpl implements MapController {
+public final class MapControllerImpl implements MapController {
 
     private final List<BlockImpl> terrains;
 
@@ -32,10 +32,10 @@ public class MapControllerImpl implements MapController {
      */
     private void setProportions() {
         this.terrains.stream().forEach(b -> {
-            b.setX(b.getPosition().getX() * (ScreenController.SIZE_HD_W / 30));
-            b.setY(b.getPosition().getY() * (ScreenController.SIZE_HD_H / 10));
-            b.setWidth(b.getWidth() * (ScreenController.SIZE_HD_W / 30));
-            b.setHeight(b.getHeight() * (ScreenController.SIZE_HD_H / 10));
+            b.setX(b.getPosition().getX() * (ScreenController.SIZE_HD_W / ScreenController.NUM_BLOCK_W));
+            b.setY(b.getPosition().getY() * (ScreenController.SIZE_HD_H / ScreenController.NUM_BLOCK_H));
+            b.setWidth(b.getWidth() * (ScreenController.SIZE_HD_W / ScreenController.NUM_BLOCK_W));
+            b.setHeight(b.getHeight() * (ScreenController.SIZE_HD_H / ScreenController.NUM_BLOCK_H));
         });
     }
 

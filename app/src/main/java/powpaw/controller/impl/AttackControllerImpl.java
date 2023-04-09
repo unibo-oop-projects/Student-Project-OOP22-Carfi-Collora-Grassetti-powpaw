@@ -15,7 +15,7 @@ import powpaw.model.impl.PlayerImpl.PlayerState;
  * 
  * @author Giacomo Grassetti
  */
-public class AttackControllerImpl implements AttackController {
+public final class AttackControllerImpl implements AttackController {
 
     private Player playerOne;
     private Player playerTwo;

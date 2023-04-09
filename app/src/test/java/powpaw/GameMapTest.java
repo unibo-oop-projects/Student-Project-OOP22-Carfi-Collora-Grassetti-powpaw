@@ -23,10 +23,11 @@ class GameMapTest {
 
     @Test
     void checkBlockPositionTest() {
+        final int x = 400;
         final BlockImpl blockOne = BlockFactory.createBlock(200, 200);
-        blockOne.setX(400);
+        blockOne.setX(x);
         final BlockImpl blockTwo = BlockFactory.createBlock(250, 200);
-        blockTwo.setX(400);
+        blockTwo.setX(x);
         assertEquals(blockOne.getPosition(), blockTwo.getPosition());
     }
 

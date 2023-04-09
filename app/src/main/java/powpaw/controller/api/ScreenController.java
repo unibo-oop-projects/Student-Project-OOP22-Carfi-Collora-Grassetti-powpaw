@@ -12,24 +12,24 @@ import powpaw.model.api.Hitbox;
 public final class ScreenController {
 
     /**
-     * Width.
+     * Width size of the screen.
      */
     public static final int SIZE_HD_W = 1280;
     /**
-     * Height.
+     * Height size of the screen.
      */
     public static final int SIZE_HD_H = 720;
     /**
-     * Block width.
+     * Grid column size.
      */
     public static final int NUM_BLOCK_W = 30;
     /**
-     * Block heights.
+     * Grid row size.
      */
     public static final int NUM_BLOCK_H = 10;
 
     private ScreenController() {
-
+        throw new IllegalStateException("Utility class");
     }
 
     /**

@@ -29,10 +29,11 @@ public interface Transition {
     Point2D fallTransition(Point2D pos);
 
     /**
-     * This function checks if a given position collides with any of the terrain
+     * This function checks if a given hitbox collides with any of the terrain
      * blocks in a map.
      * 
-     * @param hitbox
+     * @param hitbox is Hitbox object representing the hitbox of a weapon in
+     *            2D space.
      * 
      * @return True if the given position intersect the terrains, false otherwise
      */
@@ -42,8 +43,8 @@ public interface Transition {
      * This function checks if a player is within the boundaries of a terrain block
      * in a game map.
      * 
-     * @param hitbox A Shape object representing the hitbox of the player's feet.
-     * @return True if player feet intersect with terrains, false otherwise.
+     * @param hitbox A Shape object representing the hitbox of the player.
+     * @return True if player intersect with terrains, false otherwise.
      */
     boolean checkPlayerInTerrain(Shape hitbox);
 }

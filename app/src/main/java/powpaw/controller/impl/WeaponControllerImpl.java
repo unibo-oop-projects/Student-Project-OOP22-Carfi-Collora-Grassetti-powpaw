@@ -17,7 +17,7 @@ import powpaw.view.impl.WeaponRenderImpl;
  * 
  * @author Giacomo Grassetti
  */
-public class WeaponControllerImpl implements WeaponController {
+public final class WeaponControllerImpl implements WeaponController {
 
     private Weapon weapon;
     private final WeaponRender weaponRender;
