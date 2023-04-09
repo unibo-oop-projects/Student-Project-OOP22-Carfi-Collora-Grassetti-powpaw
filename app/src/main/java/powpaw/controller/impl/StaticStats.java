@@ -13,7 +13,7 @@ import powpaw.model.api.StatsBuilder;
 public final class StaticStats {
 
     private StaticStats() {
-
+        throw new IllegalStateException("Utility class");
     }
 
     private static PlayerStats statsP1;

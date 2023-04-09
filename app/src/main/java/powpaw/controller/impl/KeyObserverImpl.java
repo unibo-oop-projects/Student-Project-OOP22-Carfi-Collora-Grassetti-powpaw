@@ -18,7 +18,7 @@ import powpaw.view.api.KeyObserver;
  * 
  * @author Alessia Carfì
  */
-public class KeyObserverImpl implements KeyObserver {
+public final class KeyObserverImpl implements KeyObserver {
 
     private final Player player;
 
