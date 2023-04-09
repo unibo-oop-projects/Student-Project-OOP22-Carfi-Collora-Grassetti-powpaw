@@ -2,11 +2,7 @@ package powpaw;
 
 import org.junit.jupiter.api.Test;
 
-import powpaw.controller.api.PlayerController;
-import powpaw.controller.impl.DamageMeterController;
-import powpaw.controller.impl.PlayerControllerImpl;
 import powpaw.model.api.DamageMeter;
-import powpaw.model.api.Player;
 import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.DamageMeterImpl;
 import powpaw.model.impl.PlayerStats;
