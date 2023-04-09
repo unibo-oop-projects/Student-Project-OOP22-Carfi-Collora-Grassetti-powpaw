@@ -29,7 +29,7 @@ public class PlayerObservableImpl implements PlayerObservable {
      * 
      * @param playerList the list of players to be kept track of.
      */
-    public PlayerObservableImpl(List<Player> playerList) {
+    public PlayerObservableImpl(final List<Player> playerList) {
         this.playerList = playerList;
         this.config = new Parser();
         this.attackController.setPlayers(playerList);
@@ -53,7 +53,7 @@ public class PlayerObservableImpl implements PlayerObservable {
     }
 
     @Override
-    public void update(Duration deltaTime) {
+    public void update(final Duration deltaTime) {
         if (!gameOver) {
             if (attackController.checkDeath().isPresent()) {
                 gameOver = true;

@@ -24,7 +24,7 @@ import powpaw.model.impl.StatsBuilderImpl;
  */
 public class StatsSettingMenu extends GridPane {
 
-    private static final int numStatistics = 3;
+    private static final int NUMSTATISTICS = 3;
     private static final List<String> STATLIST = new ArrayList<>(
             Arrays.asList(new String[] { "ATTACK", "DEFENCE", "SPEED" }));
     private Button finish;
@@ -59,7 +59,7 @@ public class StatsSettingMenu extends GridPane {
     private StatsControllerImpl control = new StatsControllerImpl();
 
     /**
-     * StatsSetting costructor
+     * StatsSetting costructor.
      */
     public StatsSettingMenu() {
         att = new Label("Attack: ");
@@ -166,7 +166,7 @@ public class StatsSettingMenu extends GridPane {
      * Initialize buttons.
      */
     private void initButton() {
-        for (int i = 0; i < numStatistics; i++) {
+        for (int i = 0; i < NUMSTATISTICS; i++) {
             plusButtonsP1.add(new Pair<Button, String>(new Button("+"), STATLIST.get(i)));
             plusButtonsP2.add(new Pair<Button, String>(new Button("+"), STATLIST.get(i)));
             minusButtonsP1.add(new Pair<Button, String>(new Button("-"), STATLIST.get(i)));
@@ -182,7 +182,7 @@ public class StatsSettingMenu extends GridPane {
      * Set Button dimension.
      */
     private void setButtonDimension() {
-        for (int i = 0; i < numStatistics; i++) {
+        for (int i = 0; i < NUMSTATISTICS; i++) {
             plusButtonsP1.get(i).getKey().prefWidthProperty().bind(widthProperty().divide(5));
             plusButtonsP1.get(i).getKey().prefHeightProperty().bind(heightProperty().divide(5));
             plusButtonsP1.get(i).getKey().setMaxSize(50, 50);
@@ -211,7 +211,7 @@ public class StatsSettingMenu extends GridPane {
         add(att, 0, 1);
         add(def, 0, 2);
         add(spe, 0, 3);
-        for (int i = 0; i < numStatistics; i++) {
+        for (int i = 0; i < NUMSTATISTICS; i++) {
             add(minusButtonsP1.get(i).getKey(), 1, i + 1);
             add(plusButtonsP1.get(i).getKey(), 2, i + 1);
             add(minusButtonsP2.get(i).getKey(), 5, i + 1);
@@ -248,7 +248,7 @@ public class StatsSettingMenu extends GridPane {
      * @param text   points text
      * @return new points increased
      */
-    private int updateStatPlus(int points,final Text text) {
+    private int updateStatPlus(int points, final Text text) {
         points = control.increase(points);
         text.setText("" + points);
         return points;
@@ -261,7 +261,7 @@ public class StatsSettingMenu extends GridPane {
      * @param text   points text
      * @return new points decreased
      */
-    private int updateStatMinus(int points,final Text text) {
+    private int updateStatMinus(int points, final Text text) {
         points = control.decrease(points);
         text.setText("" + points);
         return points;

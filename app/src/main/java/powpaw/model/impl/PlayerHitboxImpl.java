@@ -26,20 +26,20 @@ public class PlayerHitboxImpl implements Hitbox {
      * Creates a new PlayerHitboxImpl object with the position, width and
      * height of player.
      * 
-     * @param PlayerPosition the position of the player
+     * @param playerPosition the position of the player
      * @param width          the width of the player
      * @param height         the height of the player
      */
-    public PlayerHitboxImpl(Point2D PlayerPosition, double width, double height) {
+    public PlayerHitboxImpl(final Point2D playerPosition, final double width, final double height) {
         this.radius = width / 2;
         this.feetRadius = this.radius / 3;
         this.offsetX = width / 2;
         this.offsetY = height / 2;
         this.offsetFeet = height - feetRadius;
-        final double x = PlayerPosition.getX() + this.offsetX;
-        final double y = PlayerPosition.getY() + this.offsetY;
-        final double yFeet = PlayerPosition.getY() + this.offsetFeet;
-        final double yArm = PlayerPosition.getY() + this.offsetY;
+        final double x = playerPosition.getX() + this.offsetX;
+        final double y = playerPosition.getY() + this.offsetY;
+        final double yFeet = playerPosition.getY() + this.offsetFeet;
+        final double yArm = playerPosition.getY() + this.offsetY;
         this.hitbox = new Circle(x, y, this.radius);
         this.armHitbox = new Rectangle(x, yArm, this.offsetX, this.offsetY / 2);
         this.feetBox = new Circle(x, yFeet, this.feetRadius);

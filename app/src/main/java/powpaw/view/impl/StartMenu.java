@@ -10,7 +10,7 @@ import javafx.scene.paint.ImagePattern;
 import powpaw.controller.impl.StaticGameState;
 
 /**
- * Start menu view
+ * Start menu view.
  * 
  * @author Simone Collorà
  */
@@ -18,6 +18,9 @@ public class StartMenu extends GridPane {
     private final Button start;
     private final Button exit;
 
+    /**
+     * Start menu costructor.
+     */
     public StartMenu() {
         setAlignment(Pos.CENTER);
         setBackground(Background.fill(new ImagePattern(new Image("/background_menu.png"))));

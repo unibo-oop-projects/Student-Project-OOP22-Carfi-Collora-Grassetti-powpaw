@@ -10,7 +10,7 @@ import powpaw.view.api.PowerUpRender;
  * 
  * @author Simone Collorà
  */
-public class PowerUpRenderImpl implements PowerUpRender {
+public final class PowerUpRenderImpl implements PowerUpRender {
     private Circle sprite = new Circle();
     private PowerUp powerup;
     private int type;

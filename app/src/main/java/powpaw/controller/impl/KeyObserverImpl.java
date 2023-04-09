@@ -38,7 +38,7 @@ public class KeyObserverImpl implements KeyObserver {
      * @param ac     the AttackController object used to check for hits during
      *               attacks.
      */
-    public KeyObserverImpl(Player player, Parser parser, AttackController ac) {
+    public KeyObserverImpl(final Player player, final Parser parser, final AttackController ac) {
         this.player = player;
         Map<String, KeyCode> commands = parser.getCommands(player.getNumber());
         this.attackController = ac;
@@ -57,7 +57,7 @@ public class KeyObserverImpl implements KeyObserver {
     }
 
     @Override
-    public void keyPressed(KeyCode event) {
+    public void keyPressed(final KeyCode event) {
         if (!keys.contains(event)) {
             return;
         }
@@ -83,7 +83,7 @@ public class KeyObserverImpl implements KeyObserver {
     }
 
     @Override
-    public void keyReleased(KeyCode event) {
+    public void keyReleased(final KeyCode event) {
 
         if (!keys.contains(event)) {
             return;

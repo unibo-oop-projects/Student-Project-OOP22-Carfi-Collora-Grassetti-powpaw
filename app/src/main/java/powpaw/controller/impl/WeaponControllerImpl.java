@@ -32,7 +32,7 @@ public class WeaponControllerImpl implements WeaponController {
      * 
      * @param playerController
      */
-    public WeaponControllerImpl(PlayerController playerController) {
+    public WeaponControllerImpl(final PlayerController playerController) {
         this.playerController = playerController;
         weaponRender = new WeaponRenderImpl();
         spownWeapons();
