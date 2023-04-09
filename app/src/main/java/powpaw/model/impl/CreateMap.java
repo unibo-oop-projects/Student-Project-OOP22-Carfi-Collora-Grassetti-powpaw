@@ -1,6 +1,8 @@
 package powpaw.model.impl;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import powpaw.model.api.Level;
 
 /**
@@ -11,10 +13,10 @@ import powpaw.model.api.Level;
 
 public class CreateMap {
 
-    private ArrayList<BlockImpl> terrains = new ArrayList<>();
+    private final List<BlockImpl> terrains = new ArrayList<>();
 
     /**
-     * Constructor of CreateMap
+     * Constructor of CreateMap.
      */
     public CreateMap() {
         createTerrains();
@@ -27,14 +29,14 @@ public class CreateMap {
      */
     private void createTerrains() {
         for (int y = 0; y < Level.Level2.length; y++) {
-            String row = Level.Level2[y];
+            final String row = Level.Level2[y];
             for (int x = 0; x < row.length(); x++) {
                 switch (row.charAt(x)) {
-                    case '0':
-                        break;
                     case '1':
-                        BlockImpl block = BlockFactory.createBlock(x, y);
+                        final BlockImpl block = BlockFactory.createBlock(x, y);
                         terrains.add(block);
+                        break;
+                    default:
                         break;
                 }
             }
@@ -47,7 +49,7 @@ public class CreateMap {
      * 
      * @return An ArrayList of BlockImpl
      */
-    public ArrayList<BlockImpl> getTerrains() {
+    public List<BlockImpl> getTerrains() {
         return terrains;
     }
 

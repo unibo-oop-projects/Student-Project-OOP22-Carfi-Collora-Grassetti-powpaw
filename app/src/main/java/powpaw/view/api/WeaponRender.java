@@ -1,6 +1,6 @@
 package powpaw.view.api;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.image.ImageView;
 import powpaw.model.api.Weapon;
@@ -23,14 +23,14 @@ public interface WeaponRender {
      * @param terrains An ArrayList of BlockImpl representing the terrains in a
      *                 game.
      */
-    void setTerrains(ArrayList<BlockImpl> terrains);
+    void setTerrains(List<BlockImpl> terrains);
 
     /**
      * Getter for an ArrayList of BlockImpl representing terrains.
      * 
      * @return An ArrayList of BlockImpl
      */
-    ArrayList<BlockImpl> getTerrains();
+    List<BlockImpl> getTerrains();
 
     /**
      * Getter for an ImageView representing a weapon sprite.

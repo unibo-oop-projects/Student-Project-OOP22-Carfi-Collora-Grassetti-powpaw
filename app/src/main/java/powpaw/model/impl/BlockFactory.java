@@ -8,7 +8,7 @@ import javafx.geometry.Point2D;
  * @author Giacomo Grassetti
  */
 
-public class BlockFactory {
+public abstract class BlockFactory {
 
     /**
      * The function creates a new block with a specified position and size and
@@ -20,9 +20,8 @@ public class BlockFactory {
      *          block being created on the coordinate plane.
      * @return An instance of the BlockImpl class
      */
-    public static BlockImpl createBlock(double x, double y) {
-        BlockImpl block = new BlockImpl(new Point2D(x, y), 1, 1);
-        return block;
+    public static BlockImpl createBlock(final double x, final double y) {
+        return new BlockImpl(new Point2D(x, y), 1, 1);
     }
 
 }

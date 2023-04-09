@@ -13,7 +13,7 @@ import powpaw.model.api.BlockHitbox;
 
 public class BlockImpl implements Block {
 
-    private BlockHitbox hitbox;
+    private final BlockHitbox hitbox;
     private Point2D position;
     public double width;
     public double height;
@@ -25,11 +25,11 @@ public class BlockImpl implements Block {
      * @param width  width of the block
      * @param height height of the block
      */
-    public BlockImpl(Point2D pos, double width, double height) {
-        this.position = new Point2D(pos.getX() * ScreenController.SIZE_HD_W / 30,
-                pos.getY() * ScreenController.SIZE_HD_H / 10);
-        this.hitbox = new BlockHitboxImpl(position, width * ScreenController.SIZE_HD_W / 30,
-                height * ScreenController.SIZE_HD_H / 10);
+    public BlockImpl(final Point2D pos, final double width, final double height) {
+        this.position = new Point2D(pos.getX() * ScreenController.SIZE_HD_W / ScreenController.NUM_BLOCK_W,
+                pos.getY() * ScreenController.SIZE_HD_H / ScreenController.NUM_BLOCK_H);
+        this.hitbox = new BlockHitboxImpl(position, width * ScreenController.SIZE_HD_W / ScreenController.NUM_BLOCK_W,
+                height * ScreenController.SIZE_HD_H / ScreenController.NUM_BLOCK_H);
     }
 
     @Override
@@ -38,12 +38,12 @@ public class BlockImpl implements Block {
     }
 
     @Override
-    public void setX(double x) {
+    public void setX(final double x) {
         this.position = new Point2D(x, this.position.getY());
     }
 
     @Override
-    public void setY(double y) {
+    public void setY(final double y) {
         this.position = new Point2D(this.position.getX(), y);
     }
 
@@ -58,7 +58,7 @@ public class BlockImpl implements Block {
     }
 
     @Override
-    public void setWidth(double width) {
+    public void setWidth(final double width) {
         this.width = width;
     }
 
@@ -68,7 +68,7 @@ public class BlockImpl implements Block {
     }
 
     @Override
-    public void setHeight(double height) {
+    public void setHeight(final double height) {
         this.height = height;
     }
 }

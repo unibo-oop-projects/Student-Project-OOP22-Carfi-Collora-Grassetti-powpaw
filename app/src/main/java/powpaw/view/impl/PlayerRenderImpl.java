@@ -24,8 +24,8 @@ public class PlayerRenderImpl implements PlayerRender {
     final Image swordSprite;
     final Image hammerSprite;
     final ImageView sprite;
-    private ImageView armSprite;
-    private Player player;
+    private final ImageView armSprite;
+    private final Player player;
 
     /**
      * Constructor for creating a new PlayerRenderImpl object with a given player

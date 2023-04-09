@@ -1,6 +1,6 @@
 package powpaw.view.impl;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,9 +19,8 @@ import powpaw.view.api.WeaponRender;
 public class WeaponRenderImpl implements WeaponRender {
 
     private Weapon weapon;
-    private ArrayList<BlockImpl> terrains;
-    private Image image;
-    private ImageView weaponSprite = new ImageView();
+    private List<BlockImpl> terrains;
+    private final ImageView weaponSprite = new ImageView();
 
     /**
      * Setter for the terrains.
@@ -30,12 +29,12 @@ public class WeaponRenderImpl implements WeaponRender {
      *                 game.
      */
     @Override
-    public void setTerrains(ArrayList<BlockImpl> terrains) {
+    public void setTerrains(final List<BlockImpl> terrains) {
         this.terrains = terrains;
     }
 
     @Override
-    public ArrayList<BlockImpl> getTerrains() {
+    public List<BlockImpl> getTerrains() {
         return this.terrains;
     }
 
@@ -45,7 +44,7 @@ public class WeaponRenderImpl implements WeaponRender {
     }
 
     @Override
-    public void setWeapon(Weapon weapon) {
+    public void setWeapon(final Weapon weapon) {
         this.weapon = weapon;
         setSpriteImage();
     }
@@ -57,14 +56,14 @@ public class WeaponRenderImpl implements WeaponRender {
         this.weaponSprite.setFitWidth(WeaponImpl.WIDTH);
         this.weaponSprite.setFitHeight(WeaponImpl.HEIGHT);
         setSpriteImage();
-        this.weaponSprite.setVisible(this.weapon.getIsVisible());
+        this.weaponSprite.setVisible(this.weapon.isVisible());
     }
 
     /**
      * Setter for image of a weapon sprite based on the weapon ID.
      */
     private void setSpriteImage() {
-        this.image = this.weapon.getId() == 0 ? new Image("/swordPlayer.png")
+        Image image = this.weapon.getId() == 0 ? new Image("/swordPlayer.png")
                 : new Image("/hammerPlayer.png");
         this.weaponSprite.setImage(image);
     }

@@ -1,6 +1,6 @@
 package powpaw.controller.impl;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import powpaw.controller.api.MapController;
 import powpaw.controller.api.ScreenController;
@@ -16,14 +16,13 @@ import powpaw.model.impl.CreateMap;
 
 public class MapControllerImpl implements MapController {
 
-    private CreateMap worldMap;
-    private ArrayList<BlockImpl> terrains;
+    private final List<BlockImpl> terrains;
 
     /**
      * Costrutor of MapController class
      */
     public MapControllerImpl() {
-        worldMap = new CreateMap();
+        final CreateMap worldMap = new CreateMap();
         this.terrains = worldMap.getTerrains();
         setProportions();
     }
@@ -41,7 +40,7 @@ public class MapControllerImpl implements MapController {
     }
 
     @Override
-    public ArrayList<BlockImpl> getPlatforms() {
+    public List<BlockImpl> getPlatforms() {
         return this.terrains;
     }
 

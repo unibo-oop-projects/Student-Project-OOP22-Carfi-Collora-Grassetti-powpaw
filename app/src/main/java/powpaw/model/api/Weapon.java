@@ -97,6 +97,6 @@ public interface Weapon {
      * Method in the Weapon interface that returns a boolean value indicating
      * whether the weapon is currently visible or not
      */
-    boolean getIsVisible();
+    boolean isVisible();
 
 }

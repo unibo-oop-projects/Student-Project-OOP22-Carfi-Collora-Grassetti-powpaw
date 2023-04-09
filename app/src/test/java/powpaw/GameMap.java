@@ -2,7 +2,7 @@ package powpaw;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ public class GameMap {
     @Test
     void checkTerrainTest() {
         CreateMap map = new CreateMap();
-        ArrayList<BlockImpl> terrainTest = map.getTerrains();
+        List<BlockImpl> terrainTest = map.getTerrains();
         terrainTest.add(BlockFactory.createBlock(0, 0));
         assertEquals(terrainTest.size(), map.getTerrains().size());
 
