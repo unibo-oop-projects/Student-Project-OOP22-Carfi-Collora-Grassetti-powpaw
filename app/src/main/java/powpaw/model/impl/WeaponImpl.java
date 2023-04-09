@@ -14,27 +14,27 @@ import powpaw.model.api.WeaponHitbox;
  */
 public class WeaponImpl implements Weapon {
 
-    public static double WIDTH = ScreenController.SIZE_HD_W / 50;
-    public static double HEIGHT = ScreenController.SIZE_HD_H / 30;
-    public static int MAX_DURABILITY = 10;
+    public static final double WIDTH = ScreenController.SIZE_HD_W / 50;
+    public static final double HEIGHT = ScreenController.SIZE_HD_H / 30;
+    public static final int MAX_DURABILITY = 10;
 
-    private WeaponHitbox hitbox;
+    private final WeaponHitbox hitbox;
     private Point2D position;
     private double attack;
     private boolean isVisible = true;
-    private int id;
+    private final int id;
     private int durability = MAX_DURABILITY;
     private boolean isPicked;
 
     private final TransitionImpl transition = new TransitionImpl();
 
     /**
-     * Constructor for the WeaponImpl
+     * Constructor for the WeaponImpl class.
      * 
      * @param position
      * @param id
      */
-    public WeaponImpl(Point2D position, int id) {
+    public WeaponImpl(final Point2D position, final int id) {
         this.position = position;
         this.hitbox = new WeaponHitboxImpl(position, WIDTH, HEIGHT);
         this.id = id;
@@ -51,7 +51,7 @@ public class WeaponImpl implements Weapon {
     }
 
     @Override
-    public void setAttack(double attack) {
+    public void setAttack(final double attack) {
         this.attack = attack;
     }
 
@@ -81,12 +81,12 @@ public class WeaponImpl implements Weapon {
     }
 
     @Override
-    public void setPicked(boolean isPicked) {
+    public void setPicked(final boolean isPicked) {
         this.isPicked = isPicked;
     }
 
     @Override
-    public void addAttack(PlayerStats ps) {
+    public void addAttack(final PlayerStats ps) {
         double oldAttack = ps.getAttack();
         ps.setAttack(oldAttack + this.attack);
         if (this.durability == 0) {
@@ -95,13 +95,13 @@ public class WeaponImpl implements Weapon {
     }
 
     @Override
-    public void setVisible(boolean b) {
+    public void setVisible(final boolean b) {
         this.isVisible = b;
         this.hitbox.getShape().setVisible(b);
     }
 
     @Override
-    public boolean getIsVisible() {
+    public boolean isVisible() {
         return this.isVisible;
     }
 

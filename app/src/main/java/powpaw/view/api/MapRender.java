@@ -1,6 +1,6 @@
 package powpaw.view.api;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.layout.Pane;
 import powpaw.model.impl.BlockImpl;
@@ -25,6 +25,6 @@ public interface MapRender {
      * 
      * @return An ArrayList of BlockImpl
      */
-    ArrayList<BlockImpl> getTerrains();
+    List<BlockImpl> getTerrains();
 
 }

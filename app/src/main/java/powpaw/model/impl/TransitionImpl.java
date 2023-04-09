@@ -14,7 +14,7 @@ import powpaw.model.api.Transition;
  */
 public class TransitionImpl implements Transition {
 
-    private CreateMap map;
+    private final CreateMap map;
 
     /**
      * Constructor of TrasitionImpl.
@@ -24,7 +24,7 @@ public class TransitionImpl implements Transition {
     }
 
     @Override
-    public Point2D fallTransition(Point2D pos) {
+    public Point2D fallTransition(final Point2D pos) {
         if (!checkCollisionByPos(pos)) {
             return pos.add(0, 2);
         }
@@ -41,9 +41,9 @@ public class TransitionImpl implements Transition {
      * 
      * @return True if the given position intersect the terrains, false otherwise
      */
-    private boolean checkCollisionByPos(Point2D pos) {
-        Rectangle tmp = new Rectangle(pos.getX(), pos.getY(), WeaponImpl.WIDTH, WeaponImpl.HEIGHT);
-        for (BlockImpl obs : this.map.getTerrains()) {
+    private boolean checkCollisionByPos(final Point2D pos) {
+        final Rectangle tmp = new Rectangle(pos.getX(), pos.getY(), WeaponImpl.WIDTH, WeaponImpl.HEIGHT);
+        for (final BlockImpl obs : this.map.getTerrains()) {
             if (tmp.getBoundsInParent()
                     .intersects(obs.getHitbox().getShape().getBoundsInParent())) {
                 return true;
@@ -53,8 +53,8 @@ public class TransitionImpl implements Transition {
     }
 
     @Override
-    public boolean checkPlayerCollisionByHitbox(Hitbox hitbox) {
-        for (BlockImpl obs : this.map.getTerrains()) {
+    public boolean checkPlayerCollisionByHitbox(final Hitbox hitbox) {
+        for (final BlockImpl obs : this.map.getTerrains()) {
             if (hitbox.getShape().getBoundsInParent()
                     .intersects(obs.getHitbox().getShape().getBoundsInParent())) {
                 return true;
@@ -64,8 +64,8 @@ public class TransitionImpl implements Transition {
     }
 
     @Override
-    public boolean checkPlayerInTerrain(Shape feetBox) {
-        for (BlockImpl obs : this.map.getTerrains()) {
+    public boolean checkPlayerInTerrain(final Shape feetBox) {
+        for (final BlockImpl obs : this.map.getTerrains()) {
             if (feetBox.getBoundsInParent()
                     .intersects(obs.getHitbox().getShape().getBoundsInParent())) {
                 return true;

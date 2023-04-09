@@ -13,7 +13,7 @@ import powpaw.model.api.BlockHitbox;
 
 public class BlockHitboxImpl implements BlockHitbox {
 
-    private Rectangle shape;
+    private final Rectangle shape;
 
     /**
      * Constructor for the BlockHitboxImpl class that takes in a
@@ -29,7 +29,7 @@ public class BlockHitboxImpl implements BlockHitbox {
      * @param height hitbox height
      */
 
-    public BlockHitboxImpl(Point2D pos, double width, double height) {
+    public BlockHitboxImpl(final Point2D pos, final double width, final double height) {
         this.shape = new Rectangle(pos.getX(), pos.getY(), width, height);
     }
 
@@ -39,11 +39,8 @@ public class BlockHitboxImpl implements BlockHitbox {
     }
 
     @Override
-    public boolean checkCollision(Shape otherHitbox) {
-        if (this.shape.getBoundsInParent().intersects(otherHitbox.getBoundsInParent())) {
-            return true;
-        }
-        return false;
+    public boolean checkCollision(final Shape otherHitbox) {
+        return this.shape.getBoundsInParent().intersects(otherHitbox.getBoundsInParent());
     }
 
 }

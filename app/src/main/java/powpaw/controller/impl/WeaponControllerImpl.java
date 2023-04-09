@@ -20,10 +20,9 @@ import powpaw.view.impl.WeaponRenderImpl;
 public class WeaponControllerImpl implements WeaponController {
 
     private Weapon weapon;
-    private WeaponRender weaponRender;
-    private int weaponIndex;
-    private PlayerController playerController;
-    private Random rand = new Random();
+    private final WeaponRender weaponRender;
+    private final PlayerController playerController;
+    private final Random rand = new Random();
 
     /**
      * This is a constructor for the WeaponControllerImp class that initializes the
@@ -57,7 +56,7 @@ public class WeaponControllerImpl implements WeaponController {
      * @param player Player in the game.
      * 
      */
-    private void setWeaponToPlayer(Player player) {
+    private void setWeaponToPlayer(final Player player) {
         if (player.getWeapon().isEmpty() && !this.weapon.isPicked()) {
             this.weapon.setPicked(true);
             player.setWeapon(Optional.of(weapon));
@@ -74,13 +73,11 @@ public class WeaponControllerImpl implements WeaponController {
      * 
      * @param player Player in the game.
      */
-    private void dropWeapon(Player player) {
-        if (player.getWeapon().isPresent()) {
-            if (player.getWeapon().get().getDurability() == 0) {
-                player.setWeapon(Optional.empty());
-                player.reduceArmHitbox();
-                spownWeapons();
-            }
+    private void dropWeapon(final Player player) {
+        if (player.getWeapon().isPresent() && player.getWeapon().get().getDurability() == 0) {
+            player.setWeapon(Optional.empty());
+            player.reduceArmHitbox();
+            spownWeapons();
         }
     }
 
@@ -100,7 +97,7 @@ public class WeaponControllerImpl implements WeaponController {
      * weaponRender.
      */
     private void createNewWeapon() {
-        weaponIndex = rand.nextInt(2);
+        int weaponIndex = rand.nextInt(2);
         this.weapon = WeaponFactory.createWeapon(weaponIndex);
         this.weaponRender.setWeapon(weapon);
     }

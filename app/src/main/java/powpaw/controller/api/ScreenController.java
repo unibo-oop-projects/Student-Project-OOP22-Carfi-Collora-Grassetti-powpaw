@@ -13,6 +13,9 @@ public class ScreenController {
 
     public static final int SIZE_HD_W = 1280;
     public static final int SIZE_HD_H = 720;
+    public static final int NUM_BLOCK_W = 30;
+    public static final int NUM_BLOCK_H = 10;
+
 
     /**
      * Method that checks if a given hitbox is out of the screen boundaries.
@@ -22,7 +25,7 @@ public class ScreenController {
      * @return True if the given Hitbox position is out of the screen, false
      *         otherwise.
      */
-    public static boolean isOutOfScreen(Hitbox hitbox) {
+    public static boolean isOutOfScreen(final Hitbox hitbox) {
         if (hitbox.getCenter().getX() >= SIZE_HD_W
                 || hitbox.getCenter().getY() <= -SIZE_HD_H / 10) { // margine alto - destro
             return true;

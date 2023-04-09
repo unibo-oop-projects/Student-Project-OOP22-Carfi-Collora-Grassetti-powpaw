@@ -26,7 +26,7 @@ public class AttackControllerImpl implements AttackController {
      * @param players A list of Player objects that contains players.
      */
     @Override
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(final List<Player> players) {
         this.playerOne = players.get(0);
         this.playerTwo = players.get(1);
     }
@@ -43,7 +43,7 @@ public class AttackControllerImpl implements AttackController {
     }
 
     @Override
-    public void checkHit(Player player) {
+    public void checkHit(final Player player) {
 
         if (this.playerTwo.getState() != PlayerState.DODGE
                 && this.playerOne.getHitbox().checkCollision(this.playerTwo.getHitbox().getShape())

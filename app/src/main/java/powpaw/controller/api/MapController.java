@@ -1,6 +1,6 @@
 package powpaw.controller.api;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import powpaw.model.impl.BlockImpl;
 
@@ -19,6 +19,6 @@ public interface MapController {
      * 
      * @return ArrayList<BlockImpl>.
      */
-    ArrayList<BlockImpl> getPlatforms();
+    List<BlockImpl> getPlatforms();
 
 }

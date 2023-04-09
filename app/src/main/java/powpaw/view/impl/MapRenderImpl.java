@@ -1,6 +1,7 @@
 package powpaw.view.impl;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
@@ -17,13 +18,13 @@ import powpaw.view.api.MapRender;
 public class MapRenderImpl implements MapRender {
 
     private MapController mapController;
-    private ArrayList<BlockImpl> terrains;
-    private ImagePattern textureBlock;
+    private final List<BlockImpl> terrains;
+    private final ImagePattern textureBlock;
 
     /**
      * Constructor of MapRenderImpl that gets the list of platforms from the
      * mapController object and assigns it to the terrains variable, and creates a
-     * new ImagePattern object with the block image
+     * new ImagePattern object with the block image.
      */
     public MapRenderImpl() {
         this.mapController = new MapControllerImpl();
@@ -33,7 +34,7 @@ public class MapRenderImpl implements MapRender {
 
     @Override
     public Pane createPane() {
-        Pane worldPane = new Pane();
+        final Pane worldPane = new Pane();
         drawBlocks();
         return worldPane;
     }
@@ -47,7 +48,7 @@ public class MapRenderImpl implements MapRender {
     }
 
     @Override
-    public ArrayList<BlockImpl> getTerrains() {
+    public List<BlockImpl> getTerrains() {
         return this.terrains;
     }
 
