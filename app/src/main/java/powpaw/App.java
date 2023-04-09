@@ -5,33 +5,15 @@ package powpaw;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import powpaw.common.GameState;
 import powpaw.controller.impl.GameStateHandler;
 
 public class App extends Application {
-
-    private GameState state = GameState.START;
-
     public static void main(String[] args) {
         Application.launch(App.class, args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        switch (state) {
-            case START:
-                GameStateHandler.getGameStateView().showStartMenu();
-                break;
-            case STATS:
-                GameStateHandler.getGameStateView().showCharacterCreation();
-                break;
-            case GAME:
-                GameStateHandler.getGameStateView().showGame();
-                break;
-            case GAMEOVER:
-                GameStateHandler.getGameStateView().showGameOver();
-                break;
-        }
+        GameStateHandler.getGameStateView().showStartMenu();
     }
 }
