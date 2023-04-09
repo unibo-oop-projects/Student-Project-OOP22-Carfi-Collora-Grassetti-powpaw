@@ -16,7 +16,7 @@ public class AttackPowerUp extends PowerUpImpl {
      * @param stats
      */
     @Override
-    public void statPowerUp(PlayerStats stats) {
+    public void statPowerUp(final PlayerStats stats) {
         double oldAttack = stats.getAttack();
         stats.setAttack(oldAttack + POWNUMBER);
         new Timeline(new KeyFrame(Duration.seconds(7), event -> {
