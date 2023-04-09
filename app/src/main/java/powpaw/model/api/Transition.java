@@ -32,9 +32,7 @@ public interface Transition {
      * This function checks if a given position collides with any of the terrain
      * blocks in a map.
      * 
-     * @param pos pos is a Point2D object representing the position of a weapon in
-     *            2D space. It
-     *            contains the x and y coordinates of the weapon's position.
+     * @param hitbox
      * 
      * @return True if the given position intersect the terrains, false otherwise
      */
@@ -44,7 +42,7 @@ public interface Transition {
      * This function checks if a player is within the boundaries of a terrain block
      * in a game map.
      * 
-     * @param feetBox A Shape object representing the hitbox of the player's feet.
+     * @param hitbox A Shape object representing the hitbox of the player's feet.
      * @return True if player feet intersect with terrains, false otherwise.
      */
     boolean checkPlayerInTerrain(Shape hitbox);

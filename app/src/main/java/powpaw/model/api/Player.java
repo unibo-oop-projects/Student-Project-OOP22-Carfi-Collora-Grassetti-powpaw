@@ -18,8 +18,16 @@ import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public interface Player {
 
+    /**
+     * Return optional of a weapon.
+     * @return optional of a weapon
+     */
     Optional<Weapon> getWeapon();
 
+    /**
+     * Set weapon if present.
+     * @param weapon
+     */
     void setWeapon(Optional<Weapon> weapon);
 
     /**
@@ -78,8 +86,14 @@ public interface Player {
      */
     Rectangle getArmHitbox();
 
+    /**
+     * Increase Arm Hitbox.
+     */
     void increaseArmHitbox();
 
+    /**
+     * Reduce Arm hitbox.
+     */
     void reduceArmHitbox();
 
     /**
@@ -89,8 +103,16 @@ public interface Player {
      */
     PlayerState getState();
 
+    /**
+     * Set PlayerState.
+     * @param state
+     */
     void setCurrentState(PlayerState state);
 
+    /**
+     * Get Player direction state.
+     * @return Player direction state
+     */
     PlayerState getDirectionState();
 
     /**

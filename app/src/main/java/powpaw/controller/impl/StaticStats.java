@@ -10,10 +10,15 @@ import powpaw.model.api.StatsBuilder;
  * 
  * @author Simone Collorà
  */
-public class StaticStats {
+public final class StaticStats {
+
+    private StaticStats() {
+
+    }
+
     private static PlayerStats statsP1;
     private static PlayerStats statsP2;
-    private static int limit = 22;
+    private static final int LIMIT = 22;
 
     /**
      * Get stats of player 1.
@@ -30,7 +35,7 @@ public class StaticStats {
      * @return limit.
      */
     public static int getLimit() {
-        return limit;
+        return LIMIT;
     }
 
     /**

@@ -11,6 +11,9 @@ public class DamageMeterImpl implements DamageMeter {
 
     private double damage;
 
+    /**
+     * DamageMeter costructor that set damage to 0.
+     */
     public DamageMeterImpl() {
         damage = 0;
     }
@@ -21,7 +24,7 @@ public class DamageMeterImpl implements DamageMeter {
     }
 
     @Override
-    public void setDamage(double damage) {
+    public void setDamage(final double damage) {
         this.damage += damage;
     }
 

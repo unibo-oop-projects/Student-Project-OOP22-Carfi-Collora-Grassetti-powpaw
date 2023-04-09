@@ -8,9 +8,13 @@ import powpaw.view.impl.GameStateViewImpl;
  * 
  * @author Simone Collorà
  */
-public class StaticGameState {
+public final class StaticGameState {
 
     private static GameStateView state = new GameStateViewImpl();
+
+    private StaticGameState() {
+
+    }
 
     /**
      * Return state.

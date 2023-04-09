@@ -62,7 +62,7 @@ public interface Block {
     /**
      * Setter for heigth of the block.
      * 
-     * @param width block heigth value (double).
+     * @param height block heigth value (double).
      */
     void setHeight(double height);
 }
