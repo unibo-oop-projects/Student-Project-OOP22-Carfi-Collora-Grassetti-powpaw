@@ -32,5 +32,4 @@ public interface PlayerController {
      * @return the list of players.
      */
     List<Player> getPlayers();
-
 }
