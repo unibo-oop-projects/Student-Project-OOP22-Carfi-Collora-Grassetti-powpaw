@@ -18,7 +18,10 @@ import powpaw.view.api.MapRender;
 import powpaw.view.api.WorldRender;
 
 /**
- * @author Giacomo Grassetti
+ * Implementation of the {@code WorldRender} interface that provides the ability
+ * to render the game world.
+ * 
+ * @author Alessia Carfì
  */
 public class WorldRenderImpl implements WorldRender {
 
@@ -35,11 +38,6 @@ public class WorldRenderImpl implements WorldRender {
         return this.playerController;
     }
 
-    /**
-     * Getter for the WeaponController
-     * 
-     * @returnAn instance of the WeaponController.
-     */
     @Override
     public WeaponController getWeaponController() {
         return this.weaponController;
@@ -50,15 +48,11 @@ public class WorldRenderImpl implements WorldRender {
         return this.powerUpController;
     }
 
+    @Override
     public DamageMeterController getDamageMeterController() {
         return this.damageMeterController;
     }
 
-    /**
-     * Getter for the MapRender
-     * 
-     * @return An instance of the MapRender.
-     */
     @Override
     public MapRender getMapRender() {
         return this.mapRender;
@@ -85,6 +79,7 @@ public class WorldRenderImpl implements WorldRender {
         return worldScene;
     }
 
+    @Override
     public void playersCommands() {
 
         this.worldScene.setOnKeyPressed(event -> playerController.getPlayerObservable().getKeyObservable()

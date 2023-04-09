@@ -10,6 +10,14 @@ import powpaw.controller.api.AttackController;
 import powpaw.model.api.Player;
 import powpaw.view.api.KeyObserver;
 
+/**
+ * Is an implementation of the {@code KeyObserver} interface, which provides
+ * methods for handling key press and release events. This class is used to
+ * observe the keyboard input and update the state of the associated
+ * {@code Player} object accordingly.
+ * 
+ * @author Alessia Carfì
+ */
 public class KeyObserverImpl implements KeyObserver {
 
     private final Player player;
@@ -18,9 +26,18 @@ public class KeyObserverImpl implements KeyObserver {
     private KeyCode keyLeft;
     private KeyCode keyRight;
     private KeyCode keyAttack;
+    private KeyCode keyDodge;
     private Set<KeyCode> keys = new HashSet<>();
     private AttackController attackController;
 
+    /**
+     * Constructs a new KeyObserverImpl
+     * 
+     * @param player the Player to observe
+     * @param parser the Parser used to parse the keyboard input commands
+     * @param ac     the AttackController object used to check for hits during
+     *               attacks
+     */
     public KeyObserverImpl(Player player, Parser parser, AttackController ac) {
         this.player = player;
         Map<String, KeyCode> commands = parser.getCommands(player.getNumber());
@@ -30,11 +47,13 @@ public class KeyObserverImpl implements KeyObserver {
         this.keyLeft = commands.get("left");
         this.keyRight = commands.get("right");
         this.keyAttack = commands.get("attack");
+        this.keyDodge = commands.get("dodge");
 
         this.keys.add(keyJump);
         this.keys.add(keyLeft);
         this.keys.add(keyRight);
         this.keys.add(keyAttack);
+        this.keys.add(keyDodge);
     }
 
     @Override
@@ -55,7 +74,11 @@ public class KeyObserverImpl implements KeyObserver {
             this.player.setIsMovingLeft(true);
         }
         if (event == keyAttack) {
+            this.player.setIsAttacking(true);
             this.attackController.checkHit(this.player);
+        }
+        if (event == keyDodge) {
+            this.player.setIsDodging(true);
         }
     }
 
@@ -76,9 +99,10 @@ public class KeyObserverImpl implements KeyObserver {
             this.player.setIsMovingLeft(false);
         }
         if (event == keyAttack) {
-            this.player.idle();
+            this.player.setIsAttacking(false);
         }
-
+        if (event == keyDodge) {
+            this.player.setIsDodging(false);
+        }
     }
-
 }

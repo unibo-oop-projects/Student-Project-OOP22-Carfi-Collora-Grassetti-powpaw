@@ -7,10 +7,10 @@ import javafx.scene.shape.Shape;
 import powpaw.model.api.Hitbox;
 
 /**
+ * Implementation of the Hitbox interface representing the hitbox of a player.
  * 
- * @author Giacomo Grassetti
+ * @author Alessia Carfì, Giacomo Grassetti
  */
-
 public class PlayerHitboxImpl implements Hitbox {
 
     private double radius;
@@ -21,8 +21,15 @@ public class PlayerHitboxImpl implements Hitbox {
     private Circle hitbox;
     private Circle feetBox;
     private Rectangle armHitbox;
-    private boolean isDodging;
 
+    /**
+     * Creates a new PlayerHitboxImpl object with the position, width and
+     * height of player.
+     * 
+     * @param PlayerPosition the position of the player
+     * @param width          the width of the player
+     * @param height         the height of the player
+     */
     public PlayerHitboxImpl(Point2D PlayerPosition, double width, double height) {
         this.radius = width / 2;
         this.feetRadius = this.radius / 3;
@@ -36,7 +43,6 @@ public class PlayerHitboxImpl implements Hitbox {
         this.hitbox = new Circle(x, y, this.radius);
         this.armHitbox = new Rectangle(x, yArm, this.offsetX, this.offsetY / 2);
         this.feetBox = new Circle(x, yFeet, this.feetRadius);
-        this.isDodging = false;
     }
 
     @Override
@@ -59,11 +65,6 @@ public class PlayerHitboxImpl implements Hitbox {
         return this.feetBox;
     }
 
-    /**
-     * Getter for the hitbox shape of an arm as a rectangle.
-     * 
-     * @return The shape of ArmHitbox
-     */
     @Override
     public Rectangle getArmShape() {
         return this.armHitbox;
@@ -90,11 +91,6 @@ public class PlayerHitboxImpl implements Hitbox {
     }
 
     @Override
-    public void switchDodge() {
-        this.isDodging = !isDodging;
-    }
-
-    @Override
     public void updateCenter(Point2D position) {
         this.hitbox.setCenterX(position.getX() + offsetX);
         this.hitbox.setCenterY(position.getY() + offsetY);
@@ -108,6 +104,6 @@ public class PlayerHitboxImpl implements Hitbox {
 
     @Override
     public boolean checkCollision(Shape otherHitbox) {
-        return this.isDodging ? false : this.armHitbox.getBoundsInParent().intersects(otherHitbox.getBoundsInParent());
+        return this.armHitbox.getBoundsInParent().intersects(otherHitbox.getBoundsInParent());
     }
 }

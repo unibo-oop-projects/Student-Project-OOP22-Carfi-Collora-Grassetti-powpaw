@@ -7,6 +7,13 @@ import javafx.scene.input.KeyCode;
 import powpaw.view.api.KeyObservable;
 import powpaw.view.api.KeyObserver;
 
+/**
+ * The {@code KeyObservableImpl} class is an implementation of the
+ * {@code KeyObservable} interface. It provides a mechanism for registering
+ * KeyObserver objects and notifying them when keys are pressed or released.
+ * 
+ * @author Alessia Carfì
+ */
 public class KeyObservableImpl implements KeyObservable {
 
     private List<KeyObserver> observers = new ArrayList<>();
