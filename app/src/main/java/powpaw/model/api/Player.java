@@ -9,24 +9,75 @@ import javafx.scene.shape.Shape;
 import powpaw.model.impl.PlayerStats;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
+/**
+ * {@code Player} interface that represents a player object in game.
+ * 
+ * It contains information about the player's state, position, direction,
+ * health, and hitbox.
+ * 
+ * @author Alessia Carfì, Giacomo Grassetti, Simone Collorà
+ */
+
 public interface Player {
 
     Optional<Weapon> getWeapon();
 
     void setWeapon(Optional<Weapon> weapon);
 
-    Point2D getPosition();
-
-    Point2D getDirection();
-
-    void setDirection(Point2D direction);
-
-    double getWidth();
-
-    double getHeight();
-
+    /**
+     * Gets the player's assigned number.
+     * 
+     * @return int The number assigned to the player.
+     */
     int getNumber();
 
+    /**
+     * Gets the current position of the player.
+     * 
+     * @return The current position of the player.
+     */
+    Point2D getPosition();
+
+    /**
+     * Returns the current direction of the player.
+     *
+     * @return the current direction of the player.
+     */
+    Point2D getDirection();
+
+    /**
+     * Sets the current direction of the player.
+     *
+     * @param direction the direction to set for the player.
+     */
+    void setDirection(Point2D direction);
+
+    /**
+     * Get width of the player.
+     * 
+     * @return the player's width.
+     */
+    double getWidth();
+
+    /**
+     * Get height of the player.
+     * 
+     * @return the player's height.
+     */
+    double getHeight();
+
+    /**
+     * Returns the hitbox of the player.
+     *
+     * @return the hitbox of the player.
+     */
+    Hitbox getHitbox();
+
+    /**
+     * Returns the hitbox of the player's feet as a Shape object.
+     * 
+     * @return the hitbox of the player's feet as a Shape object
+     */
     Shape getFeetBox();
 
     Rectangle getArmHitbox();
@@ -45,31 +96,88 @@ public interface Player {
 
     DamageMeter getCurrentHealth();
 
+    /**
+     * Sets the width of the player.
+     *
+     * @param width the width to set for the player.
+     */
     void setWidth(double width);
 
+    /**
+     * Sets the height of the player.
+     *
+     * @param height the height to set for the player.
+     */
     void setHeight(double height);
 
+    /**
+     * Sets the jumping state of the player.
+     *
+     * @param b the jumping state of the player.
+     */
     void setIsJumping(boolean b);
 
+    /**
+     * Sets the moving right state of the player.
+     *
+     * @param b the moving right state of the player.
+     */
     void setIsMovingRight(boolean b);
 
+    /**
+     * Sets the moving left state of the player.
+     *
+     * @param b the moving left state of the player.
+     */
     void setIsMovingLeft(boolean b);
 
+    /**
+     * Sets the attacking state of the player.
+     *
+     * @param b the attacking state of the player.
+     */
     void setIsAttacking(boolean b);
 
+    /**
+     * Sets the hit state of the player.
+     *
+     * @param b the hit state of the player.
+     */
     void setIsHit(boolean b);
 
+    /**
+     * Sets the dodging state of the player.
+     *
+     * @param b the dodging state of the player.
+     */
     void setIsDodging(boolean b);
 
+    /**
+     * Makes the player idle.
+     * 
+     * Set direction to zero.
+     */
     void idle();
 
+    /**
+     * Returns whether the player is falling or not.
+     *
+     * @return true if the player is falling, false otherwise.
+     */
     boolean isFalling();
 
     void setDirectionDeath(Point2D direction);
 
-    Hitbox getHitbox();
-
     void receiveAttack(Point2D direction, double damage);
 
+    /**
+     * Updates the state of the player based on the given duration of time passed
+     * since the last update.
+     * Calls corresponding methods based on the player's current state.
+     * Calculates the player's new position based on their current direction, speed,
+     * and gravity.
+     * 
+     * @param deltaTime the duration of time passed since the last update
+     */
     void update(Duration deltaTime);
 }

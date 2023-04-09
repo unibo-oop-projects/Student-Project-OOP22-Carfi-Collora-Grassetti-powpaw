@@ -10,6 +10,14 @@ import powpaw.controller.api.AttackController;
 import powpaw.model.api.Player;
 import powpaw.view.api.KeyObserver;
 
+/**
+ * Is an implementation of the {@code KeyObserver} interface, which provides
+ * methods for handling key press and release events. This class is used to
+ * observe the keyboard input and update the state of the associated
+ * {@code Player} object accordingly.
+ * 
+ * @author Alessia Carfì
+ */
 public class KeyObserverImpl implements KeyObserver {
 
     private final Player player;
@@ -22,6 +30,14 @@ public class KeyObserverImpl implements KeyObserver {
     private Set<KeyCode> keys = new HashSet<>();
     private AttackController attackController;
 
+    /**
+     * Constructs a new KeyObserverImpl
+     * 
+     * @param player the Player to observe
+     * @param parser the Parser used to parse the keyboard input commands
+     * @param ac     the AttackController object used to check for hits during
+     *               attacks
+     */
     public KeyObserverImpl(Player player, Parser parser, AttackController ac) {
         this.player = player;
         Map<String, KeyCode> commands = parser.getCommands(player.getNumber());
@@ -89,5 +105,4 @@ public class KeyObserverImpl implements KeyObserver {
             this.player.setIsDodging(false);
         }
     }
-
 }

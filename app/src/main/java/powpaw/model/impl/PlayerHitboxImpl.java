@@ -1,12 +1,16 @@
 package powpaw.model.impl;
 
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import powpaw.model.api.Hitbox;
 
+/**
+ * Implementation of the Hitbox interface representing the hitbox of a player.
+ * 
+ * @author Alessia Carfì
+ */
 public class PlayerHitboxImpl implements Hitbox {
 
     private double radius;
@@ -18,6 +22,14 @@ public class PlayerHitboxImpl implements Hitbox {
     private Circle feetBox;
     private Rectangle armHitbox;
 
+    /**
+     * Creates a new PlayerHitboxImpl object with the position, width and
+     * height of player.
+     * 
+     * @param PlayerPosition the position of the player
+     * @param width          the width of the player
+     * @param height         the height of the player
+     */
     public PlayerHitboxImpl(Point2D PlayerPosition, double width, double height) {
         this.radius = width / 2;
         this.feetRadius = this.radius / 3;
@@ -29,11 +41,8 @@ public class PlayerHitboxImpl implements Hitbox {
         final double yFeet = PlayerPosition.getY() + this.offsetFeet;
         final double yArm = PlayerPosition.getY() + this.offsetY;
         this.hitbox = new Circle(x, y, this.radius);
-        this.hitbox.setFill(Color.BEIGE); // debug
         this.armHitbox = new Rectangle(x, yArm, this.offsetX, this.offsetY / 2);
-        this.armHitbox.setFill(Color.GREEN); // debug
         this.feetBox = new Circle(x, yFeet, this.feetRadius);
-        this.feetBox.setFill(Color.RED); // debug
     }
 
     @Override

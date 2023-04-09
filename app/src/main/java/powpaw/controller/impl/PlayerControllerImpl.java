@@ -13,6 +13,13 @@ import powpaw.model.impl.PlayerObservableImpl;
 import powpaw.view.api.PlayerRender;
 import powpaw.view.impl.PlayerRenderImpl;
 
+/**
+ * The {@code PlayerControllerImpl} class implements the
+ * {@code PlayerController} interface and
+ * manages the players in the game.
+ * 
+ * @author Alessia Carfì
+ */
 public class PlayerControllerImpl implements PlayerController {
 
     private final static Point2D POSITION_ONE = new Point2D(ScreenController.SIZE_HD_W / 3,
@@ -25,6 +32,11 @@ public class PlayerControllerImpl implements PlayerController {
     private List<PlayerRender> playersRender = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
 
+    /**
+     * Constructs a new {@code PlayerControllerImpl} object, initializes the players
+     * and their respective PlayerRender objects, and initializes the
+     * PlayerObservable object with the list of players.
+     */
     public PlayerControllerImpl() {
         AtomicInteger index = new AtomicInteger();
         POSITIONS.forEach(point -> {
@@ -34,10 +46,6 @@ public class PlayerControllerImpl implements PlayerController {
         });
         playerObservable = new PlayerObservableImpl(players);
 
-    }
-
-    public List<Player> getPlayerList() {
-        return this.players;
     }
 
     @Override

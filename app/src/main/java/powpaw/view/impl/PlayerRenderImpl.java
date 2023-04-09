@@ -8,6 +8,12 @@ import javafx.scene.transform.Rotate;
 import powpaw.model.api.Player;
 import powpaw.view.api.PlayerRender;
 
+/**
+ * A class that implements the {@code PlayerRender} interface for rendering a
+ * player character in a game.
+ * 
+ * @author Alessia Carfì
+ */
 public class PlayerRenderImpl implements PlayerRender {
 
     final List<Image> sprites = new ArrayList<>();
@@ -21,6 +27,12 @@ public class PlayerRenderImpl implements PlayerRender {
     private ImageView armSprite;
     private Player player;
 
+    /**
+     * Constructor for creating a new PlayerRenderImpl object with a given player
+     * object.
+     * 
+     * @param player the player object to be rendered
+     */
     public PlayerRenderImpl(Player player) {
         this.player = player;
         int playerNum = player.getNumber();
@@ -45,11 +57,6 @@ public class PlayerRenderImpl implements PlayerRender {
     @Override
     public ImageView getArmSprite() {
         return this.armSprite;
-    }
-
-    @Override
-    public Player getPlayer() {
-        return this.player;
     }
 
     @Override
@@ -106,6 +113,14 @@ public class PlayerRenderImpl implements PlayerRender {
         this.armSprite.setFitHeight(this.player.getArmHitbox().getHeight());
     }
 
+    /**
+     * Rotates the given sprite around the Y axis by the given angle.
+     * Credits to: https://gist.github.com/jewelsea/1436941
+     * 
+     * @param sprite the ImageView to rotate
+     * @param angle  the angle in degrees to rotate the ImageView
+     * @return the rotated ImageView
+     */
     private ImageView rotate(ImageView sprite, int angle) {
         sprite.setTranslateZ(sprite.getBoundsInLocal().getWidth() / 2.0);
         sprite.setRotationAxis(Rotate.Y_AXIS);
