@@ -14,7 +14,7 @@ import powpaw.view.api.PowerUpRender;
 import powpaw.view.impl.PowerUpRenderImpl;
 
 /**
- * PowerUpController that create render and set powerUp behaviour
+ * PowerUpController that create render and set powerUp behaviour.
  * 
  * @author Simone Collorà
  */
@@ -25,6 +25,9 @@ public class PowerUpControllerImpl implements PowerUpController {
     private int powerUpIndex;
     private Random rand = new Random();
 
+    /**
+     * PowerUpController costructor.
+     */
     public PowerUpControllerImpl() {
         this.powerUpRender = new PowerUpRenderImpl();
         this.choosePowerUp();
@@ -36,7 +39,7 @@ public class PowerUpControllerImpl implements PowerUpController {
     }
 
     @Override
-    public void pickPowerUp(PlayerController playerController) {
+    public void pickPowerUp(final PlayerController playerController) {
 
         playerController.getPlayerObservable().getPlayers().forEach(player -> {
             if (powerUp.getHurtbox().getBoundsInParent()
@@ -58,7 +61,7 @@ public class PowerUpControllerImpl implements PowerUpController {
     }
 
     /**
-     * This method chose with a random number what powerUp will be created
+     * This method chose with a random number what powerUp will be created.
      */
     private void choosePowerUp() {
         powerUpIndex = rand.nextInt(2);

@@ -1,25 +1,25 @@
 package powpaw.controller.api;
 
 /**
- * StatsController interface to increase or decrease a stat
+ * StatsController interface to increase or decrease a stat.
  * 
  * @author Simone Collorà
  */
 public interface StatsController {
 
     /**
-     * Increase a stat
+     * Increase a stat.
      * 
      * @param stat
-     * @return the stat increased
+     * @return the stat increased.
      */
     int increase(int stat);
 
     /**
-     * Decrease Stat
+     * Decrease Stat.
      * 
      * @param stat
-     * @return stat decreased
+     * @return stat decreased.
      */
     int decrease(int stat);
 

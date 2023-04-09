@@ -21,30 +21,30 @@ public interface WorldRender {
     PlayerController getPlayerController();
 
     /**
-     * Getter for the WeaponController
+     * Getter for the WeaponController.
      * 
      * @return an instance of the WeaponController.
      */
     WeaponController getWeaponController();
 
     /**
-     * Getter for the PowerUpController
+     * Getter for the PowerUpController.
      * 
-     * @return an instance of the PowerUpController
+     * @return an instance of the PowerUpController.
      * @author Simone Collorà
      */
     PowerUpController getPowerUpController();
 
     /**
-     * Getter for the DamageMeterController
+     * Getter for the DamageMeterController.
      * 
-     * @return an instance of the DamageMeterController
+     * @return an instance of the DamageMeterController.
      * @author Simone Collorà
      */
     DamageMeterController getDamageMeterController();
 
     /**
-     * Getter for the MapRender
+     * Getter for the MapRender.
      * 
      * @return An instance of the MapRender.
      */
@@ -53,7 +53,7 @@ public interface WorldRender {
     /**
      * Renders the game world.
      * 
-     * @return the scene containing the rendered game world
+     * @return the scene containing the rendered game world.
      */
     Scene render();
 

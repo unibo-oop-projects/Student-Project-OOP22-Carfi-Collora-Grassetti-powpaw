@@ -3,9 +3,10 @@ package powpaw;
 import org.junit.jupiter.api.Test;
 
 import powpaw.model.api.DamageMeter;
+import powpaw.model.api.PlayerStats;
 import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.DamageMeterImpl;
-import powpaw.model.impl.PlayerStats;
+import powpaw.model.impl.PlayerStatsImpl;
 import powpaw.model.impl.StatsBuilderImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +17,7 @@ public class StatsTest {
     void getStats() {
 
         PlayerStats stats;
-        PlayerStats stats_eq = new PlayerStats(0.5, 0.2, 0.7);
+        PlayerStats stats_eq = new PlayerStatsImpl(0.5, 0.2, 0.7);
         StatsBuilder builder = new StatsBuilderImpl();
         builder.setAttack(5);
         builder.setDefence(6);

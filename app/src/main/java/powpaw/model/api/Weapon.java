@@ -1,7 +1,6 @@
 package powpaw.model.api;
 
 import javafx.geometry.Point2D;
-import powpaw.model.impl.PlayerStats;
 
 /**
  * Interface for WeaponImpl class that defines the properties and methods of a

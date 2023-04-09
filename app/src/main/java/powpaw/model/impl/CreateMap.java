@@ -28,8 +28,8 @@ public class CreateMap {
      * on the values in the matrix.
      */
     private void createTerrains() {
-        for (int y = 0; y < Level.Level2.length; y++) {
-            final String row = Level.Level2[y];
+        for (int y = 0; y < Level.LEVEL2.length; y++) {
+            final String row = Level.LEVEL2[y];
             for (int x = 0; x < row.length(); x++) {
                 switch (row.charAt(x)) {
                     case '1':

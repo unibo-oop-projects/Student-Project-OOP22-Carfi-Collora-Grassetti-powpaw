@@ -15,9 +15,9 @@ import powpaw.model.impl.BlockImpl;
 public interface MapController {
 
     /**
-     * Getter of map terrains
+     * Getter of map terrains.
      * 
-     * @return ArrayList<BlockImpl>
+     * @return ArrayList<BlockImpl>.
      */
     List<BlockImpl> getPlatforms();
 

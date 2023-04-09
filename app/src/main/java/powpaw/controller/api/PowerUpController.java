@@ -3,16 +3,16 @@ package powpaw.controller.api;
 import powpaw.view.api.PowerUpRender;
 
 /**
- * PowerUp Controller
+ * PowerUp Controller.
  * 
  * @author Simone Collorà
  */
 public interface PowerUpController {
 
     /**
-     * Return render
+     * Return render.
      * 
-     * @return render
+     * @return render.
      */
     PowerUpRender getRender();
 

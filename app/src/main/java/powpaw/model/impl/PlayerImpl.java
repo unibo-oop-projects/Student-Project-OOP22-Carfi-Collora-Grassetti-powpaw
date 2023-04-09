@@ -13,6 +13,7 @@ import powpaw.controller.impl.StaticStats;
 import powpaw.model.api.DamageMeter;
 import powpaw.model.api.Hitbox;
 import powpaw.model.api.Player;
+import powpaw.model.api.PlayerStats;
 import powpaw.model.api.Weapon;
 
 /**
@@ -38,7 +39,34 @@ public class PlayerImpl implements Player {
      * HIT - Player is hit
      */
     public enum PlayerState {
-        IDLE, JUMP, DODGE, ATTACK, WALK_RIGHT, WALK_LEFT, HIT;
+        /**
+         * Stand state.
+         */
+        IDLE,
+        /**
+         * Jump state.
+         */
+        JUMP,
+        /**
+         * Dodge state.
+         */
+        DODGE,
+        /**
+         * Attack state.
+         */
+        ATTACK,
+        /**
+         * Walk right state.
+         */
+        WALK_RIGHT,
+        /**
+         * Walk left state.
+         */
+        WALK_LEFT,
+        /**
+         * Hit state.
+         */
+        HIT;
     }
 
     private static final double JUMP_SPEED = 0.8;
@@ -110,7 +138,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void setWeapon(Optional<Weapon> weapon) {
+    public void setWeapon(final Optional<Weapon> weapon) {
         this.weapon = weapon;
     }
 
@@ -130,7 +158,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void setDirection(Point2D direction) {
+    public void setDirection(final Point2D direction) {
         this.direction = direction;
     }
 
@@ -170,7 +198,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void setCurrentState(PlayerState state) {
+    public void setCurrentState(final PlayerState state) {
         this.currentState = state;
     }
 
@@ -196,38 +224,38 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void setHeight(double height) {
+    public void setHeight(final double height) {
         this.height = height;
         this.hitbox.setOffsetY(height);
     }
 
     @Override
-    public void setIsJumping(boolean b) {
+    public void setIsJumping(final boolean b) {
         this.isJumping = b;
     }
 
     @Override
-    public void setIsMovingLeft(boolean b) {
+    public void setIsMovingLeft(final boolean b) {
         this.isMovingLeft = b;
     }
 
     @Override
-    public void setIsMovingRight(boolean b) {
+    public void setIsMovingRight(final boolean b) {
         this.isMovingRight = b;
     }
 
     @Override
-    public void setIsAttacking(boolean b) {
+    public void setIsAttacking(final boolean b) {
         this.isAttacking = b;
     }
 
     @Override
-    public void setIsHit(boolean b) {
+    public void setIsHit(final boolean b) {
         this.isHit = b;
     }
 
     @Override
-    public void setIsDodging(boolean b) {
+    public void setIsDodging(final boolean b) {
         this.isDodging = b;
     }
 
@@ -290,7 +318,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void receiveAttack(Point2D direction, double damage) {
+    public void receiveAttack(final Point2D direction,final double damage) {
         this.currentState = PlayerState.HIT;
         isHit = true;
         this.directionDeath = direction;
@@ -299,7 +327,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void update(Duration deltaTime) {
+    public void update(final Duration deltaTime) {
         this.idle();
         if (isFalling() && !isJumping) {
             this.direction = this.direction.add(DirectionVector.DOWN.getPoint());

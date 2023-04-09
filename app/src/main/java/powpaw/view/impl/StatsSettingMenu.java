@@ -17,7 +17,7 @@ import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.StatsBuilderImpl;
 
 /**
- * Stats Setting Menu view
+ * Stats Setting Menu view.
  * 
  * 
  * @author Simone Collorà
@@ -25,7 +25,7 @@ import powpaw.model.impl.StatsBuilderImpl;
 public class StatsSettingMenu extends GridPane {
 
     private static final int numStatistics = 3;
-    private static final List<String> statList = new ArrayList<>(
+    private static final List<String> STATLIST = new ArrayList<>(
             Arrays.asList(new String[] { "ATTACK", "DEFENCE", "SPEED" }));
     private Button finish;
     private Button exit;
@@ -58,6 +58,9 @@ public class StatsSettingMenu extends GridPane {
     private StatsBuilder statsP2 = new StatsBuilderImpl();
     private StatsControllerImpl control = new StatsControllerImpl();
 
+    /**
+     * StatsSetting costructor
+     */
     public StatsSettingMenu() {
         att = new Label("Attack: ");
         def = new Label("Defence: ");
@@ -89,9 +92,9 @@ public class StatsSettingMenu extends GridPane {
         });
         add(p1, 1, 0);
         add(p2, 5, 0);
-        for (int i = 0; i < statList.size(); i++) {
+        for (int i = 0; i < STATLIST.size(); i++) {
 
-            switch (statList.get(i)) {
+            switch (STATLIST.get(i)) {
                 case "ATTACK":
                     plusButtonsP1.get(i).getKey().setOnAction(e -> {
                         attackPointsP1 = updateStatPlus(attackPointsP1, attackTextP1);
@@ -147,6 +150,8 @@ public class StatsSettingMenu extends GridPane {
                         updatePointsLeft();
                     });
                     break;
+                default:
+                    break;
             }
         }
         finish.setOnAction(e -> {
@@ -158,14 +163,14 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Initialize buttons
+     * Initialize buttons.
      */
     private void initButton() {
         for (int i = 0; i < numStatistics; i++) {
-            plusButtonsP1.add(new Pair<Button, String>(new Button("+"), statList.get(i)));
-            plusButtonsP2.add(new Pair<Button, String>(new Button("+"), statList.get(i)));
-            minusButtonsP1.add(new Pair<Button, String>(new Button("-"), statList.get(i)));
-            minusButtonsP2.add(new Pair<Button, String>(new Button("-"), statList.get(i)));
+            plusButtonsP1.add(new Pair<Button, String>(new Button("+"), STATLIST.get(i)));
+            plusButtonsP2.add(new Pair<Button, String>(new Button("+"), STATLIST.get(i)));
+            minusButtonsP1.add(new Pair<Button, String>(new Button("-"), STATLIST.get(i)));
+            minusButtonsP2.add(new Pair<Button, String>(new Button("-"), STATLIST.get(i)));
             minusButtonsP1.get(i).getKey().setDisable(true);
             minusButtonsP2.get(i).getKey().setDisable(true);
         }
@@ -174,7 +179,7 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Set Button dimension
+     * Set Button dimension.
      */
     private void setButtonDimension() {
         for (int i = 0; i < numStatistics; i++) {
@@ -200,7 +205,7 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Set nodes positions
+     * Set nodes positions.
      */
     private void addPosition() {
         add(att, 0, 1);
@@ -225,7 +230,7 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Set all stats
+     * Set all stats.
      */
     private void setAllStats() {
         statsP1.setAttack(attackPointsP1);
@@ -237,26 +242,26 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Update stat when increased
+     * Update stat when increased.
      * 
      * @param points old points
      * @param text   points text
      * @return new points increased
      */
-    private int updateStatPlus(int points, Text text) {
+    private int updateStatPlus(int points,final Text text) {
         points = control.increase(points);
         text.setText("" + points);
         return points;
     }
 
     /**
-     * Update stat when decreased
+     * Update stat when decreased.
      * 
      * @param points old points
      * @param text   points text
      * @return new points decreased
      */
-    private int updateStatMinus(int points, Text text) {
+    private int updateStatMinus(int points,final Text text) {
         points = control.decrease(points);
         text.setText("" + points);
         return points;
@@ -265,7 +270,7 @@ public class StatsSettingMenu extends GridPane {
     /**
      * Update points left and update the text. If the pointsLeft are maximum(7 in
      * our case) minus button
-     * are disabled and when points left are 0 the plus buttons are disabled
+     * are disabled and when points left are 0 the plus buttons are disabled.
      */
     private void updatePointsLeft() {
         pointsLeftP1 = StaticStats.getLimit() - (attackPointsP1 + defencePointsP1 + speedPointsP1);

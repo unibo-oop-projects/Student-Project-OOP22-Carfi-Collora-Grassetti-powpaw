@@ -9,21 +9,36 @@ package powpaw.common;
  * @author Simone Collorà
  */
 public enum GameState {
-    START, STATS, GAME, GAMEOVER;
+    /**
+     * Start menu.
+     */
+    START,
+    /**
+     * Stats settings.
+     */
+    STATS,
+    /**
+     * In game.
+     */
+    GAME,
+    /**
+     * Game over.
+     */
+    GAMEOVER;
 
     private GameState currentState;
 
     /**
-     * Set new state
+     * Set new state.
      * 
      * @param newState
      */
-    public void setCurrentState(GameState newState) {
+    public void setCurrentState(final GameState newState) {
         this.currentState = newState;
     }
 
     /**
-     * return state
+     * return state.
      * 
      * @return state
      */

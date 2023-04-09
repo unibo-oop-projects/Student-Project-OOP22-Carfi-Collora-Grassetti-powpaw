@@ -29,7 +29,7 @@ public class GameLoop extends AnimationTimer {
     }
 
     @Override
-    public void handle(long now) {
+    public void handle(final long now) {
         Instant currentFrameTime = Instant.now();
         Duration deltaTime = Duration.between(lastFrameTime, currentFrameTime);
         lastFrameTime = currentFrameTime;
@@ -42,7 +42,7 @@ public class GameLoop extends AnimationTimer {
      * 
      * @param deltaTime the time since the last frame
      */
-    private void update(Duration deltaTime) {
+    private void update(final Duration deltaTime) {
         playerController.getPlayerObservable().update(deltaTime);
         playerController.getRender().forEach(player -> player.renderPlayer());
         powerUpController.pickPowerUp(playerController);
@@ -58,7 +58,7 @@ public class GameLoop extends AnimationTimer {
      * 
      * @param playerController the PlayerController to be set
      */
-    public void setPlayerController(PlayerController playerController) {
+    public void setPlayerController(final PlayerController playerController) {
         this.playerController = playerController;
     }
 
@@ -67,7 +67,7 @@ public class GameLoop extends AnimationTimer {
      * 
      * @param weaponController the WeaponController to be set
      */
-    public void setWeaponController(WeaponController weaponController) {
+    public void setWeaponController(final WeaponController weaponController) {
         this.weaponController = weaponController;
     }
 
@@ -76,7 +76,7 @@ public class GameLoop extends AnimationTimer {
      * 
      * @param powerUpController the PowerUpController to be set
      */
-    public void setPowerUpController(PowerUpController powerUpController) {
+    public void setPowerUpController(final PowerUpController powerUpController) {
         this.powerUpController = powerUpController;
     }
 
@@ -85,7 +85,7 @@ public class GameLoop extends AnimationTimer {
      * 
      * @param damageMeterController the DamageMeterController to be set
      */
-    public void setDamageMeterController(DamageMeterController damageMeterController) {
+    public void setDamageMeterController(final DamageMeterController damageMeterController) {
         this.damageMeterController = damageMeterController;
     }
 }

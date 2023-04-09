@@ -21,11 +21,11 @@ import powpaw.view.impl.PlayerRenderImpl;
  */
 public class PlayerControllerImpl implements PlayerController {
 
-    private final static Point2D POSITION_ONE = new Point2D(ScreenController.SIZE_HD_W / 3,
+    private static final Point2D POSITION_ONE = new Point2D(ScreenController.SIZE_HD_W / 3,
             ScreenController.SIZE_HD_H / 2.5);
-    private final static Point2D POSITION_TWO = new Point2D(ScreenController.SIZE_HD_W / 1.5,
+    private static final Point2D POSITION_TWO = new Point2D(ScreenController.SIZE_HD_W / 1.5,
             ScreenController.SIZE_HD_H / 2.5);
-    private final static List<Point2D> POSITIONS = List.of(POSITION_ONE, POSITION_TWO);
+    private static final List<Point2D> POSITIONS = List.of(POSITION_ONE, POSITION_TWO);
 
     private PlayerObservable playerObservable;
     private List<PlayerRender> playersRender = new ArrayList<>();

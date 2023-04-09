@@ -13,35 +13,35 @@ public interface Block {
     /**
      * Getter for position of the block.
      * 
-     * @return position of the block (Point2D)
+     * @return position of the block (Point2D).
      */
     Point2D getPosition();
 
     /**
      * Setter for X axis position of the block.
      * 
-     * @param x double value of X axis
+     * @param x double value of X axis.
      */
     void setX(double x);
 
     /**
      * Setter for Y axis position of the block.
      * 
-     * @param y double value of X axis
+     * @param y double value of X axis.
      */
     void setY(double y);
 
     /**
      * Getter for hitbox of the block.
      * 
-     * @return hitbox of the block (BlockHitbox)
+     * @return hitbox of the block (BlockHitbox).
      */
     BlockHitbox getHitbox();
 
     /**
      * Getter for width of the block.
      * 
-     * @return width of the block (double)
+     * @return width of the block (double).
      */
     double getWidth();
 
@@ -55,7 +55,7 @@ public interface Block {
     /**
      * Getter for height of the block.
      * 
-     * @return height of the block (double)
+     * @return height of the block (double).
      */
     double getHeight();
 

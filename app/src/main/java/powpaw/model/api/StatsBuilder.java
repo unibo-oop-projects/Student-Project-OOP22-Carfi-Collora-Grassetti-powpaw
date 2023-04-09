@@ -1,37 +1,35 @@
 package powpaw.model.api;
 
-import powpaw.model.impl.PlayerStats;
-
 /**
- * StatsBuilder interface
+ * StatsBuilder interface.
  * 
  * @author Simone Collorà
  */
 public interface StatsBuilder {
 
     /**
-     * Set attack
+     * Set attack.
      * 
      * @param attack
      */
     void setAttack(int attack);
 
     /**
-     * Set defence
+     * Set defence.
      * 
      * @param defence
      */
     void setDefence(int defence);
 
     /**
-     * Set speed
+     * Set speed.
      * 
-     * @param attack
+     * @param speed
      */
     void setSpeed(int speed);
 
     /**
-     * Build player
+     * Build player.
      * 
      * @return buided player
      */

@@ -21,14 +21,14 @@ public interface WeaponController {
     /**
      * Getter for weapon.
      * 
-     * @return The Weapon
+     * @return The Weapon.
      */
     Weapon getWeapon();
 
     /**
      * Getterfor the weapon render.
      * 
-     * @return A WeaponRender
+     * @return A WeaponRender.
      */
     WeaponRender getRender();
 

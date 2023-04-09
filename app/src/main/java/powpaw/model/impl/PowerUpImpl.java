@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javafx.scene.shape.Circle;
 import powpaw.controller.api.ScreenController;
+import powpaw.model.api.PlayerStats;
 import powpaw.model.api.PowerUp;
 
 /**
@@ -17,6 +18,7 @@ import powpaw.model.api.PowerUp;
 public abstract class PowerUpImpl implements PowerUp {
 
     protected final static double POWNUMBER = 0.2;
+    protected final static int powerUpDuration = 7;
     private final double radius = ScreenController.SIZE_HD_W / 40;
     private final Random rand = new Random();
     private Circle hurtbox;

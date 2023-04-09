@@ -9,22 +9,22 @@ import powpaw.controller.api.StatsController;
  * @author Simone Collorà
  */
 public class StatsControllerImpl implements StatsController {
-    private final static int maxPoint = 10;
-    private final static int minPoint = 5;
-    private final static int plusMinus = 1;
+    private static final int MAXPOINTS = 10;
+    private static final int MINPOINTS = 5;
+    private static final int PLUSMINUS = 1;
 
     @Override
     public int increase(int stat) {
-        if (stat < maxPoint) {
-            stat += plusMinus;
+        if (stat < MAXPOINTS) {
+            stat += PLUSMINUS;
         }
         return stat;
     }
 
     @Override
     public int decrease(int stat) {
-        if (stat > minPoint) {
-            stat -= plusMinus;
+        if (stat > MINPOINTS) {
+            stat -= PLUSMINUS;
         }
         return stat;
     }
