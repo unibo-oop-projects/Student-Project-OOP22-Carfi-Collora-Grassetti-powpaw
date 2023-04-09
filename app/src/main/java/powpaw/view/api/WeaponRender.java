@@ -11,6 +11,8 @@ import powpaw.model.impl.BlockImpl;
  * interface and is responsible for rendering the weapon sprite image based on
  * the current
  * weapon and its position.
+ * 
+ * @author Giacomo Grassetti
  */
 
 public interface WeaponRender {
