@@ -136,11 +136,6 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public Shape getFeetBox() {
-        return this.hitbox.getFeetShape();
-    }
-
-    @Override
     public Rectangle getArmHitbox() {
         return this.hitbox.getArmShape();
     }

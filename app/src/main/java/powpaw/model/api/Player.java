@@ -74,13 +74,6 @@ public interface Player {
     Hitbox getHitbox();
 
     /**
-     * Returns the hitbox of the player's feet as a Shape object.
-     * 
-     * @return the hitbox of the player's feet as a Shape object
-     */
-    Shape getFeetBox();
-
-    /**
      * Getter for the hitbox shape of an arm as a rectangle.
      * 
      * @return The shape of ArmHitbox
