@@ -7,9 +7,8 @@ import javafx.geometry.Point2D;
 import powpaw.controller.api.PlayerController;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
-import powpaw.model.api.PlayerObservable;
+import powpaw.controller.api.PlayerObservable;
 import powpaw.model.impl.PlayerImpl;
-import powpaw.model.impl.PlayerObservableImpl;
 import powpaw.view.api.PlayerRender;
 import powpaw.view.impl.PlayerRenderImpl;
 
