@@ -2,9 +2,9 @@ package powpaw.view.api;
 
 import javafx.scene.Scene;
 import powpaw.controller.api.WeaponController;
+import powpaw.controller.api.DamageMeterController;
 import powpaw.controller.api.PlayerController;
 import powpaw.controller.api.PowerUpController;
-import powpaw.controller.impl.DamageMeterController;
 
 /**
  * Interface that provides the ability to render the game world.
@@ -27,8 +27,20 @@ public interface WorldRender {
      */
     WeaponController getWeaponController();
 
+     /**
+     * Getter for the PowerUpController
+     * 
+     * @return an instance of the PowerUpController
+     * @author Simone Collorà
+     */
     PowerUpController getPowerUpController();
 
+     /**
+     * Getter for the DamageMeterController
+     * 
+     * @return an instance of the DamageMeterController
+     * @author Simone Collorà
+     */
     DamageMeterController getDamageMeterController();
 
     /**

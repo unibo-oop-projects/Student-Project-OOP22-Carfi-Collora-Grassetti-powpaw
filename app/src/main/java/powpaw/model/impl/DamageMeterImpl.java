@@ -20,9 +20,7 @@ public class DamageMeterImpl implements DamageMeter {
         return this.damage;
     }
 
-    /**
-     * sum the damage that opponent get as damage never go down
-     */
+  
     @Override
     public void setDamage(double damage) {
         this.damage += damage;

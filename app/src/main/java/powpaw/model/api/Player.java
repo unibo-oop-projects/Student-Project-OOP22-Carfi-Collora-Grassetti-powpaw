@@ -94,8 +94,20 @@ public interface Player {
 
     PlayerState getDirectionState();
 
+    /**
+     * Return PlayerStats
+     * 
+     * @return PlayerStats
+     * @author Simone Collorà
+     */
     PlayerStats getPlayerStats();
 
+    /**
+     * Return current Damage
+     * 
+     * @return Current Damage
+     * @author Simone Collorà
+     */
     DamageMeter getCurrentHealth();
 
     /**

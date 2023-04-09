@@ -5,6 +5,8 @@ import powpaw.model.impl.PlayerStats;
 
 /**
  * Power Up interface
+ * 
+ * @author Simone Collorà
  */
 public interface PowerUp {
 

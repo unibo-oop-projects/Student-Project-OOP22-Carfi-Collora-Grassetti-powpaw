@@ -10,7 +10,8 @@ import powpaw.controller.api.PowerUpController;
 import powpaw.model.api.PowerUp;
 import powpaw.model.impl.AttackPowerUp;
 import powpaw.model.impl.SpeedPowerUp;
-import powpaw.view.impl.PowerUpRender;
+import powpaw.view.api.PowerUpRender;
+import powpaw.view.impl.PowerUpRenderImpl;
 
 /**
  * PowerUpController that create render and set powerUp behaviour
@@ -25,7 +26,7 @@ public class PowerUpControllerImpl implements PowerUpController {
     private Random rand = new Random();
 
     public PowerUpControllerImpl() {
-        this.powerUpRender = new PowerUpRender();
+        this.powerUpRender = new PowerUpRenderImpl();
         this.choosePowerUp();
     }
 
