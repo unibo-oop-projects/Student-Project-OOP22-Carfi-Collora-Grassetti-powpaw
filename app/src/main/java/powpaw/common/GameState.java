@@ -14,7 +14,7 @@ public enum GameState {
     private GameState currentState;
 
     /**
-     * Set new state
+     * Set new state.
      * 
      * @param newState
      */
@@ -23,7 +23,7 @@ public enum GameState {
     }
 
     /**
-     * return state
+     * return state.
      * 
      * @return state
      */

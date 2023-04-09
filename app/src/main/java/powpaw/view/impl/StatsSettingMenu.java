@@ -17,7 +17,7 @@ import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.StatsBuilderImpl;
 
 /**
- * Stats Setting Menu view
+ * Stats Setting Menu view.
  * 
  * 
  * @author Simone Collorà
@@ -147,6 +147,8 @@ public class StatsSettingMenu extends GridPane {
                         updatePointsLeft();
                     });
                     break;
+                default:
+                    break;
             }
         }
         finish.setOnAction(e -> {
@@ -158,7 +160,7 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Initialize buttons
+     * Initialize buttons.
      */
     private void initButton() {
         for (int i = 0; i < numStatistics; i++) {
@@ -174,7 +176,7 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Set Button dimension
+     * Set Button dimension.
      */
     private void setButtonDimension() {
         for (int i = 0; i < numStatistics; i++) {
@@ -200,7 +202,7 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Set nodes positions
+     * Set nodes positions.
      */
     private void addPosition() {
         add(att, 0, 1);
@@ -225,7 +227,7 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Set all stats
+     * Set all stats.
      */
     private void setAllStats() {
         statsP1.setAttack(attackPointsP1);
@@ -237,7 +239,7 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Update stat when increased
+     * Update stat when increased.
      * 
      * @param points old points
      * @param text   points text
@@ -250,7 +252,7 @@ public class StatsSettingMenu extends GridPane {
     }
 
     /**
-     * Update stat when decreased
+     * Update stat when decreased.
      * 
      * @param points old points
      * @param text   points text
@@ -265,7 +267,7 @@ public class StatsSettingMenu extends GridPane {
     /**
      * Update points left and update the text. If the pointsLeft are maximum(7 in
      * our case) minus button
-     * are disabled and when points left are 0 the plus buttons are disabled
+     * are disabled and when points left are 0 the plus buttons are disabled.
      */
     private void updatePointsLeft() {
         pointsLeftP1 = StaticStats.getLimit() - (attackPointsP1 + defencePointsP1 + speedPointsP1);

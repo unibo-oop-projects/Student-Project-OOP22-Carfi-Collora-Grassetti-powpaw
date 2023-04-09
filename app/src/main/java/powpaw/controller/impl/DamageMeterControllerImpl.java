@@ -6,7 +6,7 @@ import powpaw.view.api.DamageMeterRender;
 import powpaw.view.impl.DamageMeterRenderImpl;
 
 /**
- * DamageMeterController implementation
+ * DamageMeterController implementation.
  * 
  * @author Simone Collorà
  */

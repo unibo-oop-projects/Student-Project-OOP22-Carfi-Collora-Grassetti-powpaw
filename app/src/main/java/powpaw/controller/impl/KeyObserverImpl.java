@@ -31,12 +31,12 @@ public class KeyObserverImpl implements KeyObserver {
     private AttackController attackController;
 
     /**
-     * Constructs a new KeyObserverImpl
+     * Constructs a new KeyObserverImpl.
      * 
-     * @param player the Player to observe
-     * @param parser the Parser used to parse the keyboard input commands
+     * @param player the Player to observe.
+     * @param parser the Parser used to parse the keyboard input commands.
      * @param ac     the AttackController object used to check for hits during
-     *               attacks
+     *               attacks.
      */
     public KeyObserverImpl(Player player, Parser parser, AttackController ac) {
         this.player = player;

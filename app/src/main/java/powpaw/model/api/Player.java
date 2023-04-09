@@ -95,17 +95,17 @@ public interface Player {
     PlayerState getDirectionState();
 
     /**
-     * Return PlayerStats
+     * Return PlayerStats.
      * 
-     * @return PlayerStats
+     * @return PlayerStats.
      * @author Simone Collorà
      */
     PlayerStats getPlayerStats();
 
     /**
-     * Return current Damage
+     * Return current Damage.
      * 
-     * @return Current Damage
+     * @return Current Damage.
      * @author Simone Collorà
      */
     DamageMeter getCurrentHealth();
@@ -184,7 +184,7 @@ public interface Player {
     /**
      * Method that sets the direction knockback for a player hitted.
      * 
-     * @param direction Point2D with the direction to apply the knockback
+     * @param direction Point2D with the direction to apply the knockback.
      */
     void setDirectionDeath(Point2D direction);
 
@@ -206,7 +206,7 @@ public interface Player {
      * Calculates the player's new position based on their current direction, speed,
      * and gravity.
      * 
-     * @param deltaTime the duration of time passed since the last update
+     * @param deltaTime the duration of time passed since the last update.
      */
     void update(Duration deltaTime);
 }

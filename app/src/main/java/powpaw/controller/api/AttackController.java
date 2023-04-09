@@ -6,9 +6,8 @@ import java.util.Optional;
 import powpaw.model.api.Player;
 
 /**
- * Interface for AttackControllerImpl that controll if a player hit another
- * player and their
- * respective deaths
+ * Interface for AttackControllerImpl that control if a player hit another
+ * player and their respective deaths.
  * 
  * @author Giacomo Grassetti
  */
@@ -16,7 +15,7 @@ import powpaw.model.api.Player;
 public interface AttackController {
 
     /**
-     * Player setters for the class
+     * Player setters for the class.
      * 
      * @param players A list of Player objects that contains players.
      */
@@ -26,11 +25,10 @@ public interface AttackController {
      * Method that checks if either player has gone out of
      * the screen and returns an Optional containing the player who is still on
      * the screen (player alive). If both players are still on the screen, it
-     * returns an empty
-     * Optional.
+     * returns an empty Optional.
      * 
      * @return Optional<Player> if a player is out of screen, Optional.empty()
-     *         otherwise
+     *         otherwise.
      */
     Optional<Player> checkDeath();
 
@@ -45,7 +43,7 @@ public interface AttackController {
      * attack and the
      * attacking player's attack stat.
      * 
-     * @param player the other player
+     * @param player the other player.
      */
     void checkHit(Player player);
 

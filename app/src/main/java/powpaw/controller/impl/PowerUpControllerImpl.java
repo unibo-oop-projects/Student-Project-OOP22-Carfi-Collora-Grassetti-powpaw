@@ -14,7 +14,7 @@ import powpaw.view.api.PowerUpRender;
 import powpaw.view.impl.PowerUpRenderImpl;
 
 /**
- * PowerUpController that create render and set powerUp behaviour
+ * PowerUpController that create render and set powerUp behaviour.
  * 
  * @author Simone Collorà
  */
@@ -58,7 +58,7 @@ public class PowerUpControllerImpl implements PowerUpController {
     }
 
     /**
-     * This method chose with a random number what powerUp will be created
+     * This method chose with a random number what powerUp will be created.
      */
     private void choosePowerUp() {
         powerUpIndex = rand.nextInt(2);

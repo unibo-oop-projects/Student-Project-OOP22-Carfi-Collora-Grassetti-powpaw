@@ -13,7 +13,7 @@ public interface BlockHitbox {
     /**
      * Getter for the hitbox shape.
      * 
-     * @return Shape of the hitbox
+     * @return Shape of the hitbox.
      */
     Shape getShape();
 
@@ -24,7 +24,7 @@ public interface BlockHitbox {
      * @param otherHitbox Shape representing the hitbox of
      *                    another object that we want to check for collision with
      *                    the hitbox of the current hitbox.
-     * @return True if hitbox intersect the other hitbox, false otherwise
+     * @return True if hitbox intersect the other hitbox, false otherwise.
      */
     boolean checkCollision(Shape otherHitbox);
 

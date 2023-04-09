@@ -1,21 +1,21 @@
 package powpaw.model.api;
 
 /**
- * DamageMeter interface
+ * DamageMeter interface.
  * 
  * @author Simone Collorà
  */
 public interface DamageMeter {
 
     /**
-     * Return DamageMeter value
+     * Return DamageMeter value.
      * 
-     * @return DamageMeter value
+     * @return DamageMeter value.
      */
     double getDamage();
 
     /**
-     * Increase Damage
+     * Increase Damage.
      * 
      * @param damage
      */

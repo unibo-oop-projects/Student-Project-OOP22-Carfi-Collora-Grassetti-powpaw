@@ -20,7 +20,7 @@ public class MapControllerImpl implements MapController {
     private ArrayList<BlockImpl> terrains;
 
     /**
-     * Costrutor of MapController class
+     * Costrutor of MapController class.
      */
     public MapControllerImpl() {
         worldMap = new CreateMap();
