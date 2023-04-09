@@ -22,7 +22,7 @@ public abstract class PowerUp {
     private boolean isVisible = true;
 
     public PowerUp() {
-        this.hurtbox = new Circle(rand.nextDouble(radius + 2.5, ScreenController.SIZE_HD_W - radius - 2.5),
+        this.hurtbox = new Circle(rand.nextDouble(radius + 10, ScreenController.SIZE_HD_W - radius - 10),
                 rand.nextDouble(radius, ScreenController.SIZE_HD_H / 3), radius);
     }
 
