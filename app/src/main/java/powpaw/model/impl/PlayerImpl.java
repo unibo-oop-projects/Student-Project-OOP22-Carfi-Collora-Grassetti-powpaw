@@ -17,14 +17,26 @@ import powpaw.model.api.Player;
 import powpaw.model.api.Weapon;
 
 /**
+ * The {@code PlayerImpl} class implements the {@code Player} interface and
+ * represents a player object in game.
  * 
- * @author Giacomo Grassetti
+ * It contains information about the player's state, position, direction,
+ * health, and hitbox.
+ * 
+ * @author Alessia Carfì, Giacomo Grassetti, Simone Collorà
  */
 
 public class PlayerImpl implements Player {
 
     /**
-     * Enum for different state of player
+     * Enumerated type representing the various states of the player.
+     * IDLE - Player is not doing anything
+     * JUMP - Player is jumping
+     * DODGE - Player is dodging
+     * ATTACK - Player is attacking
+     * WALK_RIGHT - Player is moving to the right
+     * WALK_LEFT - Player is moving to the left
+     * HIT - Player is hit
      */
     public enum PlayerState {
         IDLE, JUMP, DODGE, ATTACK, WALK_RIGHT, WALK_LEFT, HIT;
@@ -32,6 +44,7 @@ public class PlayerImpl implements Player {
 
     private static final double JUMP_SPEED = 0.8;
     private static final double JUMP_TIME = 0.4;
+    private static final double DODGE_TIME = 0.5;
     private static final double GRAVITY = 0.5;
 
     private TransitionImpl transition;
@@ -56,12 +69,27 @@ public class PlayerImpl implements Player {
     private boolean isJumping = false;
     private boolean isMovingLeft = false;
     private boolean isMovingRight = false;
+    private boolean isAttacking = false;
     private boolean isHit = false;
-    private Timeline timeline = new Timeline(
+    private boolean isDodging = false;
+    private boolean canMove = true;
+    private Timeline jumpTimeline = new Timeline(
             new KeyFrame(javafx.util.Duration.seconds(JUMP_TIME), event -> {
                 this.isJumping = false;
             }));
+    private Timeline dodgeTimeline = new Timeline(
+            new KeyFrame(javafx.util.Duration.seconds(DODGE_TIME), event -> {
+                canMove = true;
+                this.currentState = PlayerState.IDLE;
+            }));
 
+    /**
+     * Constructs a new {@code PlayerImpl} object with the specified position and
+     * number.
+     * 
+     * @param position the initial position of the player
+     * @param number   the number of the player
+     */
     public PlayerImpl(Point2D position, int number) {
         this.transition = new TransitionImpl();
         this.position = position;
@@ -73,7 +101,7 @@ public class PlayerImpl implements Player {
         this.idle();
         this.stats = number == 1 ? StatsHandler.getStatsP1() : StatsHandler.getStatsP2();
         this.directionState = number == 1 ? PlayerState.WALK_RIGHT : PlayerState.WALK_LEFT;
-        currentHealth = new DamageMeterImpl();
+        this.currentHealth = new DamageMeterImpl();
         this.weapon = Optional.empty();
     }
 
@@ -112,11 +140,6 @@ public class PlayerImpl implements Player {
         return this.hitbox.getFeetShape();
     }
 
-    /**
-     * Getter for the hitbox shape of an arm as a rectangle.
-     * 
-     * @return The shape of ArmHitbox
-     */
     @Override
     public Rectangle getArmHitbox() {
         return this.hitbox.getArmShape();
@@ -147,18 +170,13 @@ public class PlayerImpl implements Player {
         return this.hitbox;
     }
 
-    /**
-     * Getter of the current state of the player.
-     * 
-     * @return The current state of the player (PlayerState)
-     */
     @Override
     public PlayerState getState() {
         return this.currentState;
     }
 
     @Override
-    public void serCurrentState(PlayerState state) {
+    public void setCurrentState(PlayerState state) {
         this.currentState = state;
     }
 
@@ -205,76 +223,78 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public void setIsAttacking(boolean b) {
+        this.isAttacking = b;
+    }
+
+    @Override
     public void setIsHit(boolean b) {
         this.isHit = b;
     }
 
+    @Override
+    public void setIsDodging(boolean b) {
+        this.isDodging = b;
+    }
+
+    /**
+     * Moves the player to the left.
+     */
     private void moveLeft() {
         this.currentState = PlayerState.WALK_LEFT;
         this.directionState = PlayerState.WALK_LEFT;
         this.direction = direction.add(DirectionVector.LEFT.getPoint());
     }
 
+    /**
+     * Moves the player to the right.
+     */
     private void moveRight() {
         this.currentState = PlayerState.WALK_RIGHT;
         this.directionState = PlayerState.WALK_RIGHT;
         this.direction = direction.add(DirectionVector.RIGHT.getPoint());
     }
 
+    /**
+     * Makes the player character jump.
+     */
     private void jump() {
         this.currentState = PlayerState.JUMP;
         this.direction = this.direction.add(DirectionVector.UP.getPoint());
+        jumpTimeline.play();
+    }
+
+    /**
+     * Sets the player's state to "ATTACK".
+     */
+    private void attack() {
+        this.currentState = PlayerState.ATTACK;
+    }
+
+    /**
+     * Sets the player's state to "DODGE" and makes the player unable to move.
+     */
+    private void dodge() {
+        canMove = false;
+        this.currentState = PlayerState.DODGE;
+        dodgeTimeline.play();
     }
 
     @Override
     public void idle() {
-        this.currentState = PlayerState.IDLE;
         this.direction = new Point2D(0, 0);
     }
 
-    @Override
-    public void dodge() {
-        hitbox.switchDodge();
-        this.currentState = PlayerState.DODGE;
-        try {
-            Thread.sleep(Duration.ofMillis(1).toMillis());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        hitbox.switchDodge();
-    }
-
-    /**
-     * Method that checks if the player is falling by verifying if their feet are in
-     * contact with the
-     * terrain.
-     * 
-     * @return True if the feet player don't intersect the terrain, false otherwise
-     */
     @Override
     public boolean isFalling() {
         return !transition.checkPlayerInTerrain(hitbox.getFeetShape());
     }
 
-    /**
-     * Method that sets the direction knockback for a player hitted.
-     * 
-     * @param direction Point2D with the direction to apply the knockback
-     */
     @Override
     public void setDirectionDeath(Point2D direction) {
         this.directionDeath = direction;
     }
 
-    /**
-     * Method that updates the player's state to HIT, sets the direction of the
-     * attack, reduces the
-     * player's health by the damage received, and increases the player's knockback.
-     * 
-     * @param direction The direction from which the attack is coming, represented
-     *                  as a Point2D.
-     * @param damage    The amount of damage the player receives from the attack.
-     */
     @Override
     public void receiveAttack(Point2D direction, double damage) {
         this.currentState = PlayerState.HIT;
@@ -287,23 +307,26 @@ public class PlayerImpl implements Player {
     @Override
     public void update(Duration deltaTime) {
         this.idle();
-
         if (isFalling() && !isJumping) {
             this.direction = this.direction.add(DirectionVector.DOWN.getPoint());
-            timeline.stop();
+            jumpTimeline.stop();
         }
-
-        if (this.isJumping) {
-            this.jump();
-            timeline.play();
-        }
-
-        if (this.isMovingLeft) {
-            this.moveLeft();
-        }
-
-        if (this.isMovingRight) {
-            this.moveRight();
+        if (canMove) {
+            if (this.isJumping) {
+                this.jump();
+            }
+            if (this.isMovingLeft) {
+                this.moveLeft();
+            }
+            if (this.isMovingRight) {
+                this.moveRight();
+            }
+            if (this.isAttacking) {
+                this.attack();
+            }
+            if (this.isDodging) {
+                this.dodge();
+            }
         }
 
         this.direction = this.direction.normalize();
@@ -318,5 +341,4 @@ public class PlayerImpl implements Player {
         }
         this.hitbox.updateCenter(this.position);
     }
-
 }

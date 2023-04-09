@@ -8,14 +8,32 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A class responsible for parsing a YAML file containing key inputs and
+ * converting them to KeyCode objects.
+ * 
+ * @author Alessia Carfì
+ */
 public class Parser {
 
+    /**
+     * The name of the YAML file to be parsed.
+     */
     private final static String YAMLNAME = "keyinput.yaml";
+
+    /**
+     * A mapping of player numbers to their corresponding key inputs as KeyCode
+     * objects.
+     */
     private Map<Integer, Map<String, KeyCode>> commands = new HashMap<>();
 
     private Yaml yaml = new Yaml();
     private InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(YAMLNAME);
 
+    /**
+     * Constructs a Parser object and parses the YAML file, converting key inputs to
+     * KeyCode objects.
+     */
     public Parser() {
         Map<Integer, Map<String, String>> stringCommands = yaml.load(inputStream);
 
@@ -27,6 +45,13 @@ public class Parser {
 
     }
 
+    /**
+     * Returns a mapping of player number to their corresponding key inputs as
+     * KeyCode objects.
+     * 
+     * @param playerNumber the number of the player whose key inputs are requested.
+     * @return a mapping of key input names to their corresponding KeyCode objects.
+     */
     public Map<String, KeyCode> getCommands(int playerNumber) {
         return this.commands.get(playerNumber);
     }
