@@ -3,8 +3,8 @@ package powpaw.view.api;
 import javafx.scene.Scene;
 import powpaw.controller.api.WeaponController;
 import powpaw.controller.api.PlayerController;
+import powpaw.controller.api.PowerUpController;
 import powpaw.controller.impl.DamageMeterController;
-import powpaw.controller.impl.PowerUpController;
 
 /**
  * Interface that provides the ability to render the game world.

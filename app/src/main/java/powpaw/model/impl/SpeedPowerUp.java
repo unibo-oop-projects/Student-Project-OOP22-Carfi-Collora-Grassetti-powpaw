@@ -1,6 +1,5 @@
 package powpaw.model.impl;
 
-import powpaw.model.api.PowerUp;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
@@ -10,9 +9,9 @@ import javafx.util.Duration;
  * 
  * @author Simone Collorà
  */
-public class SpeedPowerUp extends PowerUp {
+public class SpeedPowerUp extends PowerUpImpl {
 
-     /**
+    /**
      * increase speed by POWNUMBER for 7 seconds
      *
      * @param stats

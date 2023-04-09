@@ -1,16 +1,15 @@
 package powpaw.model.impl;
 
-import powpaw.model.api.PowerUp;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+
 /**
  * PowerUp for increase attack
  * 
  * @author Simone Collorà
  */
-public class AttackPowerUp extends PowerUp {
+public class AttackPowerUp extends PowerUpImpl {
     /**
      * increase attack by POWNUMBER for 7 seconds
      * 

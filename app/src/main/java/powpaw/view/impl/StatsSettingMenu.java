@@ -15,7 +15,6 @@ import powpaw.controller.impl.StatsControllerImpl;
 import powpaw.controller.impl.StaticStats;
 import powpaw.model.api.StatsBuilder;
 import powpaw.model.impl.StatsBuilderImpl;
-import powpaw.view.api.StartMenu;
 /**
  * Stats Setting Menu view
  * 

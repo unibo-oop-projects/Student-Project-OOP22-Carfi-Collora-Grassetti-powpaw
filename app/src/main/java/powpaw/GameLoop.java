@@ -6,7 +6,7 @@ import javafx.animation.AnimationTimer;
 import powpaw.controller.impl.DamageMeterController;
 import powpaw.controller.api.WeaponController;
 import powpaw.controller.api.PlayerController;
-import powpaw.controller.impl.PowerUpController;
+import powpaw.controller.api.PowerUpController;
 
 /**
  * This class is responsible for running the game loop for the game. It extends

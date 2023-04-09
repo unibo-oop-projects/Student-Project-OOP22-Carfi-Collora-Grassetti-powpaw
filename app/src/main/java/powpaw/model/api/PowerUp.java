@@ -1,43 +1,39 @@
 package powpaw.model.api;
 
-import java.util.Random;
-
 import javafx.scene.shape.Circle;
-import powpaw.controller.api.ScreenController;
 import powpaw.model.impl.PlayerStats;
 
 /**
- * abstract PowerUp. This class create the base of the powerUp. POWNUMBER is a static double which
- * indicate how much points a stats will get when increased by the powerUp
- * 
- * 
- * @author Simone Collorà
+ * Power Up interface
  */
-public abstract class PowerUp {
+public interface PowerUp {
 
-    protected final static double POWNUMBER = 0.2;
-    private final double radius = ScreenController.SIZE_HD_W / 40;
-    private final Random rand = new Random();
-    private Circle hurtbox;
-    private boolean isVisible = true;
+    /**
+     * Return Hurtbox
+     * 
+     * @return Hurtbox
+     */
+    Circle getHurtbox();
 
-    public PowerUp() {
-        this.hurtbox = new Circle(rand.nextDouble(radius + 10, ScreenController.SIZE_HD_W - radius - 10),
-                rand.nextDouble(radius, ScreenController.SIZE_HD_H / 3), radius);
-    }
+    /**
+     * Set visibility
+     * 
+     * @param b
+     */
+    void setVisible(boolean b);
 
-    public Circle getHurtbox() {
-        return this.hurtbox;
-    }
+    /**
+     * Return visibility
+     * 
+     * @return visibility
+     */
+    boolean getIsVisible();
 
-    public void setVisible(boolean b) {
-        this.isVisible = b;
-        this.hurtbox.setVisible(b);
-    }
+    /**
+     * Increase stat of a player
+     * 
+     * @param stats
+     */
+    void statPowerUp(PlayerStats stats);
 
-    public boolean getIsVisible() {
-        return this.isVisible;
-    }
-
-    public abstract void statPowerUp(PlayerStats stats);
 }
