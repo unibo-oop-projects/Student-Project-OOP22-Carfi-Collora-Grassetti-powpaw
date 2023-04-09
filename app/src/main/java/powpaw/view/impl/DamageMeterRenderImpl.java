@@ -7,16 +7,18 @@ import javafx.scene.text.Text;
 import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Player;
 import powpaw.view.api.DamageMeterRender;
+
 /**
  * DamageMeterRender implementation
+ * 
  * @author Simone Collorà
  */
 public class DamageMeterRenderImpl implements DamageMeterRender {
-   private List<Text> damage = new ArrayList<>();
+    private List<Text> damage = new ArrayList<>();
 
     public DamageMeterRenderImpl(List<Player> players) {
-        for(int i = 0; i<2; i++){
-            damage.add(new Text((int)(players.get(i).getCurrentHealth().getDamage()*10) + "%"));
+        for (int i = 0; i < 2; i++) {
+            damage.add(new Text((int) (players.get(i).getCurrentHealth().getDamage() * 10) + "%"));
             damage.get(i).setStyle("-fx-font: 50 arial;");
             damage.get(i).setY(ScreenController.SIZE_HD_H / 6);
         }
@@ -31,8 +33,8 @@ public class DamageMeterRenderImpl implements DamageMeterRender {
 
     @Override
     public void update(List<Player> players) {
-        for(int i = 0; i<2; i++){
-            damage.get(i).setText((int)(players.get(i).getCurrentHealth().getDamage()*10) + "%");
+        for (int i = 0; i < 2; i++) {
+            damage.get(i).setText((int) (players.get(i).getCurrentHealth().getDamage() * 10) + "%");
         }
     }
 

@@ -6,7 +6,8 @@ import javafx.scene.layout.Pane;
 import powpaw.model.impl.BlockImpl;
 
 /**
- * Interface for MapRederImpl class that creates a pane and draws blocks on it using a ImagePattern.
+ * Interface for MapRederImpl class that creates a pane and draws blocks on it
+ * using a ImagePattern.
  * 
  * @author Giacomo Grassetti
  */

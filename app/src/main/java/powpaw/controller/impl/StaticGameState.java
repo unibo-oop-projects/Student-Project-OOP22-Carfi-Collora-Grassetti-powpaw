@@ -14,10 +14,11 @@ public class StaticGameState {
 
     /**
      * Return state
+     * 
      * @return state
      */
-    public static GameStateView getGameStateView(){
+    public static GameStateView getGameStateView() {
         return state;
     }
-    
+
 }

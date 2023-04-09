@@ -7,7 +7,8 @@ import powpaw.controller.api.ScreenController;
 import powpaw.model.api.Weapon;
 
 /**
- * Class creates different types of weapons with specific attack values based on the
+ * Class creates different types of weapons with specific attack values based on
+ * the
  * given ID.
  * 
  * @author Giacomo Grassetti
@@ -18,9 +19,11 @@ public class WeaponFactory {
     private final static double END_TERRAIN = ScreenController.SIZE_HD_W - 300;
 
     /**
-     * Static method that creates a weapon with a random position and type based on the given id.
+     * Static method that creates a weapon with a random position and type based on
+     * the given id.
      * 
-     * @param id The id parameter is an integer value that represents the type of weapon to be created (0 = sowrd, 1 = hammer)
+     * @param id The id parameter is an integer value that represents the type of
+     *           weapon to be created (0 = sowrd, 1 = hammer)
      * 
      * @return Weapon object.
      */

@@ -6,7 +6,8 @@ import powpaw.model.api.Weapon;
 import powpaw.model.api.WeaponHitbox;
 
 /**
- * Class that implements the Weapon interface and defines the properties and methods of a
+ * Class that implements the Weapon interface and defines the properties and
+ * methods of a
  * weapon object in a game.
  * 
  * @author Giacomo Grassetti
@@ -16,7 +17,6 @@ public class WeaponImpl implements Weapon {
     public static double WIDTH = ScreenController.SIZE_HD_W / 50;
     public static double HEIGHT = ScreenController.SIZE_HD_H / 30;
     public static int MAX_DURABILITY = 10;
-    
 
     private WeaponHitbox hitbox;
     private Point2D position;
@@ -27,7 +27,7 @@ public class WeaponImpl implements Weapon {
     private boolean isPicked;
 
     private final TransitionImpl transition = new TransitionImpl();
- 
+
     /**
      * Constructor for the WeaponImpl
      * 
@@ -61,7 +61,7 @@ public class WeaponImpl implements Weapon {
     }
 
     @Override
-    public void decrementDurability(){
+    public void decrementDurability() {
         this.durability--;
     }
 
@@ -89,7 +89,7 @@ public class WeaponImpl implements Weapon {
     public void addAttack(PlayerStats ps) {
         double oldAttack = ps.getAttack();
         ps.setAttack(oldAttack + this.attack);
-        if(this.durability == 0) {
+        if (this.durability == 0) {
             ps.setAttack(oldAttack);
         }
     }

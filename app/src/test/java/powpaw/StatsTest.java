@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StatsTest {
 
     @Test
-    void getStats(){
+    void getStats() {
 
         PlayerStats stats;
         PlayerStats stats_eq = new PlayerStats(0.5, 0.2, 0.7);
@@ -25,9 +25,10 @@ public class StatsTest {
         assertEquals(stats_eq.getAttack(), stats.getAttack());
         assertEquals(stats_eq.getDefence(), stats.getDefence());
         assertEquals(stats_eq.getSpeed(), stats.getSpeed());
-    }   
+    }
+
     @Test
-    void getDamage(){
+    void getDamage() {
         DamageMeter meter = new DamageMeterImpl();
         meter.setDamage(15);
         meter.setDamage(20);

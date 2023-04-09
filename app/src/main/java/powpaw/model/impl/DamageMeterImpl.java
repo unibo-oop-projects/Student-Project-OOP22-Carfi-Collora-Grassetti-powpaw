@@ -20,7 +20,6 @@ public class DamageMeterImpl implements DamageMeter {
         return this.damage;
     }
 
-  
     @Override
     public void setDamage(double damage) {
         this.damage += damage;

@@ -1,7 +1,5 @@
 package powpaw.view.impl;
 
-
-
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
