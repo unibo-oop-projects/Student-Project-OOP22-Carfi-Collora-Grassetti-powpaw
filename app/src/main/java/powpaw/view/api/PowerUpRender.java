@@ -11,7 +11,7 @@ import powpaw.model.api.PowerUp;
 public interface PowerUpRender {
 
     /**
-     * set powerUp type
+     * set powerUp type.
      * 
      * @param powerup
      * @param type    powerUp type
@@ -19,14 +19,14 @@ public interface PowerUpRender {
     void setPowerUp(PowerUp powerup, int type);
 
     /**
-     * Return sprite
+     * Return sprite.
      * 
      * @return sprite
      */
     Circle getSprite();
 
     /**
-     * renderize powerUp
+     * renderize powerUp.
      */
     void render();
 

@@ -117,7 +117,7 @@ public final class PlayerImpl implements Player {
      * @param position the initial position of the player
      * @param number   the number of the player
      */
-    public PlayerImpl(Point2D position, int number) {
+    public PlayerImpl(final Point2D position, final int number) {
         this.transition = new TransitionImpl();
         this.position = position;
         this.number = number;
@@ -218,7 +218,7 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public void setWidth(double width) {
+    public void setWidth(final double width) {
         this.width = width;
         this.hitbox.setOffsetX(width);
     }
@@ -313,12 +313,12 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public void setDirectionDeath(Point2D direction) {
+    public void setDirectionDeath(final Point2D direction) {
         this.directionDeath = direction;
     }
 
     @Override
-    public void receiveAttack(final Point2D direction,final double damage) {
+    public void receiveAttack(final Point2D direction, final double damage) {
         this.currentState = PlayerState.HIT;
         isHit = true;
         this.directionDeath = direction;

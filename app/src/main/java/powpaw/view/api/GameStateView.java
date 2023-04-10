@@ -8,12 +8,12 @@ package powpaw.view.api;
 public interface GameStateView {
 
     /**
-     * show StartMenu and set GameState to START
+     * show StartMenu and set GameState to START.
      */
     void showStartMenu();
 
     /**
-     * show stats setting menu and set GameState to STATS
+     * show stats setting menu and set GameState to STATS.
      */
     void showCharacterCreation();
 
@@ -24,7 +24,7 @@ public interface GameStateView {
     void showGame();
 
     /**
-     * show GameOver and set GameState to GAMEOVER. It also stop the loop
+     * show GameOver and set GameState to GAMEOVER. It also stop the loop.
      */
     void showGameOver();
 }

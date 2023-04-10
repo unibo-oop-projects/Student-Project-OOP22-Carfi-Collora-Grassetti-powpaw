@@ -9,17 +9,20 @@ import powpaw.controller.impl.GameStateControllerImpl;
 import powpaw.view.api.GameStateView;
 
 /**
- * GameStateView implementation
+ * GameStateView implementation.
  * 
  * @author Simone Collorà
  */
-public class GameStateViewImpl implements GameStateView {
+public final class GameStateViewImpl implements GameStateView {
 
-    Stage stage = new Stage();
-    GameStateController gameStateController = new GameStateControllerImpl();
-    WorldRenderImpl worldRender;
-    GameLoop loop = new GameLoop();
+    private Stage stage = new Stage();
+    private GameStateController gameStateController = new GameStateControllerImpl();
+    private WorldRenderImpl worldRender;
+    private GameLoop loop = new GameLoop();
 
+    /**
+     * GameStateView costructore set stage title and resizable.
+     */
     public GameStateViewImpl() {
         stage.setTitle("PowPaw");
         stage.setResizable(false);

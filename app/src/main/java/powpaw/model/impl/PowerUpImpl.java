@@ -17,13 +17,22 @@ import powpaw.model.api.PowerUp;
  */
 public abstract class PowerUpImpl implements PowerUp {
 
-    protected final static double POWNUMBER = 0.2;
-    protected final static int powerUpDuration = 7;
+    /**
+     * Stats added by powerUp.
+     */
+    protected static final double POWNUMBER = 0.2;
+    /**
+     * PowerUp duration.
+     */
+    protected static final int POWERUPDURATION = 7;
     private final double radius = ScreenController.SIZE_HD_W / 40;
     private final Random rand = new Random();
     private Circle hurtbox;
     private boolean isVisible = true;
 
+    /**
+     * PowerUp costructor that create a new circle.
+     */
     public PowerUpImpl() {
         this.hurtbox = new Circle(rand.nextDouble(radius + 10, ScreenController.SIZE_HD_W - radius - 10),
                 rand.nextDouble(radius, ScreenController.SIZE_HD_H / 3), radius);
@@ -35,7 +44,7 @@ public abstract class PowerUpImpl implements PowerUp {
     }
 
     @Override
-    public void setVisible(boolean b) {
+    public void setVisible(final boolean b) {
         this.isVisible = b;
         this.hurtbox.setVisible(b);
     }

@@ -15,14 +15,14 @@ import powpaw.model.api.Player;
 public interface DamageMeterRender {
 
     /**
-     * Return list of players' damage
+     * Return list of players' damage.
      * 
      * @return list of players' damage
      */
     List<Text> getDamage();
 
     /**
-     * Update render
+     * Update render.
      * 
      * @param players
      */

@@ -3,7 +3,7 @@ package powpaw.view.api;
 import javafx.scene.input.KeyCode;
 
 /**
- * Interface that defines methods for handling key events in a game
+ * Interface that defines methods for handling key events in a game.
  * 
  * @author Alessia Carfì
  */

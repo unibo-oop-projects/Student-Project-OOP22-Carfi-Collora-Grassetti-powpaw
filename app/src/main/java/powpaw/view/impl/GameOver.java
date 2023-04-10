@@ -14,7 +14,7 @@ import powpaw.controller.impl.StaticGameState;
 import powpaw.controller.api.PlayerController;
 
 /**
- * GameOver view
+ * GameOver view.
  * 
  * @author Simone Collorà
  */
@@ -24,12 +24,12 @@ public class GameOver extends VBox {
     private final Text gameOver;
 
     /**
-     * GameOver create a VBox as with gridPane Text appeared a little decentralized
+     * GameOver create a VBox as with gridPane Text appeared a little decentralized.
      * 
      * @param controller in order to get the player who won and set his color on the
      *                   win text
      */
-    public GameOver(PlayerController controller) {
+    public GameOver(final PlayerController controller) {
         setBackground(Background.fill(new ImagePattern(new Image("/background_menu.png"))));
         setAlignment(Pos.CENTER);
         int winnerNumber = controller.getPlayerObservable().getAttackController().checkDeath().get().getNumber();
