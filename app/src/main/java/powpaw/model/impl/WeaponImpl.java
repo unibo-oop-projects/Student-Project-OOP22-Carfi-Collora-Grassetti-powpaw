@@ -13,7 +13,7 @@ import powpaw.model.api.WeaponHitbox;
  * 
  * @author Giacomo Grassetti
  */
-public class WeaponImpl implements Weapon {
+public final class WeaponImpl implements Weapon {
 
     /**
      * Width of the weapon.

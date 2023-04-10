@@ -15,7 +15,7 @@ import powpaw.view.api.MapRender;
  * 
  * @author Giacomo Grassetti
  */
-public class MapRenderImpl implements MapRender {
+public final class MapRenderImpl implements MapRender {
 
     private final List<BlockImpl> terrains;
     private final ImagePattern textureBlock;
