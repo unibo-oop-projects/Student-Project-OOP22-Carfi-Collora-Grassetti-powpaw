@@ -14,7 +14,16 @@ import powpaw.core.controller.StaticGameState;
  * 
  * @author Simone Collorà
  */
+
 public class StartMenu extends GridPane {
+    private static final int GAP = 15;
+    private static final int DIVIDE = 4;
+    private static final int MAXWIDTHB = 300;
+    private static final int MAXHEIGHTB = 70;
+    private static final int COLUMNIND= 0;
+    private static final int ROWINDFIRB= 0;
+    private static final int ROWINDSECB= 1;
+
 
     /**
      * Start menu costructor.
@@ -24,16 +33,16 @@ public class StartMenu extends GridPane {
         setBackground(Background.fill(new ImagePattern(new Image("/background_menu.png"))));
         final Button start = new Button("START");
         final Button exit = new Button("EXIT");
-        setVgap(15);
-        setHgap(15);
-        start.prefWidthProperty().bind(widthProperty().divide(4));
-        start.prefHeightProperty().bind(heightProperty().divide(4));
-        exit.prefWidthProperty().bind(widthProperty().divide(4));
-        exit.prefHeightProperty().bind(heightProperty().divide(4));
-        start.setMaxSize(300, 70);
-        exit.setMaxSize(300, 70);
-        add(start, 0, 0);
-        add(exit, 0, 1);
+        setVgap(GAP);
+        setHgap(GAP);
+        start.prefWidthProperty().bind(widthProperty().divide(DIVIDE));
+        start.prefHeightProperty().bind(heightProperty().divide(DIVIDE));
+        exit.prefWidthProperty().bind(widthProperty().divide(DIVIDE));
+        exit.prefHeightProperty().bind(heightProperty().divide(DIVIDE));
+        start.setMaxSize(MAXWIDTHB, MAXHEIGHTB);
+        exit.setMaxSize(MAXWIDTHB, MAXHEIGHTB);
+        add(start, COLUMNIND, ROWINDFIRB);
+        add(exit, COLUMNIND, ROWINDSECB);
         start.setOnAction(e -> StaticGameState.getGameStateView().showCharacterCreation());
         exit.setOnAction(e -> {
             Platform.exit();
