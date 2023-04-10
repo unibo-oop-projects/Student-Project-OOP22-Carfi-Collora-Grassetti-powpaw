@@ -10,7 +10,7 @@ import powpaw.controller.impl.StaticGameState;
 /**
  * Main app.
  */
-public class App extends Application {
+public final class App extends Application {
     /**
      * Main.
      * 

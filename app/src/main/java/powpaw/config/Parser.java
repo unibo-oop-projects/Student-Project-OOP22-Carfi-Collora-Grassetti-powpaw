@@ -19,7 +19,7 @@ public class Parser {
     /**
      * The name of the YAML file to be parsed.
      */
-    private final static String YAMLNAME = "keyinput.yaml";
+    private static final String YAMLNAME = "keyinput.yaml";
 
     /**
      * A mapping of player numbers to their corresponding key inputs as KeyCode

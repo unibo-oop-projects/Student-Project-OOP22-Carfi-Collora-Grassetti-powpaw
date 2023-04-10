@@ -13,7 +13,7 @@ import powpaw.controller.api.PowerUpController;
  * the {@code AnimationTimer} class of JavaFx lib that allows it to update the
  * game at a fixed interval, and is triggered by the JavaFX Application Thread.
  */
-public class GameLoop extends AnimationTimer {
+public final class GameLoop extends AnimationTimer {
 
     private Instant lastFrameTime;
     private PlayerController playerController;

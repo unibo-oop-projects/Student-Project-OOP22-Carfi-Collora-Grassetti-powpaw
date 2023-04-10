@@ -7,7 +7,7 @@ import powpaw.model.api.DamageMeter;
  * 
  * @author Simone Collorà
  */
-public class DamageMeterImpl implements DamageMeter {
+public final class DamageMeterImpl implements DamageMeter {
 
     private double damage;
 

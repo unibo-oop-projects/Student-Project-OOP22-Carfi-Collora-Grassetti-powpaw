@@ -13,7 +13,7 @@ public final class StaticGameState {
     private static GameStateView state = new GameStateViewImpl();
 
     private StaticGameState() {
-
+        throw new IllegalStateException("Utility class");
     }
 
     /**
