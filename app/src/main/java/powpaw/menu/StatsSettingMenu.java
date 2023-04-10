@@ -33,38 +33,57 @@ public class StatsSettingMenu extends GridPane {
     private static final int DEFENCEROW = 2;
     private static final int SPEEDROW = 3;
     private static final int COLUMNP1 = 3;
+    private static final int COLUMNBUTONP1 = 1;
+    private static final int COLUMNBUTTONP2 = 5;
     private static final int COLUMNP2 = 7;
-    private static final int GAP = 15;
+    private static final int DIVIDE = 5;
+    private static final int GAP = 15;  
+    private static final int MAXWIDTHB = 50;
+    private static final int MAXHEIGHTB = 50;
+    private static final int ROWINDEXPLEFT = 5;
+    private static final int FINISHBUTTONSROW = 10;
+    private static final int MENUCOLUMN = 0;
+    private static final int FINISHCOLUMN = 10;
+    private static final int COLINDEXPLEFTONE = 1;
+    private static final int COLINDEXPLEFTTWO = 5;
     private static final String LEFTPOINTS = "Points left:";
     private static final List<String> STATLIST = new ArrayList<>(
             Arrays.asList(new String[] { "ATTACK", "DEFENCE", "SPEED" }));
+
     private Button finish;
     private Button exit;
+
     private final List<Pair<Button, String>> plusButtonsP1;
     private final List<Pair<Button, String>> minusButtonsP1;
     private final List<Pair<Button, String>> plusButtonsP2;
     private final List<Pair<Button, String>> minusButtonsP2;
+
     private int attackPointsP1;
     private int defencePointsP1;
     private int speedPointsP1;
     private int attackPointsP2;
     private int defencePointsP2;
     private int speedPointsP2;
+
     private final Label att;
     private final Label def;
     private final Label spe;
     private final Label p1 = new Label("Player 1: ");
     private final Label p2 = new Label("Player 2: ");
+
     private final Text attackTextP1;
     private final Text defenceTextP1;
     private final Text speedTextP1;
     private final Text attackTextP2;
     private final Text defenceTextP2;
     private final Text speedTextP2;
+
     private int pointsLeftP1;
     private int pointsLeftP2;
+
     private final Text pointLeftP1Text = new Text(LEFTPOINTS + pointsLeftP1);
     private final Text pointLeftP2Text = new Text(LEFTPOINTS + pointsLeftP2);
+
     private final StatsBuilder statsP1 = new StatsBuilderImpl();
     private final StatsBuilder statsP2 = new StatsBuilderImpl();
     private final StatsControllerImpl control = new StatsControllerImpl();
@@ -196,25 +215,25 @@ public class StatsSettingMenu extends GridPane {
      */
     private void setButtonDimension() {
         for (int i = 0; i < NUMSTATISTICS; i++) {
-            plusButtonsP1.get(i).getKey().prefWidthProperty().bind(widthProperty().divide(5));
-            plusButtonsP1.get(i).getKey().prefHeightProperty().bind(heightProperty().divide(5));
-            plusButtonsP1.get(i).getKey().setMaxSize(50, 50);
-            plusButtonsP2.get(i).getKey().prefWidthProperty().bind(widthProperty().divide(5));
-            plusButtonsP2.get(i).getKey().prefHeightProperty().bind(heightProperty().divide(5));
-            plusButtonsP2.get(i).getKey().setMaxSize(50, 50);
-            minusButtonsP1.get(i).getKey().prefWidthProperty().bind(widthProperty().divide(5));
-            minusButtonsP1.get(i).getKey().prefHeightProperty().bind(heightProperty().divide(5));
-            minusButtonsP1.get(i).getKey().setMaxSize(50, 50);
-            minusButtonsP2.get(i).getKey().prefWidthProperty().bind(widthProperty().divide(5));
-            minusButtonsP2.get(i).getKey().prefHeightProperty().bind(heightProperty().divide(5));
-            minusButtonsP2.get(i).getKey().setMaxSize(50, 50);
+            plusButtonsP1.get(i).getKey().prefWidthProperty().bind(widthProperty().divide(DIVIDE));
+            plusButtonsP1.get(i).getKey().prefHeightProperty().bind(heightProperty().divide(DIVIDE));
+            plusButtonsP1.get(i).getKey().setMaxSize(MAXWIDTHB, MAXHEIGHTB);
+            plusButtonsP2.get(i).getKey().prefWidthProperty().bind(widthProperty().divide(DIVIDE));
+            plusButtonsP2.get(i).getKey().prefHeightProperty().bind(heightProperty().divide(DIVIDE));
+            plusButtonsP2.get(i).getKey().setMaxSize(MAXWIDTHB, MAXHEIGHTB);
+            minusButtonsP1.get(i).getKey().prefWidthProperty().bind(widthProperty().divide(DIVIDE));
+            minusButtonsP1.get(i).getKey().prefHeightProperty().bind(heightProperty().divide(DIVIDE));
+            minusButtonsP1.get(i).getKey().setMaxSize(MAXWIDTHB, MAXHEIGHTB);
+            minusButtonsP2.get(i).getKey().prefWidthProperty().bind(widthProperty().divide(DIVIDE));
+            minusButtonsP2.get(i).getKey().prefHeightProperty().bind(heightProperty().divide(DIVIDE));
+            minusButtonsP2.get(i).getKey().setMaxSize(MAXWIDTHB, MAXHEIGHTB);
         }
-        exit.prefWidthProperty().bind(widthProperty().divide(5));
-        exit.prefHeightProperty().bind(heightProperty().divide(5));
-        exit.setMaxSize(50, 50);
-        finish.prefWidthProperty().bind(widthProperty().divide(5));
-        finish.prefHeightProperty().bind(heightProperty().divide(5));
-        finish.setMaxSize(50, 50);
+        exit.prefWidthProperty().bind(widthProperty().divide(DIVIDE));
+        exit.prefHeightProperty().bind(heightProperty().divide(DIVIDE));
+        exit.setMaxSize(MAXWIDTHB, MAXHEIGHTB);
+        finish.prefWidthProperty().bind(widthProperty().divide(DIVIDE));
+        finish.prefHeightProperty().bind(heightProperty().divide(DIVIDE));
+        finish.setMaxSize(MAXWIDTHB, MAXHEIGHTB);
     }
 
     /**
@@ -225,10 +244,10 @@ public class StatsSettingMenu extends GridPane {
         add(def, LABELCOLUMN, DEFENCEROW);
         add(spe, LABELCOLUMN, SPEEDROW);
         for (int i = 0; i < NUMSTATISTICS; i++) {
-            add(minusButtonsP1.get(i).getKey(), 1, i + 1);
-            add(plusButtonsP1.get(i).getKey(), 2, i + 1);
-            add(minusButtonsP2.get(i).getKey(), 5, i + 1);
-            add(plusButtonsP2.get(i).getKey(), 6, i + 1);
+            add(minusButtonsP1.get(i).getKey(), COLUMNBUTONP1, i + COLUMNBUTONP1);
+            add(plusButtonsP1.get(i).getKey(), COLUMNBUTONP1+COLUMNBUTONP1, i + COLUMNBUTONP1);
+            add(minusButtonsP2.get(i).getKey(), COLUMNBUTTONP2, i + COLUMNBUTONP1);
+            add(plusButtonsP2.get(i).getKey(), COLUMNBUTONP1+COLUMNBUTTONP2, i + COLUMNBUTONP1);
         }
         add(attackTextP1, COLUMNP1, ATTACKROW);
         add(defenceTextP1, COLUMNP1, DEFENCEROW);
@@ -236,10 +255,10 @@ public class StatsSettingMenu extends GridPane {
         add(attackTextP2, COLUMNP2, ATTACKROW);
         add(defenceTextP2, COLUMNP2, DEFENCEROW);
         add(speedTextP2, COLUMNP2, SPEEDROW);
-        add(pointLeftP1Text, 1, 5);
-        add(pointLeftP2Text, 5, 5);
-        add(exit, 0, 10);
-        add(finish, 10, 10);
+        add(pointLeftP1Text, COLINDEXPLEFTONE, ROWINDEXPLEFT);
+        add(pointLeftP2Text, COLINDEXPLEFTTWO, ROWINDEXPLEFT);
+        add(exit, MENUCOLUMN, FINISHBUTTONSROW);
+        add(finish, FINISHCOLUMN, FINISHBUTTONSROW);
     }
 
     /**
