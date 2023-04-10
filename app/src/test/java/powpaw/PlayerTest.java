@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javafx.geometry.Point2D;
-import powpaw.Player.model.api.Player;
-import powpaw.Player.model.impl.PlayerImpl;
-import powpaw.Player.model.impl.PlayerImpl.PlayerState;
+import powpaw.player.model.api.Player;
+import powpaw.player.model.impl.PlayerImpl;
+import powpaw.player.model.impl.PlayerImpl.PlayerState;
 
 public class PlayerTest {
 

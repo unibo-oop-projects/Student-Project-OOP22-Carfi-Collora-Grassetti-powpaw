@@ -2,15 +2,15 @@ package powpaw.core.view.impl;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import powpaw.Menu.GameOver;
-import powpaw.Menu.StartMenu;
-import powpaw.Menu.StatsSettingMenu;
-import powpaw.Word.controller.ScreenController;
-import powpaw.Word.view.impl.WorldRenderImpl;
 import powpaw.core.GameLoop;
 import powpaw.core.controller.api.GameStateController;
 import powpaw.core.controller.impl.GameStateControllerImpl;
 import powpaw.core.view.api.GameStateView;
+import powpaw.menu.GameOver;
+import powpaw.menu.StartMenu;
+import powpaw.menu.StatsSettingMenu;
+import powpaw.world.controller.ScreenController;
+import powpaw.world.view.impl.WorldRenderImpl;
 
 /**
  * GameStateView implementation.

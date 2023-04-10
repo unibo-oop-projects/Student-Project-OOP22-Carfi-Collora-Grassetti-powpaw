@@ -8,10 +8,10 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import javafx.geometry.Point2D;
-import powpaw.Player.model.api.Player;
-import powpaw.Player.model.impl.PlayerImpl;
-import powpaw.Weapon.model.api.Weapon;
-import powpaw.Weapon.model.impl.WeaponFactory;
+import powpaw.player.model.api.Player;
+import powpaw.player.model.impl.PlayerImpl;
+import powpaw.weapon.model.api.Weapon;
+import powpaw.weapon.model.impl.WeaponFactory;
 
 class WeaponTest {
 

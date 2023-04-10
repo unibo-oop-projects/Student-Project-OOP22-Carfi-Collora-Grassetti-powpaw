@@ -2,12 +2,12 @@ package powpaw;
 
 import org.junit.jupiter.api.Test;
 
-import powpaw.Player.model.api.DamageMeter;
-import powpaw.Player.model.api.PlayerStats;
-import powpaw.Player.model.api.StatsBuilder;
-import powpaw.Player.model.impl.DamageMeterImpl;
-import powpaw.Player.model.impl.PlayerStatsImpl;
-import powpaw.Player.model.impl.StatsBuilderImpl;
+import powpaw.player.model.api.DamageMeter;
+import powpaw.player.model.api.PlayerStats;
+import powpaw.player.model.api.StatsBuilder;
+import powpaw.player.model.impl.DamageMeterImpl;
+import powpaw.player.model.impl.PlayerStatsImpl;
+import powpaw.player.model.impl.StatsBuilderImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -3,10 +3,10 @@ package powpaw.core;
 import java.time.Duration;
 import java.time.Instant;
 import javafx.animation.AnimationTimer;
-import powpaw.Player.controller.api.DamageMeterController;
-import powpaw.Player.controller.api.PlayerController;
-import powpaw.PowerUp.controller.api.PowerUpController;
-import powpaw.Weapon.controller.api.WeaponController;
+import powpaw.player.controller.api.DamageMeterController;
+import powpaw.player.controller.api.PlayerController;
+import powpaw.powerup.controller.api.PowerUpController;
+import powpaw.weapon.controller.api.WeaponController;
 
 /**
  * This class is responsible for running the game loop for the game. It extends
