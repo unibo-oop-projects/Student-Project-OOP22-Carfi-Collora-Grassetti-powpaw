@@ -3,7 +3,7 @@ package powpaw.player.controller.impl;
 import powpaw.player.controller.api.DamageMeterController;
 import powpaw.player.controller.api.PlayerController;
 import powpaw.player.view.api.DamageMeterRender;
-import powpaw.player.view.api.DamageMeterRenderImpl;
+import powpaw.player.view.impl.DamageMeterRenderImpl;
 
 /**
  * DamageMeterController implementation.
