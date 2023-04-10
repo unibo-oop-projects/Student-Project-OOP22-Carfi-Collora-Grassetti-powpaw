@@ -29,7 +29,7 @@ class WeaponTest {
     @Test
     void weaponDurabilityTest() {
         final Weapon sword = WeaponFactory.createWeapon(0);
-        int maxDurability = sword.getDurability();
+        final int maxDurability = sword.getDurability();
         for (int i = 1; i < maxDurability; i++) {
             sword.decrementDurability();
         }
