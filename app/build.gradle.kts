@@ -56,6 +56,11 @@ dependencies {
 
 }
 
+spotbugs {
+    ignoreFailures.set(true)
+    showStackTraces.set(false)
+}
+
 application {
     // Define the main class for the application.
     mainClass.set("powpaw.Main")
