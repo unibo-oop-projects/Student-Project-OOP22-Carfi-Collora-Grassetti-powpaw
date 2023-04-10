@@ -10,11 +10,11 @@ import powpaw.player.model.impl.PlayerImpl.PlayerState;
 
 public class PlayerTest {
 
-    private final static Point2D DEBUG_POSITION = new Point2D(0, 0);
-    private final static int DEBUG_PLAYER_NUMBER = 1;
-    private final static double DEBUG_PLAYER_WIDHT = 5;
-    private final static double DEBUG_PLAYER_HEIGHT = 10;
-    private final static Point2D DEBUG_PLAYER_DIRECTION = new Point2D(1, 0);
+    private static final Point2D DEBUG_POSITION = new Point2D(0, 0);
+    private static final int DEBUG_PLAYER_NUMBER = 1;
+    private static final double DEBUG_PLAYER_WIDHT = 5;
+    private static final double DEBUG_PLAYER_HEIGHT = 10;
+    private static final Point2D DEBUG_PLAYER_DIRECTION = new Point2D(1, 0);
 
     private Player player = new PlayerImpl(DEBUG_POSITION, DEBUG_PLAYER_NUMBER);
 

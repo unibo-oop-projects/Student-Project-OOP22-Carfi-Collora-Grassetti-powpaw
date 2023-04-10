@@ -20,10 +20,9 @@ public class StartMenu extends GridPane {
     private static final int DIVIDE = 4;
     private static final int MAXWIDTHB = 300;
     private static final int MAXHEIGHTB = 70;
-    private static final int COLUMNIND= 0;
-    private static final int ROWINDFIRB= 0;
-    private static final int ROWINDSECB= 1;
-
+    private static final int COLUMNIND = 0;
+    private static final int ROWINDFIRB = 0;
+    private static final int ROWINDSECB = 1;
 
     /**
      * Start menu costructor.

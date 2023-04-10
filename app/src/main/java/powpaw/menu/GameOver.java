@@ -20,6 +20,11 @@ import powpaw.player.controller.api.PlayerController;
  */
 public class GameOver extends VBox {
 
+    private static final int GAP = 15;
+    private static final int DIVIDE = 4;
+    private static final int MAXWIDTHB = 300;
+    private static final int MAXHEIGHTB = 70;
+
     /**
      * GameOver create a VBox as with gridPane Text appeared a little decentralized.
      * 
@@ -37,13 +42,13 @@ public class GameOver extends VBox {
         gameOver = new Text("P" + winnerNumber + " WIN");
         newGame = new Button("NEW GAME");
         exit = new Button("EXIT");
-        setSpacing(15);
-        newGame.prefWidthProperty().bind(widthProperty().divide(4));
-        newGame.prefHeightProperty().bind(heightProperty().divide(4));
-        exit.prefWidthProperty().bind(widthProperty().divide(4));
-        exit.prefHeightProperty().bind(heightProperty().divide(4));
-        newGame.setMaxSize(300, 70);
-        exit.setMaxSize(300, 70);
+        setSpacing(GAP);
+        newGame.prefWidthProperty().bind(widthProperty().divide(DIVIDE));
+        newGame.prefHeightProperty().bind(heightProperty().divide(DIVIDE));
+        exit.prefWidthProperty().bind(widthProperty().divide(DIVIDE));
+        exit.prefHeightProperty().bind(heightProperty().divide(DIVIDE));
+        newGame.setMaxSize(MAXWIDTHB, MAXHEIGHTB);
+        exit.setMaxSize(MAXWIDTHB, MAXHEIGHTB);
         gameOver.setStyle("-fx-font: 70 arial;");
         gameOver.setFill(winnerNumber == 1 ? Color.RED : Color.BLUE);
         gameOver.setTextAlignment(TextAlignment.CENTER);
