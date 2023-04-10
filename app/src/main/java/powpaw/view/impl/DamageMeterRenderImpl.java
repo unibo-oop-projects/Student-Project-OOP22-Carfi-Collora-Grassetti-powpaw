@@ -13,7 +13,7 @@ import powpaw.view.api.DamageMeterRender;
  * 
  * @author Simone Collorà
  */
-public final class DamageMeterRenderImpl implements DamageMeterRender {
+public class DamageMeterRenderImpl implements DamageMeterRender {
 
     private static final double WIDTHP1 = 6;
     private static final double WIDTHP2 = 1.3;

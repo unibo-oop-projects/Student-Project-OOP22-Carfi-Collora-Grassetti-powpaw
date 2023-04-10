@@ -4,49 +4,54 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javafx.geometry.Point2D;
-
 import powpaw.model.api.Player;
 import powpaw.model.impl.PlayerImpl;
 import powpaw.model.impl.PlayerImpl.PlayerState;
 
 public class PlayerTest {
 
-    private Player player = new PlayerImpl(new Point2D(0, 0), 1);
+    private final static Point2D DEBUG_POSITION = new Point2D(0, 0);
+    private final static int DEBUG_PLAYER_NUMBER = 1;
+    private final static double DEBUG_PLAYER_WIDHT = 5;
+    private final static double DEBUG_PLAYER_HEIGHT = 10;
+    private final static Point2D DEBUG_PLAYER_DIRECTION = new Point2D(1, 0);
+
+    private Player player = new PlayerImpl(DEBUG_POSITION, DEBUG_PLAYER_NUMBER);
 
     @Test
     void getNumberTest() {
-        assertEquals(this.player.getNumber(), 1);
+        assertEquals(DEBUG_PLAYER_NUMBER, this.player.getNumber());
     }
 
     @Test
     void initialPositionTest() {
-        assertEquals(this.player.getPosition(), new Point2D(0, 0));
+        assertEquals(DEBUG_POSITION, this.player.getPosition());
     }
 
     @Test
     void setSizeTest() {
-        this.player.setHeight(10);
-        assertEquals(this.player.getHeight(), 10);
+        this.player.setHeight(DEBUG_PLAYER_HEIGHT);
+        assertEquals(DEBUG_PLAYER_HEIGHT, this.player.getHeight());
 
-        this.player.setWidth(5);
-        assertEquals(this.player.getWidth(), 5);
+        this.player.setWidth(DEBUG_PLAYER_WIDHT);
+        assertEquals(DEBUG_PLAYER_WIDHT, this.player.getWidth());
 
     }
 
     @Test
     void setDirectionTest() {
-        Point2D direction = new Point2D(1, 0);
+        Point2D direction = DEBUG_PLAYER_DIRECTION;
 
         this.player.setDirection(direction);
-        assertEquals(this.player.getDirection(), direction);
+        assertEquals(direction, this.player.getDirection());
     }
 
     @Test
     void setStateTest() {
         this.player.setCurrentState(PlayerState.ATTACK);
-        assertEquals(this.player.getState(), PlayerState.ATTACK);
+        assertEquals(PlayerState.ATTACK, this.player.getState());
 
         this.player.setCurrentState(PlayerState.IDLE);
-        assertEquals(this.player.getState(), PlayerState.IDLE);
+        assertEquals(PlayerState.IDLE, this.player.getState());
     }
 }

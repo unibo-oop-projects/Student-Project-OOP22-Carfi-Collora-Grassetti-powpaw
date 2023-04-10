@@ -11,6 +11,8 @@ import powpaw.model.impl.BlockFactory;
 import powpaw.model.impl.BlockImpl;
 
 class GameMapTest {
+    private static final double DEBUG_POSITION_1 = 200;
+    private static final double DEBUG_POSITION_2 = 250;
 
     @Test
     void checkTerrainTest() {
@@ -24,9 +26,9 @@ class GameMapTest {
     @Test
     void checkBlockPositionTest() {
         final int x = 400;
-        final BlockImpl blockOne = BlockFactory.createBlock(200, 200);
+        final BlockImpl blockOne = BlockFactory.createBlock(DEBUG_POSITION_1, DEBUG_POSITION_1);
         blockOne.setX(x);
-        final BlockImpl blockTwo = BlockFactory.createBlock(250, 200);
+        final BlockImpl blockTwo = BlockFactory.createBlock(DEBUG_POSITION_2, DEBUG_POSITION_1);
         blockTwo.setX(x);
         assertEquals(blockOne.getPosition(), blockTwo.getPosition());
     }
