@@ -37,7 +37,7 @@ public class StatsSettingMenu extends GridPane {
     private static final int COLUMNBUTTONP2 = 5;
     private static final int COLUMNP2 = 7;
     private static final int DIVIDE = 5;
-    private static final int GAP = 15;  
+    private static final int GAP = 15;
     private static final int MAXWIDTHB = 50;
     private static final int MAXHEIGHTB = 50;
     private static final int ROWINDEXPLEFT = 5;
@@ -245,9 +245,9 @@ public class StatsSettingMenu extends GridPane {
         add(spe, LABELCOLUMN, SPEEDROW);
         for (int i = 0; i < NUMSTATISTICS; i++) {
             add(minusButtonsP1.get(i).getKey(), COLUMNBUTONP1, i + COLUMNBUTONP1);
-            add(plusButtonsP1.get(i).getKey(), COLUMNBUTONP1+COLUMNBUTONP1, i + COLUMNBUTONP1);
+            add(plusButtonsP1.get(i).getKey(), COLUMNBUTONP1 + COLUMNBUTONP1, i + COLUMNBUTONP1);
             add(minusButtonsP2.get(i).getKey(), COLUMNBUTTONP2, i + COLUMNBUTONP1);
-            add(plusButtonsP2.get(i).getKey(), COLUMNBUTONP1+COLUMNBUTTONP2, i + COLUMNBUTONP1);
+            add(plusButtonsP2.get(i).getKey(), COLUMNBUTONP1 + COLUMNBUTTONP2, i + COLUMNBUTONP1);
         }
         add(attackTextP1, COLUMNP1, ATTACKROW);
         add(defenceTextP1, COLUMNP1, DEFENCEROW);
