@@ -8,7 +8,7 @@ import powpaw.player.model.api.Player;
 import powpaw.player.model.impl.PlayerImpl;
 import powpaw.player.model.impl.PlayerImpl.PlayerState;
 
-public class PlayerTest {
+class PlayerTest {
 
     private static final Point2D DEBUG_POSITION = new Point2D(0, 0);
     private static final int DEBUG_PLAYER_NUMBER = 1;
@@ -16,10 +16,10 @@ public class PlayerTest {
     private static final double DEBUG_PLAYER_HEIGHT = 10;
     private static final Point2D DEBUG_PLAYER_DIRECTION = new Point2D(1, 0);
 
-    private Player player = new PlayerImpl(DEBUG_POSITION, DEBUG_PLAYER_NUMBER);
+    private final Player player = new PlayerImpl(DEBUG_POSITION, DEBUG_PLAYER_NUMBER);
 
     @Test
-    void getNumberTest() {
+    void numberTest() {
         assertEquals(DEBUG_PLAYER_NUMBER, this.player.getNumber());
     }
 
@@ -40,7 +40,7 @@ public class PlayerTest {
 
     @Test
     void setDirectionTest() {
-        Point2D direction = DEBUG_PLAYER_DIRECTION;
+        final Point2D direction = DEBUG_PLAYER_DIRECTION;
 
         this.player.setDirection(direction);
         assertEquals(direction, this.player.getDirection());

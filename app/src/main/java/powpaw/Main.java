@@ -1,8 +1,20 @@
 package powpaw;
 
-public class Main {
+/**
+ * Main class for Application.
+ */
+public final class Main {
 
-    public static void main(String[] args) {
+    private Main() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    /**
+     * Main for application.
+     * 
+     * @param args
+     */
+    public static void main(final String[] args) {
         App.main(args);
     }
 }

@@ -1,5 +1,6 @@
 package powpaw;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import powpaw.player.model.api.DamageMeter;
@@ -9,9 +10,7 @@ import powpaw.player.model.impl.DamageMeterImpl;
 import powpaw.player.model.impl.PlayerStatsImpl;
 import powpaw.player.model.impl.StatsBuilderImpl;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-public class StatsTest {
+class StatsTest {
 
     private static final double ATTACK_DOUBLE = 0.5;
     private static final double DEFENCE_DOUBLE = 0.2;
@@ -24,23 +23,23 @@ public class StatsTest {
     private static final int DAMAGE_EXPECTED = 35;
 
     @Test
-    void getStats() {
+    void stats() {
 
         PlayerStats stats;
-        PlayerStats stats_eq = new PlayerStatsImpl(ATTACK_DOUBLE, DEFENCE_DOUBLE, SPEED_DOUBLE);
-        StatsBuilder builder = new StatsBuilderImpl();
+        final PlayerStats statsEq = new PlayerStatsImpl(ATTACK_DOUBLE, DEFENCE_DOUBLE, SPEED_DOUBLE);
+        final StatsBuilder builder = new StatsBuilderImpl();
         builder.setAttack(ATTACK);
         builder.setDefence(DEFENCE);
         builder.setSpeed(SPEED);
         stats = builder.build();
-        assertEquals(stats_eq.getAttack(), stats.getAttack());
-        assertEquals(stats_eq.getDefence(), stats.getDefence());
-        assertEquals(stats_eq.getSpeed(), stats.getSpeed());
+        assertEquals(statsEq.getAttack(), stats.getAttack());
+        assertEquals(statsEq.getDefence(), stats.getDefence());
+        assertEquals(statsEq.getSpeed(), stats.getSpeed());
     }
 
     @Test
-    void getDamage() {
-        DamageMeter meter = new DamageMeterImpl();
+    void damage() {
+        final DamageMeter meter = new DamageMeterImpl();
         meter.setDamage(DAMAGE_ONE);
         meter.setDamage(DAMAGE_TWO);
         assertEquals(DAMAGE_EXPECTED, meter.getDamage());
