@@ -20,7 +20,7 @@ public final class DamageMeterRenderImpl implements DamageMeterRender {
     private static final double HEIGHT = 6;
 
    /**
-    * DamageMeterRender costructor
+    * DamageMeterRender costructor.
     * @param players for get damage
     */
     public DamageMeterRenderImpl(final List<Player> players) {
