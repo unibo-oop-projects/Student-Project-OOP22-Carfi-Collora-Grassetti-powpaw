@@ -48,3 +48,25 @@ Durante la battaglia, cadranno _oggetti_ dall'alto e ogni giocatore potrà racco
   - Interfaccia di gioco e gestione statistiche
   - Gestione powerup
   - Dannometro
+
+### Guida utente
+
+Il gioco si aprirà con la schermata iniziale. Una volta premuto il tasto **START**, si aprirà la schermata di personalizzazione del personaggio:
+
+- è possibile assegnare 7 punti in tutto per ogni giocatore
+- ogni statistica non può avere più di 10 punti.
+  Una volta assegnati tutti i punti, premere il tasto **FINE** e cominciate a picchiarvi.
+
+- _Tasti_:
+  - **Player One**:
+    - W: salto
+    - A: muovi a sinistra
+    - S: muovi a destra
+    - G: attacca
+    - H: schiva
+  - **Player Two**:
+    - UP: salto
+    - LEFT: muovi a sinistra
+    - RIGHT: muovi a destra
+    - NUMPAD2: attacca
+    - NUMPAD3: schiva
