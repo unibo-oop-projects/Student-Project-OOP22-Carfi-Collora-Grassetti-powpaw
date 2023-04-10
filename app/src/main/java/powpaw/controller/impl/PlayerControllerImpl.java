@@ -19,7 +19,7 @@ import powpaw.view.impl.PlayerRenderImpl;
  * 
  * @author Alessia Carfì
  */
-public class PlayerControllerImpl implements PlayerController {
+public final class PlayerControllerImpl implements PlayerController {
 
     private static final Point2D POSITION_ONE = new Point2D(ScreenController.SIZE_HD_W / 3,
             ScreenController.SIZE_HD_H / 2.5);

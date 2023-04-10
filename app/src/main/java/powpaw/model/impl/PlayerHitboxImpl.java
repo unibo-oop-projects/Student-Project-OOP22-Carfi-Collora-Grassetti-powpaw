@@ -11,7 +11,7 @@ import powpaw.model.api.Hitbox;
  * 
  * @author Alessia Carfì, Giacomo Grassetti
  */
-public class PlayerHitboxImpl implements Hitbox {
+public final class PlayerHitboxImpl implements Hitbox {
 
     private final double radius;
     private double offsetX;

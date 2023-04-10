@@ -8,7 +8,7 @@ import powpaw.controller.api.GameStateController;
  * 
  * @author Simone Collorà
  */
-public class GameStateControllerImpl implements GameStateController {
+public final class GameStateControllerImpl implements GameStateController {
 
     private final GameState state = GameState.START;
 

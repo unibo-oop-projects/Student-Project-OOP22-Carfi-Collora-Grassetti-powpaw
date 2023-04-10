@@ -13,7 +13,7 @@ import powpaw.view.api.GameStateView;
  * 
  * @author Simone Collorà
  */
-public class GameStateViewImpl implements GameStateView {
+public final class GameStateViewImpl implements GameStateView {
 
     private final Stage stage = new Stage();
     private final GameStateController gameStateController = new GameStateControllerImpl();

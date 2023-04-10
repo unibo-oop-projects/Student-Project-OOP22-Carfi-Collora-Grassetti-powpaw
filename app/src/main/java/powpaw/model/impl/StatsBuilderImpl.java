@@ -11,7 +11,7 @@ import powpaw.model.api.StatsBuilder;
  * 
  * @author Simone Collorà
  */
-public class StatsBuilderImpl implements StatsBuilder {
+public final class StatsBuilderImpl implements StatsBuilder {
     private double attack;
     private double defence;
     private double speed;
