@@ -10,7 +10,7 @@ import powpaw.view.impl.DamageMeterRenderImpl;
  * 
  * @author Simone Collorà
  */
-public class DamageMeterControllerImpl implements DamageMeterController {
+public final class DamageMeterControllerImpl implements DamageMeterController {
     private final DamageMeterRender render;
 
     /**

@@ -12,9 +12,9 @@ import powpaw.view.api.PlayerRender;
  * 
  * @author Alessia Carfì, Giacomo Grassetti
  */
-public class PlayerRenderImpl implements PlayerRender {
+public final class PlayerRenderImpl implements PlayerRender {
 
-    private final static int ANGLE = 180;
+    private static final int ANGLE = 180;
 
     private final Image idleSprite;
     private final Image attackSprite;

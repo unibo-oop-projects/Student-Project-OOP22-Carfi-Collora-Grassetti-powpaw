@@ -25,7 +25,7 @@ import powpaw.view.api.WorldRender;
  * 
  * @author Alessia Carfì
  */
-public class WorldRenderImpl implements WorldRender {
+public final class WorldRenderImpl implements WorldRender {
 
     private final MapRender mapRender = new MapRenderImpl();
     private final PlayerController playerController = new PlayerControllerImpl();

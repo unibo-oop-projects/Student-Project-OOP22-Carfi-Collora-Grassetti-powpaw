@@ -14,7 +14,7 @@ import powpaw.model.api.WeaponHitbox;
  * 
  * @author Giacomo Grassetti
  */
-public class WeaponHitboxImpl implements WeaponHitbox {
+public final class WeaponHitboxImpl implements WeaponHitbox {
     private final Rectangle shape;
 
     /**

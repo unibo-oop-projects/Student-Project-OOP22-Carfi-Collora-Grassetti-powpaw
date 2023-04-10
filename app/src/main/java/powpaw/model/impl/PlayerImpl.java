@@ -26,7 +26,7 @@ import powpaw.model.api.Weapon;
  * @author Alessia Carfì, Giacomo Grassetti, Simone Collorà
  */
 
-public class PlayerImpl implements Player {
+public final class PlayerImpl implements Player {
 
     /**
      * Enumerated type representing the various states of the player.
@@ -66,6 +66,9 @@ public class PlayerImpl implements Player {
     private static final double JUMP_TIME = 0.4;
     private static final double DODGE_TIME = 0.5;
     private static final double GRAVITY = 0.5;
+
+    private static final double WIDTH = ScreenController.SIZE_HD_H / 8;
+    private static final double HEIGHT = ScreenController.SIZE_HD_W / 15;
 
     private final TransitionImpl transition;
 
@@ -114,8 +117,8 @@ public class PlayerImpl implements Player {
         this.transition = new TransitionImpl();
         this.position = position;
         this.number = number;
-        this.height = ScreenController.SIZE_HD_H / 8;
-        this.width = ScreenController.SIZE_HD_W / 15;
+        this.width = WIDTH;
+        this.height = HEIGHT;
         hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
         this.currentState = PlayerState.IDLE;
         this.direction = new Point2D(0, 0);

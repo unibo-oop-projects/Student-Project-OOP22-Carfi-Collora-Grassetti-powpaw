@@ -14,7 +14,7 @@ import powpaw.view.api.KeyObserver;
  * 
  * @author Alessia Carfì
  */
-public class KeyObservableImpl implements KeyObservable {
+public final class KeyObservableImpl implements KeyObservable {
 
     private final List<KeyObserver> observers = new ArrayList<>();
 
