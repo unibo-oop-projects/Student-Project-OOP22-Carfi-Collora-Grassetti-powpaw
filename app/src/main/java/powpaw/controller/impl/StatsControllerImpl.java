@@ -14,19 +14,21 @@ public final class StatsControllerImpl implements StatsController {
     private static final int PLUSMINUS = 1;
 
     @Override
-    public int increase(int stat) {
-        if (stat < MAXPOINTS) {
-            stat += PLUSMINUS;
+    public int increase(final int stat) {
+        int stats = stat;
+        if (stats < MAXPOINTS) {
+            stats += PLUSMINUS;
         }
-        return stat;
+        return stats;
     }
 
     @Override
-    public int decrease(int stat) {
-        if (stat > MINPOINTS) {
-            stat -= PLUSMINUS;
+    public int decrease(final int stat) {
+        int stats = stat;
+        if (stats > MINPOINTS) {
+            stats -= PLUSMINUS;
         }
-        return stat;
+        return stats;
     }
 
 }

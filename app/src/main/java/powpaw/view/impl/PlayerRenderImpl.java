@@ -1,7 +1,6 @@
 package powpaw.view.impl;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
@@ -14,16 +13,15 @@ import powpaw.view.api.PlayerRender;
  * 
  * @author Alessia Carfì, Giacomo Grassetti
  */
-public class PlayerRenderImpl implements PlayerRender {
+public final class PlayerRenderImpl implements PlayerRender {
 
-    final List<Image> sprites = new ArrayList<>();
-    final Image idleSprite;
-    final Image attackSprite;
-    final Image hitSprite;
-    final Image dodgeSprite;
-    final Image swordSprite;
-    final Image hammerSprite;
-    final ImageView sprite;
+    private final Image idleSprite;
+    private final Image attackSprite;
+    private final Image hitSprite;
+    private final Image dodgeSprite;
+    private final Image swordSprite;
+    private final Image hammerSprite;
+    private final ImageView sprite;
     private final ImageView armSprite;
     private final Player player;
 
@@ -33,7 +31,7 @@ public class PlayerRenderImpl implements PlayerRender {
      * 
      * @param player the player object to be rendered
      */
-    public PlayerRenderImpl(Player player) {
+    public PlayerRenderImpl(final Player player) {
         this.player = player;
         int playerNum = player.getNumber();
         this.idleSprite = new Image("p" + playerNum + "_idle.png");
@@ -119,7 +117,7 @@ public class PlayerRenderImpl implements PlayerRender {
      * @param angle  the angle in degrees to rotate the ImageView
      * @return the rotated ImageView
      */
-    private ImageView rotate(ImageView sprite, int angle) {
+    private ImageView rotate(final ImageView sprite, final int angle) {
         sprite.setTranslateZ(sprite.getBoundsInLocal().getWidth() / 2.0);
         sprite.setRotationAxis(Rotate.Y_AXIS);
         sprite.setRotate(angle);

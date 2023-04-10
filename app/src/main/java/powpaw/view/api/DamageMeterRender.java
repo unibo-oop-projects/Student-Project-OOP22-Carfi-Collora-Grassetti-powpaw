@@ -8,7 +8,7 @@ import powpaw.model.api.Player;
 /**
  * DamageMeterRender. The costructor create a list of Text with the players
  * damage and
- * multiply it x10 in order to be more user friendly
+ * multiply it x10 in order to be more user friendly.
  * 
  * @author Simone Collorà
  */

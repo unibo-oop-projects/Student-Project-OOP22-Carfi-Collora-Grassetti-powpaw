@@ -25,6 +25,16 @@ import powpaw.model.impl.StatsBuilderImpl;
 public class StatsSettingMenu extends GridPane {
 
     private static final int NUMSTATISTICS = 3;
+    private static final int STATINIT = 5;
+    private static final int POINTSSTART = 7;
+    private static final int POINTSEND = 0;
+    private static final int LABELCOLUMN = 0;
+    private static final int ATTACKROW = 1;
+    private static final int DEFENCEROW = 2;
+    private static final int SPEEDROW = 3;
+    private static final int COLUMNP1 = 3;
+    private static final int COLUMNP2 = 7;
+    private static final int GAP = 15;
     private static final List<String> STATLIST = new ArrayList<>(
             Arrays.asList(new String[] { "ATTACK", "DEFENCE", "SPEED" }));
     private Button finish;
@@ -50,8 +60,8 @@ public class StatsSettingMenu extends GridPane {
     private final Text attackTextP2;
     private final Text defenceTextP2;
     private final Text speedTextP2;
-    private int pointsLeftP1 = 7;
-    private int pointsLeftP2 = 7;
+    private int pointsLeftP1;
+    private int pointsLeftP2;
     private final Text pointLeftP1Text = new Text("Points left:" + pointsLeftP1);
     private final Text pointLeftP2Text = new Text("Points left:" + pointsLeftP2);
     private StatsBuilder statsP1 = new StatsBuilderImpl();
@@ -69,29 +79,31 @@ public class StatsSettingMenu extends GridPane {
         minusButtonsP1 = new ArrayList<>();
         plusButtonsP2 = new ArrayList<>();
         minusButtonsP2 = new ArrayList<>();
-        attackPointsP1 = 5;
-        defencePointsP1 = 5;
-        speedPointsP1 = 5;
-        attackPointsP2 = 5;
-        defencePointsP2 = 5;
-        speedPointsP2 = 5;
+        attackPointsP1 = STATINIT;
+        defencePointsP1 = STATINIT;
+        speedPointsP1 = STATINIT;
+        attackPointsP2 = STATINIT;
+        defencePointsP2 = STATINIT;
+        speedPointsP2 = STATINIT;
+        pointsLeftP1 = StaticStats.getLimit() - (attackPointsP1 + defencePointsP1 + speedPointsP1);
+        pointsLeftP2 = StaticStats.getLimit() - (attackPointsP2 + defencePointsP2 + speedPointsP2);
         initButton();
         setButtonDimension();
-        attackTextP1 = new Text("" + attackPointsP1);
-        defenceTextP1 = new Text("" + defencePointsP1);
-        speedTextP1 = new Text("" + speedPointsP1);
-        attackTextP2 = new Text("" + attackPointsP2);
-        defenceTextP2 = new Text("" + defencePointsP2);
-        speedTextP2 = new Text("" + speedPointsP2);
+        attackTextP1 = new Text(Integer.toString(attackPointsP1));
+        defenceTextP1 = new Text(Integer.toString(defencePointsP1));
+        speedTextP1 = new Text(Integer.toString(speedPointsP1));
+        attackTextP2 = new Text(Integer.toString(attackPointsP2));
+        defenceTextP2 = new Text(Integer.toString(defencePointsP2));
+        speedTextP2 = new Text(Integer.toString(speedPointsP2));
         setAlignment(Pos.CENTER);
-        setVgap(15);
-        setHgap(15);
+        setVgap(GAP);
+        setHgap(GAP);
         addPosition();
         exit.setOnAction(e -> {
             exit.getScene().setRoot(new StartMenu());
         });
-        add(p1, 1, 0);
-        add(p2, 5, 0);
+        add(p1, 1, LABELCOLUMN);
+        add(p2, 5, LABELCOLUMN);
         for (int i = 0; i < STATLIST.size(); i++) {
 
             switch (STATLIST.get(i)) {
@@ -208,21 +220,21 @@ public class StatsSettingMenu extends GridPane {
      * Set nodes positions.
      */
     private void addPosition() {
-        add(att, 0, 1);
-        add(def, 0, 2);
-        add(spe, 0, 3);
+        add(att, LABELCOLUMN, ATTACKROW);
+        add(def, LABELCOLUMN, DEFENCEROW);
+        add(spe, LABELCOLUMN, SPEEDROW);
         for (int i = 0; i < NUMSTATISTICS; i++) {
             add(minusButtonsP1.get(i).getKey(), 1, i + 1);
             add(plusButtonsP1.get(i).getKey(), 2, i + 1);
             add(minusButtonsP2.get(i).getKey(), 5, i + 1);
             add(plusButtonsP2.get(i).getKey(), 6, i + 1);
         }
-        add(attackTextP1, 3, 1);
-        add(defenceTextP1, 3, 2);
-        add(speedTextP1, 3, 3);
-        add(attackTextP2, 7, 1);
-        add(defenceTextP2, 7, 2);
-        add(speedTextP2, 7, 3);
+        add(attackTextP1, COLUMNP1, ATTACKROW);
+        add(defenceTextP1, COLUMNP1, DEFENCEROW);
+        add(speedTextP1, COLUMNP1, SPEEDROW);
+        add(attackTextP2, COLUMNP2, ATTACKROW);
+        add(defenceTextP2, COLUMNP2, DEFENCEROW);
+        add(speedTextP2, COLUMNP2, SPEEDROW);
         add(pointLeftP1Text, 1, 5);
         add(pointLeftP2Text, 5, 5);
         add(exit, 0, 10);
@@ -248,10 +260,11 @@ public class StatsSettingMenu extends GridPane {
      * @param text   points text
      * @return new points increased
      */
-    private int updateStatPlus(int points, final Text text) {
-        points = control.increase(points);
+    private int updateStatPlus(final int points, final Text text) {
+        int newPoints = points;
+        newPoints = control.increase(points);
         text.setText("" + points);
-        return points;
+        return newPoints;
     }
 
     /**
@@ -261,10 +274,11 @@ public class StatsSettingMenu extends GridPane {
      * @param text   points text
      * @return new points decreased
      */
-    private int updateStatMinus(int points, final Text text) {
-        points = control.decrease(points);
+    private int updateStatMinus(final int points, final Text text) {
+        int newPoints = points;
+        newPoints = control.decrease(points);
         text.setText("" + points);
-        return points;
+        return newPoints;
     }
 
     /**
@@ -279,10 +293,10 @@ public class StatsSettingMenu extends GridPane {
         pointLeftP2Text.setText("Points left:" + pointsLeftP2);
 
         for (int i = 0; i < plusButtonsP1.size(); i++) {
-            plusButtonsP1.get(i).getKey().setDisable(pointsLeftP1 == 0 ? true : false);
-            minusButtonsP1.get(i).getKey().setDisable(pointsLeftP1 == 7 ? true : false);
-            plusButtonsP2.get(i).getKey().setDisable(pointsLeftP2 == 0 ? true : false);
-            minusButtonsP2.get(i).getKey().setDisable(pointsLeftP2 == 7 ? true : false);
+            plusButtonsP1.get(i).getKey().setDisable(pointsLeftP1 == POINTSEND);
+            minusButtonsP1.get(i).getKey().setDisable(pointsLeftP1 == POINTSSTART);
+            plusButtonsP2.get(i).getKey().setDisable(pointsLeftP2 == POINTSEND);
+            minusButtonsP2.get(i).getKey().setDisable(pointsLeftP2 == POINTSSTART);
         }
     }
 }
