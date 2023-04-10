@@ -29,6 +29,8 @@ public class StatsSettingMenu extends GridPane {
     private static final int POINTSSTART = 7;
     private static final int POINTSEND = 0;
     private static final int LABELCOLUMN = 0;
+    private static final int LABELROWP1 = 1;
+    private static final int LABELROWP2 = 5;
     private static final int ATTACKROW = 1;
     private static final int DEFENCEROW = 2;
     private static final int SPEEDROW = 3;
@@ -122,8 +124,8 @@ public class StatsSettingMenu extends GridPane {
         exit.setOnAction(e -> {
             exit.getScene().setRoot(new StartMenu());
         });
-        add(p1, 1, LABELCOLUMN);
-        add(p2, 5, LABELCOLUMN);
+        add(p1, LABELROWP1, LABELCOLUMN);
+        add(p2, LABELROWP2, LABELCOLUMN);
         for (int i = 0; i < STATLIST.size(); i++) {
 
             switch (STATLIST.get(i)) {
