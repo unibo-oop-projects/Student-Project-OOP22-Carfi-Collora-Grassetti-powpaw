@@ -1,10 +1,11 @@
-package powpaw.player.view.api;
+package powpaw.player.view.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.text.Text;
 import powpaw.player.model.api.Player;
+import powpaw.player.view.api.DamageMeterRender;
 import powpaw.world.controller.ScreenController;
 
 /**
