@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import powpaw.model.impl.CreateMap;
-import powpaw.model.impl.BlockFactory;
-import powpaw.model.impl.BlockImpl;
+import powpaw.Map.model.impl.BlockFactory;
+import powpaw.Map.model.impl.BlockImpl;
+import powpaw.Map.model.impl.CreateMap;
 
 class GameMapTest {
     private static final double DEBUG_POSITION_1 = 200;

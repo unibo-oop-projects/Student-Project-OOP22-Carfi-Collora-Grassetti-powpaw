@@ -5,7 +5,7 @@ package powpaw;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import powpaw.controller.impl.StaticGameState;
+import powpaw.core.controller.StaticGameState;
 
 /**
  * Main app.
