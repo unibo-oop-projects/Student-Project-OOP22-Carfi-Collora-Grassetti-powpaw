@@ -6,7 +6,7 @@ import powpaw.model.api.PowerUp;
 import powpaw.view.api.PowerUpRender;
 
 /**
- * PowerUpRender implementation
+ * PowerUpRender implementation.
  * 
  * @author Simone Collorà
  */
@@ -16,7 +16,7 @@ public final class PowerUpRenderImpl implements PowerUpRender {
     private int type;
 
     @Override
-    public void setPowerUp(PowerUp powerup, int type) {
+    public void setPowerUp(final PowerUp powerup, final int type) {
         this.type = type;
         this.powerup = powerup;
     }

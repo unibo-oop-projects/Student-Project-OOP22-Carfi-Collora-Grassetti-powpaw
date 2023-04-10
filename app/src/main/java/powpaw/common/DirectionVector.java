@@ -12,9 +12,21 @@ import javafx.geometry.Point2D;
  * @author Alessia Carfì
  */
 public enum DirectionVector {
+    /**
+     * Right direction.
+     */
     RIGHT(new Point2D(1.0, 0.0)),
+    /**
+     * Left direction.
+     */
     LEFT(new Point2D(-1.0, 0.0)),
+    /**
+     * Up direction.
+     */
     UP(new Point2D(0.0, -1.0)),
+    /**
+     * Down direction.
+     */
     DOWN(new Point2D(0.0, 1.0));
 
     private final Point2D point;
@@ -24,7 +36,7 @@ public enum DirectionVector {
      * 
      * @param point the Point2D representation of the direction vector
      */
-    DirectionVector(Point2D point) {
+    DirectionVector(final Point2D point) {
         this.point = point;
     }
 
@@ -44,7 +56,7 @@ public enum DirectionVector {
      * @param factor the factor to scale the direction vector by
      * @return a new Point2D representing the scaled direction vector
      */
-    public Point2D multiply(double factor) {
+    public Point2D multiply(final double factor) {
         return this.point.multiply(factor);
     }
 }
