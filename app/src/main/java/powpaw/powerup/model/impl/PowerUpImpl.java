@@ -38,17 +38,32 @@ public abstract class PowerUpImpl implements PowerUp {
                 rand.nextDouble(radius, ScreenController.SIZE_HD_H / 3), radius);
     }
 
+    /**
+     * Return Hurtbox.
+     * 
+     * @return Hurtbox.
+     */
     @Override
     public Circle getHurtbox() {
         return this.hurtbox;
     }
 
+    /**
+     * Set visibility.
+     * 
+     * @param b
+     */
     @Override
     public void setVisible(final boolean b) {
         this.isVisible = b;
         this.hurtbox.setVisible(b);
     }
 
+     /**
+     * Return visibility.
+     * 
+     * @return visibility.
+     */
     @Override
     public boolean isVisible() {
         return this.isVisible;
