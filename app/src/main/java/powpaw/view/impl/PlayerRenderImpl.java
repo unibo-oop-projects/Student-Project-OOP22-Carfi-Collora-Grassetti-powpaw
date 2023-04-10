@@ -1,6 +1,5 @@
 package powpaw.view.impl;
 
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
@@ -13,7 +12,9 @@ import powpaw.view.api.PlayerRender;
  * 
  * @author Alessia Carfì, Giacomo Grassetti
  */
-public final class PlayerRenderImpl implements PlayerRender {
+public class PlayerRenderImpl implements PlayerRender {
+
+    private final static int ANGLE = 180;
 
     private final Image idleSprite;
     private final Image attackSprite;
@@ -26,14 +27,14 @@ public final class PlayerRenderImpl implements PlayerRender {
     private final Player player;
 
     /**
-     * Constructor for creating a new PlayerRenderImpl object with a given player
-     * object.
+     * Constructor for creating a new {@code PlayerRenderImpl} object with a given
+     * player object.
      * 
      * @param player the player object to be rendered
      */
     public PlayerRenderImpl(final Player player) {
+        final int playerNum = player.getNumber();
         this.player = player;
-        int playerNum = player.getNumber();
         this.idleSprite = new Image("p" + playerNum + "_idle.png");
         this.attackSprite = new Image("p" + playerNum + "_attack.png");
         this.hitSprite = new Image("p" + playerNum + "_damage.png");
@@ -43,7 +44,7 @@ public final class PlayerRenderImpl implements PlayerRender {
         this.armSprite = new ImageView();
         this.sprite = new ImageView(this.idleSprite);
         if (playerNum % 2 == 0) {
-            this.rotate(sprite, 180);
+            this.rotate(sprite, ANGLE);
         }
     }
 
@@ -75,9 +76,9 @@ public final class PlayerRenderImpl implements PlayerRender {
                 this.sprite.setImage(this.idleSprite);
                 break;
             case WALK_LEFT:
-                rotate(this.sprite, 180);
+                rotate(this.sprite, ANGLE);
                 this.player.getArmHitbox().setTranslateX(-this.player.getArmHitbox().getWidth());
-                this.armSprite.setRotate(180);
+                this.armSprite.setRotate(ANGLE);
                 this.armSprite.setTranslateX(-this.player.getArmHitbox().getWidth());
                 this.sprite.setImage(this.idleSprite);
                 break;

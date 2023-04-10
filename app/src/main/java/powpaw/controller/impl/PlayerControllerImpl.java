@@ -19,7 +19,7 @@ import powpaw.view.impl.PlayerRenderImpl;
  * 
  * @author Alessia Carfì
  */
-public final class PlayerControllerImpl implements PlayerController {
+public class PlayerControllerImpl implements PlayerController {
 
     private static final Point2D POSITION_ONE = new Point2D(ScreenController.SIZE_HD_W / 3,
             ScreenController.SIZE_HD_H / 2.5);
@@ -27,9 +27,9 @@ public final class PlayerControllerImpl implements PlayerController {
             ScreenController.SIZE_HD_H / 2.5);
     private static final List<Point2D> POSITIONS = List.of(POSITION_ONE, POSITION_TWO);
 
-    private PlayerObservable playerObservable;
-    private List<PlayerRender> playersRender = new ArrayList<>();
-    private List<Player> players = new ArrayList<>();
+    private final PlayerObservable playerObservable;
+    private final List<PlayerRender> playersRender = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
     /**
      * Constructs a new {@code PlayerControllerImpl} object, initializes the players
@@ -37,9 +37,9 @@ public final class PlayerControllerImpl implements PlayerController {
      * PlayerObservable object with the list of players.
      */
     public PlayerControllerImpl() {
-        AtomicInteger index = new AtomicInteger();
+        final AtomicInteger index = new AtomicInteger();
         POSITIONS.forEach(point -> {
-            Player player = new PlayerImpl(point, index.incrementAndGet());
+            final Player player = new PlayerImpl(point, index.incrementAndGet());
             players.add(player);
             playersRender.add(new PlayerRenderImpl(player));
         });

@@ -16,7 +16,7 @@ import powpaw.view.api.WeaponRender;
  * 
  * @author Giacomo Grassetti
  */
-public final class WeaponRenderImpl implements WeaponRender {
+public class WeaponRenderImpl implements WeaponRender {
 
     private Weapon weapon;
     private List<BlockImpl> terrains;
@@ -63,7 +63,7 @@ public final class WeaponRenderImpl implements WeaponRender {
      * Setter for image of a weapon sprite based on the weapon ID.
      */
     private void setSpriteImage() {
-        Image image = this.weapon.getId() == 0 ? new Image("/swordPlayer.png")
+        final Image image = this.weapon.getId() == 0 ? new Image("/swordPlayer.png")
                 : new Image("/hammerPlayer.png");
         this.weaponSprite.setImage(image);
     }

@@ -11,6 +11,7 @@ import powpaw.model.api.PlayerStats;
  * @author Simone Collorà
  */
 public class AttackPowerUp extends PowerUpImpl {
+
     /**
      * increase attack by POWNUMBER for 7 seconds.
      * 
@@ -18,7 +19,7 @@ public class AttackPowerUp extends PowerUpImpl {
      */
     @Override
     public void statPowerUp(final PlayerStats stats) {
-        double oldAttack = stats.getAttack();
+        final double oldAttack = stats.getAttack();
         stats.setAttack(oldAttack + POWNUMBER);
         new Timeline(new KeyFrame(Duration.seconds(POWERUPDURATION), event -> {
             stats.setAttack(oldAttack);

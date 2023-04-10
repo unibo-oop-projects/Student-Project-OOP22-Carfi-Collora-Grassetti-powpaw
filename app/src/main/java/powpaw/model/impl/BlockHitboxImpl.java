@@ -11,7 +11,7 @@ import powpaw.model.api.BlockHitbox;
  * @author Giacomo Grassetti
  */
 
-public final class BlockHitboxImpl implements BlockHitbox {
+public class BlockHitboxImpl implements BlockHitbox {
 
     private final Rectangle shape;
 

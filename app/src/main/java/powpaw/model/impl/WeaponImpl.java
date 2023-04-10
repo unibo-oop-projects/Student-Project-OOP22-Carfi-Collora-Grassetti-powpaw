@@ -13,7 +13,7 @@ import powpaw.model.api.WeaponHitbox;
  * 
  * @author Giacomo Grassetti
  */
-public final class WeaponImpl implements Weapon {
+public class WeaponImpl implements Weapon {
 
     /**
      * Width of the weapon.
@@ -97,7 +97,7 @@ public final class WeaponImpl implements Weapon {
 
     @Override
     public void addAttack(final PlayerStats ps) {
-        double oldAttack = ps.getAttack();
+        final double oldAttack = ps.getAttack();
         ps.setAttack(oldAttack + this.attack);
         if (this.durability == 0) {
             ps.setAttack(oldAttack);

@@ -13,12 +13,12 @@ import powpaw.view.api.GameStateView;
  * 
  * @author Simone Collorà
  */
-public final class GameStateViewImpl implements GameStateView {
+public class GameStateViewImpl implements GameStateView {
 
-    private Stage stage = new Stage();
-    private GameStateController gameStateController = new GameStateControllerImpl();
+    private final Stage stage = new Stage();
+    private final GameStateController gameStateController = new GameStateControllerImpl();
+    private final GameLoop loop = new GameLoop();
     private WorldRenderImpl worldRender;
-    private GameLoop loop = new GameLoop();
 
     /**
      * GameStateView costructore set stage title and resizable.

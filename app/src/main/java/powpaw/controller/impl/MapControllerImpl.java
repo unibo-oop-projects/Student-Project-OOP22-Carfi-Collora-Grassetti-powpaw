@@ -14,7 +14,7 @@ import powpaw.model.impl.CreateMap;
  * @author Giacomo Grassetti
  */
 
-public final class MapControllerImpl implements MapController {
+public class MapControllerImpl implements MapController {
 
     private final List<BlockImpl> terrains;
 

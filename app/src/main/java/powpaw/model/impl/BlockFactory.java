@@ -8,7 +8,11 @@ import javafx.geometry.Point2D;
  * @author Giacomo Grassetti
  */
 
-public abstract class BlockFactory {
+public final class BlockFactory {
+
+    private BlockFactory() {
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * The function creates a new block with a specified position and size and

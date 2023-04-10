@@ -35,6 +35,7 @@ public class StatsSettingMenu extends GridPane {
     private static final int COLUMNP1 = 3;
     private static final int COLUMNP2 = 7;
     private static final int GAP = 15;
+    private static final String LEFTPOINTS = "Points left:";
     private static final List<String> STATLIST = new ArrayList<>(
             Arrays.asList(new String[] { "ATTACK", "DEFENCE", "SPEED" }));
     private Button finish;
@@ -62,11 +63,11 @@ public class StatsSettingMenu extends GridPane {
     private final Text speedTextP2;
     private int pointsLeftP1;
     private int pointsLeftP2;
-    private final Text pointLeftP1Text = new Text("Points left:" + pointsLeftP1);
-    private final Text pointLeftP2Text = new Text("Points left:" + pointsLeftP2);
-    private StatsBuilder statsP1 = new StatsBuilderImpl();
-    private StatsBuilder statsP2 = new StatsBuilderImpl();
-    private StatsControllerImpl control = new StatsControllerImpl();
+    private final Text pointLeftP1Text = new Text(LEFTPOINTS + pointsLeftP1);
+    private final Text pointLeftP2Text = new Text(LEFTPOINTS + pointsLeftP2);
+    private final StatsBuilder statsP1 = new StatsBuilderImpl();
+    private final StatsBuilder statsP2 = new StatsBuilderImpl();
+    private final StatsControllerImpl control = new StatsControllerImpl();
 
     /**
      * StatsSetting costructor.
@@ -289,8 +290,8 @@ public class StatsSettingMenu extends GridPane {
     private void updatePointsLeft() {
         pointsLeftP1 = StaticStats.getLimit() - (attackPointsP1 + defencePointsP1 + speedPointsP1);
         pointsLeftP2 = StaticStats.getLimit() - (attackPointsP2 + defencePointsP2 + speedPointsP2);
-        pointLeftP1Text.setText("Points left:" + pointsLeftP1);
-        pointLeftP2Text.setText("Points left:" + pointsLeftP2);
+        pointLeftP1Text.setText(LEFTPOINTS + pointsLeftP1);
+        pointLeftP2Text.setText(LEFTPOINTS + pointsLeftP2);
 
         for (int i = 0; i < plusButtonsP1.size(); i++) {
             plusButtonsP1.get(i).getKey().setDisable(pointsLeftP1 == POINTSEND);

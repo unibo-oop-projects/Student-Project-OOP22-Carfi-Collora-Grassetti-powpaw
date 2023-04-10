@@ -1,17 +1,14 @@
-package powpaw.model.api;
+package powpaw.model.impl;
 
 /**
  * Stage blocks.
  */
 public final class Level {
 
-        private Level() {
-
-        }
-
         /**
          * First level.
          */
+        @SuppressWarnings("PMD")
         public static final String[] LEVEL1 = new String[] {
                         "000000000000000000000000000000", // 30 blocks per row
                         "000000000000000000000000000000",
@@ -28,6 +25,7 @@ public final class Level {
         /**
          * Second Level.
          */
+        @SuppressWarnings("PMD")
         public static final String[] LEVEL2 = new String[] {
                         "000000000000000000000000000000", // 30 blocks per row
                         "000000000000000000000000000000",
@@ -40,4 +38,8 @@ public final class Level {
                         "000000000000000000000000000000",
                         "000000000000000000000000000000"
         };
+
+        private Level() {
+                throw new IllegalStateException("Utility class");
+        }
 }

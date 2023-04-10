@@ -7,7 +7,7 @@ import powpaw.model.api.PlayerStats;
  * 
  * @author Simone Collorà
  */
-public final class PlayerStatsImpl implements PlayerStats {
+public class PlayerStatsImpl implements PlayerStats {
 
     private double attack;
     private double defence;
@@ -15,6 +15,7 @@ public final class PlayerStatsImpl implements PlayerStats {
 
     /**
      * PLayerStats costructor that builder will use.
+     * 
      * @param attack
      * @param defence
      * @param speed

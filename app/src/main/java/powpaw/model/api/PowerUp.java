@@ -28,7 +28,7 @@ public interface PowerUp {
      * 
      * @return visibility.
      */
-    boolean getIsVisible();
+    boolean isVisible();
 
     /**
      * Increase stat of a player.

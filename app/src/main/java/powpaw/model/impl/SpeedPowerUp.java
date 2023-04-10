@@ -19,7 +19,7 @@ public class SpeedPowerUp extends PowerUpImpl {
      */
     @Override
     public void statPowerUp(final PlayerStats stats) {
-        double oldSpeed = stats.getSpeed();
+        final double oldSpeed = stats.getSpeed();
         stats.setSpeed(oldSpeed + POWNUMBER);
         new Timeline(new KeyFrame(Duration.seconds(POWERUPDURATION), event -> {
             stats.setSpeed(oldSpeed);

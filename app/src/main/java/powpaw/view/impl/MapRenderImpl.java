@@ -15,9 +15,8 @@ import powpaw.view.api.MapRender;
  * 
  * @author Giacomo Grassetti
  */
-public final class MapRenderImpl implements MapRender {
+public class MapRenderImpl implements MapRender {
 
-    private MapController mapController;
     private final List<BlockImpl> terrains;
     private final ImagePattern textureBlock;
 
@@ -27,7 +26,7 @@ public final class MapRenderImpl implements MapRender {
      * new ImagePattern object with the block image.
      */
     public MapRenderImpl() {
-        this.mapController = new MapControllerImpl();
+        final MapController mapController = new MapControllerImpl();
         this.terrains = mapController.getPlatforms();
         this.textureBlock = new ImagePattern(new Image("/block.png"));
     }
@@ -39,17 +38,17 @@ public final class MapRenderImpl implements MapRender {
         return worldPane;
     }
 
+    @Override
+    public List<BlockImpl> getTerrains() {
+        return this.terrains;
+    }
+
     /**
      * Setter that fill color of the hitbox shape of each terrain block to a texture
      * block.
      */
     private void drawBlocks() {
         this.terrains.stream().forEach(b -> b.getHitbox().getShape().setFill(this.textureBlock));
-    }
-
-    @Override
-    public List<BlockImpl> getTerrains() {
-        return this.terrains;
     }
 
 }

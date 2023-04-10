@@ -25,24 +25,23 @@ public class Parser {
      * A mapping of player numbers to their corresponding key inputs as KeyCode
      * objects.
      */
-    private Map<Integer, Map<String, KeyCode>> commands = new HashMap<>();
+    private final Map<Integer, Map<String, KeyCode>> commands = new HashMap<>();
 
-    private Yaml yaml = new Yaml();
-    private InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(YAMLNAME);
+    private final Yaml yaml = new Yaml();
+    private final InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(YAMLNAME);
 
     /**
      * Constructs a Parser object and parses the YAML file, converting key inputs to
      * KeyCode objects.
      */
     public Parser() {
-        Map<Integer, Map<String, String>> stringCommands = yaml.load(inputStream);
+        final Map<Integer, Map<String, String>> stringCommands = yaml.load(inputStream);
 
         stringCommands.entrySet().forEach(e -> {
             this.commands.put(e.getKey(), new HashMap<>());
             e.getValue().entrySet()
                     .forEach(t -> this.commands.get(e.getKey()).put(t.getKey(), KeyCode.valueOf(t.getValue())));
         });
-
     }
 
     /**

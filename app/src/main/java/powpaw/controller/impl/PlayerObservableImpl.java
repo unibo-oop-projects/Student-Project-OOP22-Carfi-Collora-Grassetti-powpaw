@@ -16,12 +16,12 @@ import powpaw.view.impl.KeyObservableImpl;
  * 
  * @author Alessia Carfì
  */
-public final class PlayerObservableImpl implements PlayerObservable {
-    private boolean gameOver = false;
-    private List<Player> playerList;
+public class PlayerObservableImpl implements PlayerObservable {
+    private boolean gameOver;
+    private final List<Player> playerList;
     private final KeyObservable observable = new KeyObservableImpl();
     private final Parser config;
-    private AttackController attackController = new AttackControllerImpl();
+    private final AttackController attackController = new AttackControllerImpl();
 
     /**
      * Constructor of the class. Initializes the list of players, the configuration

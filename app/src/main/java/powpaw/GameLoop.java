@@ -30,8 +30,8 @@ public final class GameLoop extends AnimationTimer {
 
     @Override
     public void handle(final long now) {
-        Instant currentFrameTime = Instant.now();
-        Duration deltaTime = Duration.between(lastFrameTime, currentFrameTime);
+        final Instant currentFrameTime = Instant.now();
+        final Duration deltaTime = Duration.between(lastFrameTime, currentFrameTime);
         lastFrameTime = currentFrameTime;
         update(deltaTime);
     }

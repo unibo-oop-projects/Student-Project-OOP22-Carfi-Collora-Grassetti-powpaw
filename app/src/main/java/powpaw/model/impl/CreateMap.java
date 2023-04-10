@@ -3,8 +3,6 @@ package powpaw.model.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import powpaw.model.api.Level;
-
 /**
  * Class for the creation of the game map.
  * 

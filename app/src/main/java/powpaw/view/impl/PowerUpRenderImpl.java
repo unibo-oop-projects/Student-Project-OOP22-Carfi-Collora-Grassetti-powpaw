@@ -10,8 +10,8 @@ import powpaw.view.api.PowerUpRender;
  * 
  * @author Simone Collorà
  */
-public final class PowerUpRenderImpl implements PowerUpRender {
-    private Circle sprite = new Circle();
+public class PowerUpRenderImpl implements PowerUpRender {
+    private final Circle sprite = new Circle();
     private PowerUp powerup;
     private int type;
 
@@ -32,6 +32,6 @@ public final class PowerUpRenderImpl implements PowerUpRender {
         this.sprite.setCenterY(this.powerup.getHurtbox().getCenterY());
         this.sprite.setRadius(this.powerup.getHurtbox().getRadius());
         this.sprite.setFill(type == 0 ? Color.RED : Color.BLUE);
-        this.sprite.setVisible(this.powerup.getIsVisible());
+        this.sprite.setVisible(this.powerup.isVisible());
     }
 }

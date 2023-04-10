@@ -17,7 +17,7 @@ import powpaw.view.impl.WeaponRenderImpl;
  * 
  * @author Giacomo Grassetti
  */
-public final class WeaponControllerImpl implements WeaponController {
+public class WeaponControllerImpl implements WeaponController {
 
     private Weapon weapon;
     private final WeaponRender weaponRender;
@@ -97,7 +97,7 @@ public final class WeaponControllerImpl implements WeaponController {
      * weaponRender.
      */
     private void createNewWeapon() {
-        int weaponIndex = rand.nextInt(2);
+        final int weaponIndex = rand.nextInt(2);
         this.weapon = WeaponFactory.createWeapon(weaponIndex);
         this.weaponRender.setWeapon(weapon);
     }

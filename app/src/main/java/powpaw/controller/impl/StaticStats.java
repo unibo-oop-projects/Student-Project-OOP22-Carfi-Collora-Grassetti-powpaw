@@ -12,13 +12,13 @@ import powpaw.model.api.StatsBuilder;
  */
 public final class StaticStats {
 
-    private StaticStats() {
-        throw new IllegalStateException("Utility class");
-    }
-
     private static PlayerStats statsP1;
     private static PlayerStats statsP2;
     private static final int LIMIT = 22;
+
+    private StaticStats() {
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * Get stats of player 1.

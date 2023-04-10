@@ -26,45 +26,38 @@ import powpaw.model.api.Weapon;
  * @author Alessia Carfì, Giacomo Grassetti, Simone Collorà
  */
 
-public final class PlayerImpl implements Player {
+public class PlayerImpl implements Player {
 
     /**
      * Enumerated type representing the various states of the player.
-     * IDLE - Player is not doing anything
-     * JUMP - Player is jumping
-     * DODGE - Player is dodging
-     * ATTACK - Player is attacking
-     * WALK_RIGHT - Player is moving to the right
-     * WALK_LEFT - Player is moving to the left
-     * HIT - Player is hit
      */
     public enum PlayerState {
         /**
-         * Stand state.
+         * Player is not doing anything.
          */
         IDLE,
         /**
-         * Jump state.
+         * Player is jumping.
          */
         JUMP,
         /**
-         * Dodge state.
+         * Player is dodging.
          */
         DODGE,
         /**
-         * Attack state.
+         * Player is attacking.
          */
         ATTACK,
         /**
-         * Walk right state.
+         * Player is moving to the right.
          */
         WALK_RIGHT,
         /**
-         * Walk left state.
+         * Player is moving to the left.
          */
         WALK_LEFT,
         /**
-         * Hit state.
+         * Player is hit.
          */
         HIT;
     }
@@ -74,7 +67,7 @@ public final class PlayerImpl implements Player {
     private static final double DODGE_TIME = 0.5;
     private static final double GRAVITY = 0.5;
 
-    private TransitionImpl transition;
+    private final TransitionImpl transition;
 
     private Optional<Weapon> weapon;
 
@@ -85,26 +78,26 @@ public final class PlayerImpl implements Player {
     private Point2D direction;
     private Point2D directionDeath;
 
-    private int number;
+    private double knockback = 1;
     private double width;
     private double height;
-    private double knockback = 1;
-    private DamageMeter currentHealth;
-    private PlayerStats stats;
-    private Hitbox hitbox;
+    private final int number;
+    private final DamageMeter currentHealth;
+    private final PlayerStats stats;
+    private final Hitbox hitbox;
 
-    private boolean isJumping = false;
-    private boolean isMovingLeft = false;
-    private boolean isMovingRight = false;
-    private boolean isAttacking = false;
-    private boolean isHit = false;
-    private boolean isDodging = false;
+    private boolean isJumping;
+    private boolean isMovingLeft;
+    private boolean isMovingRight;
+    private boolean isAttacking;
+    private boolean isHit;
+    private boolean isDodging;
     private boolean canMove = true;
-    private Timeline jumpTimeline = new Timeline(
+    private final Timeline jumpTimeline = new Timeline(
             new KeyFrame(javafx.util.Duration.seconds(JUMP_TIME), event -> {
                 this.isJumping = false;
             }));
-    private Timeline dodgeTimeline = new Timeline(
+    private final Timeline dodgeTimeline = new Timeline(
             new KeyFrame(javafx.util.Duration.seconds(DODGE_TIME), event -> {
                 canMove = true;
                 this.currentState = PlayerState.IDLE;
@@ -125,7 +118,7 @@ public final class PlayerImpl implements Player {
         this.width = ScreenController.SIZE_HD_W / 15;
         hitbox = new PlayerHitboxImpl(this.position, this.width, this.height);
         this.currentState = PlayerState.IDLE;
-        this.idle();
+        this.direction = new Point2D(0, 0);
         this.stats = number == 1 ? StaticStats.getStatsP1() : StaticStats.getStatsP2();
         this.directionState = number == 1 ? PlayerState.WALK_RIGHT : PlayerState.WALK_LEFT;
         this.currentHealth = new DamageMeterImpl();

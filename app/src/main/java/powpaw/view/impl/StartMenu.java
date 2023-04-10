@@ -15,8 +15,6 @@ import powpaw.controller.impl.StaticGameState;
  * @author Simone Collorà
  */
 public class StartMenu extends GridPane {
-    private final Button start;
-    private final Button exit;
 
     /**
      * Start menu costructor.
@@ -24,8 +22,8 @@ public class StartMenu extends GridPane {
     public StartMenu() {
         setAlignment(Pos.CENTER);
         setBackground(Background.fill(new ImagePattern(new Image("/background_menu.png"))));
-        start = new Button("START");
-        exit = new Button("EXIT");
+        final Button start = new Button("START");
+        final Button exit = new Button("EXIT");
         setVgap(15);
         setHgap(15);
         start.prefWidthProperty().bind(widthProperty().divide(4));
@@ -36,13 +34,7 @@ public class StartMenu extends GridPane {
         exit.setMaxSize(300, 70);
         add(start, 0, 0);
         add(exit, 0, 1);
-        start.setOnAction(e -> {
-            try {
-                StaticGameState.getGameStateView().showCharacterCreation();
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        });
+        start.setOnAction(e -> StaticGameState.getGameStateView().showCharacterCreation());
         exit.setOnAction(e -> {
             Platform.exit();
         });

@@ -11,16 +11,15 @@ import powpaw.model.api.Hitbox;
  * 
  * @author Alessia Carfì, Giacomo Grassetti
  */
-public final class PlayerHitboxImpl implements Hitbox {
+public class PlayerHitboxImpl implements Hitbox {
 
-    private double radius;
-    private double feetRadius;
+    private final double radius;
     private double offsetX;
     private double offsetY;
-    private double offsetFeet;
-    private Circle hitbox;
-    private Circle feetBox;
-    private Rectangle armHitbox;
+    private final double offsetFeet;
+    private final Circle hitbox;
+    private final Circle feetBox;
+    private final Rectangle armHitbox;
 
     /**
      * Creates a new PlayerHitboxImpl object with the position, width and
@@ -32,7 +31,7 @@ public final class PlayerHitboxImpl implements Hitbox {
      */
     public PlayerHitboxImpl(final Point2D playerPosition, final double width, final double height) {
         this.radius = width / 2;
-        this.feetRadius = this.radius / 3;
+        final double feetRadius = this.radius / 3;
         this.offsetX = width / 2;
         this.offsetY = height / 2;
         this.offsetFeet = height - feetRadius;
@@ -42,7 +41,7 @@ public final class PlayerHitboxImpl implements Hitbox {
         final double yArm = playerPosition.getY() + this.offsetY;
         this.hitbox = new Circle(x, y, this.radius);
         this.armHitbox = new Rectangle(x, yArm, this.offsetX, this.offsetY / 2);
-        this.feetBox = new Circle(x, yFeet, this.feetRadius);
+        this.feetBox = new Circle(x, yFeet, feetRadius);
     }
 
     @Override

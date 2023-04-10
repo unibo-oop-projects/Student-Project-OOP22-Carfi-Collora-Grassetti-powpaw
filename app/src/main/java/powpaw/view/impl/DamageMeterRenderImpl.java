@@ -14,15 +14,18 @@ import powpaw.view.api.DamageMeterRender;
  * @author Simone Collorà
  */
 public final class DamageMeterRenderImpl implements DamageMeterRender {
-    private List<Text> damage = new ArrayList<>();
+
     private static final double WIDTHP1 = 6;
     private static final double WIDTHP2 = 1.3;
     private static final double HEIGHT = 6;
 
-   /**
-    * DamageMeterRender costructor.
-    * @param players for get damage
-    */
+    private final List<Text> damage = new ArrayList<>();
+
+    /**
+     * DamageMeterRender costructor.
+     * 
+     * @param players for get damage
+     */
     public DamageMeterRenderImpl(final List<Player> players) {
         for (int i = 0; i < 2; i++) {
             damage.add(new Text((int) (players.get(i).getCurrentHealth().getDamage() * 10) + "%"));

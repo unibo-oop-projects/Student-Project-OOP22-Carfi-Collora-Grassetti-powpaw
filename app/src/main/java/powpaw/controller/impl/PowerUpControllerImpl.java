@@ -18,12 +18,11 @@ import powpaw.view.impl.PowerUpRenderImpl;
  * 
  * @author Simone Collorà
  */
-public final class PowerUpControllerImpl implements PowerUpController {
-    private PowerUpRender powerUpRender;
+public class PowerUpControllerImpl implements PowerUpController {
+    private final Random rand = new Random();
+    private final PowerUpRender powerUpRender;
     private PowerUp powerUp;
-    private boolean isCollected = false;
-    private int powerUpIndex;
-    private Random rand = new Random();
+    private boolean isCollected;
 
     /**
      * PowerUpController costructor.
@@ -43,19 +42,17 @@ public final class PowerUpControllerImpl implements PowerUpController {
 
         playerController.getPlayerObservable().getPlayers().forEach(player -> {
             if (powerUp.getHurtbox().getBoundsInParent()
-                    .intersects(player.getHitbox().getShape().getBoundsInParent())) {
-                if (!isCollected) {
-                    powerUp.statPowerUp(player.getNumber() == 1
-                            ? playerController.getPlayerObservable().getPlayers().get(0).getPlayerStats()
-                            : playerController.getPlayerObservable().getPlayers().get(1).getPlayerStats());
-                    isCollected = true;
-                    powerUp.setVisible(false);
-                    new Timeline(new KeyFrame(Duration.seconds(10), event -> {
-                        isCollected = false;
-                        this.choosePowerUp();
-                        powerUp.setVisible(true);
-                    })).play();
-                }
+                    .intersects(player.getHitbox().getShape().getBoundsInParent()) && !isCollected) {
+                powerUp.statPowerUp(player.getNumber() == 1
+                        ? playerController.getPlayerObservable().getPlayers().get(0).getPlayerStats()
+                        : playerController.getPlayerObservable().getPlayers().get(1).getPlayerStats());
+                isCollected = true;
+                powerUp.setVisible(false);
+                new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+                    isCollected = false;
+                    this.choosePowerUp();
+                    powerUp.setVisible(true);
+                })).play();
             }
         });
     }
@@ -64,7 +61,7 @@ public final class PowerUpControllerImpl implements PowerUpController {
      * This method chose with a random number what powerUp will be created.
      */
     private void choosePowerUp() {
-        powerUpIndex = rand.nextInt(2);
+        final int powerUpIndex = rand.nextInt(2);
         powerUp = powerUpIndex == 0 ? new SpeedPowerUp() : new AttackPowerUp();
         powerUpRender.setPowerUp(powerUp, powerUpIndex);
     }

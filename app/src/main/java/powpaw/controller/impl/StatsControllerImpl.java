@@ -8,7 +8,7 @@ import powpaw.controller.api.StatsController;
  * 
  * @author Simone Collorà
  */
-public final class StatsControllerImpl implements StatsController {
+public class StatsControllerImpl implements StatsController {
     private static final int MAXPOINTS = 10;
     private static final int MINPOINTS = 5;
     private static final int PLUSMINUS = 1;

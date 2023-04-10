@@ -25,7 +25,7 @@ import powpaw.view.api.WorldRender;
  * 
  * @author Alessia Carfì
  */
-public final class WorldRenderImpl implements WorldRender {
+public class WorldRenderImpl implements WorldRender {
 
     private final MapRender mapRender = new MapRenderImpl();
     private final PlayerController playerController = new PlayerControllerImpl();
@@ -62,7 +62,7 @@ public final class WorldRenderImpl implements WorldRender {
 
     @Override
     public Scene render() {
-        Pane worldPane = mapRender.createPane();
+        final Pane worldPane = mapRender.createPane();
         worldPane.setBackground(
                 Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
         worldPane.getChildren()

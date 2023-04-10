@@ -18,17 +18,17 @@ import powpaw.view.api.KeyObserver;
  * 
  * @author Alessia Carfì
  */
-public final class KeyObserverImpl implements KeyObserver {
+public class KeyObserverImpl implements KeyObserver {
 
     private final Player player;
 
-    private KeyCode keyJump;
-    private KeyCode keyLeft;
-    private KeyCode keyRight;
-    private KeyCode keyAttack;
-    private KeyCode keyDodge;
-    private Set<KeyCode> keys = new HashSet<>();
-    private AttackController attackController;
+    private final KeyCode keyJump;
+    private final KeyCode keyLeft;
+    private final KeyCode keyRight;
+    private final KeyCode keyAttack;
+    private final KeyCode keyDodge;
+    private final Set<KeyCode> keys = new HashSet<>();
+    private final AttackController attackController;
 
     /**
      * Constructs a new KeyObserverImpl.
@@ -40,7 +40,7 @@ public final class KeyObserverImpl implements KeyObserver {
      */
     public KeyObserverImpl(final Player player, final Parser parser, final AttackController ac) {
         this.player = player;
-        Map<String, KeyCode> commands = parser.getCommands(player.getNumber());
+        final Map<String, KeyCode> commands = parser.getCommands(player.getNumber());
         this.attackController = ac;
 
         this.keyJump = commands.get("jump");
@@ -58,26 +58,24 @@ public final class KeyObserverImpl implements KeyObserver {
 
     @Override
     public void keyPressed(final KeyCode event) {
-        if (!keys.contains(event)) {
+        if (!this.keys.contains(event)) {
             return;
         }
 
-        if (event == keyJump) {
-            if (!this.player.isFalling()) {
-                this.player.setIsJumping(true);
-            }
+        if (event == this.keyJump && !this.player.isFalling()) {
+            this.player.setIsJumping(true);
         }
-        if (event == keyRight) {
+        if (event == this.keyRight) {
             this.player.setIsMovingRight(true);
         }
-        if (event == keyLeft) {
+        if (event == this.keyLeft) {
             this.player.setIsMovingLeft(true);
         }
-        if (event == keyAttack) {
+        if (event == this.keyAttack) {
             this.player.setIsAttacking(true);
             this.attackController.checkHit(this.player);
         }
-        if (event == keyDodge) {
+        if (event == this.keyDodge) {
             this.player.setIsDodging(true);
         }
     }
@@ -85,23 +83,23 @@ public final class KeyObserverImpl implements KeyObserver {
     @Override
     public void keyReleased(final KeyCode event) {
 
-        if (!keys.contains(event)) {
+        if (!this.keys.contains(event)) {
             return;
         }
 
-        if (event == keyJump) {
+        if (event == this.keyJump) {
             this.player.setIsJumping(false);
         }
-        if (event == keyRight) {
+        if (event == this.keyRight) {
             this.player.setIsMovingRight(false);
         }
-        if (event == keyLeft) {
+        if (event == this.keyLeft) {
             this.player.setIsMovingLeft(false);
         }
-        if (event == keyAttack) {
+        if (event == this.keyAttack) {
             this.player.setIsAttacking(false);
         }
-        if (event == keyDodge) {
+        if (event == this.keyDodge) {
             this.player.setIsDodging(false);
         }
     }

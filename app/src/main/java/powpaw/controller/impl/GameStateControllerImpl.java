@@ -8,9 +8,9 @@ import powpaw.controller.api.GameStateController;
  * 
  * @author Simone Collorà
  */
-public final class GameStateControllerImpl implements GameStateController {
+public class GameStateControllerImpl implements GameStateController {
 
-    private GameState state = GameState.START;
+    private final GameState state = GameState.START;
 
     @Override
     public void start() {

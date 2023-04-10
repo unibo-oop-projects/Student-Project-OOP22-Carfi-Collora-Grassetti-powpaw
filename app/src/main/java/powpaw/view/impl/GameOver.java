@@ -19,9 +19,6 @@ import powpaw.controller.api.PlayerController;
  * @author Simone Collorà
  */
 public class GameOver extends VBox {
-    private final Button newGame;
-    private final Button exit;
-    private final Text gameOver;
 
     /**
      * GameOver create a VBox as with gridPane Text appeared a little decentralized.
@@ -30,9 +27,13 @@ public class GameOver extends VBox {
      *                   win text
      */
     public GameOver(final PlayerController controller) {
+        final Button newGame;
+        final Button exit;
+        final Text gameOver;
+
         setBackground(Background.fill(new ImagePattern(new Image("/background_menu.png"))));
         setAlignment(Pos.CENTER);
-        int winnerNumber = controller.getPlayerObservable().getAttackController().checkDeath().get().getNumber();
+        final int winnerNumber = controller.getPlayerObservable().getAttackController().checkDeath().get().getNumber();
         gameOver = new Text("P" + winnerNumber + " WIN");
         newGame = new Button("NEW GAME");
         exit = new Button("EXIT");
@@ -47,13 +48,7 @@ public class GameOver extends VBox {
         gameOver.setFill(winnerNumber == 1 ? Color.RED : Color.BLUE);
         gameOver.setTextAlignment(TextAlignment.CENTER);
         getChildren().addAll(gameOver, newGame, exit);
-        newGame.setOnAction(e -> {
-            try {
-                StaticGameState.getGameStateView().showCharacterCreation();
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        });
+        newGame.setOnAction(e -> StaticGameState.getGameStateView().showCharacterCreation());
         exit.setOnAction(e -> {
             Platform.exit();
         });

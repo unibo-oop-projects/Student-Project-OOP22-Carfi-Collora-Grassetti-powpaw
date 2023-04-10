@@ -27,7 +27,7 @@ public abstract class PowerUpImpl implements PowerUp {
     protected static final int POWERUPDURATION = 7;
     private final double radius = ScreenController.SIZE_HD_W / 40;
     private final Random rand = new Random();
-    private Circle hurtbox;
+    private final Circle hurtbox;
     private boolean isVisible = true;
 
     /**
@@ -50,7 +50,7 @@ public abstract class PowerUpImpl implements PowerUp {
     }
 
     @Override
-    public boolean getIsVisible() {
+    public boolean isVisible() {
         return this.isVisible;
     }
 
