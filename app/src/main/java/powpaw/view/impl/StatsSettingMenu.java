@@ -262,8 +262,8 @@ public class StatsSettingMenu extends GridPane {
      */
     private int updateStatPlus(final int points, final Text text) {
         int newPoints = points;
-        newPoints = control.increase(points);
-        text.setText("" + points);
+        newPoints = control.increase(newPoints);
+        text.setText(Integer.toString(newPoints));
         return newPoints;
     }
 
@@ -276,8 +276,8 @@ public class StatsSettingMenu extends GridPane {
      */
     private int updateStatMinus(final int points, final Text text) {
         int newPoints = points;
-        newPoints = control.decrease(points);
-        text.setText("" + points);
+        newPoints = control.decrease(newPoints);
+        text.setText(Integer.toString(newPoints));
         return newPoints;
     }
 
