@@ -5,9 +5,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.ImagePattern;
 import powpaw.core.controller.StaticGameState;
+import powpaw.world.controller.ScreenController;
 
 /**
  * Start menu view.
@@ -29,7 +33,12 @@ public class StartMenu extends GridPane {
      */
     public StartMenu() {
         setAlignment(Pos.CENTER);
-        setBackground(Background.fill(new ImagePattern(new Image("/background_menu.png"))));
+        final BackgroundSize size = new BackgroundSize(ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H, true,
+                true, true, false);
+        setBackground(new Background(new BackgroundImage(new Image("/background_menu.png"), BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                size)));
         final Button start = new Button("START");
         final Button exit = new Button("EXIT");
         setVgap(GAP);

@@ -5,13 +5,17 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import powpaw.core.controller.StaticGameState;
 import powpaw.player.controller.api.PlayerController;
+import powpaw.world.controller.ScreenController;
 
 /**
  * GameOver view.
@@ -36,7 +40,12 @@ public class GameOver extends VBox {
         final Button exit;
         final Text gameOver;
 
-        setBackground(Background.fill(new ImagePattern(new Image("/background_menu.png"))));
+        final BackgroundSize size = new BackgroundSize(ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H, true,
+                true, true, false);
+        setBackground(new Background(new BackgroundImage(new Image("/background_menu.png"), BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                size)));
         setAlignment(Pos.CENTER);
         final int winnerNumber = controller.getPlayerObservable().getAttackController().checkDeath().get().getNumber();
         gameOver = new Text("P" + winnerNumber + " WIN");

@@ -5,8 +5,11 @@ import java.util.stream.Collectors;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.ImagePattern;
 import powpaw.map.view.api.MapRender;
 import powpaw.map.view.impl.MapRenderImpl;
 import powpaw.player.controller.api.DamageMeterController;
@@ -63,9 +66,14 @@ public final class WorldRenderImpl implements WorldRender {
 
     @Override
     public Scene render() {
+        final BackgroundSize size = new BackgroundSize(ScreenController.SIZE_HD_W, ScreenController.SIZE_HD_H, true,
+                true, true, false);
         final Pane worldPane = mapRender.createPane();
         worldPane.setBackground(
-                Background.fill(new ImagePattern(new Image("/backgroundWorld.png"))));
+                new Background(new BackgroundImage(new Image("/background_world.png"), BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.CENTER,
+                        size)));
         worldPane.getChildren()
                 .addAll(playerController.getRender().stream().map(r -> r.getSprite()).collect(Collectors.toList()));
 

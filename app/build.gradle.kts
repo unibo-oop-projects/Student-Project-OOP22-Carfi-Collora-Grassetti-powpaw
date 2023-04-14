@@ -3,14 +3,14 @@
  *
  * This generated file contains a sample Java application project to get you started.
  * For more details take a look at the "Building Java & JVM projects" chapter in the Gradle
- * User Manual available at https://docs.gradle.org/7.6/userguide/building_java_projects.html
+ * User Manual available at https://docs.gradle.org/7.3/userguide/building_java_projects.html
  */
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
     id("org.openjfx.javafxplugin") version "0.0.13"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.danilopianini.gradle-java-qa") version "1.6.0"
 }
 
@@ -29,18 +29,18 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
 
     // JavaFX
-    implementation(group="org.openjfx", name="javafx-base", version="19", classifier="win")
-    implementation(group="org.openjfx", name="javafx-base", version="19", classifier="mac")
-    implementation(group="org.openjfx", name="javafx-base", version="19", classifier="linux")
-    implementation(group="org.openjfx", name="javafx-controls", version="19", classifier="win")
-    implementation(group="org.openjfx", name="javafx-controls", version="19", classifier="mac")
-    implementation(group="org.openjfx", name="javafx-controls", version="19", classifier="linux")
-    implementation(group="org.openjfx", name="javafx-fxml", version="19", classifier="win")
-    implementation(group="org.openjfx", name="javafx-fxml", version="19", classifier="mac")
-    implementation(group="org.openjfx", name="javafx-fxml", version="19", classifier="linux")
-    implementation(group="org.openjfx", name="javafx-graphics", version="19", classifier="win")
-    implementation(group="org.openjfx", name="javafx-graphics", version="19", classifier="mac")
-    implementation(group="org.openjfx", name="javafx-graphics", version="19", classifier="linux")
+    implementation(group="org.openjfx", name="javafx-base", version="17", classifier="win")
+    implementation(group="org.openjfx", name="javafx-base", version="17", classifier="mac")
+    implementation(group="org.openjfx", name="javafx-base", version="17", classifier="linux")
+    implementation(group="org.openjfx", name="javafx-controls", version="17", classifier="win")
+    implementation(group="org.openjfx", name="javafx-controls", version="17", classifier="mac")
+    implementation(group="org.openjfx", name="javafx-controls", version="17", classifier="linux")
+    implementation(group="org.openjfx", name="javafx-fxml", version="17", classifier="win")
+    implementation(group="org.openjfx", name="javafx-fxml", version="17", classifier="mac")
+    implementation(group="org.openjfx", name="javafx-fxml", version="17", classifier="linux")
+    implementation(group="org.openjfx", name="javafx-graphics", version="17", classifier="win")
+    implementation(group="org.openjfx", name="javafx-graphics", version="17", classifier="mac")
+    implementation(group="org.openjfx", name="javafx-graphics", version="17", classifier="linux")
 
     // Use JUnit Jupiter Engine for testing.
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
@@ -58,7 +58,7 @@ dependencies {
 
 spotbugs {
     ignoreFailures.set(true)
-    showStackTraces.set(false)
+    // showStackTraces.set(false)
 }
 
 application {
