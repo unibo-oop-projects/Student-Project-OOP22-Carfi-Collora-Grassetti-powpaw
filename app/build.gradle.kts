@@ -6,13 +6,25 @@
  * User Manual available at https://docs.gradle.org/7.3/userguide/building_java_projects.html
  */
 
+import de.aaschmid.gradle.plugins.cpd.Cpd
+
+
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
     id("org.openjfx.javafxplugin") version "0.0.13"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.danilopianini.gradle-java-qa") version "1.6.0"
+    alias(libs.plugins.taskTree)
 }
+
+
+java {
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(17))
+  }
+}
+
 
 tasks.javadoc {
     isFailOnError = false
